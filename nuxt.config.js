@@ -46,11 +46,21 @@ export default {
         '@nuxtjs/axios',
         '@nuxtjs/auth',
         '@nuxtjs/workbox',
+        '@nuxtjs/onesignal',
         '@nuxtjs/pwa',
         // Doc: https://github.com/nuxt-community/dotenv-module
         '@nuxtjs/dotenv',
 
     ],
+    oneSignal: {
+        init: {
+            appId: 'bem_unsil_beta',
+            allowLocalhostAsSecureOrigin: true,
+            welcomeNotification: {
+                disable: true
+            }
+        }
+    },
     pwa: {
         manifest: {
             name: 'BEM UNSIL',

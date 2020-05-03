@@ -85,6 +85,23 @@ export default {
       menuNonActiveClassM: "w-1/4"
     }
   },
+  created(){
+    // Inside page components
+    this.$OneSignal.push(() => {
+        this.$OneSignal.isPushNotificationsEnabled((isEnabled) => {
+        if (isEnabled) {
+          console.log('Push notifications Tester!')
+        } else {
+          console.log('Push notifications are not enabled yet.')
+        }
+      })
+    })
+
+    // Using window and array form
+    window.$OneSignal.push(['addListenerForNotificationOpened', (data) => {
+      console.log('Received NotificationOpened:', data )}
+    ]);
+  },
   mounted(){
         this.$axios.get(`profile`)
           .then((res) => {
