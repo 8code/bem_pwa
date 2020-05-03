@@ -2,6 +2,8 @@ require('dotenv').config()
 
 export default {
     mode: 'spa',
+    // PWA
+
     /*
      ** Headers of the page
      */
@@ -43,11 +45,23 @@ export default {
         // Doc: https://axios.nuxtjs.org/usage
         '@nuxtjs/axios',
         '@nuxtjs/auth',
+        '@nuxtjs/workbox',
         '@nuxtjs/pwa',
         // Doc: https://github.com/nuxt-community/dotenv-module
         '@nuxtjs/dotenv',
 
     ],
+    pwa: {
+        manifest: {
+            name: 'BEM UNSIL',
+            short_name: 'BEM',
+            display: 'fullscreen',
+            start_url: 'https://bem.citumangview.com/',
+            theme_color: '#000',
+            background_color: '#000',
+            lang: 'id'
+        }
+    },
     /*
      ** Axios module configuration
      ** See https://axios.nuxtjs.org/options
