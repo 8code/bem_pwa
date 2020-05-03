@@ -55,10 +55,10 @@ export default {
         manifest: {
             name: 'BEM UNSIL',
             short_name: 'BEM',
-            display: 'fullscreen',
+            display: "standalone",
             start_url: 'https://bem.citumangview.com/',
-            theme_color: '#000',
-            background_color: '#000',
+            theme_color: '#00171F',
+            background_color: '#00171F',
             lang: 'id'
         }
     },
