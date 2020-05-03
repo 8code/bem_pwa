@@ -54,7 +54,7 @@ export default {
     ],
     oneSignal: {
         init: {
-            appId: 'bem_unsil_beta',
+            appId: 'f4910a8c-83d9-4843-90da-67099056e0c7',
             allowLocalhostAsSecureOrigin: true,
             welcomeNotification: {
                 disable: true
