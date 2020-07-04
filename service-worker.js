@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.a60e700cdf3d26a507bb1d0524f7eece.js"
+  "/precache-manifest.845377a0caa1913de7b91bbdb443f6bb.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "ICollege"});
