@@ -14,10 +14,10 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.7245a77f45a448b8ef3961d6d452f110.js"
+  "/precache-manifest.a60e700cdf3d26a507bb1d0524f7eece.js"
 );
 
-workbox.core.setCacheNameDetails({prefix: "Bootwind-Template"});
+workbox.core.setCacheNameDetails({prefix: "ICollege"});
 
 workbox.core.skipWaiting();
 
