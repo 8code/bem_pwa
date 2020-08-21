@@ -1,13 +1,14 @@
 <template>
+<div  :class="settings">
+
   <div
-    :class="settings"
     class="w-full min-h-screen flex flex-wrap content-start bg-theme_primary_light"
   >
     <topheader :class="!$store.state.topMenu ? 'hidden z-30' : 'z-30'" />
     <settings class="z-50" />
     <!-- <part-auth class="z-50" /> -->
     <main
-      class="w-full mx-auto flex flex-wrap pt-16 content-start min-h-screen bg-theme_primary_light"
+      class="w-full mx-auto flex flex-wrap pt-20 content-start min-h-screen bg-theme_primary_light"
       style="max-width:600px"
     >
       <transition name="slide-fade">
@@ -238,6 +239,8 @@
       </div>
     </nav>
   </div>
+  
+</div>
 </template>
 
 <script>

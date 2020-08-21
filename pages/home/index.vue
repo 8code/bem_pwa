@@ -1,9 +1,6 @@
 <template>
 <div class="w-full" v-touch:swipe="to">
-          <subheader name="home" />
-            <section class="w-full rounded-xl pb-20">
-                    <card-group v-for="group in listGroup" :key="group.id" :group="group" />
-            </section>
+    
 </div>
         
 </template>

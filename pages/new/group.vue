@@ -28,7 +28,7 @@
 
                   
 
-                  <label class="text-left  pl-2 w-full my-3" for="usernama">Username</label>
+                  <label class="text-left  pl-2 w-full my-3" for="usernama">Username / TagName</label>
                       <input class="w-full
                       shadow-sm bg-theme_primary_light
                       py-2 px-4 
@@ -81,7 +81,7 @@
                       @click="save"
                       class="w-full  py-2 px-4 bg-primary_dark text-white hover:opacity-75 rounded-lg mt-5">
                           <i class="fa fa-plus"></i>
-                          Create Group
+                          Buat Group
                       </button>
 
                        <router-link to="/"

@@ -1,7 +1,7 @@
 <template>
     <div >
            <!-- Header -->
-            <nav class="w-full p-3 pt-4 flex flex-wrap fixed  bg-theme_primary" >
+            <nav class="w-full p-3 pt-4 flex flex-wrap fixed  bg-theme_primary_light" >
 
                 <div class="w-full flex">
 
