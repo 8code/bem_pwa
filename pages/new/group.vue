@@ -118,11 +118,11 @@ export default {
     return {
        avatar: {},
        d:{
+         username: '',
          avatar: '',
          name: '',
-         desc: '',
-         type: ''
-         
+         desc: '-',
+         type: 'UKM'
        }
     }
   },
@@ -147,7 +147,9 @@ export default {
         if(this.d.name != '' && this.d.desc != '' && this.d.type != ''){
           this.d.avatar = this.avatar.generateDataUrl()
           if(this.d.avatar){
+            // this.d.avatar = '/icon.png';
             await this.$store.commit("createGroup",this.d)
+            await this.$router.push("/")
           }
         }
     }

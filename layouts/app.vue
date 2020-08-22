@@ -8,7 +8,7 @@
     <settings class="z-50" />
     <!-- <part-auth class="z-50" /> -->
     <main
-      class="w-full mx-auto flex flex-wrap pt-20 content-start min-h-screen bg-theme_primary_light"
+      class="w-full mx-auto flex flex-wrap pt-16 content-start min-h-screen bg-theme_primary_light"
       style="max-width:600px"
     >
       <transition name="slide-fade">

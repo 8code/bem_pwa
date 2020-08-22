@@ -176,7 +176,7 @@ const createStore = () => {
                 image: data.avatar
             }).then(res => {
                     data.user_id = state.user.id
-                    data.avatar = res.url
+                    data.avatar = state.storage + res.url
                     this.$axios.$post("/group",data)
                         .then(res => {
                             console.log(res)

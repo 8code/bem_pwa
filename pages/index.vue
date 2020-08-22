@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-wrap pb-40 ">
     <section class="w-full p-5 relative">
-      <div class="flex pb-5 items-start ">
+      <div class="flex items-start ">
         <img
           width="50px"
           :src="$store.state.user.avatar"
@@ -26,11 +26,9 @@
       </div>
     </section>
 
-    <h1 class="px-4 mb-5">Group Saya</h1>
-    <card-group v-for="group in myGroup" :key="group.id" :group="group" />
-    <router-link
+   <router-link
       to="/new/group"
-      class="w-full bg-theme_primary p-5 m-2 rounded-xl flex"
+      class="w-full bg-theme_primary p-5 mb-5 m-2 rounded-xl flex"
     >
       <svg
         width="1.5em"
@@ -56,6 +54,10 @@
       <span class="mx-2">Buat Group Baru</span>
     </router-link>
 
+
+    <h1 class="px-4 mb-5">Group Saya</h1>
+    <card-group v-for="group in myGroup" :key="group.id" :group="group" />
+ 
     <button
       @click="$store.commit('logout')"
       class="w-full bg-theme_primary py-3 text-danger m-2 rounded-xl flex justify-center"

@@ -13,8 +13,8 @@
                     </nuxt-link>
 
                     <nuxt-link to="/home" class="mx-auto  flex text-primary text-md items-start" >
-                        <span class=" font-bold text-xl"> 
-                            Mahasiswa Abadi
+                        <span class="font-bold text-lg"> 
+                            MABA - MAHASISWA ABADI
                         </span> 
                     </nuxt-link>
 

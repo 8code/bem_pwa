@@ -5,7 +5,7 @@
         <div class="w-full font-bold flex px-2 ">
           <img
             class="w-16 h-16  rounded-full"
-            :src="$store.state.storage + group.avatar"
+            :src="group.avatar"
             :alt="group.name"
           />
 
