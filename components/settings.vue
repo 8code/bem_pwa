@@ -13,10 +13,9 @@
       class="z-20 w-full bg-theme_primary p-5 shadow-lg rounded-xl neu-out"
       style="max-width:600px"
     >
-      <h1 class="my-8 w-full text-primary font-bold text-xl">
+      <!-- <h1 class="my-8 w-full text-primary font-bold text-xl">
         {{ $t("selectLang") }}
       </h1>
-      <!-- Theme Set -->
 
       <div class="flex flex-wrap justify-center">
         <div class="px-2 w-full lg:w-1/3">
@@ -42,7 +41,7 @@
             Sunda
           </nuxt-link>
         </div>
-      </div>
+      </div> -->
 
       <!-- Primary Color Set  -->
       <div

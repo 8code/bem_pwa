@@ -157,7 +157,7 @@
           </svg>
           <span
             :class="$route.path == '/home' ? activeClassLg : nonActiveClassLg"
-            >Home</span
+            >{{ $t("Home")}}</span
           >
         </router-link>
 
@@ -185,7 +185,7 @@
             :class="
               $route.path == '/donations' ? activeClassLg : nonActiveClassLg
             "
-            >Donation</span
+            >{{ $t("Donations")}}</span
           >
         </router-link>
 
@@ -211,7 +211,7 @@
             :class="
               $route.path == '/notifications' ? activeClassLg : nonActiveClassLg
             "
-            >Notifications</span
+            >{{ $t("Notif")}}</span
           >
         </router-link>
 
@@ -233,7 +233,7 @@
             />
           </svg>
           <span :class="$route.path == '/' ? activeClassLg : nonActiveClassLg"
-            >Profile</span
+            >{{ $t("Profile")}}</span
           >
         </router-link>
       </div>

@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="`/g/${group.username}`" class="w-full px-2 pb-2 relative flex">
+  <div class="w-full px-2 pb-2 relative flex">
     <div
       class="w-full flex flex-wrap bg-theme_primary_light hover:bg-theme_primary rounded-xl px-2 lg:py-2 "
     >
@@ -23,12 +23,12 @@
         <div class="h-4 w-4 rounded-full shadow-lg bg-primary mr-3 mt-1"></div>
         {{ group.type }}
 
-        <div class="ml-auto text-primary text-sm mt-1 px-3 rounded-full">
-          100 Postingan Baru
-        </div>
+        <router-link :to="`/g/${group.username}`"  class="ml-auto text-primary text-sm mt-1 px-3 rounded-full">
+          Lihat 100 Quest Baru
+        </router-link>
       </small>
     </div>
-  </router-link>
+  </div>
 </template>
 
 <script>

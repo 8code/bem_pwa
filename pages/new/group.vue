@@ -13,16 +13,13 @@
                   <div class="w-full my-3 flex content-center justify-center items-center">
                        <croppa class="shadow-sm rounded-lg"
                           v-model="avatar"
-                          :width="50"
+                          :width="150"
                           prevent-white-space
-                          :height="50"
+                          :height="150"
                           :placeholder="'50x50px'"
                           @init="onInit"
-                          :show-remove-button="false"
                           ></croppa>
-                    <button @click="avatar.remove()" class="mx-3 rounded-full bg-theme_primary_light p-1 px-5 text-xs">
-                      Hapus
-                    </button>
+                
                   </div>
 
 
