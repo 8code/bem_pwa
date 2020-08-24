@@ -1,9 +1,11 @@
 <template>
-  <div class="w-full px-2 pb-2 relative flex">
+  <div class="w-full p-2 relative flex">
     <div
-      class="w-full flex flex-wrap bg-theme_primary_light hover:bg-theme_primary rounded-xl px-2 lg:py-2 "
+      class="w-full flex flex-wrap shadow-sm bg-theme_primary hover:bg-theme_primary_dark rounded-xl px-2 lg:py-2 "
     >
+     
       <div class="w-full font-bold flex px-2 pt-4 ">
+     
         <img
           class="w-16 h-16  rounded-full"
           :src="group.avatar"
@@ -11,6 +13,24 @@
         />
 
         <div class="w-full pl-5 mt-1 flex flex-wrap items-start ">
+
+        <div v-if="follow">
+              <span v-if="group.followed" class=" cursor-pointer absolute top-0 right-0 mt-8 mr-5 bg-secondary text-primary px-4 py-1 rounded-full">
+                  Followed
+              </span>
+              <div v-else >
+                <span v-if="!followTemp" @click="followGroup(group.id)" class=" cursor-pointer absolute top-0 right-0 mt-8 mr-5 bg-primary px-4 py-1 rounded-full text-secondary">
+                    Follow
+                </span>
+                <span v-if="followTemp" class=" cursor-pointer absolute top-0 right-0 mt-8 mr-5 bg-secondary text-primary px-4 py-1 rounded-full">
+                  Followed
+              </span>
+              </div>
+            
+        </div>
+      
+          
+          
           <div class="w-full text-xl lg:text-2xl mb-2">
             {{ group.name }}
             <br />
@@ -23,8 +43,8 @@
         <div class="h-4 w-4 rounded-full shadow-lg bg-primary mr-3 mt-1"></div>
         {{ group.type }}
 
-        <router-link :to="`/g/${group.username}`"  class="ml-auto text-primary text-sm mt-1 px-3 rounded-full">
-          Lihat 100 Quest Baru
+        <router-link :to="`/${group.username}`"  class="ml-auto text-primary text-sm mt-1 px-3 rounded-full">
+          Lihat {{ group.qna_total}} Quest
         </router-link>
       </small>
     </div>
@@ -33,6 +53,19 @@
 
 <script>
 export default {
-  props: ["group"]
+  props: ["group","follow"],
+  data(){
+    return{
+      followTemp: false
+    }
+  },
+  methods:{
+    followGroup(id){
+      this.$axios.get("/group/follow/"+id)
+        .then(res => {
+            this.followTemp = true
+        })
+    }
+  }
 };
 </script>

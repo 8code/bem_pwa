@@ -3,19 +3,12 @@
   <div class="w-full p-4">
       <section class="w-full flex flex-wrap">
             <div class="w-full flex p-2">
-              <label>Quest untuk {{ group.name }}</label>
-              <div class="ml-auto">
-                Record Suara
-              </div>
+              <label>Quest untuk <b>{{ group.name }}</b></label>
             </div>
                               
-            <textarea placeholder="Katakan Sesuatu" class="mx-2 mt-5 p-3 bg-theme_primary w-full rounded-lg"></textarea>
-        
-             <div class="flex w-full justify-center items-center py-4">
-                    <record class="flex" />
-             </div>
+            <textarea @keyup.enter="kirim" v-model="text" placeholder="Tanyakan Sesuatu ..." class="mx-2 mt-5 p-3 bg-theme_primary w-full rounded-lg"></textarea>
               
-            <button class="py-2 w-full rounded-lg mt-2 bg-theme_primary mx-2">
+            <button @click="kirim" class="py-2 w-full rounded-lg mt-2 bg-primary text-white mx-2">
               Kirim
             </button>
       </section>
@@ -32,7 +25,8 @@ export default {
     data(){
       return {
         group: '',
-        }
+        text: ''
+      }
     },
     fetch() {
       this.$axios.$get("/group/" + this.$route.params.to).then(data => {
@@ -41,7 +35,16 @@ export default {
     }
     ,
     methods:{
-    
+      kirim(){
+        this.$axios.$post("/quest",{
+          group_id: this.group.id,
+          text: this.text,
+          audio: '',
+          quest_id: '',
+        }).then(res => {
+          this.$router.push("/"+this.group.username)
+        })
+      }
     }
 }
 

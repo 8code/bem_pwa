@@ -30,22 +30,47 @@
             return {
                 player: '',
                 options: {
+                   
                     controls: true,
                     autoplay: false,
                     fluid: false,
                     loop: false,
-                    width: 400,
-                    height: 300,
+                    width: 320,
+                    height: 240,
                     bigPlayButton: false,
                     controlBar: {
                         volumePanel: false
                     },
                     plugins: {
-                    
+                        /*
+                        // this section is only needed when recording audio-only
+                        wavesurfer: {
+                            backend: 'WebAudio',
+                            waveColor: '#36393b',
+                            progressColor: 'black',
+                            debug: true,
+                            cursorWidth: 1,
+                            displayMilliseconds: true,
+                            hideScrollbar: true,
+                            plugins: [
+                                // enable microphone plugin
+                                WaveSurfer.microphone.create({
+                                    bufferSize: 4096,
+                                    numberOfInputChannels: 1,
+                                    numberOfOutputChannels: 1,
+                                    constraints: {
+                                        video: false,
+                                        audio: true
+                                    }
+                                })
+                            ]
+                        },
+                        */
                         // configure videojs-record plugin
                         record: {
                             audio: true,
                             video: true,
+                            maxLength: 15,
                             debug: true,
                         }
                     }

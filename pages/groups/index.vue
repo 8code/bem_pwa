@@ -1,9 +1,10 @@
 <template>
 <div class="w-full" v-touch:swipe="to">
-          <subheader name="groups" />
-            <section class="w-full rounded-xl pb-20">
-                    <card-group v-for="group in listGroup" :key="group.id" :group="group" />
-            </section>
+        <subheader name="groups" />
+        <section class="w-full rounded-xl pb-20">
+                <card-group v-for="group in listGroup" :key="group.id" :group="group" />
+        </section>
+        <btn-create link="/new/group" name="Buat Group"  />
 </div>
         
 </template>
@@ -18,9 +19,9 @@ export default {
         }
     },
     created(){
-        this.$axios.$get("/group")
+        this.$axios.$get("/mygroup")
             .then(res => {
-                this.listGroup = res.data
+                this.listGroup = res
             })
     },
     methods:{

@@ -83,7 +83,10 @@ export default {
               blue: 'Blue',
               dark: 'Dark',
               Home: 'Home',
-              Donations: 'Donations'
+              Donations: 'Donations',
+              Group: 'Group',
+              Notif: 'Notif',
+              Profile: 'Profile',
             },
             id: {
               welcome: 'Selamat Datang Mahasiswa!',
@@ -98,7 +101,11 @@ export default {
               blue: 'Biru',
               dark: 'Gelap',
               Home: 'Beranda',
-              Donations: 'Donasi'
+              Donations: 'Donasi',
+              Group: 'Group',
+              Notif: 'Notif',
+              Profile: 'Profile',
+
             },
             sd: {
               welcome: 'Wilujeng Sumping Mahasiswa!',
@@ -113,7 +120,11 @@ export default {
               blue: 'Biru',
               dark: 'Poek',
               Home: 'Beranda',
-              Donations: 'Donasi'
+              Donations: 'Donasi',
+              Group: 'Group',
+              Notif: 'Notif',
+              Profile: 'Profile',
+
               
             }
           }

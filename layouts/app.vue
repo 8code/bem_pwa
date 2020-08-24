@@ -6,9 +6,8 @@
   >
     <topheader :class="!$store.state.topMenu ? 'hidden z-30' : 'z-30'" />
     <settings class="z-50" />
-    <!-- <part-auth class="z-50" /> -->
     <main
-      class="w-full mx-auto flex flex-wrap pt-16 content-start min-h-screen bg-theme_primary_light"
+      class="w-full mx-auto flex flex-wrap pt-16 content-start min-h-screen bg-theme_primary_light "
       style="max-width:600px"
     >
       <transition name="slide-fade">
@@ -101,7 +100,7 @@
               $route.path == '/notifications' ? activeClass : nonActiveClass
             "
             >
-            {{ $t("Notif")}}
+            {{ $t("Notif") }}
             
             </span
           >
@@ -256,9 +255,9 @@ export default {
         "text-center text-xs w-full rounded-lg mt-1  text-primary",
       nonActiveClass: "text-center text-xs w-full  text-default mt-1",
       activeClassLg:
-        "text-left text-lg p-1 px-8 mx-4 rounded-full bg-theme_primary_dark text-primary",
+        "text-left text-lg p-1 px-8 mx-4 rounded-full bg-theme_primary text-primary",
       nonActiveClassLg:
-        "text-left text-lg p-1 px-8 mx-4 rounded-full text-default hover:bg-theme_primary_dark hover:text-primary"
+        "text-left text-lg p-1 px-8 mx-4 rounded-full text-default hover:bg-theme_primary hover:text-primary"
     };
   },
   computed: {
@@ -279,6 +278,8 @@ export default {
   mounted() {
     var that = this;
     window.addEventListener("scroll", function() {
+  
+      
       if (window.scrollY > that.windowTop) {
         if (window.scrollY > 10) {
           that.$store.commit("setTopMenu", false);
