@@ -2,12 +2,12 @@
 <div  :class="settings">
 
   <div
-    class="w-full min-h-screen flex flex-wrap content-start bg-theme_primary_light"
+    class="w-full min-h-screen flex flex-wrap content-start bg-theme_primary"
   >
     <topheader :class="!$store.state.topMenu ? 'hidden z-30' : 'z-30'" />
     <settings class="z-50" />
     <main
-      class="w-full mx-auto flex flex-wrap pt-16 content-start min-h-screen bg-theme_primary_light "
+      class="w-full mx-auto flex flex-wrap pt-16 content-start min-h-screen bg-theme_primary "
       style="max-width:600px"
     >
       <transition name="slide-fade">
@@ -16,7 +16,7 @@
     </main>
 
     <nav
-      class="fixed bottom-0 flex lg:hidden w-full bg-theme_primary_light"
+      class="fixed bottom-0 flex lg:hidden w-full bg-theme_primary"
       :class="!$store.state.topMenu ? 'hidden' : ''"
     >
       <div class="mx-auto flex content-start text-primary font-bold">
@@ -248,16 +248,16 @@ export default {
     return {
       windowTop: 0,
       tactiveClass:
-        "rounded-full flex px-1 py-2 mx-1 flex-wrap content-center justify-center items-center",
+        "rounded-full flex px-1 py-2 mx-1 flex-wrap content-center justify-center items-center pt-2",
       tnonActiveClass:
-        "rounded-full flex px-1 py-2 mx-1 flex-wrap content-center justify-center items-center text-default",
+        "rounded-full flex px-1 py-2 mx-1 flex-wrap content-center justify-center items-center text-default pt-2",
       activeClass:
         "text-center text-xs w-full rounded-lg mt-1  text-primary",
       nonActiveClass: "text-center text-xs w-full  text-default mt-1",
       activeClassLg:
-        "text-left text-lg p-1 px-8 mx-4 rounded-full bg-theme_primary text-primary",
+        "text-left text-lg p-1 px-8 mx-4 rounded-full bg-theme_primary_dark text-primary",
       nonActiveClassLg:
-        "text-left text-lg p-1 px-8 mx-4 rounded-full text-default hover:bg-theme_primary hover:text-primary"
+        "text-left text-lg p-1 px-8 mx-4 rounded-full text-default hover:bg-theme_primary_dark hover:text-primary"
     };
   },
   computed: {

@@ -4,7 +4,7 @@
 
  <router-link
       :to="link"
-      class="bg-primary text-secondary p-2 px-3 right-0 rounded-xl fixed bottom-0 mr-5 z-50 mb-16 lg:mr-20 flex  "
+      class="bg-primary text-secondary p-3 right-0 rounded-full fixed bottom-0 mr-5 z-50 mb-16 lg:mr-20 flex  "
     >
       <svg
         width="1.5em"

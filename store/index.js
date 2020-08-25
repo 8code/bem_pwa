@@ -14,51 +14,6 @@ const state = () => ({
     primaryColor: localStorage.getItem("primary-color") || 'primary-green',
     topMenu: true,
     loading:false,
-    listMenu: [
-        {
-            name: 'Dashboards',
-            admin: true,
-            path: '/',
-        },
-        {
-            name: 'Controls',
-            path: '',
-            admin: true,
-            sub: [
-                {
-                    name: 'Users',
-                    path: '/users'
-                },
-                {
-                    name: 'Groups',
-                    path: '/groups'
-                },
-                {
-                    name: 'Events',
-                    path: '/events'
-                },
-                {
-                    name: 'Donations',
-                    path: '/doncations'
-                }
-            ]
-        },
-        {
-            name: 'Transactions',
-            path: '',
-            admin: true,
-            sub: [
-                {
-                    name: 'Events',
-                    path: '/transactions/events'
-                },
-                {
-                    name: 'Donations',
-                    path: '/transactions/donations'
-                }
-            ]
-        }
-    ]
   });
 
   const mutations = {

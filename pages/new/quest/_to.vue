@@ -5,8 +5,13 @@
             <div class="w-full flex p-2">
               <label>Quest untuk <b>{{ group.name }}</b></label>
             </div>
+
+            <div class="w-full" v-html="text">
+
+            </div>
                               
-            <textarea @keyup.enter="kirim" v-model="text" placeholder="Tanyakan Sesuatu ..." class="mx-2 mt-5 p-3 bg-theme_primary w-full rounded-lg"></textarea>
+
+            <textarea @keyup.enter="kirim" v-model="text" placeholder="Tanyakan Sesuatu ..." class="mx-2 mt-5 p-3 bg-theme_primary_dark w-full rounded-lg"></textarea>
               
             <button @click="kirim" class="py-2 w-full rounded-lg mt-2 bg-primary text-white mx-2">
               Kirim

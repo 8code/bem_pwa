@@ -54,16 +54,6 @@
 
 
 
-      <div class="p-2">
-        <input
-          type="text"
-          class="w-full py-2 px-5 rounded-full bg-theme_primary hover:bg-theme_primary_dark"
-          placeholder="Search"
-          v-model="search"
-          @keyup.enter="getData"
-
-        />
-      </div>
     
       
 
@@ -82,7 +72,7 @@ export default {
   data() {
     return {
       filterClassActive: "cursor-pointer relative mx-1 px-6 bg-primary text-secondary rounded-xl flex text-sm items-center justify-center p-2",
-      filterClass: "cursor-pointer relative mx-1 px-6 bg-theme_primary rounded-xl flex text-sm items-center justify-center p-2",
+      filterClass: "cursor-pointer relative mx-1 px-6 bg-theme_primary_dark rounded-xl flex text-sm items-center justify-center p-2",
       group: "",
       quest: "",
       search: "",

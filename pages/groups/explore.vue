@@ -6,7 +6,7 @@
       <div class="p-2">
         <input
           type="text"
-          class="w-full py-2 px-5 rounded-full bg-theme_primary hover:bg-theme_primary_dark"
+          class="w-full py-2 px-5 rounded-full bg-theme_primary_dark"
           placeholder="Search"
           v-model="filter.search"
           @keyup.enter="getData"

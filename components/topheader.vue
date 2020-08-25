@@ -1,7 +1,7 @@
 <template>
     <div >
            <!-- Header -->
-            <nav class="w-full p-3 pt-4 flex flex-wrap fixed  bg-theme_primary_light" >
+            <nav class="w-full p-3 pt-4 flex flex-wrap fixed  bg-theme_primary" >
 
                 <div class="w-full flex">
 
@@ -14,7 +14,7 @@
 
                     <nuxt-link to="/home" class="mx-auto  flex text-primary text-md items-start" >
                         <span class="font-bold text-lg"> 
-                            MABA - MAHASISWA ABADI
+                            MABA
                         </span> 
                     </nuxt-link>
 

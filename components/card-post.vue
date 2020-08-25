@@ -1,6 +1,6 @@
 <template>
-      <div class="w-full p-2 relative cursor-pointer" > 
-                                  <div class="shadow-sm rounded-xl bg-theme_primary hover:bg-theme_primary_dark p-3 ">
+      <div class="w-full p-2 relative cursor-pointer border-t border-b border-theme_primary_light" > 
+                                  <div class="shadow-sm rounded-xl bg-theme_primary_dark p-3 ">
 
                                         <router-link v-if="data.group_id && !data.quest_id"  class="p-1 px-4 bg-theme_primary_dark rounded-xl text-xs" :to="data.group.username" >
                                             
@@ -8,13 +8,13 @@
 
                                         </router-link>
 
-                                        <router-link v-if="data.quest_id" class="p-1 px-4 bg-theme_primary_dark rounded-xl  text-xs" :to="data.group.username" >
+                                        <router-link v-if="data.quest_id" class="p-1 px-4 text-xs" :to="data.group.username" >
                                    
-                                           Membalas @{{ data.quest.text }}
+                                           Membalas <span class="bg-theme_primary_dark rounded-xl p-1 px-2">@{{ data.quest.text }}</span> 
                                       
                                         </router-link>
 
-                                        <span class="text-xs">
+                                        <span class="text-xs float-right">
                                           {{ parseQuestDate(data.created_at)}}
                                         </span>
 
@@ -23,11 +23,17 @@
 
                                             <img class="w-10 h-10 rounded-full" src="/icon.png" alt="Event 1">
                                             <div class="pl-5 flex flex-wrap items-start">
-                                                <router-link :to="'/@'+data.user.username" class="font-bold">
-                                                    @{{ data.user.username }}
+                                                <router-link :to="'/@'+data.user.username">
+                                                   <span class="font-bold">{{ data.user.name }}</span> 
+                                                   <span class="text-primary text-xs">@{{ data.user.username }}</span> 
                                                 </router-link>
                                             
-                                                <span class="w-full  mb-2">
+                                                    <div v-if="data.audio" v-html="data.audio" class="w-full py-2 videoWrapper">
+                                                          
+                                                    </div>
+                                              
+
+                                                <span class="w-full  mb-4 mt-2">
                                                     <span v-for="(tx,i) in textToArray(data.text)" :key="i"> 
                                                         
                                                         <router-link class="text-primary" v-if="(tx.slice(0, 1) == '@')" :to="'/'+tx"> {{tx}} </router-link>
@@ -45,7 +51,7 @@
 
                       
                                      <div class="flex mx-3">
-                                            <router-link to="/explore?event" class="flex relative ml-auto py-1 px-5 mx-2 rounded-tl-xl rounded-br-xl bg-theme_primary_light text-xs text-primary">
+                                            <router-link :to="`/new/quest/${data.id}`" class="flex relative ml-auto py-1 px-5 mx-2 rounded-tl-xl rounded-br-xl bg-theme_primary_light text-xs text-primary">
                                                 <svg  width="12px" height="12px"  viewBox="0 0 16 16" class="bi bi-plus-circle mt-1 mr-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                     <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
                                                     <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
@@ -59,8 +65,8 @@
                                                     <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
                                                     </svg>
                                                     {{ data.total_follower }}
-                                                    <span class="px-1" v-if="data.followed">Diikuti</span>
-                                                    <span class="px-1" v-else>Ikuti</span>
+                                                    <span class="px-1" v-if="data.followed">Disukai</span>
+                                                    <span class="px-1" v-else>Suka</span>
                                             </div>
                                      </div>
                                     </div>
@@ -96,3 +102,11 @@ export default {
     }
 }
 </script>
+<style >
+
+.videoWrapper iframe {
+  width: 100%;
+  min-height: 150px;
+  border-radius: 10px;
+}
+</style>
