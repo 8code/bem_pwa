@@ -130,7 +130,7 @@ export default {
   },
   methods: {
     cekLoginFb() {
-      that = this;
+      let that = this;
       FB.getLoginStatus(function(response) {
         // console.log(response);
         if (!response.authResponse) {
