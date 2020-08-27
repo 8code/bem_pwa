@@ -21,9 +21,9 @@
 }
 
 .theme-dark {
-    --theme_primary_light: #1b1f2c;
-    --theme-primary: #11141c;
-    --theme-primary_dark: #0a0d0f;
+    --theme_primary_light: #11141c;
+    --theme-primary: #0a0d0f;
+    --theme-primary_dark: #000;
     --theme-secondary: #dbe5ef;
 
     background: var(--theme-primary);
@@ -141,9 +141,9 @@ left: 0;
 top: 0;
 z-index: 100;
 }
-.sidebar::-webkit-scrollbar{
+/* .sidebar::-webkit-scrollbar{
     display: none;
-}
+} */
 
 
 .slide-fade-enter-active {

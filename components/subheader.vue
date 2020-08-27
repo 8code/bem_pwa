@@ -14,7 +14,7 @@ export default {
      data(){
         return {
             activeClass: 'mx-1 w-1/2 px-10 py-2  bg-primary text-white rounded-full font-bold',
-            nonActiveClass: 'border border-primary text-primary hover:bg-primary hover:text-white hover:border-0 mx-1 w-1/2 px-10 py-2  rounded-full font-bold'
+            nonActiveClass: 'bg-theme_primary_dark text-primary hover:bg-primary hover:text-white hover:border-0 mx-1 w-1/2 px-10 py-2  rounded-full font-bold'
         }
     },
 }

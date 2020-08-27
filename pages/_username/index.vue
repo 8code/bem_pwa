@@ -23,8 +23,17 @@
     </section>
 
 
+    
+      <new-quest v-on:kirim="newQuest" :group="group" />
+
+      <balas-quest v-if="balas_quest" v-on:kirim="newQuest" v-on:batal="balas_quest = false" :quest="balas_quest" />
+
+
 
     <div class="p-2 flex flex-row mt-2" style="overflow-x:scroll">
+
+
+
 
      <div
         :class="(filter == 'Quest Only') ? filterClassActive : filterClass"
@@ -49,25 +58,30 @@
       </div>
 
 
+      <div
+        :class="(filter == 'Media') ? filterClassActive : filterClass"
+        @click="filter = 'Media';getData()"
+
+      >
+      
+      <div
+          class="-mt-1 -ml-1 h-6 w-6 absolute top-0 left-0 rounded-full shadow-lg bg-primary mr-3"
+        ></div>
+          Media
+      </div>
 
     </div>
 
 
-
-    
-      
-
-    <btn-create :link="`/new/quest/${group.username}`" name="Buat Quest" />
-
     <section class="w-full rounded-xl pb-20 ">
-      <card-post v-for="quest in quest.data" :key="quest.id" :data="quest" />
+      <card-post v-on:balas="balasQuest" v-for="quest in quest.data" :key="quest.id" :data="quest" />
     </section>
   </div>
 </template>
 
 <script>
 export default {
-  layout: "app",
+  layout: "no-header",
   middleware: "auth",
   data() {
     return {
@@ -76,7 +90,8 @@ export default {
       group: "",
       quest: "",
       search: "",
-      filter: "Quest Only"
+      filter: "Quest Only",
+      balas_quest: ''
     };
   },
   fetch() {
@@ -86,6 +101,13 @@ export default {
     });
   },
   methods:{
+    newQuest(){
+      this.balas_quest = ""
+      this.getData()
+    },
+    balasQuest(data){
+        this.balas_quest = data
+    },
     getData(){
       this.$axios.$get("/quest/" + this.group.id+"?filter="+this.filter).then(data => {
         console.log(data)

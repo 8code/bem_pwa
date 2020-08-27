@@ -263,8 +263,7 @@ export default {
   computed: {
     settings() {
       return (
-        this.$store.state.leftMenu +
-        " " +
+     
         this.$store.state.theme +
         " " +
         this.$store.state.primaryColor
@@ -289,11 +288,6 @@ export default {
       }
       that.windowTop = window.scrollY;
     });
-  },
-  watch: {
-    $route(to, from) {
-      this.$store.commit("toggleLeftMenu", "");
-    }
   }
 };
 </script>

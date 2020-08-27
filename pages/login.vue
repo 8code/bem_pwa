@@ -13,7 +13,7 @@
       <div v-if="loginWithUsername" class="flex w-full flex-wrap">
         <div
           v-if="$store.state.errorMessages"
-          class="bg-danger w-full py-1 my-3 px-3 text-center rounded-full"
+          class="bg-danger text-white w-full py-1 my-3 px-3 text-center rounded-full"
         >
           {{ $store.state.errorMessages }}
         </div>
@@ -23,7 +23,7 @@
           type="text"
           placeholder="Username or Email"
           class=" 
-                         bg-theme_primary_light
+                         bg-theme_primary_dark
                         py-2 px-8 
                         rounded-full mb-3
                         w-full
@@ -37,7 +37,7 @@
           type="password"
           placeholder="Password"
           class=" 
-                         bg-theme_primary_light
+                         bg-theme_primary_dark
                         py-2 px-8 
                         rounded-full mb-3
                         w-full
@@ -92,8 +92,6 @@ export default {
     };
   },
   fetch() {
-    // this.$store.commit('toggleSetting')
-
     if (this.$store.state.auth) {
       this.$router.push("/");
     }
@@ -124,8 +122,6 @@ export default {
   computed: {
     settings() {
       return (
-        this.$store.state.leftMenu +
-        " " +
         this.$store.state.theme +
         " " +
         this.$store.state.primaryColor
@@ -134,7 +130,7 @@ export default {
   },
   methods: {
     cekLoginFb() {
-      let that = this;
+      that = this;
       FB.getLoginStatus(function(response) {
         // console.log(response);
         if (!response.authResponse) {
@@ -144,7 +140,7 @@ export default {
         }
       });
     },
-    loginFb() {
+    loginFbAct(){
       let that = this;
       FB.login(
         function(response) {
@@ -157,8 +153,11 @@ export default {
         }
       );
     },
-    loginAct() {
-      this.$store.commit("login", this.login);
+    async loginFb() {
+      await this.loginFbAct()
+    },
+    async loginAct() {
+      await this.$store.commit("login", this.login);
     }
   }
 };

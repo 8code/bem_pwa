@@ -4,8 +4,6 @@
     <section class="w-full shadow-sm rounded-xl mb-20">
           <div class="shadow-sm rounded-xl px-5 pb-5">
 
-
-              
               <div class="flex flex-wrap">
                 <div class="w-full  px-5 flex flex-wrap">
                  <label class=" pl-2 w-full my-3 flex" for="nama">avatar</label>
@@ -23,7 +21,6 @@
                   </div>
 
 
-                  
 
                   <label class="text-left  pl-2 w-full my-3" for="usernama">Username / TagName</label>
                       <input class="w-full

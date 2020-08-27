@@ -55,11 +55,11 @@
 
 <script>
 export default {
-  layout: "app",
+  layout: "no-header",
   middleware: "auth",
   data() {
     return {
-      className: 'cursor-pointer relative mx-1 px-6 bg-theme_primary rounded-xl flex text-sm items-center justify-center p-2',
+      className: 'cursor-pointer relative mx-1 px-6 bg-theme_primary_dark rounded-xl flex text-sm items-center justify-center p-2',
       classNameActive: "cursor-pointer relative mx-1 px-6 bg-primary text-secondary rounded-xl flex text-sm items-center justify-center p-2",
       data: "",
       filter:{

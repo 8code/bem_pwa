@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full p-2 relative flex border-t border-b border-theme_primary_light">
+  <div class="w-full p-2 relative flex  border-b border-theme_primary_light">
     <div
       class="w-full flex flex-wrap shadow-sm bg-theme_primary hover:bg-theme_primary_dark rounded-xl px-2 lg:py-2 "
     >
@@ -12,29 +12,39 @@
           :alt="group.name"
         />
 
-        <div class="w-full pl-5 mt-1 flex flex-wrap items-start ">
+        <div class="w-full pl-5 mt-1 flex flex-wrap items-start">
 
-        <div v-if="follow">
-              <span v-if="group.followed" class=" cursor-pointer absolute top-0 right-0 mt-8 mr-5 bg-secondary text-primary px-4 py-1 rounded-full">
-                  Followed
-              </span>
-              <div v-else >
-                <span v-if="!followTemp" @click="followGroup(group.id)" class=" cursor-pointer absolute top-0 right-0 mt-8 mr-5 bg-primary px-4 py-1 rounded-full text-secondary">
-                    Follow
-                </span>
-                <span v-if="followTemp" class=" cursor-pointer absolute top-0 right-0 mt-8 mr-5 bg-secondary text-primary px-4 py-1 rounded-full">
-                  Followed
-              </span>
-              </div>
-            
-        </div>
-      
+
+       
+
+
           
           
           <div class="w-full text-xl lg:text-2xl mb-2">
             {{ group.name }}
             <br />
-            <small>#{{ group.username }}</small>
+            <div class=" flex w-full justify-between">
+
+                
+                   <small>#{{ group.username }}</small>
+                  <div v-if="follow" class="text-sm">
+                        <span v-if="group.followed" class="cursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
+                            Diikuti
+                        </span>
+                        <div v-else >
+                          <span v-if="!followTemp" @click="followGroup(group.id)" class="cursor-pointer bg-primary px-4 py-1 rounded-full text-secondary">
+                              Ikuti
+                          </span>
+                          <span v-if="followTemp" class="fursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
+                            Diikuti
+                        </span>
+                        </div>
+                      
+                  </div>
+
+              </div>
+            
+            
           </div>
         </div>
       </div>
@@ -53,7 +63,7 @@
 
 <script>
 export default {
-  props: ["group","follow"],
+  props: ["group","follow","totalFollower"],
   data(){
     return{
       followTemp: false

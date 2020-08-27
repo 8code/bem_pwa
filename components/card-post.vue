@@ -1,8 +1,8 @@
 <template>
-      <div class="w-full p-2 relative cursor-pointer border-t border-b border-theme_primary_light" > 
-                                  <div class="shadow-sm rounded-xl bg-theme_primary_dark p-3 ">
+      <div class="w-full p-2 relative cursor-pointer border-b border-theme_primary_light overflow-hidden" > 
+                                  <div class="shadow-sm rounded-xl bg-theme_primary hover:bg-theme_primary_dark p-3 ">
 
-                                        <router-link v-if="data.group_id && !data.quest_id"  class="p-1 px-4 bg-theme_primary_dark rounded-xl text-xs" :to="data.group.username" >
+                                        <router-link v-if="data.group_id && !data.quest_id"  class="text-primary p-1 px-4 bg-theme_primary_dark rounded-xl text-xs" :to="'/'+data.group.username" >
                                             
                                            #{{ data.group.username }}
 
@@ -10,7 +10,12 @@
 
                                         <router-link v-if="data.quest_id" class="p-1 px-4 text-xs" :to="data.group.username" >
                                    
-                                           Membalas <span class="bg-theme_primary_dark rounded-xl p-1 px-2">@{{ data.quest.text }}</span> 
+                                           Membalas <router-link :to="data.quest.id" class="bg-theme_primary_dark rounded-xl p-1 px-2">
+                                               
+                                            @{{ data.membalas_user }}
+                                               : {{ data.quest.text }}
+                                               
+                                            </router-link> 
                                       
                                         </router-link>
 
@@ -28,8 +33,12 @@
                                                    <span class="text-primary text-xs">@{{ data.user.username }}</span> 
                                                 </router-link>
                                             
-                                                    <div v-if="data.audio" v-html="data.audio" class="w-full py-2 videoWrapper">
-                                                          
+                                                    <div v-if="data.audio" class="w-full py-2 videoWrapper">
+                                                            <!-- Spotify -->
+                                                            
+                                                          <iframe v-if="cekSumber(data.audio) == 'spotify'" :src="data.audio" width="100%" height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                                                            <!-- Youtube -->
+                                                          <iframe v-if="cekSumber(data.audio) == 'youtube'" width="560" height="315" :src="data.audio" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                                     </div>
                                               
 
@@ -51,14 +60,14 @@
 
                       
                                      <div class="flex mx-3">
-                                            <router-link :to="`/new/quest/${data.id}`" class="flex relative ml-auto py-1 px-5 mx-2 rounded-tl-xl rounded-br-xl bg-theme_primary_light text-xs text-primary">
+                                            <button @click="$emit('balas',data)" class="flex relative ml-auto py-1 px-5 mx-2 rounded-tl-xl rounded-br-xl bg-theme_primary_light text-xs text-primary">
                                                 <svg  width="12px" height="12px"  viewBox="0 0 16 16" class="bi bi-plus-circle mt-1 mr-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                     <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
                                                     <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
                                                     <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                                 </svg>
                                                 Balas
-                                            </router-link>
+                                            </button>
 
                                             <div :class="(data.followed) ? btnFollowed : btnFollow">
                                                 <svg width="12px" height="12px" viewBox="0 0 16 16" class="bi bi-heart-fill mr-1 mt-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -98,6 +107,13 @@ export default {
             let forReplace = []
             
             return str.split(" ");
+        },
+        cekSumber(str){
+            if(str.search("spotify") > 0){
+                return "spotify";
+            }else if(str.search("youtube") > 0){
+                return "youtube";
+            }
         }
     }
 }
@@ -106,7 +122,7 @@ export default {
 
 .videoWrapper iframe {
   width: 100%;
-  min-height: 150px;
+  min-height: 1-0px;
   border-radius: 10px;
 }
 </style>
