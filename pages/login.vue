@@ -140,7 +140,7 @@ export default {
         }
       });
     },
-    loginFbAct(){
+    loginFb(){
       let that = this;
       FB.login(
         function(response) {
@@ -152,9 +152,6 @@ export default {
           return_scopes: true
         }
       );
-    },
-    async loginFb() {
-      await this.loginFbAct()
     },
     async loginAct() {
       await this.$store.commit("login", this.login);
