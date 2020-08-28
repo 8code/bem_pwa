@@ -1,11 +1,16 @@
 <template>
+
+
   <div
     :class="settings"
     class="w-full min-h-screen flex flex-wrap content-center "
   >
+
+  
+
+  
     <settings class="z-50" />
     
-    <topheader class="fixed top-0 " />
 
     <main
       class="w-full  mx-auto flex flex-wrap   px-10"

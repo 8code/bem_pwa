@@ -38,6 +38,10 @@ const createStore = () => {
                 console.log(to)
                 state.show_media_player = to
             },
+            resetMediaPlayer(state){
+                state.media_player = ""
+                state.show_media_player = true
+            },
             setErrorMessages(state,to){
                 state.errorMessages = to
             },
