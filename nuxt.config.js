@@ -48,7 +48,7 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    '~/plugins/v-touch'
+    '~/plugins/v-touch',
   ],
   /*
   ** Auto import components

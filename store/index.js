@@ -4,6 +4,8 @@ import Vuex from 'vuex'
 const createStore = () => {
     return new  Vuex.Store({
         state: {
+                media_player: '',
+                show_media_player: true,
                 storage: process.env.storageUrl,
                 data:{
                     mygroup: []
@@ -27,6 +29,14 @@ const createStore = () => {
         
             setTopMenu(state,to){
                 state.topMenu = to
+            },
+            setMediaPlayer(state,to){
+                state.media_player = to
+                state.show_media_player = true
+            },
+            setShowMediaPlayer(state,to){
+                console.log(to)
+                state.show_media_player = to
             },
             setErrorMessages(state,to){
                 state.errorMessages = to

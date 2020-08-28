@@ -8,41 +8,65 @@
 
                                         </router-link>
 
-                                        <router-link v-if="data.quest_id" class="p-1 px-4 text-xs" :to="data.group.username" >
+                                        <router-link v-if="data.quest_id" class="p-1 px-4 text-xs " :to="data.group.username" >
                                    
-                                           Membalas <router-link :to="`/quest/${data.quest_id}`" class="bg-theme_primary_dark rounded-xl p-1 px-2">
+                                           Membalas 
+                                           
+                                           <router-link :to="`/quest/${data.quest_id}`" class="bg-theme_primary_dark text-primary rounded-xl p-1 px-2">
                                                
                                            <b> @{{ data.membalas_user }}</b>
-                                               : {{ data.quest.text }}
+                                               : {{ data.quest.text.substring(0, 20) }} ..
                                                
                                             </router-link> 
+
                                       
                                         </router-link>
 
-                                        <span class="text-xs float-right">
-                                          {{ parseQuestDate(data.created_at)}}
-                                        </span>
-
-
-                                        <div class="w-auto flex p-2 "> 
+                                     
+                                        <div class="flex pt-2">
 
                                             <img class="w-10 h-10 rounded-full" src="/icon.png" alt="Event 1">
-                                            <div class="pl-5 flex flex-wrap items-start">
-                                                <router-link :to="'/@'+data.user.username">
-                                                   <span class="font-bold">{{ data.user.name }}</span> 
-                                                   <span class="text-primary text-xs">@{{ data.user.username }}</span> 
-                                                </router-link>
+
+                                             <router-link class="p-2"  :to="'/@'+data.user.username">
+                                                <span class="font-bold text-lg">{{ data.user.name }}</span> 
+                                                <span class="text-primary text-xs">@{{ data.user.username }}</span> 
+                                            </router-link>
+
+                                            <span class="text-xs ml-auto text-primary_light">
+                                            {{ parseQuestDate(data.created_at)}}
+                                            </span>
+
+
+                                        </div>
+                                        <div class="w-auto flex "> 
+
+                                            <div class="flex flex-wrap items-start pl-8">
+                                               
                                             
-                                                    <div v-if="data.audio" class="w-full py-2 videoWrapper">
-                                                            <!-- Spotify -->
-                                                            
-                                                          <iframe v-if="cekSumber(data.audio) == 'spotify'" :src="data.audio" width="100%" height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                                                    <div v-if="data.audio" class="py-2 w-full media-preview" @click="$store.commit('setMediaPlayer',data.audio)">
+                                                     
+                                                        <div v-if="cekSumber(data.audio) == 'youtube'">
+                                                            <img src="/youtube.png" alt="logo" class="absolute play-button-youtube">
+                                                            <img class="w-full rounded-xl" :src="imgPreview(data.audio)" alt="Preview">
+                                                        </div>
+
+                                                         <div v-if="cekSumber(data.audio) == 'spotify'" class="bg-primary justify-between text-secondary w-full flex rounded-xl p-3 px-4">
+                                                      
+                                                                   <img width="30px" src="/spotify.png" alt="logo">
+                                                                    <span class="p-1 px-2 font-bold">Play Podcast</span>
+
+                                                                    <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-play" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                                        <path fill-rule="evenodd" d="M10.804 8L5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"/>
+                                                                        </svg>
+                                                        </div>
+                                                          <!-- Spotify -->
+                                                          <!-- <iframe v-if="cekSumber(data.audio) == 'spotify'" :src="data.audio" width="100%" height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> -->
                                                             <!-- Youtube -->
-                                                          <iframe v-if="cekSumber(data.audio) == 'youtube'" width="560" height="315" :src="data.audio" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                          <!-- <iframe  width="560" height="315" :src="data.audio" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
                                                     </div>
                                               
 
-                                                <span class="w-full  mb-4 mt-2">
+                                                <span class="w-full text-sm pb-4">
                                                     <span v-for="(tx,i) in textToArray(data.text)" :key="i"> 
                                                         
                                                         <router-link class="text-primary" v-if="(tx.slice(0, 1) == '@')" :to="'/'+tx"> {{tx}} </router-link>
@@ -52,36 +76,43 @@
                                                     </span>
                                                 </span>
 
-                                        
-                                        <div 
-                                        class="text-xs lg:text-lg text-primary ">
-                                        {{ data.qna_total }} Balasan
-                                        </div>
+                                            <div class="flex text-right ">
 
-                      
-                                     <div class="flex mx-3">
-                                            <button @click="$emit('balas',data)" class="flex relative ml-auto py-1 px-5 mx-2 rounded-tl-xl rounded-br-xl bg-theme_primary_light text-xs text-primary">
-                                                <svg  width="12px" height="12px"  viewBox="0 0 16 16" class="bi bi-plus-circle mt-1 mr-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
-                                                    <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
-                                                    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                                </svg>
-                                                Balas
-                                            </button>
-
-                                            <div @click="followQuest(data.id)" :class="(data.followed || followTemp) ? btnFollowed : btnFollow">
-                                                <svg width="12px" height="12px" viewBox="0 0 16 16" class="bi bi-heart-fill mr-1 mt-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                                                    </svg>
-                                                    {{ (followTemp) ? data.total_follower +1 : data.total_follower }}
-                                                    <span class="px-1" v-if="data.followed">Disukai</span>
-                                                    <span v-else>
-                                                        <span v-if="!followTemp"  class="px-1">Suka</span>
-                                                        <span  class="px-1" v-else>Disukai</span>
-                                                    </span>
-                                                  
+                                            
+                                            <div 
+                                            class="text-xs lg:text-lg text-primary ">
+                                            {{ data.qna_total }} Balasan
                                             </div>
-                                     </div>
+
+                            
+                                            <div class="flex mx-3">
+                                                    <button @click="$emit('balas',data)" class="flex relative ml-auto py-1 px-5 mx-2 rounded-tl-xl rounded-br-xl bg-theme_primary_light text-xs text-primary">
+                                                        <svg  width="12px" height="12px"  viewBox="0 0 16 16" class="bi bi-plus-circle mt-1 mr-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
+                                                            <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
+                                                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                        </svg>
+                                                        Balas
+                                                    </button>
+
+                                                    <div @click="followQuest(data.id)" :class="(data.followed || followTemp) ? btnFollowed : btnFollow">
+                                                        <svg width="12px" height="12px" viewBox="0 0 16 16" class="bi bi-heart-fill mr-1 mt-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                                                            </svg>
+                                                            {{ (followTemp) ? data.total_follower +1 : data.total_follower }}
+                                                            <span class="px-1" v-if="data.followed">Disukai</span>
+                                                            <span v-else>
+                                                                <span v-if="!followTemp"  class="px-1">Suka</span>
+                                                                <span  class="px-1" v-else>Disukai</span>
+                                                            </span>
+                                                        
+                                                    </div>
+                                            </div>
+
+                                            </div>
+
+
+                                            
                                     </div>
 
                                 </div>
@@ -128,6 +159,27 @@ export default {
                 return "youtube";
             }
         }
+        ,imgPreview(url){
+            if(url){
+              if(this.cekSumber(url) == 'spotify'){
+                let split = url.split("/")
+                var res = "https://open.spotify.com/embed-podcast/"+split[3]+"/"+split[4].split("?")[0]
+
+              }else if(this.cekSumber(url) == 'youtube'){
+              
+               let split = url.split("/")
+                var res = `https://img.youtube.com/vi/${split[4]}/mqdefault.jpg`
+              
+              }else{
+                var res = ""
+              }
+
+            
+               return res
+            }else{
+              return ""
+            }
+        }
     }
 }
 </script>
@@ -135,7 +187,18 @@ export default {
 
 .videoWrapper iframe {
   width: 100%;
-  min-height: 1-0px;
+  min-height: 100px;
   border-radius: 10px;
 }
+.play-button-youtube{
+    width:14%;top:40%;left:43%;
+    opacity: .8;
+}
+.media-preview{
+    position: relative;
+}
+.media-preview:hover .play-button-youtube{
+    opacity: 1;
+}
+
 </style>

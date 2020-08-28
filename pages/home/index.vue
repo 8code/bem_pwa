@@ -30,7 +30,8 @@ export default {
       search: "",
       balas_quest: '',
       page: 1,
-      loadMore: false
+      loadMore: false,
+      last_page: false
     };
   },
   fetch(){
@@ -44,7 +45,12 @@ export default {
           let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
 
           if(bottomOfWindow){
-            that.loadMoregetData()
+            if(!that.last_page){
+                that.loadMoregetData()
+            }else{
+              this.loadMore = false
+            }
+           
           }
       });
     },
@@ -54,10 +60,10 @@ export default {
         this.page = this.page+1
         this.$axios.$get("/quest/home?search="+this.search+"&page="+this.page)
         .then(res => {
-          if(res.data){
+          if(res.data.length > 0){
                this.quest.data = this.quest.data.concat(res.data)
           }else{
-            this.page = this.page-1
+            this.last_page = true
           }
           this.loadMore = false
         });

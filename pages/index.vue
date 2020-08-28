@@ -42,7 +42,7 @@
 <script>
 export default {
   scrollToTop: true,
-  layout: "app",
+  layout: "no-header",
   middleware: "auth"
 };
 </script>

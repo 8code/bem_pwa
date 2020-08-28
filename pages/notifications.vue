@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  layout: 'app',
+  layout: 'no-header',
   middleware: 'auth'
 }
 </script>

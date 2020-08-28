@@ -4,10 +4,12 @@
   <div
     class="w-full min-h-screen flex flex-wrap content-start bg-theme_primary"
   >
+    <settings class="z-50" />
     <main
       class="w-full mx-auto flex flex-wrap pt-2 content-start min-h-screen bg-theme_primary "
       style="max-width:600px"
     >
+        <media-player />
       <transition name="slide-fade">
         <Nuxt class="w-full" />
       </transition>
@@ -244,7 +246,6 @@
 export default {
   data() {
     return {
-      settings: '',
       windowTop: 0,
       tactiveClass:
         "rounded-full flex px-1 py-2 mx-1 flex-wrap content-center justify-center items-center pt-2",
@@ -259,13 +260,21 @@ export default {
         "text-left text-lg p-1 px-8 mx-4 rounded-full text-default hover:bg-theme_primary_dark hover:text-primary"
     };
   },
+  computed: {
+    settings() {
+      return (
+     
+        this.$store.state.theme +
+        " " +
+        this.$store.state.primaryColor
+      );
+    }
+  },
   created() {
     let token = localStorage.getItem("access_token") || "";
     this.$axios.setHeader("Authorization", "Bearer " + token);
   },
   mounted() {
-    this.settings = this.$store.state.theme + " " +this.$store.state.primaryColor
-
     var that = this;
     window.addEventListener("scroll", function() {
   
