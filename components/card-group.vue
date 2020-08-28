@@ -21,7 +21,7 @@
           
           
           <div class="w-full text-xl lg:text-2xl mb-2">
-            {{ group.name }}
+           <router-link :to="`/${group.username}`"> {{ group.name }}</router-link>
             <br />
             <div class=" flex w-full justify-between">
 
@@ -41,6 +41,14 @@
                         </div>
                       
                   </div>
+
+                    <div v-if="totalFollower" class="text-sm">
+                        <span class="cursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
+                            {{ group.follow_total}} Pengikut
+                        </span>
+                      
+                  </div>
+
 
               </div>
             

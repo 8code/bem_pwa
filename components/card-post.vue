@@ -10,9 +10,9 @@
 
                                         <router-link v-if="data.quest_id" class="p-1 px-4 text-xs" :to="data.group.username" >
                                    
-                                           Membalas <router-link :to="data.quest.id" class="bg-theme_primary_dark rounded-xl p-1 px-2">
+                                           Membalas <router-link :to="`/quest/${data.quest_id}`" class="bg-theme_primary_dark rounded-xl p-1 px-2">
                                                
-                                            @{{ data.membalas_user }}
+                                           <b> @{{ data.membalas_user }}</b>
                                                : {{ data.quest.text }}
                                                
                                             </router-link> 
@@ -69,13 +69,17 @@
                                                 Balas
                                             </button>
 
-                                            <div :class="(data.followed) ? btnFollowed : btnFollow">
+                                            <div @click="followQuest(data.id)" :class="(data.followed || followTemp) ? btnFollowed : btnFollow">
                                                 <svg width="12px" height="12px" viewBox="0 0 16 16" class="bi bi-heart-fill mr-1 mt-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                     <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
                                                     </svg>
-                                                    {{ data.total_follower }}
+                                                    {{ (followTemp) ? data.total_follower +1 : data.total_follower }}
                                                     <span class="px-1" v-if="data.followed">Disukai</span>
-                                                    <span class="px-1" v-else>Suka</span>
+                                                    <span v-else>
+                                                        <span v-if="!followTemp"  class="px-1">Suka</span>
+                                                        <span  class="px-1" v-else>Disukai</span>
+                                                    </span>
+                                                  
                                             </div>
                                      </div>
                                     </div>
@@ -94,10 +98,19 @@ export default {
     data(){
         return{
             btnFollow: 'flex relative ml-auto py-1 px-3 rounded-tl-xl rounded-br-xl bg-theme_primary_light text-xs text-primary',
-            btnFollowed: 'flex relative ml-auto py-1 px-3 rounded-tl-xl rounded-br-xl bg-primary text-xs text-secondary'
+            btnFollowed: 'flex relative ml-auto py-1 px-3 rounded-tl-xl rounded-br-xl bg-primary text-xs text-secondary',
+            followTemp: false
+          
         }
     },
     methods:{
+        followQuest(id){
+                 this.$axios.get("/quest/follow/"+id)
+                        .then(res => {
+                                        this.followTemp = true
+
+                        })
+        },
         parseQuestDate(data){
             return util.parseQuestDate(data)
         },

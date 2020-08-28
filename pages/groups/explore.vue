@@ -45,7 +45,7 @@
         :group="group"
         follow="true"
       />
-      <span class="p-4 text-center w-full">
+      <span v-if="loadMore" class="p-4 text-center w-full flex flex-wrap">
         Load More ...
       </span>
 
@@ -66,7 +66,8 @@ export default {
         type: '',
         search: '',
         page: 1
-      }
+      },
+      loadMore: false
     };
   },
   created() {
@@ -91,6 +92,8 @@ export default {
         });
     },
     loadMoregetData(){
+
+        this.loadMore = true
       
         this.filter.page = this.filter.page+1
         this.$axios.$get("/group?type="+this.filter.type+"&search="+this.filter.search+"&page="+this.filter.page)
@@ -98,12 +101,17 @@ export default {
           console.log(res.data);
           if(res.data){
                this.data.data = this.data.data.concat(res.data)
+          }else{
+            this.filter.page = this.filter.page-1
           }
+
+          this.loadMore = false
          
         });
     },
     filterData(to){
       this.filter.type = to
+      this.filter.page = 1
       this.getData()
     },
     to(directions) {

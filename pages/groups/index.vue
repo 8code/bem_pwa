@@ -24,10 +24,16 @@ export default {
     created(){
         this.$axios.$get("/mygroup")
             .then(res => {
-                this.listGroup = res
+                this.listGroup = this.sortByKey(Object.values(res),"last_active").reverse()
             })
     },
     methods:{
+       sortByKey(array, key) {
+                return array.sort(function(a, b) {
+                    var x = a[key]; var y = b[key];
+                    return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+                });
+            },
         to(directions){
             if(directions == 'left'){
                 this.$router.push('/groups/explore')

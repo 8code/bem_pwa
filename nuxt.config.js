@@ -6,9 +6,16 @@ export default {
   */
   mode: 'spa',
   pwa: {
+    meta: {
+      title: 'Maba - Siliwangi App',
+      author: 'Ari Bahtiar',
+    },
     manifest: {
-      name: 'MABA - Mahasiswa Abadi',
-      lang: 'id'
+      name: 'Maba - Siliwangi App',
+      lang: 'id',
+      theme_color: '#EDF2F7',
+      start_url: "/",
+      description: "Aplikasi Sosial Media Mahasiswa Universitas Siliwangi, Mahasiswa Aktif Maupun Alumni, dengan berbagai fitur dan informasi yang menarik"
     }
   },
   /*

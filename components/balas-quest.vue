@@ -48,9 +48,11 @@
 
   </div>
 
+
+ <b class="px-4 font-bold">Membalas :</b>
   
-            <div v-if="media || text " >
-                    <b class="font-bold">Membalas :</b>
+            <div class="px-4" v-if="media || text " >
+                   
 
                    <div v-if="media" class="w-full py-2 videoWrapper">
                           <!-- Spotify -->
@@ -112,7 +114,7 @@ export default {
             if(str){
                if(str.search("spotify") > 0){
                   return "spotify";
-              }else if(str.search("youtu.be") > 0){
+              }else if(str.search("youtube") > 0){
                   return "youtube";
               }
             }

@@ -16,8 +16,26 @@
               {{ group.name }}
               <br />
               <small>#{{ group.username }}</small>
+
+                    <div v-if="group.followed" class="float-right text-sm">
+                            <span v-if="group.followed" class="cursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
+                                Diikuti
+                            </span>
+                            <div v-else >
+                                      <span v-if="!followTemp" @click="followGroup(group.id)" class="cursor-pointer bg-primary px-4 py-1 rounded-full text-secondary">
+                                          Ikuti
+                                      </span>
+                                      <span v-if="followTemp" class="fursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
+                                        Diikuti
+                                    </span>
+                            </div>
+                    </div>
+
             </div>
           </div>
+
+      
+            
         </div>
       </div>
     </section>
@@ -73,8 +91,13 @@
     </div>
 
 
-    <section class="w-full rounded-xl pb-20 ">
+    <section class="w-full rounded-xl pb-20 flex flex-wrap">
       <card-post v-on:balas="balasQuest" v-for="quest in quest.data" :key="quest.id" :data="quest" />
+
+      <span v-if="loadMore" class="p-4 text-center w-full">
+        Load More ...
+      </span>
+
     </section>
   </div>
 </template>
@@ -91,9 +114,23 @@ export default {
       quest: "",
       search: "",
       filter: "Quest Only",
-      balas_quest: ''
+      balas_quest: '',
+      page: 1,
+      loadMore: false
     };
   },
+    mounted() {
+
+      var that = this;
+      window.addEventListener("scroll", function() {
+      
+          let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+
+          if(bottomOfWindow){
+            that.loadMoregetData()
+          }
+      });
+    },
   fetch() {
     this.$axios.$get("/group/" + this.$route.params.username).then(data => {
       this.group = data;
@@ -101,6 +138,19 @@ export default {
     });
   },
   methods:{
+    loadMoregetData(){
+        this.loadMore = true
+        this.page = this.page+1
+        this.$axios.$get("/group/quest/" + this.group.id+"?filter="+this.filter+"&search="+this.search+"&page="+this.page)
+        .then(res => {
+          if(res.data){
+               this.quest.data = this.quest.data.concat(res.data)
+          }else{
+            this.page = this.page-1
+          }
+          this.loadMore = false
+        });
+    },
     newQuest(){
       this.balas_quest = ""
       this.getData()
@@ -109,9 +159,10 @@ export default {
         this.balas_quest = data
     },
     getData(){
-      this.$axios.$get("/quest/" + this.group.id+"?filter="+this.filter).then(data => {
+      this.$axios.$get("/group/quest/" + this.group.id+"?filter="+this.filter+"&search="+this.search+"&page="+this.page).then(data => {
         console.log(data)
         this.quest = data;
+        this.page = 1 
       });
     }
   }
