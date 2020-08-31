@@ -25,7 +25,7 @@
                                      
                                         <div class="flex pt-2">
 
-                                            <img class="w-10 h-10 rounded-full" src="/icon.png" alt="Event 1">
+                                            <img class="w-10 h-10 rounded-full" :src="data.user.avatar" alt="Event 1">
 
                                              <router-link class="p-2"  :to="'/@'+data.user.username">
                                                 <span class="font-bold text-lg">{{ data.user.name }}</span> 
@@ -66,7 +66,7 @@
                                                     </div>
                                               
 
-                                                <span class="w-full text-sm pb-4">
+                                                <span class="w-full pb-4">
                                                     <span v-for="(tx,i) in textToArray(data.text)" :key="i"> 
                                                         
                                                         <router-link class="text-primary" v-if="(tx.slice(0, 1) == '@')" :to="'/'+tx"> {{tx}} </router-link>
@@ -81,7 +81,7 @@
                                             
                                             <div 
                                             class="text-xs lg:text-lg text-primary ">
-                                            {{ data.qna_total }} Balasan
+                                            {{ data.total_qna }} Balasan
                                             </div>
 
                             
@@ -99,7 +99,12 @@
                                                         <svg width="12px" height="12px" viewBox="0 0 16 16" class="bi bi-heart-fill mr-1 mt-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                             <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
                                                             </svg>
-                                                            {{ (followTemp) ? data.total_follower +1 : data.total_follower }}
+                                                            <span v-if="data.followed">
+                                                                {{ data.total_follower }}
+                                                            </span>
+                                                            <span v-else>
+                                                                {{ (followTemp) ? data.total_follower +1 : data.total_follower }}
+                                                            </span>
                                                             <span class="px-1" v-if="data.followed">Disukai</span>
                                                             <span v-else>
                                                                 <span v-if="!followTemp"  class="px-1">Suka</span>

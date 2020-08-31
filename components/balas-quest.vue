@@ -26,14 +26,12 @@
                       <span class="text-primary text-xs">@{{quest.user.username }}</span> 
                   </router-link>
                  </div>
-                  <br>
+                  <!-- <br>
                   <div v-if="quest.audio" class="w-full py-2 videoWrapper">
-                          <!-- Spotify -->
-                          
+                           
                         <iframe v-if="cekSumber(quest.audio) == 'spotify'" :src="quest.audio" width="100%" height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                          <!-- Youtube -->
-                        <iframe v-if="cekSumber(quest.audio) == 'youtube'" width="560" height="315" :src="quest.audio" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                  </div>
+                         <iframe v-if="cekSumber(quest.audio) == 'youtube'" width="560" height="315" :src="quest.audio" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  </div> -->
             
 
               <span class="w-full  mb-4 mt-2">
@@ -54,15 +52,11 @@
             <div class="px-4" v-if="media || text " >
                    
 
-                   <div v-if="media" class="w-full py-2 videoWrapper">
-                          <!-- Spotify -->
-                        <iframe v-if="cekSumber(media) == 'spotify'" :src="getUrl(media)" width="100%" height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                          <!-- Youtube -->
-                        <iframe v-if="cekSumber(media) == 'youtube'" width="560" height="315" :src="getUrl(media)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                   
-
-                       
-                   </div>
+                   <!-- <div v-if="media" class="w-full py-2 videoWrapper">
+                         <iframe v-if="cekSumber(media) == 'spotify'" :src="getUrl(media)" width="100%" height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                         <iframe v-if="cekSumber(media) == 'youtube'" width="560" height="315" :src="getUrl(media)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+     
+                   </div> -->
                      <span v-for="(tx,i) in textToArray(text)" :key="i"> 
                       
                       <router-link class="text-primary" v-if="(tx.slice(0, 1) == '@')" :to="'/'+tx"> {{tx}} </router-link>
@@ -76,8 +70,8 @@
 
           <div class="w-full lg:w-1/2 p-4 shadow-sm rounded-lg">
               
-               <label class="mx-2 text-xs" >Opsional*</label>
-               <input placeholder="Link Podcast -  Spotify / Youtube" class="mx-2  p-3 bg-theme_primary_dark w-full rounded-lg" type="text" v-model="media">    
+               <!-- <label class="mx-2 text-xs" >Opsional*</label>
+               <input placeholder="Link Podcast -  Spotify / Youtube" class="mx-2  p-3 bg-theme_primary_dark w-full rounded-lg" type="text" v-model="media">     -->
   
 
                 <textarea @keyup.enter="kirim" v-model="text" placeholder="Katakan sesuatu ..." class="mx-2 mt-5 p-3 bg-theme_primary_dark w-full rounded-lg"></textarea>

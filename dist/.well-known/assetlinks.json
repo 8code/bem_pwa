@@ -3,11 +3,9 @@
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
       "namespace": "android_app",
-      "package_name": "xyz.appmaker.gyqacr",
+      "package_name": "id.my.maba",
       "sha256_cert_fingerprints": [
-      "B3:38:87:F3:22:02:27:1F:85:27:E0:7D:2D:E1:F0:BB:8F:0C:21:BF:8A:BD:D8:D9:D9:0D:61:1D:9E:24:35:85",
-      "F6:D7:A7:9F:94:CB:C5:72:93:5A:ED:C1:F7:E1:C0:3E:10:48:83:91:3A:54:4C:6F:A8:30:89:DD:06:96:74:BB",
-      "B3:38:87:F3:22:02:27:1F:85:27:E0:7D:2D:E1:F0:BB:8F:0C:21:BF:8A:BD:D8:D9:D9:0D:61:1D:9E:24:35:85"]
+      "C5:63:A2:50:F4:57:08:79:B3:DA:5B:DE:9E:ED:E3:06:6E:94:39:27:86:33:03:8C:56:A2:18:3A:22:9C:AE:76"]
     }
   }
 ]
