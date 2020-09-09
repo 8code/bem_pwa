@@ -15,8 +15,8 @@ const createStore = () => {
                 access_token: localStorage.getItem("access_token") || '',
                 errorMessages: '',
                 settings: false,
-                theme: localStorage.getItem("theme") || 'theme-light',
-                primaryColor: localStorage.getItem("primary-color") || 'primary-indigo',
+                theme: localStorage.getItem("theme") || 'theme-dark-blue',
+                primaryColor: localStorage.getItem("primary-color") || 'primary-yellow',
                 topMenu: true,
                 loading:false,
             },
@@ -81,7 +81,7 @@ const createStore = () => {
                             state.showAuth = false
                             state.errorMessages = ''
 
-                            this.$router.push("/")
+                            this.$router.push("/home")
         
         
                         }else{
@@ -115,7 +115,7 @@ const createStore = () => {
                                 state.errorMessages = ''
         
         
-                                this.$router.push("/")
+                                this.$router.push("/home")
 
                             }else{
                                     state.errorMessages = res.message

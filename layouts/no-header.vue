@@ -21,8 +21,8 @@
     >
       <div class="mx-auto flex content-start text-primary font-bold">
         <router-link
-          to="/home"
-          :class="$route.path == '/home' ? tactiveClass : tnonActiveClass"
+          to="/"
+          :class="$route.path == '/' ? tactiveClass : tnonActiveClass"
         >
           <svg
             width="1em"
@@ -37,7 +37,7 @@
               d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09zM4.157 8.5H7a.5.5 0 0 1 .478.647L6.11 13.59l5.732-6.09H9a.5.5 0 0 1-.478-.647L9.89 2.41 4.157 8.5z"
             />
           </svg>
-          <span :class="$route.path == '/home' ? activeClass : nonActiveClass"
+          <span :class="($route.path == '/') ? activeClass : nonActiveClass"
             >
             {{ $t("Home")}}
 
@@ -45,32 +45,34 @@
           >
         </router-link>
 
-        <router-link
-          to="/groups"
-          :class="$route.path == '/groups' ? tactiveClass : tnonActiveClass"
-        >
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-people" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.995-.944v-.002.002zM7.022 13h7.956a.274.274 0 0 0 .014-.002l.008-.002c-.002-.264-.167-1.03-.76-1.72C13.688 10.629 12.718 10 11 10c-1.717 0-2.687.63-3.24 1.276-.593.69-.759 1.457-.76 1.72a1.05 1.05 0 0 0 .022.004zm7.973.056v-.002.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10c-1.668.02-2.615.64-3.16 1.276C1.163 11.97 1 12.739 1 13h3c0-1.045.323-2.086.92-3zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
-</svg>
-          <span :class="$route.path == '/groups' ? activeClass : nonActiveClass"
-            >
-            {{ $t("Group")}}
-            </span
-          >
-        </router-link>
 
         <router-link
-          to="/donations"
-          :class="$route.path == '/donations' ? tactiveClass : tnonActiveClass"
+          to="/search"
+          :class="$route.path == '/search' ? tactiveClass : tnonActiveClass"
         >
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
   <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
 </svg>
           <span
-            :class="$route.path == '/donations' ? activeClass : nonActiveClass"
+            :class="$route.path == '/search' ? activeClass : nonActiveClass"
             >
-            {{ $t("Donations")}}
+            {{ $t("search")}}
             
+            </span
+          >
+        </router-link>
+
+        
+        <router-link
+          to="/groups"
+          :class="$route.path.includes('/groups') ? tactiveClass : tnonActiveClass"
+        >
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-people" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.995-.944v-.002.002zM7.022 13h7.956a.274.274 0 0 0 .014-.002l.008-.002c-.002-.264-.167-1.03-.76-1.72C13.688 10.629 12.718 10 11 10c-1.717 0-2.687.63-3.24 1.276-.593.69-.759 1.457-.76 1.72a1.05 1.05 0 0 0 .022.004zm7.973.056v-.002.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10c-1.668.02-2.615.64-3.16 1.276C1.163 11.97 1 12.739 1 13h3c0-1.045.323-2.086.92-3zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
+</svg>
+          <span :class="$route.path.includes('/groups') ? activeClass : nonActiveClass"
+            >
+            {{ $t("Group")}}
             </span
           >
         </router-link>
@@ -107,8 +109,8 @@
         </router-link>
 
         <router-link
-          to="/"
-          :class="$route.path == '/' ? tactiveClass : tnonActiveClass"
+          to="/profile"
+          :class="$route.path == '/profile' ? tactiveClass : tnonActiveClass"
         >
           <svg
             width="1em"
@@ -123,7 +125,7 @@
               d="M13 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM3.022 13h9.956a.274.274 0 0 0 .014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 0 0 .022.004zm9.974.056v-.002.002zM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"
             />
           </svg>
-          <span :class="$route.path == '/' ? activeClass : nonActiveClass"
+          <span :class="$route.path == '/profile' ? activeClass : nonActiveClass"
             >
             {{ $t("Profile")}}
             
@@ -138,7 +140,7 @@
         class="mx-auto flex flex-wrap content-center text-theme_secondary font-bold"
       >
         <router-link
-          to="/home"
+          to="/"
           class="w-full rounded-full flex px-1 py-2 mx-1 my-1"
         >
           <svg
@@ -155,26 +157,14 @@
             />
           </svg>
           <span
-            :class="$route.path == '/home' ? activeClassLg : nonActiveClassLg"
+            :class="($route.path == '/') ? activeClassLg : nonActiveClassLg"
             >{{ $t("Home")}}</span
           >
         </router-link>
 
+       
         <router-link
-          to="/groups"
-          class="w-full rounded-full flex px-1 py-2 mx-1 my-1"
-        >
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-people" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.995-.944v-.002.002zM7.022 13h7.956a.274.274 0 0 0 .014-.002l.008-.002c-.002-.264-.167-1.03-.76-1.72C13.688 10.629 12.718 10 11 10c-1.717 0-2.687.63-3.24 1.276-.593.69-.759 1.457-.76 1.72a1.05 1.05 0 0 0 .022.004zm7.973.056v-.002.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10c-1.668.02-2.615.64-3.16 1.276C1.163 11.97 1 12.739 1 13h3c0-1.045.323-2.086.92-3zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
-</svg>
-          <span
-            :class="$route.path == '/groups' ? activeClassLg : nonActiveClassLg"
-            >Groups</span
-          >
-        </router-link>
-
-        <router-link
-          to="/donations"
+          to="/search"
           class="w-full rounded-full flex px-1 py-2 mx-1 my-1"
         >
           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -182,11 +172,25 @@
         </svg>
           <span
             :class="
-              $route.path == '/donations' ? activeClassLg : nonActiveClassLg
+              $route.path == '/search' ? activeClassLg : nonActiveClassLg
             "
-            >{{ $t("Donations")}}</span
+            >{{ $t("search")}}</span
           >
         </router-link>
+
+         <router-link
+          to="/groups"
+          class="w-full rounded-full flex px-1 py-2 mx-1 my-1"
+        >
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-people" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.995-.944v-.002.002zM7.022 13h7.956a.274.274 0 0 0 .014-.002l.008-.002c-.002-.264-.167-1.03-.76-1.72C13.688 10.629 12.718 10 11 10c-1.717 0-2.687.63-3.24 1.276-.593.69-.759 1.457-.76 1.72a1.05 1.05 0 0 0 .022.004zm7.973.056v-.002.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10c-1.668.02-2.615.64-3.16 1.276C1.163 11.97 1 12.739 1 13h3c0-1.045.323-2.086.92-3zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
+</svg>
+          <span
+            :class="$route.path.includes('/groups') ? activeClassLg : nonActiveClassLg"
+            >Groups</span
+          >
+        </router-link>
+
 
         <router-link
           to="/notifications"
@@ -215,7 +219,7 @@
         </router-link>
 
         <router-link
-          to="/"
+          to="/profile"
           class="w-full rounded-full flex px-1 py-2 mx-1 my-1"
         >
           <svg
@@ -231,7 +235,7 @@
               d="M13 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM3.022 13h9.956a.274.274 0 0 0 .014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 0 0 .022.004zm9.974.056v-.002.002zM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"
             />
           </svg>
-          <span :class="$route.path == '/' ? activeClassLg : nonActiveClassLg"
+          <span :class="$route.path == '/profile' ? activeClassLg : nonActiveClassLg"
             >{{ $t("Profile")}}</span
           >
         </router-link>

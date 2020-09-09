@@ -50,19 +50,15 @@
                                                             <img class="w-full rounded-xl" :src="imgPreview(data.audio)" alt="Preview">
                                                         </div>
 
-                                                         <div v-if="cekSumber(data.audio) == 'spotify'" class="bg-primary justify-between text-secondary w-full flex rounded-xl p-3 px-4">
+                                                         <div v-if="cekSumber(data.audio) == 'spotify'" class="bg-primary justify-beetween text-secondary w-full flex rounded-xl p-3 px-4 h-auto" >
                                                       
-                                                                   <img width="30px" src="/spotify.png" alt="logo">
-                                                                    <span class="p-1 px-2 font-bold">Play Podcast</span>
+                                                            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-play" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                                <path fill-rule="evenodd" d="M10.804 8L5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"/>
+                                                            </svg>
+                                                            <span class="p-1 px-2 font-bold">Play Podcast</span>
 
-                                                                    <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-play" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                                        <path fill-rule="evenodd" d="M10.804 8L5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"/>
-                                                                        </svg>
+                                                                
                                                         </div>
-                                                          <!-- Spotify -->
-                                                          <!-- <iframe v-if="cekSumber(data.audio) == 'spotify'" :src="data.audio" width="100%" height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> -->
-                                                            <!-- Youtube -->
-                                                          <!-- <iframe  width="560" height="315" :src="data.audio" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
                                                     </div>
                                               
 
@@ -103,7 +99,7 @@
                                                                 {{ data.total_follower }}
                                                             </span>
                                                             <span v-else>
-                                                                {{ (followTemp) ? data.total_follower +1 : data.total_follower }}
+                                                                {{ (followTemp) ? (parseInt(data.total_follower) +1) : data.total_follower }}
                                                             </span>
                                                             <span class="px-1" v-if="data.followed">Disukai</span>
                                                             <span v-else>

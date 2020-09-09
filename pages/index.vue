@@ -1,61 +1,92 @@
 <template>
-  <div class="flex flex-wrap pb-40 ">
-    
-    
-
-    <section class="w-full p-5 relative bg-theme_primary rounded-xl">
-      <div class="flex items-start ">
-        <img
-          width="50px"
-          :src="$store.state.user.avatar"
-          alt="avatar"
-          class="rounded-full"
-        />
-
-        <div class="ml-5">
-          {{ $store.state.user.name }}
-          <br />
-          <small class="text-sm"> @{{ $store.state.user.username }}</small>
-        </div>
-
-        <div class=" ml-auto">
-        
-            
+  <div class="w-full">
 
 
-      <button
-        @click="$store.commit('logout')"
-        class="w-full bg-theme_primary py-3 text-danger m-2 rounded-xl flex justify-center"
-      >
-        Keluar
-      </button>
-        
-          
-        </div>
 
+ <div class="mx-auto text-sm flex content-center justify-center text-center p-4">
+    <router-link to="/" class="mx-1 w-1/2 px-10 py-2  bg-primary text-white rounded-full font-bold"> {{ $t("Home")}} </router-link>
+    <router-link to="/search" class="bg-theme_primary_dark text-primary hover:bg-primary hover:text-white hover:border-0 mx-1 w-1/2 px-10 py-2  rounded-full font-bold">
+    {{ $t("search")}} 
+    </router-link>
+</div>
 
-      </div>
+      <balas-quest v-if="balas_quest" v-on:kirim="newQuest" v-on:batal="balas_quest = false" :quest="balas_quest" />
 
+    <section class="w-full rounded-xl pb-20 flex flex-wrap">
+      <card-post v-on:balas="balasQuest" v-for="quest in quest.data" :key="quest.id" :data="quest" />
 
-      
-        <div class="text-center">
-            <div  @click="$store.commit('toggleSetting')" class="text-primary cursor-pointer ml-auto lg:mx-auto relative flex">
-                        <svg class="bi bi-gear  mt-1" width="1.2em" height="1.2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M8.837 1.626c-.246-.835-1.428-.835-1.674 0l-.094.319A1.873 1.873 0 0 1 4.377 3.06l-.292-.16c-.764-.415-1.6.42-1.184 1.185l.159.292a1.873 1.873 0 0 1-1.115 2.692l-.319.094c-.835.246-.835 1.428 0 1.674l.319.094a1.873 1.873 0 0 1 1.115 2.693l-.16.291c-.415.764.42 1.6 1.185 1.184l.292-.159a1.873 1.873 0 0 1 2.692 1.116l.094.318c.246.835 1.428.835 1.674 0l.094-.319a1.873 1.873 0 0 1 2.693-1.115l.291.16c.764.415 1.6-.42 1.184-1.185l-.159-.291a1.873 1.873 0 0 1 1.116-2.693l.318-.094c.835-.246.835-1.428 0-1.674l-.319-.094a1.873 1.873 0 0 1-1.115-2.692l.16-.292c.415-.764-.42-1.6-1.185-1.184l-.291.159A1.873 1.873 0 0 1 8.93 1.945l-.094-.319zm-2.633-.283c.527-1.79 3.065-1.79 3.592 0l.094.319a.873.873 0 0 0 1.255.52l.292-.16c1.64-.892 3.434.901 2.54 2.541l-.159.292a.873.873 0 0 0 .52 1.255l.319.094c1.79.527 1.79 3.065 0 3.592l-.319.094a.873.873 0 0 0-.52 1.255l.16.292c.893 1.64-.902 3.434-2.541 2.54l-.292-.159a.873.873 0 0 0-1.255.52l-.094.319c-.527 1.79-3.065 1.79-3.592 0l-.094-.319a.873.873 0 0 0-1.255-.52l-.292.16c-1.64.893-3.433-.902-2.54-2.541l.159-.292a.873.873 0 0 0-.52-1.255l-.319-.094c-1.79-.527-1.79-3.065 0-3.592l.319-.094a.873.873 0 0 0 .52-1.255l-.16-.292c-.892-1.64.902-3.433 2.541-2.54l.292.159a.873.873 0 0 0 1.255-.52l.094-.319z"/>
-                            <path fill-rule="evenodd" d="M8 5.754a2.246 2.246 0 1 0 0 4.492 2.246 2.246 0 0 0 0-4.492zM4.754 8a3.246 3.246 0 1 1 6.492 0 3.246 3.246 0 0 1-6.492 0z"/>
-                        </svg>
-                        Settings
-                    </div>
-        </div>
+      <span v-if="loadMore" class="p-4 text-center w-full">
+        Load More ...
+      </span>
+
     </section>
-
   </div>
 </template>
 
 <script>
 export default {
-  scrollToTop: true,
   layout: "no-header",
-  middleware: "auth"
+  middleware: "auth",
+  data() {
+    return {
+      quest: "",
+      search: "",
+      balas_quest: '',
+      page: 1,
+      loadMore: false,
+      last_page: false
+    };
+  },
+  fetch(){
+      this.getData()
+  },
+    mounted() {
+
+      var that = this;
+      window.addEventListener("scroll", function() {
+      
+          let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+
+          if(bottomOfWindow){
+            if(!that.last_page){
+                that.loadMoregetData()
+            }else{
+              this.loadMore = false
+            }
+           
+          }
+      });
+    },
+  methods:{
+    loadMoregetData(){
+        this.loadMore = true
+        this.page = this.page+1
+        this.$axios.$get("/quest/home?search="+this.search+"&page="+this.page)
+        .then(res => {
+          res.data = Object.values(res.data)
+          if(res.data.length > 0){
+               let tempp = Object.values(this.quest.data)
+               
+               this.quest.data = tempp.concat(res.data)
+          }else{
+            this.last_page = true
+          }
+          this.loadMore = false
+        });
+    },
+    newQuest(){
+      this.balas_quest = ""
+      this.getData()
+    },
+    balasQuest(data){
+        this.balas_quest = data
+    },
+    getData(){
+      this.$axios.$get("/quest/home?search="+this.search+"&page="+this.page).then(res => {
+        this.quest = res;
+        this.page = 1 
+      });
+    }
+  }
 };
 </script>

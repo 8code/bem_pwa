@@ -3,7 +3,7 @@
 
   <div
     :class="settings"
-    class="w-full min-h-screen flex flex-wrap content-center "
+    class="w-full min-h-screen flex flex-wrap justify-start  content-center "
   >
 
   
@@ -13,10 +13,10 @@
     
 
     <main
-      class="w-full  mx-auto flex flex-wrap   px-10"
+      class="w-full  mx-auto flex flex-wrap   px-10 pt-10"
       style="max-width:400px"
     >
-      <div v-if="loginWithUsername" class="flex w-full flex-wrap">
+      <div v-if="loginWithUsername" class="flex w-full flex-wrap justify-start">
         <div
           v-if="$store.state.errorMessages"
           class="bg-danger text-white w-full py-1 my-3 px-3 text-center rounded-full"
@@ -29,11 +29,10 @@
           type="text"
           placeholder="Username or Email"
           class=" 
-                         bg-theme_primary_dark
+                        bg-theme_primary_dark
                         py-2 px-8 
                         rounded-full mb-3
                         w-full
-                        
                         "
         />
         <label class="w-full py-3 px-2">Password</label>
@@ -65,7 +64,7 @@
 
       <button
         @click="cekLoginFb"
-        class="text-white w-full p-2  rounded-full bg-blue-600 hover:bg-blue-700 mt-5"
+        class="text-white h-16 w-full p-2 rounded-full bg-blue-600 hover:bg-blue-700 mt-5"
       >
         {{ $t("loginwith") }} Facebook
       </button>
@@ -74,7 +73,7 @@
         v-if="!loginWithUsername"
         loginWithUsername
         @click="loginWithUsername = true"
-        class="w-full p-2  rounded-full bg-theme_primary_light  mt-5"
+        class="w-full p-2 h-16  rounded-full bg-theme_primary_light  mt-5"
       >
         {{ $t("loginwith") }} Username
       </button>
