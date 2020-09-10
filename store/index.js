@@ -87,7 +87,7 @@ const createStore = () => {
                             state.showAuth = false
                             state.errorMessages = ''
 
-                            this.$router.push("/home")
+                            this.$router.push("/")
         
         
                         }else{
@@ -121,7 +121,7 @@ const createStore = () => {
                                 state.errorMessages = ''
         
         
-                                this.$router.push("/home")
+                                this.$router.push("/")
 
                             }else{
                                     state.errorMessages = res.message
