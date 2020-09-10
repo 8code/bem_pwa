@@ -78,11 +78,11 @@
                           Buat Group
                       </button>
 
-                       <router-link to="/groups"
+                       <nuxt-link to="/groups"
                       class="w-full text-center py-2 px-4 bg-theme_primary_light hover:opacity-75 rounded-lg mt-5">
                           <i class="fa fa-plus"></i>
                           Batal
-                      </router-link>
+                      </nuxt-link>
 
                 </div>
                  

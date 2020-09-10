@@ -1,14 +1,14 @@
 <template>
-  <div class="w-full">
+  <div class="w-full" v-touch:swipe="to">
 
 
 
- <div class="mx-auto text-sm flex content-center justify-center text-center p-4">
-    <router-link to="/" class="mx-1 w-1/2 px-10 py-2  bg-primary text-white rounded-full font-bold"> {{ $t("Home")}} </router-link>
-    <router-link to="/search" class="bg-theme_primary_dark text-primary hover:bg-primary hover:text-white hover:border-0 mx-1 w-1/2 px-10 py-2  rounded-full font-bold">
-    {{ $t("search")}} 
-    </router-link>
-</div>
+  <div class="mx-auto text-sm flex content-center justify-center text-center p-2">
+      <nuxt-link to="/" class="mx-1 w-1/2 px-10 py-2  bg-primary text-white rounded-full font-bold"> {{ $t("Home")}} </nuxt-link>
+      <nuxt-link to="/explore" class="bg-theme_primary_dark text-primary hover:bg-primary hover:text-white hover:border-0 mx-1 w-1/2 px-10 py-2  rounded-full font-bold">
+      {{ $t("Explore")}}
+      </nuxt-link>
+  </div>
 
       <balas-quest v-if="balas_quest" v-on:kirim="newQuest" v-on:batal="balas_quest = false" :quest="balas_quest" />
 
@@ -57,6 +57,7 @@ export default {
           }
       });
     },
+
   methods:{
     loadMoregetData(){
         this.loadMore = true
@@ -66,7 +67,6 @@ export default {
           res.data = Object.values(res.data)
           if(res.data.length > 0){
                let tempp = Object.values(this.quest.data)
-               
                this.quest.data = tempp.concat(res.data)
           }else{
             this.last_page = true
@@ -82,11 +82,17 @@ export default {
         this.balas_quest = data
     },
     getData(){
+      this.last_page = false
+      this.page = 1 
       this.$axios.$get("/quest/home?search="+this.search+"&page="+this.page).then(res => {
         this.quest = res;
-        this.page = 1 
       });
-    }
+    },
+    to(directions) {
+      if (directions == "left") {
+        this.$router.push("/explore");
+      }
+    },
   }
 };
 </script>

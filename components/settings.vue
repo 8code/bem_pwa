@@ -219,12 +219,23 @@
           </div>
         </div>
 
+        
+      
+
         <button
           @click="$store.commit('toggleSetting')"
-          class="px-10 py-2 text-primary font-bold border-2 border-primary neu-in hover:neu-out mt-5 rounded-full"
+          class="w-full px-10 py-2 text-white font-bold bg-primary neu-in hover:neu-out mt-5 rounded-full"
         >
           {{ $t("Done") }}
+
         </button>
+        <button
+        @click="$store.commit('logout')"
+        class="w-full px-10 py-2 text-danger font-bold border border-danger neu-in hover:neu-out mt-10 rounded-full"
+      >
+        Logout
+      </button>
+
       </div>
     </div>
   </div>

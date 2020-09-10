@@ -94,6 +94,7 @@ export default {
               Group: 'Group',
               Notif: 'Notif',
               Profile: 'Profile',
+              Explore: 'Explore',
             },
             id: {
               welcome: 'Selamat Datang Mahasiswa!',
@@ -112,6 +113,7 @@ export default {
               Group: 'Group',
               Notif: 'Notif',
               Profile: 'Profile',
+              Explore: 'Jelajahi',
 
             },
             sd: {
@@ -131,7 +133,7 @@ export default {
               Group: 'Group',
               Notif: 'Notif',
               Profile: 'Profile',
-
+              Explore: 'Jelajah',
               
             }
           }

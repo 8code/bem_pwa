@@ -92,13 +92,13 @@
               Create Group
             </button>
 
-            <router-link
+            <nuxt-link
               to="/"
               class="w-full text-center py-2 px-4 bg-theme_primary_light hover:opacity-75 rounded-lg mt-5"
             >
               <i class="fa fa-plus"></i>
               Cancel
-            </router-link>
+            </nuxt-link>
           </div>
         </div>
       </div>

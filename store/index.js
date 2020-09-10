@@ -19,6 +19,12 @@ const createStore = () => {
                 primaryColor: localStorage.getItem("primary-color") || 'primary-yellow',
                 topMenu: true,
                 loading:false,
+                data_quest_profile: '',
+                data_quest_home: '',
+                data_quest_search: '',
+                data_group: '',
+                data_group_search: '',
+                data_notifications: '',
             },
 
 

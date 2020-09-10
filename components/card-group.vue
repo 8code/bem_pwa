@@ -21,7 +21,7 @@
           
           
           <div class="w-full text-xl lg:text-2xl mb-2">
-           <router-link :to="`/${group.username}`"> {{ group.name }}</router-link>
+           <nuxt-link :to="`/${group.username}`"> {{ group.name }}</nuxt-link>
             <br />
             <div class=" flex w-full justify-between">
 
@@ -61,9 +61,9 @@
         <div class="h-4 w-4 rounded-full shadow-lg bg-primary mr-3 mt-1"></div>
         {{ group.type }}
 
-        <router-link :to="`/${group.username}`"  class="ml-auto text-primary text-sm mt-1 px-3 rounded-full">
+        <nuxt-link :to="`/${group.username}`"  class="ml-auto text-primary text-sm mt-1 px-3 rounded-full">
           Lihat {{ group.qna_total}} Quest
-        </router-link>
+        </nuxt-link>
       </small>
     </div>
   </div>

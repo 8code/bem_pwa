@@ -2,35 +2,35 @@
       <div class="w-full p-2 relative cursor-pointer border-b border-theme_primary_light overflow-hidden" > 
                                   <div class="shadow-sm rounded-xl bg-theme_primary hover:bg-theme_primary_dark p-3 ">
 
-                                        <router-link v-if="data.group_id && !data.quest_id"  class="text-primary p-1 px-4 bg-theme_primary_dark rounded-xl text-xs" :to="'/'+data.group.username" >
+                                        <nuxt-link v-if="data.group_id && !data.quest_id"  class="text-primary p-1 px-4 bg-theme_primary_dark rounded-xl text-xs" :to="'/'+data.group.username" >
                                             
                                            #{{ data.group.username }}
 
-                                        </router-link>
+                                        </nuxt-link>
 
-                                        <router-link v-if="data.quest_id" class="p-1 px-4 text-xs " :to="data.group.username" >
+                                        <nuxt-link v-if="data.quest_id" class="p-1 px-4 text-xs " :to="data.group.username" >
                                    
                                            Membalas 
                                            
-                                           <router-link :to="`/quest/${data.quest_id}`" class="bg-theme_primary_dark text-primary rounded-xl p-1 px-2">
+                                           <nuxt-link :to="`/quest/${data.quest_id}`" class="bg-theme_primary_dark text-primary rounded-xl p-1 px-2">
                                                
                                            <b> @{{ data.membalas_user }}</b>
                                                : {{ data.quest.text.substring(0, 20) }} ..
                                                
-                                            </router-link> 
+                                            </nuxt-link> 
 
                                       
-                                        </router-link>
+                                        </nuxt-link>
 
                                      
                                         <div class="flex pt-2">
 
                                             <img class="w-10 h-10 rounded-full" :src="data.user.avatar" alt="Event 1">
 
-                                             <router-link class="p-2"  :to="'/@'+data.user.username">
+                                             <nuxt-link class="p-2"  :to="'/@'+data.user.username">
                                                 <span class="font-bold text-lg">{{ data.user.name }}</span> 
                                                 <span class="text-primary text-xs">@{{ data.user.username }}</span> 
-                                            </router-link>
+                                            </nuxt-link>
 
                                             <span class="text-xs ml-auto text-primary_light">
                                             {{ parseQuestDate(data.created_at)}}
@@ -65,8 +65,8 @@
                                                 <span class="w-full pb-4">
                                                     <span v-for="(tx,i) in textToArray(data.text)" :key="i"> 
                                                         
-                                                        <router-link class="text-primary" v-if="(tx.slice(0, 1) == '@')" :to="'/'+tx"> {{tx}} </router-link>
-                                                        <router-link class="text-primary" v-else-if="(tx.slice(0, 1) == '#')" :to="'/'+tx.substring(1)"> {{tx}} </router-link>
+                                                        <nuxt-link class="text-primary" v-if="(tx.slice(0, 1) == '@')" :to="'/'+tx"> {{tx}} </nuxt-link>
+                                                        <nuxt-link class="text-primary" v-else-if="(tx.slice(0, 1) == '#')" :to="'/'+tx.substring(1)"> {{tx}} </nuxt-link>
                                                         <span v-else> {{tx}} </span>
 
                                                     </span>
@@ -106,8 +106,11 @@
                                                                 <span v-if="!followTemp"  class="px-1">Suka</span>
                                                                 <span  class="px-1" v-else>Disukai</span>
                                                             </span>
+
                                                         
                                                     </div>
+
+
                                             </div>
 
                                             </div>

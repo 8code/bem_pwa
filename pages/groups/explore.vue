@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full">
+  <div class="w-full"  v-touch:swipe="to">
     <subheader name="groups" />
 
     <section class="w-full rounded-xl pb-20">
@@ -39,7 +39,7 @@
 
    
       <card-group
-        v-touch:swipe="to"
+       
         v-for="group in data.data"
         :key="group.id"
         :group="group"

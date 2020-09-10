@@ -1,5 +1,6 @@
 <template>
-<div  :class="settings">
+<div  :class="settings"
+>
 
   <div
     class="w-full min-h-screen flex flex-wrap content-start bg-theme_primary"
@@ -7,7 +8,7 @@
     <settings class="z-50" />
     <main
       class="w-full mx-auto flex flex-wrap pt-2 content-start min-h-screen bg-theme_primary "
-      style="max-width:600px"
+      style="max-width:600px;"
     >
         <media-player />
       <transition name="slide-fade">
@@ -20,7 +21,7 @@
       :class="!$store.state.topMenu ? 'hidden' : ''"
     >
       <div class="mx-auto flex content-start text-primary font-bold">
-        <router-link
+        <nuxt-link
           to="/"
           :class="$route.path == '/' ? tactiveClass : tnonActiveClass"
         >
@@ -43,27 +44,11 @@
 
             </span
           >
-        </router-link>
+        </nuxt-link>
 
-
-        <router-link
-          to="/search"
-          :class="$route.path == '/search' ? tactiveClass : tnonActiveClass"
-        >
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
-</svg>
-          <span
-            :class="$route.path == '/search' ? activeClass : nonActiveClass"
-            >
-            {{ $t("search")}}
-            
-            </span
-          >
-        </router-link>
 
         
-        <router-link
+        <nuxt-link
           to="/groups"
           :class="$route.path.includes('/groups') ? tactiveClass : tnonActiveClass"
         >
@@ -75,9 +60,26 @@
             {{ $t("Group")}}
             </span
           >
-        </router-link>
+        </nuxt-link>
 
-        <router-link
+        
+        <nuxt-link
+          to="/apps"
+          :class="$route.path == '/apps' ? tactiveClass : tnonActiveClass"
+        >
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+</svg>
+          <span
+            :class="$route.path == '/apps' ? activeClass : nonActiveClass"
+            >
+            Apps
+            </span
+          >
+        </nuxt-link>
+
+
+        <nuxt-link
           to="/notifications"
           :class="
             $route.path == '/notifications' ? tactiveClass : tnonActiveClass
@@ -106,9 +108,9 @@
             
             </span
           >
-        </router-link>
+        </nuxt-link>
 
-        <router-link
+        <nuxt-link
           to="/profile"
           :class="$route.path == '/profile' ? tactiveClass : tnonActiveClass"
         >
@@ -131,7 +133,7 @@
             
             </span
           >
-        </router-link>
+        </nuxt-link>
       </div>
     </nav>
 
@@ -139,7 +141,7 @@
       <div
         class="mx-auto flex flex-wrap content-center text-theme_secondary font-bold"
       >
-        <router-link
+        <nuxt-link
           to="/"
           class="w-full rounded-full flex px-1 py-2 mx-1 my-1"
         >
@@ -160,25 +162,11 @@
             :class="($route.path == '/') ? activeClassLg : nonActiveClassLg"
             >{{ $t("Home")}}</span
           >
-        </router-link>
+        </nuxt-link>
 
-       
-        <router-link
-          to="/search"
-          class="w-full rounded-full flex px-1 py-2 mx-1 my-1"
-        >
-          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
-        </svg>
-          <span
-            :class="
-              $route.path == '/search' ? activeClassLg : nonActiveClassLg
-            "
-            >{{ $t("search")}}</span
-          >
-        </router-link>
+      
 
-         <router-link
+         <nuxt-link
           to="/groups"
           class="w-full rounded-full flex px-1 py-2 mx-1 my-1"
         >
@@ -189,10 +177,27 @@
             :class="$route.path.includes('/groups') ? activeClassLg : nonActiveClassLg"
             >Groups</span
           >
-        </router-link>
+        </nuxt-link>
+
+         
+        <nuxt-link
+          to="/apps"
+          class="w-full rounded-full flex px-1 py-2 mx-1 my-1"
+        >
+          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+        </svg>
+          <span
+            :class="
+              $route.path == '/apps' ? activeClassLg : nonActiveClassLg
+            "
+            >Apps
+            </span
+          >
+        </nuxt-link>
 
 
-        <router-link
+        <nuxt-link
           to="/notifications"
           class="w-full rounded-full flex px-1 py-2 mx-1 my-1"
         >
@@ -216,9 +221,9 @@
             "
             >{{ $t("Notif")}}</span
           >
-        </router-link>
+        </nuxt-link>
 
-        <router-link
+        <nuxt-link
           to="/profile"
           class="w-full rounded-full flex px-1 py-2 mx-1 my-1"
         >
@@ -238,7 +243,7 @@
           <span :class="$route.path == '/profile' ? activeClassLg : nonActiveClassLg"
             >{{ $t("Profile")}}</span
           >
-        </router-link>
+        </nuxt-link>
       </div>
     </nav>
   </div>

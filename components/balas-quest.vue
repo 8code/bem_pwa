@@ -21,10 +21,10 @@
            <div class="flex">
                     <img class="w-10 h-10 rounded-full" :src="$store.state.user.avatar" alt="Event 1">
 
-                    <router-link class="p-2" :to="'/@'+quest.user.username">
+                    <nuxt-link class="p-2" :to="'/@'+quest.user.username">
                       <span class="font-bold">{{ quest.user.name }}</span> 
                       <span class="text-primary text-xs">@{{quest.user.username }}</span> 
-                  </router-link>
+                  </nuxt-link>
                  </div>
                   <!-- <br>
                   <div v-if="quest.audio" class="w-full py-2 videoWrapper">
@@ -37,8 +37,8 @@
               <span class="w-full  mb-4 mt-2">
                   <span v-for="(tx,i) in textToArray(quest.text)" :key="i"> 
                       
-                      <router-link class="text-primary" v-if="(tx.slice(0, 1) == '@')" :to="'/'+tx"> {{tx}} </router-link>
-                      <router-link class="text-primary" v-else-if="(tx.slice(0, 1) == '#')" :to="'/'+tx.substring(1)"> {{tx}} </router-link>
+                      <nuxt-link class="text-primary" v-if="(tx.slice(0, 1) == '@')" :to="'/'+tx"> {{tx}} </nuxt-link>
+                      <nuxt-link class="text-primary" v-else-if="(tx.slice(0, 1) == '#')" :to="'/'+tx.substring(1)"> {{tx}} </nuxt-link>
                       <span v-else> {{tx}} </span>
 
                   </span>
@@ -59,8 +59,8 @@
                    </div> -->
                      <span v-for="(tx,i) in textToArray(text)" :key="i"> 
                       
-                      <router-link class="text-primary" v-if="(tx.slice(0, 1) == '@')" :to="'/'+tx"> {{tx}} </router-link>
-                      <router-link class="text-primary" v-else-if="(tx.slice(0, 1) == '#')" :to="'/'+tx.substring(1)"> {{tx}} </router-link>
+                      <nuxt-link class="text-primary" v-if="(tx.slice(0, 1) == '@')" :to="'/'+tx"> {{tx}} </nuxt-link>
+                      <nuxt-link class="text-primary" v-else-if="(tx.slice(0, 1) == '#')" :to="'/'+tx.substring(1)"> {{tx}} </nuxt-link>
                       <span v-else> {{tx}} </span>
 
                   </span>

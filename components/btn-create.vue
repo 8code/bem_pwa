@@ -2,7 +2,7 @@
 <div :class="!$store.state.topMenu ? 'hidden' : ''">
 
 
- <router-link
+ <nuxt-link
       :to="link"
       class="bg-primary text-secondary p-3 right-0 rounded-full fixed bottom-0 mr-5 z-30 mb-16 lg:mr-20 flex  "
     >
@@ -28,7 +28,7 @@
         />
       </svg>
       <span class="hidden lg:block px-2"> {{ name }}</span>
-    </router-link>
+    </nuxt-link>
 </div>
 </template>
 
