@@ -15,7 +15,7 @@
       <card-post v-on:balas="balasQuest" v-for="quest in quest.data" :key="quest.id" :data="quest" />
 
       <span v-if="loadMore" class="p-4 text-center w-full">
-        Load More ...
+        Memuat ...
       </span>
 
     </section>

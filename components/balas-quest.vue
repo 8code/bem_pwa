@@ -67,14 +67,13 @@
             </div>
             </div>
 
-
           <div class="w-full lg:w-1/2 p-4 shadow-sm rounded-lg">
               
-               <!-- <label class="mx-2 text-xs" >Opsional*</label>
-               <input placeholder="Link Podcast -  Spotify / Youtube" class="mx-2  p-3 bg-theme_primary_dark w-full rounded-lg" type="text" v-model="media">     -->
+               <label class="mx-2 text-xs" >Opsional*</label>
+               <input placeholder="Link Podcast -  Spotify / Youtube" class="mx-2  p-3 bg-theme_primary_dark w-full rounded-lg" type="text" v-model="media">  
   
 
-                <textarea @keyup.enter="kirim" v-model="text" placeholder="Katakan sesuatu ..." class="mx-2 mt-5 p-3 bg-theme_primary_dark w-full rounded-lg"></textarea>
+                <textarea maxlength="255" v-model="text" placeholder="Katakan sesuatu ..." class="mx-2 mt-5 p-3 bg-theme_primary_dark w-full rounded-lg"></textarea>
                   
               
                 <button @click="kirim" class="mx-2 py-2 w-full rounded-lg mt-2 bg-primary hover:bg-primary_dark text-white shadow-sm">

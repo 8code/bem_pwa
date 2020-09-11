@@ -57,8 +57,8 @@
 
 /* Yellow */
 .primary-yellow{
-    --color-primary_light: #FAF089;
-    --color-primary: #ECC94B;
+    --color-primary_light: #ECC94B;
+    --color-primary: #D69E2E;
     --color-primary_dark: #B7791F;
 }
 

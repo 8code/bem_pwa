@@ -1,13 +1,13 @@
 <template>
       <div class="w-full p-2 relative cursor-pointer border-b border-theme_primary_light overflow-hidden" > 
-                                  <div class="shadow-sm rounded-xl bg-theme_primary hover:bg-theme_primary_dark p-3 ">
+                                  <div class="shadow-sm rounded-xl bg-theme_primary hover:bg-theme_primary_dark p-3 " :class="(active) ? 'bg-theme_primary_dark' : ''">
 
                                         <nuxt-link v-if="data.group_id && !data.quest_id"  class="text-primary p-1 px-4 bg-theme_primary_dark rounded-xl text-xs" :to="'/'+data.group.username" >
                                             
                                            #{{ data.group.username }}
 
                                         </nuxt-link>
-
+                                        <span v-if="!hideBalasan">
                                         <nuxt-link v-if="data.quest_id" class="p-1 px-4 text-xs " :to="data.group.username" >
                                    
                                            Membalas 
@@ -21,6 +21,8 @@
 
                                       
                                         </nuxt-link>
+
+                                        </span>
 
                                      
                                         <div class="flex pt-2">
@@ -62,7 +64,7 @@
                                                     </div>
                                               
 
-                                                <span class="w-full pb-4">
+                                                <nuxt-link :to="`/quest/${data.id}`" class="w-full pb-4 text-xl" :class="(bigtext) ? 'text-3xl' : ''" >
                                                     <span v-for="(tx,i) in textToArray(data.text)" :key="i"> 
                                                         
                                                         <nuxt-link class="text-primary" v-if="(tx.slice(0, 1) == '@')" :to="'/'+tx"> {{tx}} </nuxt-link>
@@ -70,15 +72,15 @@
                                                         <span v-else> {{tx}} </span>
 
                                                     </span>
-                                                </span>
+                                                </nuxt-link>
 
                                             <div class="flex text-right ">
 
                                             
-                                            <div 
+                                            <nuxt-link :to="`/quest/${data.id}`" 
                                             class="text-xs lg:text-lg text-primary ">
                                             {{ data.total_qna }} Balasan
-                                            </div>
+                                            </nuxt-link>
 
                             
                                             <div class="flex mx-3">
@@ -129,7 +131,7 @@
 import util from '~/assets/js/util'
 
 export default {
-    props:['data'],
+    props:['data','bigtext','active','hideBalasan'],
     data(){
         return{
             btnFollow: 'flex relative ml-auto py-1 px-3 rounded-tl-xl rounded-br-xl bg-theme_primary_light text-xs text-primary',

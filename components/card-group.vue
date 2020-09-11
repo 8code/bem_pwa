@@ -62,7 +62,7 @@
         {{ group.type }}
 
         <nuxt-link :to="`/${group.username}`"  class="ml-auto text-primary text-sm mt-1 px-3 rounded-full">
-          Lihat {{ group.qna_total}} Quest
+          Lihat {{ group.total_qna}} Quest
         </nuxt-link>
       </small>
     </div>

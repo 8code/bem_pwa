@@ -1,32 +1,44 @@
 <template>
-  <div class="w-full" v-if="group">
+  <div class="w-full" v-if="profile">
     <section>
       <div class="w-full flex flex-wrap bg-theme_primary p-2 pt-6 rounded-xl ">
-        <div class="w-full font-bold flex px-2 ">
+        <div class="w-full font-bold flex  ">
           <img
             class="w-16 h-16  rounded-full"
-            :src="group.avatar"
-            :alt="group.name"
+            :src="profile.avatar"
+            :alt="profile.name"
           />
 
-          <div class="w-full pl-5 mt-1 flex flex-wrap items-start ">
+          <div class="w-full pl-5 flex flex-wrap items-start ">
             <div class="w-full text-xl lg:text-2xl mb-2">
-              {{ group.name }}
-              <br />
-              <small>#{{ group.username }}</small>
+              {{ profile.name }}
+              <br>
+              <small class="text-lg text-primary">@{{ profile.username }}</small>
 
-                    <div v-if="group.followed" class="float-right text-sm">
-                            <span v-if="group.followed" class="cursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
+                    <div v-if="profile.followed" class="float-right text-sm">
+                            <span v-if="profile.followed" class="cursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
                                 Diikuti
                             </span>
                             <div v-else >
-                                      <span v-if="!followTemp" @click="followGroup(group.id)" class="cursor-pointer bg-primary px-4 py-1 rounded-full text-secondary">
+                                      <span v-if="!followTemp" @click="followGroup(profile.id)" class="cursor-pointer bg-primary px-4 py-1 rounded-full text-secondary">
                                           Ikuti
                                       </span>
                                       <span v-if="followTemp" class="fursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
                                         Diikuti
                                     </span>
                             </div>
+                    </div>
+
+                    <div v-if="editprofile"  class="float-right text-sm -mt-6">
+                        <span @click="$store.commit('toggleSetting',true)" class="mb-2 text-center cursor-pointer bg-theme_primary_dark  px-4 py-1 rounded-full text-primary">
+                                Pengaturan
+                         </span>
+                         <div class="w-full pt-3 text-right">
+                            <router-link to="/edit/profile" class="mb-2 text-center cursor-pointer bg-theme_primary_dark px-4 py-1 rounded-full text-primary">
+                                    Edit Profile
+                            </router-link>
+
+                           </div>
                     </div>
 
             </div>
@@ -37,19 +49,14 @@
         </div>
       </div>
     </section>
-
-
     
-      <new-quest v-on:kirim="newQuest" :group="group" />
+      <!-- <new-quest v-on:kirim="newQuest" :group="group" /> -->
 
       <balas-quest v-if="balas_quest" v-on:kirim="newQuest" v-on:batal="balas_quest = false" :quest="balas_quest" />
 
 
 
     <div class="p-2 flex flex-row mt-2" style="overflow-x:scroll">
-
-
-
 
      <div
         :class="(filter == 'Quest Only') ? filterClassActive : filterClass"
@@ -93,7 +100,7 @@
       <card-post v-on:balas="balasQuest" v-for="quest in quest.data" :key="quest.id" :data="quest" />
 
       <span v-if="loadMore" class="p-4 text-center w-full">
-        Load More ...
+        Memuat ...
       </span>
 
     </section>
@@ -104,11 +111,12 @@
 export default {
   layout: "no-header",
   middleware: "auth",
+  props:['id','editprofile'],
   data() {
     return {
       filterClassActive: "cursor-pointer relative mx-1 px-6 bg-primary text-secondary rounded-xl flex text-sm items-center justify-center p-2",
       filterClass: "cursor-pointer relative mx-1 px-6 bg-theme_primary_dark rounded-xl flex text-sm items-center justify-center p-2",
-      group: "",
+      profile: "",
       quest: "",
       search: "",
       filter: "Quest Only",
@@ -137,8 +145,9 @@ export default {
 
     },
   fetch() {
-    this.$axios.$get("/group/" + this.$route.params.url).then(data => {
-      this.group = data;
+    console.log(this.id)
+    this.$axios.$get("/profile/" + this.id).then(data => {
+      this.profile = data;
       this.getData()
     });
   },
@@ -146,7 +155,7 @@ export default {
     loadMoregetData(){
         this.loadMore = true
         this.page = this.page+1
-        this.$axios.$get("/group/quest/" + this.group.id+"?filter="+this.filter+"&search="+this.search+"&page="+this.page)
+        this.$axios.$get("/profile/quest/" + this.profile.id+"?filter="+this.filter+"&search="+this.search+"&page="+this.page)
         .then(res => {
           if(res.data.length > 0){
                this.quest.data = this.quest.data.concat(res.data)
@@ -166,7 +175,7 @@ export default {
     getData(){
       this.last_page = false
       this.page = 1
-      this.$axios.$get("/group/quest/" + this.group.id+"?filter="+this.filter+"&search="+this.search+"&page="+this.page).then(data => {
+      this.$axios.$get("/profile/quest/" + this.profile.id+"?filter="+this.filter+"&search="+this.search+"&page="+this.page).then(data => {
         console.log(data)
         this.quest = data;
       });

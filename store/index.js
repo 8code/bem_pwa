@@ -16,7 +16,7 @@ const createStore = () => {
                 errorMessages: '',
                 settings: false,
                 theme: localStorage.getItem("theme") || 'theme-dark-blue',
-                primaryColor: localStorage.getItem("primary-color") || 'primary-yellow',
+                primaryColor: localStorage.getItem("primary-color") || 'primary-indigo',
                 topMenu: true,
                 loading:false,
                 data_quest_profile: '',

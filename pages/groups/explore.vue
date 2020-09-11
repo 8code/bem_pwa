@@ -46,7 +46,7 @@
         follow="true"
       />
       <span v-if="loadMore" class="p-4 text-center w-full flex flex-wrap">
-        Load More ...
+        Memuat ...
       </span>
 
     </section>

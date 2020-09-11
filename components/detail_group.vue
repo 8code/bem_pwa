@@ -4,7 +4,7 @@
 
     <section>
       <div class="w-full flex flex-wrap bg-theme_primary p-2 pt-6 rounded-xl ">
-        <div class="w-full font-bold flex px-2 ">
+        <div class="w-full font-bold flex ">
           <img
             class="w-16 h-16  rounded-full"
             :src="group.avatar"
@@ -95,7 +95,7 @@
       <card-post v-on:balas="balasQuest" v-for="quest in quest.data" :key="quest.id" :data="quest" />
 
       <span v-if="loadMore" class="p-4 text-center w-full">
-        Load More ...
+        Memuat ...
       </span>
 
     </section>

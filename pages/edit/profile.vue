@@ -5,42 +5,38 @@
       <div class="shadow-sm rounded-xl px-5 pb-5">
         <div class="flex flex-wrap">
           <div class="w-full  px-5 flex flex-wrap">
-            <label class=" pl-2 w-full my-3 flex" for="nama">avatar</label>
-
             <div
-              class="w-full my-3 flex content-center justify-center items-center"
+              class="w-full my-3 flex"
             >
               <croppa
                 class="shadow-sm rounded-lg"
                 v-model="avatar"
-                :width="50"
+                :width="100"
                 prevent-white-space
-                :height="50"
-                :placeholder="'50x50px'"
+                :height="100"
+                :placeholder="'100x100px'"
                 @init="onInit"
-                :show-remove-button="false"
+                :initial-image="$store.state.user.avatar"
               ></croppa>
-              <button
-                @click="avatar.remove()"
-                class="mx-3 rounded-full bg-theme_primary_light p-1 px-5 text-xs"
-              >
-                Remove
-              </button>
+
+              <div class="pl-4 flex flex-wrap w-full">
+                    <label class="text-left  pl-2 w-full my-3" for="usernama"
+                    >Username*</label
+                  >
+                  <input
+                    class="w-full
+                            shadow-sm bg-theme_primary_light
+                            py-2 px-4 
+                            rounded-lg mb-3
+                            "
+                    type="text"
+                    v-model="d.username"
+                    placeholder="Username"
+                  />
+              </div>
             </div>
 
-            <label class="text-left  pl-2 w-full my-3" for="usernama"
-              >Username</label
-            >
-            <input
-              class="w-full
-                      shadow-sm bg-theme_primary_light
-                      py-2 px-4 
-                      rounded-lg mb-3
-                      "
-              type="text"
-              v-model="d.username"
-              placeholder="Username"
-            />
+        
 
             <label class="text-left  pl-2 w-full my-3" for="nama">Name</label>
             <input
@@ -54,55 +50,58 @@
               placeholder="Name"
             />
 
-            <label class="text-left  pl-2 w-full my-3" for="type">Type</label>
-            <select
-              class="w-full
-                      shadow-sm bg-theme_primary_light
-                      py-2 px-4 
-                      rounded-lg mb-3
-                      "
-              v-model="d.type"
-            >
-              <option value="Ormawa">Ormawa</option>
-              <option value="UKM">UKM</option>
-              <option value="StartUp">StartUp</option>
-              <option value="Komunitas">Komunitas</option>
-              <option value="Lainnya">Lainnya</option>
-            </select>
 
-            <label class="text-left  pl-2 w-full my-3" for="email"
-              >Descriptions</label
-            >
-            <textarea
-              class="w-full
-                          shadow-sm bg-theme_primary_light
-                          py-2 px-4 
-                          rounded-lg mb-3
-                          "
-              v-model="d.desc"
-              placeholder="Descriptions"
-            >
-            </textarea>
+           <div class="flex flex-wrap">
+              <label class="text-left  pl-2 w-full my-3" for="email"
+              >Gender</label>
+
+              <label class="inline-flex items-center px-2">
+                  <input  class="border-2 border-primary" type="radio" v-model="d.gender" name="gender" value="L"> 
+                  <span class="ml-2">Laki Laki</span>
+                </label>
+                   <label class="inline-flex items-center px-2">
+                      <input  class="border-2 border-primary" type="radio" v-model="d.gender" name="gender" value="P"> 
+                    <span class="ml-2">Perempuan</span>
+                </label>
+             
+
+           </div>
+
+             <div class="flex flex-wrap w-full">
+              <label class="text-left  pl-2 w-full my-3" for="email"
+              >Program Studi</label>
+             </div>
+
+
+             <div class="flex flex-wrap w-full">
+              <label class="text-left  pl-2 w-full my-3" for="email"
+              >Universitas</label>
+             </div>
+
+
+        
 
             <button
               @click="save"
-              class="w-full  py-2 px-4 bg-primary_dark hover:opacity-75 rounded-lg mt-5"
+              class="w-full  py-2 px-4 bg-primary rounded-lg mt-5"
             >
               <i class="fa fa-plus"></i>
-              Create Group
+              Simpan Perubahan
             </button>
 
             <nuxt-link
-              to="/"
+              to="/profile"
               class="w-full text-center py-2 px-4 bg-theme_primary_light hover:opacity-75 rounded-lg mt-5"
             >
               <i class="fa fa-plus"></i>
-              Cancel
+              Batalkan
             </nuxt-link>
           </div>
         </div>
       </div>
     </section>
+
+    
   </div>
 </template>
 
@@ -115,18 +114,16 @@ Vue.use(Croppa);
 
 export default {
   scrollToTop: true,
-  layout: "app",
+  layout: "no-header",
   middleware: "auth",
   data() {
     return {
       avatar: {},
-      d: {
-        avatar: "",
-        name: "",
-        desc: "",
-        type: ""
-      }
+      d: ''
     };
+  },
+  created(){
+      this.d = this.$store.state.user
   },
   methods: {
     onInit() {

@@ -7,15 +7,15 @@ export default {
   mode: 'spa',
   pwa: {
     meta: {
-      title: 'Maba - Siliwangi App',
+      title: 'Aplikasi Maba - Sosial Media Mahasiswa Baru',
       author: 'Ari Bahtiar',
     },
     manifest: {
-      name: 'Maba - Siliwangi App',
+      name: 'Maba - Sosial Media',
       lang: 'id',
       theme_color: '#EDF2F7',
       start_url: "/",
-      description: "Aplikasi Sosial Media Mahasiswa Universitas Siliwangi, Mahasiswa Aktif Maupun Alumni, dengan berbagai fitur dan informasi yang menarik"
+      description: "Aplikasi Sosial Media Mahasiswa Baru, Mahasiswa Aktif Maupun Alumni, dengan berbagai fitur yang menarik"
     }
   },
   /*
@@ -28,11 +28,11 @@ export default {
   ** See https://nuxtjs.org/api/configuration-head
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'Aplikasi Maba - Sosial Media Mahasiswa Baru',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { hid: 'description', name: 'description', content: "Aplikasi Maba - Sosial Media Mahasiswa Baru, Mahasiswa Aktif Maupun Alumni, dengan berbagai fitur yang menarik" }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
