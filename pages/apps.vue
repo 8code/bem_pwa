@@ -35,12 +35,12 @@
                                         <img class="rounded-xl" :src="`/sample/group-${i}.jpg`" alt="Group">
                                 </div>
                         </li>
-                      <li class="flex flex-wrap">
+                      <!-- <li class="flex flex-wrap">
                                 <h1 class="w-full p-2 font-bold">Penjualan</h1>
                       </li>
                         <li class="flex flex-wrap">
                                 <h1 class="w-full p-2 font-bold">Catatan Keuangan</h1>
-                      </li>
+                      </li> -->
                 </ul>
 
 

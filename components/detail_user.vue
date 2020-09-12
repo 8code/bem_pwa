@@ -2,9 +2,9 @@
   <div class="w-full" v-if="profile">
     <section>
       <div class="w-full flex flex-wrap bg-theme_primary p-2 pt-6 rounded-xl ">
-        <div class="w-full font-bold flex  ">
+        <div class="w-full font-bold flex justify-start  ">
           <img
-            class="w-16 h-16  rounded-full"
+            class="w-12 h-12 mt-4 rounded-full"
             :src="profile.avatar"
             :alt="profile.name"
           />
@@ -145,7 +145,7 @@ export default {
 
     },
   fetch() {
-    console.log(this.id)
+    // console.log(this.id)
     this.$axios.$get("/profile/" + this.id).then(data => {
       this.profile = data;
       this.getData()
@@ -176,7 +176,7 @@ export default {
       this.last_page = false
       this.page = 1
       this.$axios.$get("/profile/quest/" + this.profile.id+"?filter="+this.filter+"&search="+this.search+"&page="+this.page).then(data => {
-        console.log(data)
+        // console.log(data)
         this.quest = data;
       });
     }

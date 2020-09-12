@@ -1,25 +1,28 @@
 <template>
   <div class="w-full" v-touch:swipe="to">
 
+    <div class="mx-auto text-sm flex content-center justify-center text-center p-2">
+        <nuxt-link to="/" class="bg-theme_primary_dark text-primary hover:bg-primary hover:text-white hover:border-0 mx-1 w-1/2 px-10 py-2  rounded-full font-bold"> {{ $t("Home")}} </nuxt-link>
+        <nuxt-link to="/explore" class="mx-1 w-1/2 px-10 py-2  bg-primary text-white rounded-full font-bold">
+        {{ $t("Explore")}} 
+        </nuxt-link>
+    </div>
 
- <div class="mx-auto text-sm flex content-center justify-center text-center p-2">
-    <nuxt-link to="/" class="bg-theme_primary_dark text-primary hover:bg-primary hover:text-white hover:border-0 mx-1 w-1/2 px-10 py-2  rounded-full font-bold"> {{ $t("Home")}} </nuxt-link>
-    <nuxt-link to="/explore" class="mx-1 w-1/2 px-10 py-2  bg-primary text-white rounded-full font-bold">
-    {{ $t("Explore")}} 
-    </nuxt-link>
-</div>
 
       <balas-quest v-if="balas_quest" v-on:kirim="newQuest" v-on:batal="balas_quest = false" :quest="balas_quest" />
 
-    <section class="w-full rounded-xl pb-20 flex flex-wrap">
-      <card-post v-on:balas="balasQuest" v-for="quest in quest.data" :key="quest.id" :data="quest" />
+        <section class="w-full rounded-xl pb-20 flex flex-wrap">
 
-      <span v-if="loadMore" class="p-4 text-center w-full">
-        Memuat ...
-      </span>
+          <!-- <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lialiulialiu/video/6858238623725161729" data-video-id="6858238623725161729" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@lialiulialiu" href="https://www.tiktok.com/@lialiulialiu">@lialiulialiu</a> <p>mertua mana mertua?  <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp">##fyp</a> <a title="foryou" target="_blank" href="https://www.tiktok.com/tag/foryou">##foryou</a> <a title="samasamadirumah" target="_blank" href="https://www.tiktok.com/tag/samasamadirumah">##samasamadirumah</a></p> <a target="_blank" title="♬ berbeza kasta - TSIC💟'gunawan" href="https://www.tiktok.com/music/berbeza-kasta-6855537853565291265">♬ berbeza kasta - TSIC💟'gunawan</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script> -->
 
-    </section>
-  </div>
+          <card-post v-on:balas="balasQuest" v-for="quest in quest.data" :key="quest.id" :data="quest" />
+
+          <span v-if="loadMore" class="p-4 text-center w-full">
+            Memuat ...
+          </span>
+
+        </section>
+      </div>
 </template>
 
 <script>

@@ -306,8 +306,10 @@ export default {
     }
   },
   created() {
-    if(!this.$store.state.gender){
-       this.$router.push("/edit/profile")
+    if(!this.$store.state.gender && !this.$route.path.includes("/edit/profile")){
+       if(!this.$store.state.user.gender){
+          this.$router.push("/edit/profile")
+       }
     }
     let token = localStorage.getItem("access_token") || "";
     this.$axios.setHeader("Authorization", "Bearer " + token);

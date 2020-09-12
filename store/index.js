@@ -66,7 +66,11 @@ const createStore = () => {
                     state.settings = true
                 }
             },
-        
+            updateProfile(state,data){
+                localStorage.setItem("user",JSON.stringify(data))
+                state.user = data
+            },
+    
             login(state,data){
             //    Login
                  this.$axios.$post('login',data)
