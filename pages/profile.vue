@@ -1,5 +1,6 @@
 <template>
     <div>
+     
         <detail-user :id="'@'+$store.state.user.username" editprofile="true" />
     </div>
 </template>

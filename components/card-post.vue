@@ -2,18 +2,15 @@
       <div class="w-full p-2 relative cursor-pointer border-b border-theme_primary_light overflow-hidden" > 
                                   <div class="shadow-sm rounded-xl bg-theme_primary hover:bg-theme_primary_dark p-3 " :class="(active) ? 'bg-theme_primary_dark' : ''">
 
-                                        <nuxt-link v-if="data.group_id && !data.quest_id"  class="text-primary p-1 px-4 bg-theme_primary_dark rounded-xl text-xs" :to="'/'+data.group.username" >
-                                            
-                                           #{{ data.group.username }}
 
-                                        </nuxt-link>
-                                        <span v-if="!hideBalasan">
-                                        <nuxt-link v-if="data.quest_id" class="p-1 px-4 text-xs " :to="data.group.username" >
+                                  
+                                        <div v-if="!hideBalasan" class="w-full">
+                                        <nuxt-link v-if="data.quest_id" class="p-1 text-xs w-full" :to="data.group.username" >
                                    
-                                           Membalas 
+                                           Membalas :
                                            
                                            <nuxt-link :to="`/quest/${data.quest_id}`" class="bg-theme_primary_dark text-primary rounded-xl p-1 px-2">
-                                               
+                                        
                                            <b> @{{ data.membalas_user }}</b>
                                                : {{ data.quest.text.substring(0, 20) }} ..
                                                
@@ -21,8 +18,15 @@
 
                                       
                                         </nuxt-link>
+                                        </div>
 
-                                        </span>
+                                            <span v-if="data.group.user_id == data.user.id" class="bg-primary px-2 rounded-xl  text-xs ">admin</span>   
+                                            <nuxt-link v-if="data.group_id "  class="text-primary p-1 px-4 bg-theme_primary_dark rounded-tl-xl rounded-br-xl text-xs" :to="'/'+data.group.username" >
+                                                
+                                            #{{ data.group.username }} 
+
+                                            </nuxt-link>
+                                            
 
                                      
                                         <div class="flex pt-2">
@@ -30,7 +34,9 @@
                                             <img class="w-10 h-10 rounded-full" :src="data.user.avatar" alt="Event 1">
 
                                              <nuxt-link class="p-2"  :to="'/@'+data.user.username">
-                                                <span class="font-bold text-lg">{{ data.user.name }}</span> 
+                                                <span class="font-bold text-lg">{{ data.user.name }}
+                                                </span> 
+                                             
                                                 <span class="text-primary text-xs">@{{ data.user.username }}</span> 
                                             </nuxt-link>
 

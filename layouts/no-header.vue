@@ -306,6 +306,10 @@ export default {
     }
   },
   created() {
+
+
+ 
+        
     if(!this.$store.state.gender && !this.$route.path.includes("/edit/profile")){
        if(!this.$store.state.user.gender){
           this.$router.push("/edit/profile")
@@ -313,6 +317,17 @@ export default {
     }
     let token = localStorage.getItem("access_token") || "";
     this.$axios.setHeader("Authorization", "Bearer " + token);
+
+
+
+      this.$axios.$get("/profile-by-id/" + this.$store.state.user.id).then(data => {
+        if(data){
+          this.$store.commit("updateProfile",data)
+        }else{
+          localStorage.clear()
+        }
+    });
+
   },
   mounted() {
     var that = this;

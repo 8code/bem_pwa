@@ -13,12 +13,18 @@
 
           <div class="w-full pl-5 mt-1 flex flex-wrap items-start ">
             <div class="w-full text-xl lg:text-2xl mb-2">
-              {{ group.name }}
+              {{ group.name }}   <small class="text-primary">#{{ group.username }}</small>
               <br />
-              <small>#{{ group.username }}</small>
+              <span class="text-sm">
+                Admin : 
+                <nuxt-link class="text-primary cursor-pointer" :to="'/@'+group.owner.username" >@{{group.owner.username}}</nuxt-link>
+              </span>
 
-                    <div v-if="group.followed" class="float-right text-sm">
-                            <span v-if="group.followed" class="cursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
+
+            <div class="float-right text-sm -mt-6">
+              
+                    <div v-if="group.followed" >
+                            <span v-if="group.followed" class="float-right cursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
                                 Diikuti
                             </span>
                             <div v-else >
@@ -30,8 +36,20 @@
                                     </span>
                             </div>
                     </div>
+                    <br>
+                      <router-link
+                      v-if="group.user_id == $store.state.user.id"
+                       :to="`/edit/group/${group.username}`" class="float-right  mt-2  cursor-pointer bg-theme_primary_dark px-4 py-1 rounded-full text-primary">
+                                Edit Group
+                      </router-link>
+
 
             </div>
+                  
+
+
+            </div>
+            
           </div>
 
       

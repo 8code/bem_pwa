@@ -231,12 +231,14 @@ export default {
         0.8
       ); // 80% compressed jpeg file
 
+        if(this.avatar){
+ this.d.avatar = this.avatar.generateDataUrl();
+        }
+       
       if (this.d.name != null && this.d.username != null && this.d.gender != null && this.d.angkatan != null && this.d.study_program != null && this.d.university != null) {
         
         this.messageErr = ""
-
-        this.d.avatar = this.avatar.generateDataUrl();
-        if (this.d.avatar) {
+      
           //  console.log(this.d)
             this.$axios.post("/update-profile",this.d)
               .then(res => {
@@ -248,8 +250,6 @@ export default {
                                       
                 }
               })
-        }
-
       }else{
         this.messageErr = "*Wajib di isi"
       }
