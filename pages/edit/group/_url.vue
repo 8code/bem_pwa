@@ -90,6 +90,19 @@
                           placeholder="Descriptions">
                       </textarea>
 
+
+                        <div class="w-full flex flex-wrap">
+                          <label class="text-left  pl-2 w-full my-3" for="admin">Admin* (Masukkan Username Akun)</label>
+                            <input class="w-full
+                            shadow-sm bg-theme_primary_light
+                            py-2 px-4 
+                            rounded-lg mb-3
+                            " 
+                            type="text"
+                            v-model="d.admin"
+                            placeholder="Admin">
+                    </div>
+
                          <span class="w-full text-danger font-bold text-center">
                           {{ errMessges }}
                         </span>

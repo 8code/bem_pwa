@@ -42,12 +42,14 @@
                        :to="`/edit/group/${group.username}`" class="float-right  mt-2  cursor-pointer bg-theme_primary_dark px-4 py-1 rounded-full text-primary">
                                 Edit Group
                       </router-link>
-
-
             </div>
                   
 
 
+            </div>
+
+            <div class=" font-normal">
+                {{ group.desc }}
             </div>
             
           </div>
@@ -139,12 +141,10 @@ export default {
     };
   },
     mounted() {
-
       var that = this;
       window.addEventListener("scroll", function() {
       
           let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
-
           if(bottomOfWindow){
             if(!that.last_page){
               that.loadMoregetData()
@@ -153,8 +153,6 @@ export default {
             }
           }
       });
-
-
     },
   fetch() {
     this.$axios.$get("/group/" + this.$route.params.url).then(data => {

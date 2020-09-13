@@ -20,7 +20,7 @@
                                         </nuxt-link>
                                         </div>
 
-                                            <span v-if="data.group.user_id == data.user.id" class="bg-primary px-2 rounded-xl  text-xs ">admin</span>   
+                                            <span v-if="data.group.user_id == data.user.id" class="bg-primary px-2 rounded-xl  text-xs text-secondary ">admin</span>   
                                             <nuxt-link v-if="data.group_id "  class="text-primary p-1 px-4 bg-theme_primary_dark rounded-tl-xl rounded-br-xl text-xs" :to="'/'+data.group.username" >
                                                 
                                             #{{ data.group.username }} 
@@ -70,7 +70,7 @@
                                                     </div>
                                               
 
-                                                <nuxt-link :to="`/quest/${data.id}`" class="w-full pb-4 text-xl" :class="(bigtext) ? 'text-3xl' : ''" >
+                                                <nuxt-link :to="`/quest/${data.id}`" class="w-full pb-4 text-xl" :class="(bigtext) ? 'text-2xl' : ''" >
                                                     <span v-for="(tx,i) in textToArray(data.text)" :key="i"> 
                                                         
                                                         <nuxt-link class="text-primary" v-if="(tx.slice(0, 1) == '@')" :to="'/'+tx"> {{tx}} </nuxt-link>
