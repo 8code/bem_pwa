@@ -13,28 +13,19 @@
             <div class="w-full text-xl lg:text-2xl mb-2">
               {{ profile.name }}
               <br>
-              <small class="text-lg text-primary">@{{ profile.username }}</small>
+              <router-link :to="`@${profile.username}`" class="text-lg text-primary">@{{ profile.username }}</router-link>
 
-                    <div v-if="profile.followed" class="float-right text-sm">
-                            <span v-if="profile.followed" class="cursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
-                                Diikuti
-                            </span>
-                            <div v-else >
-                                      <span v-if="!followTemp" @click="followGroup(profile.id)" class="cursor-pointer bg-primary px-4 py-1 rounded-full text-secondary">
-                                          Ikuti
-                                      </span>
-                                      <span v-if="followTemp" class="fursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
-                                        Diikuti
-                                    </span>
-                            </div>
+                    <div class="float-right text-sm -mt-4" v-if="!editprofile">
+                          <!-- <span class="cursor-pointer bg-primary px-4 py-1 rounded-full text-secondary">
+                              Ikuti
+                          </span> -->
+                          <div class="px-3" v-if="usernameIg">
+                            <a class="text-primary" :href="`https://instagram.com/${usernameIg}`">
+                              <img src="/instagram.png" class="h-12 w-12 p-2">
+                            </a>
+                          </div>
                     </div>
 
-                  <a v-if="igname" :href="`https://instagram.com/${igname}`" class="float-right text-sm">
-                    <img  class="cursor-pointer w-12 h-12 p-2 m-1" src="/instagram.png">
-                  </a>
-                    
-                  
-                
 
                     <div v-if="editprofile"  class="float-right text-sm -mt-6">
                         <span @click="$store.commit('toggleSetting',true)" class="mb-2 text-center cursor-pointer bg-theme_primary_dark  px-4 py-1 rounded-full text-primary">
@@ -54,6 +45,7 @@
       
             
         </div>
+        
         
         
         
@@ -135,7 +127,7 @@ export default {
       page: 1,
       loadMore: false,
       last_page: false,
-      igname: ''
+      usernameIg: ''
     };
   },
     mounted() {
@@ -167,9 +159,9 @@ export default {
         if(this.profile.instagram){
         if(this.profile.instagram.includes("@"))
         {
-            this.igname = this.profile.instagram.substring(1)
+            this.usernameIg = this.profile.instagram.substring(1)
         }else{
-          this.igname = this.profile.instagram
+          this.usernameIg = this.profile.instagram
         }
       }
 

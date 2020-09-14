@@ -117,7 +117,7 @@
         Daftar dengan Facebook
       </button>
 
-       <a href="https://maba.my.id/register" target="_BLANK"
+       <a href="https://api.maba.my.id/register" target="_BLANK"
         class="text-white h-12 w-full p-2 rounded-full bg-theme_primary_light mt-5"
       >
          Daftar dengan Email
