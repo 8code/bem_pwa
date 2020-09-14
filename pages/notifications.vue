@@ -30,8 +30,8 @@ export default {
   middleware: 'auth',
   data(){
           return {
-                  notif: '',
-                   page: 1,
+                notif: '',
+                page: 1,
                 loadMore: false,
                 last_page: false
           }

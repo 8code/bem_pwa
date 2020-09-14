@@ -79,10 +79,10 @@
               
                <label class="mx-2 text-xs" >Opsional*</label>
                <input placeholder="Link Podcast -  Spotify / Youtube" class="mx-2  p-3 bg-theme_primary_dark w-full rounded-lg" type="text" v-model="media">    
-  
 
-                <textarea maxlength="255" v-model="text" placeholder="Katakan sesuatu ..." class="mx-2 mt-5 p-3 bg-theme_primary_dark w-full rounded-lg"></textarea>
-                  
+               
+                
+                <textarea maxlength="255" v-model="text" placeholder="Katakan sesuatu ..." class="mx-2  p-3 bg-theme_primary_dark w-full rounded-lg"></textarea>    
               
                 <button @click="kirim" class="mx-2 py-2 w-full rounded-lg mt-2 bg-primary hover:bg-primary_dark text-white shadow-sm">
                   Kirim
@@ -108,10 +108,16 @@ export default {
       return {
         modal_quest: false,
         media: '',
-        text: ''
+        text: '',
+        feedIg: ''
       }
     },
     methods:{
+      getPostIg(){
+          this.$axios.$get("/instagram/" + this.$store.state.user.username).then(res => {
+            this.feedIg = res
+        });
+      },
       createNew(){
           this.modal_quest = true
       },

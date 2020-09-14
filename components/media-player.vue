@@ -47,10 +47,10 @@
              
                 <span class="p-1 px-2 -mt-1">Tutup</span>
           </button>
-            <!-- <button @click="$store.commit('resetMediaPlayer',true)" class="mx-2 flex text-white bg-danger z-50 p-2 px-8 rounded-full mt-3">
+            <button @click="$store.commit('resetMediaPlayer',true)" class="mx-2 flex text-white bg-danger z-50 p-2 px-8 rounded-full mt-3">
             
                 <span class="p-1 px-2 -mt-1">Hapus</span>
-          </button> -->
+          </button>
     </div>
 
   

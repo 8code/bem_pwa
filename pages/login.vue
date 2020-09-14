@@ -63,8 +63,8 @@
       </h1>
 
       <button
-        @click="cekLoginFb"
-        class="text-white h-16 w-full p-2 rounded-full bg-blue-600 hover:bg-blue-700 mt-5"
+        @click="loginFb"
+        class="text-white h-12 w-full p-2 rounded-full bg-blue-600 hover:bg-blue-700 mt-5"
       >
         {{ $t("loginwith") }} Facebook
       </button>
@@ -73,15 +73,61 @@
         v-if="!loginWithUsername"
         loginWithUsername
         @click="loginWithUsername = true"
-        class="w-full p-2 h-16  rounded-full bg-theme_primary_light  mt-5"
+        class="w-full p-2 h-12  rounded-full bg-theme_primary_light  mt-5"
       >
         {{ $t("loginwith") }} Username
       </button>
+
+
+       <button
+        @click="showModal = true"
+        class="text-white h-12 w-full p-2 rounded-full bg-theme_primary_light mt-5"
+      >
+        Daftar Akun Baru
+      </button>
+
 
       <p class="w-full text-center p-2 pt-10 text-sm">
         <a href="/privacy-policy.html" class="text-primary">{{ $t("tos") }}</a>
       </p>
     </main>
+
+
+     <div
+    class="font-bold w-screen text-center h-screen fixed top-0 right-0 p-3 rounded-lg flex justify-center items-center flex-wrap"
+    style="overflow:scroll"
+    v-if="showModal"
+  >
+    <div
+      @click="showModal = false"
+      class=" opacity-75 bg-theme_primary_light absolute top-0 right-0 h-screen w-screen z-10"
+    ></div>
+
+    <div
+      class="z-20 w-full bg-theme_primary p-5 shadow-lg rounded-xl neu-out flex flex-wrap"
+      style="max-width:600px"
+    >
+    Daftar Akun :
+
+    
+      <button
+        @click="loginFb"
+        class="text-white font-bold h-12 w-full p-2 rounded-full bg-blue-600 hover:bg-blue-700 mt-5"
+      >
+        Daftar dengan Facebook
+      </button>
+
+       <a href="https://maba.my.id/register" target="_BLANK"
+        class="text-white h-12 w-full p-2 rounded-full bg-theme_primary_light mt-5"
+      >
+         Daftar dengan Email
+      </a>
+
+
+    </div>
+  </div>
+
+
   </div>
 </template>
 
@@ -89,6 +135,7 @@
 export default {
   data() {
     return {
+      showModal: false,
       loginWithUsername: false,
       login: {
         username: "",

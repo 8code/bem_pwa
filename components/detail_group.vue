@@ -44,19 +44,24 @@
                       </router-link>
             </div>
                   
-
-
             </div>
 
             <div class=" font-normal">
                 {{ group.desc }}
             </div>
+
+            
             
           </div>
 
       
             
         </div>
+
+        
+            <div class="px-3 w-full" v-if="usernameIg">
+               Instagram: <a class="text-primary" :href="`https://instagram.com/${usernameIg}`">@{{usernameIg}}</a>
+            </div>
       </div>
     </section>
 
@@ -68,7 +73,7 @@
 
 
 
-    <div class="p-2 flex flex-row mt-2" style="overflow-x:scroll">
+       <div class="p-2 flex flex-row" style="overflow-x:scroll">
 
 
 
@@ -137,7 +142,9 @@ export default {
       balas_quest: '',
       page: 1,
       loadMore: false,
-      last_page: false
+      last_page: false,
+      usernameIg: '',
+      feedIg: []
     };
   },
     mounted() {
@@ -157,10 +164,35 @@ export default {
   fetch() {
     this.$axios.$get("/group/" + this.$route.params.url).then(data => {
       this.group = data;
+      
       this.getData()
-    });
+
+
+      if(this.group.instagram){
+        if(this.group.instagram.includes("@"))
+        {
+          this.usernameIg = this.group.instagram.substring(1)
+          // this.cekIgData()
+        }else{
+          this.usernameIg = this.group.instagram
+          // this.cekIgData()
+        }
+      }
+      
+   
+   
+   });
+
+  
+
   },
   methods:{
+    // cekIgData(){
+    //     this.$axios.$get("/instagram/" + this.usernameIg).then(res => {
+    //       console.log("aa",res)
+    //       this.feedIg = res
+    //   });
+    // },
     loadMoregetData(){
         this.loadMore = true
         this.page = this.page+1
@@ -185,7 +217,7 @@ export default {
       this.last_page = false
       this.page = 1
       this.$axios.$get("/group/quest/" + this.group.id+"?filter="+this.filter+"&search="+this.search+"&page="+this.page).then(data => {
-        console.log(data)
+        // console.log(data)
         this.quest = data;
       });
     }

@@ -29,6 +29,13 @@
                             </div>
                     </div>
 
+                  <a v-if="igname" :href="`https://instagram.com/${igname}`" class="float-right text-sm">
+                    <img  class="cursor-pointer w-12 h-12 p-2 m-1" src="/instagram.png">
+                  </a>
+                    
+                  
+                
+
                     <div v-if="editprofile"  class="float-right text-sm -mt-6">
                         <span @click="$store.commit('toggleSetting',true)" class="mb-2 text-center cursor-pointer bg-theme_primary_dark  px-4 py-1 rounded-full text-primary">
                                 Pengaturan
@@ -47,6 +54,9 @@
       
             
         </div>
+        
+        
+        
       </div>
     </section>
     
@@ -57,7 +67,7 @@
 
 
     <div class="p-2 flex flex-row mt-2" style="overflow-x:scroll">
-
+ 
      <div
         :class="(filter == 'Quest Only') ? filterClassActive : filterClass"
         @click="filter = 'Quest Only';getData()"
@@ -93,6 +103,7 @@
           Media
       </div>
 
+
     </div>
 
 
@@ -123,7 +134,8 @@ export default {
       balas_quest: '',
       page: 1,
       loadMore: false,
-      last_page: false
+      last_page: false,
+      igname: ''
     };
   },
     mounted() {
@@ -149,6 +161,18 @@ export default {
     this.$axios.$get("/profile/" + this.id).then(data => {
       this.profile = data;
       this.getData()
+
+    
+
+        if(this.profile.instagram){
+        if(this.profile.instagram.includes("@"))
+        {
+            this.igname = this.profile.instagram.substring(1)
+        }else{
+          this.igname = this.profile.instagram
+        }
+      }
+
     });
   },
   methods:{

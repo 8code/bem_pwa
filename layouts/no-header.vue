@@ -320,13 +320,16 @@ export default {
 
 
 
-      this.$axios.$get("/profile-by-id/" + this.$store.state.user.id).then(data => {
-        if(data){
-          this.$store.commit("updateProfile",data)
-        }else{
-          localStorage.clear()
-        }
-    });
+      this.$axios.$get("/profile-by-id/" + this.$store.state.user.id)
+      .then(data => {
+          if(data){
+            this.$store.commit("updateProfile",data)
+          }else{
+            localStorage.clear()
+          }
+      }).catch(res => {
+            localStorage.clear()
+      });
 
   },
   mounted() {
