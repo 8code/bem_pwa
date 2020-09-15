@@ -2,13 +2,13 @@
 <div class="w-full flex flex-wrap relative justify-center p-4">
 <!-- Content -->
 
-       <!-- <div :class="!$store.state.topMenu ? 'hidden' : ''" class="fixed bottom-0 mb-20 flex">
+       <div :class="!$store.state.topMenu ? 'hidden' : ''" class="fixed bottom-0 mb-20 flex">
                 <a class="mx-2 text-center mt-4 w-full font-bold p-2 px-6 rounded-full bg-theme_primary_dark text-primary" target="_BLANK" href="https://trello.com/b/cEeYmDi1/aplikasi-maba">
                 Pengembangan</a>
                 <a class="mx-2 text-center mt-4 w-full font-bold p-2 px-6 rounded-full bg-primary text-secondary" target="_BLANK" href="https://saweria.co/akew">
                 Dukung Kami
                 </a>
-       </div> -->
+       </div>
 
         <section class="w-full ">
             
@@ -39,10 +39,10 @@
                 </ul>
                 <div class="w-full flex">
                         
-                    <div class="flex flex-wrap bg-primary rounded-xl text-center my-3 py-3 w-1/2">
+                    <div class="flex flex-wrap bg-primary text-secondary rounded-xl text-center my-3 py-3 w-1/2">
                                 <h1 class="w-full p-2 font-bold">Catatan Keuangan</h1>
                         </div>
-                          <div class="flex flex-wrap bg-primary rounded-xl text-center my-3 py-3 w-1/2">
+                          <div class="flex flex-wrap bg-primary text-secondary rounded-xl text-center my-3 py-3 w-1/2">
                                 <h1 class="w-full p-2 font-bold">Fun Game</h1>
                         </div>
                 </div>

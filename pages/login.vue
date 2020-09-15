@@ -63,7 +63,7 @@
       </h1>
 
       <button
-        @click="loginFb"
+        @click="cekLoginFb"
         class="text-white h-12 w-full p-2 rounded-full bg-blue-600 hover:bg-blue-700 mt-5"
       >
         {{ $t("loginwith") }} Facebook
@@ -111,7 +111,7 @@
 
     
       <button
-        @click="loginFb"
+        @click="cekLoginFb"
         class="text-white font-bold h-12 w-full p-2 rounded-full bg-blue-600 hover:bg-blue-700 mt-5"
       >
         Daftar dengan Facebook
