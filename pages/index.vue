@@ -17,7 +17,9 @@
           <span class="p-2 text-theme_secondary">Tagar Populer</span>
           <div class="p-2 text-primary font-bold text-xl" v-for="(tagar,index) in tagarPopuler" :key="tagar.tagar">
             {{index+1}}. 
-            <nuxt-link :to="'/tag/'+tagar.tagar">{{ tagar.tagar}} </nuxt-link>
+            <!-- <nuxt-link :to="'/tag/'+tagar.tagar"> -->
+            {{ tagar.tagar}}
+             <!-- </nuxt-link> -->
             ({{tagar.total}})
           </div>
         </li>
@@ -30,11 +32,11 @@
           </nuxt-link>
         </li>
          <li class="bg-theme_primary_dark my-2 rounded-xl p-3">
-           <span class="p-2 text-theme_secondary">User Populer</span>
-          <nuxt-link class="p-2 text-primary flex font-bold text-xl" v-for="(u,index) in userPopuler" :key="u.id" :to="'/@'+u.username">
+           <span class="p-2 text-theme_secondary">Pengguna Populer</span>
+          <nuxt-link class="p-2 text-primary flex font-bold text-xl" v-for="(u,index) in userPopuler" :key="u.user.id" :to="'/@'+u.user.username">
               {{index+1}}. 
               <img :src="u.user.avatar" class="w-8 h-8 mx-2" />
-              {{ u.user.name }} ({{u.total}})
+              {{ u.user.name }} 
             </nuxt-link>
         </li>
       </ul>

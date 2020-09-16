@@ -140,7 +140,7 @@
             <input placeholder="Spotify Podcast Link contoh: 'https://open.spotify.com/episode/1IJCl8993xjDNdIKR5EVVE?si=K4XrGBSrS12Kcjh3ZHOMZA'" class="  p-3 bg-theme_primary_dark w-full rounded-lg" type="text" v-model="d.embed">    
 
         </div>
-        <div v-if="showModal == 'ig'">
+        <div v-if="showModal == 'ig'" class="w-full flex flex-wrap">
            <h1 class="font-bold p-2">Pilih Postingan Instagram</h1>
             <div
               class="w-full p-4 shadow-sm bg-theme_primary_dark rounded-lg flex flex-wrap"
