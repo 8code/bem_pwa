@@ -81,7 +81,7 @@
 
        <button
         @click="showModal = true"
-        class="text-white h-12 w-full p-2 rounded-full bg-theme_primary_light mt-5"
+        class="text-theme_secondary h-12 w-full p-2 rounded-full bg-theme_primary_light mt-5"
       >
         Daftar Akun Baru
       </button>
@@ -118,7 +118,7 @@
       </button>
 
        <a href="https://api.maba.my.id/register" target="_BLANK"
-        class="text-white h-12 w-full p-2 rounded-full bg-theme_primary_light mt-5"
+        class="text-theme_secondary h-12 w-full p-2 rounded-full bg-theme_primary_light mt-5"
       >
          Daftar dengan Email
       </a>
