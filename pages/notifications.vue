@@ -1,17 +1,27 @@
 <template>
 <section class="w-full pb-10 p-4">
-        <h1 class="text-2xl font-bold p-2 mb-3">Aktivitas</h1>
-        <div v-for="(n,index) in notif" :key="index" class="w-full flex flex-wrap border-b border-theme_primary_light">
+        <h1 class="text-2xl font-bold p-2 mb-3">Kotak Masuk</h1>
+        <div v-for="(n,index) in notif" :key="index" class="w-full flex flex-wrap border-b border-theme_primary_light rounded-lg
+        hover:bg-theme_primary_light
+         my-2">
             
-            <nuxt-link :to="n.link" class="w-full mb-1 p-2 bg-theme_primary_light hover:bg-theme_primary_dark rounded-lg">
-                 <div class="flex bg-theme_primary p-1 mb-1 rounded-sm">
-                    Quest : {{ n.text.substring(0, 20) }}
-                </div>
+            <nuxt-link :to="n.link" class="w-full mb-1  rounded-lg flex flex-wrap">
+              
 
-                <img class=" float-left rounded-xl" width="30px" height="30px" :src="n.avatar" alt="Avatar">
-                <span class=" float-left text-md pl-1" v-for="(tx,i) in textToArray(n.activity)" :key="i"> 
-                        <nuxt-link class="text-primary" v-if="(tx.slice(0, 1) == '@')" :to="'/'+tx"> {{tx}}</nuxt-link>
-                        <span v-else> {{tx}} </span>
+                <img class=" float-left rounded-xl h-5 w-5" :src="n.avatar" alt="Avatar">
+                <span class=" float-left text-sm pl-1"> 
+                        <nuxt-link class="text-primary" :to="'/@'+n.username">@{{n.username}}</nuxt-link>
+                        <span v-if="n.tipe == 1" > <span v-if="n.total > 1">dan {{ n.total}} lainnya</span> menyukai quest anda</span>
+                        <span v-if="n.tipe == 2" > membalas quest anda</span>
+                        <span v-if="n.tipe == 3" > menandai anda di sebuah quest</span>
+                        <span v-if="n.tipe == 6" > mengikuti Anda</span>
+                        :
+                </span>
+                <span v-if="n.tipe == 2" class="font-bold text-sm  p-1 mb-1 rounded-sm">
+                   {{ n.balasan }}
+                </span>
+                 <span v-else class="font-bold  text-sm  p-1 mb-1 rounded-sm">
+                   {{ n.text.substring(0, 20) }}
                 </span>
                
             </nuxt-link>

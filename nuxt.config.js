@@ -92,9 +92,10 @@ export default {
               Home: 'Home',
               search: 'search',
               Group: 'Group',
-              Notif: 'Notif',
+              Notif: 'Message',
               Profile: 'Profile',
-              Explore: 'Explore',
+              Explore: 'For You',
+              Followed: 'Followed'
             },
             id: {
               welcome: 'Selamat Datang Mahasiswa!',
@@ -111,9 +112,10 @@ export default {
               Home: 'Beranda',
               search: 'Cari',
               Group: 'Group',
-              Notif: 'Notif',
+              Notif: 'Kotak',
               Profile: 'Profile',
-              Explore: 'Jelajahi',
+              Explore: 'Untuk Anda',
+              Followed: 'Diikuti'
 
             },
             sd: {
@@ -131,9 +133,10 @@ export default {
               Home: 'Beranda',
               search: 'Cari',
               Group: 'Group',
-              Notif: 'Notif',
+              Notif: 'Kotak',
               Profile: 'Profile',
-              Explore: 'Jelajah',
+              Explore: 'Untuk Anda',
+              Followed: 'Diikuti'
               
             }
           }

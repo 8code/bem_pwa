@@ -55,6 +55,24 @@
                   
           </div>
           
+            
+          <div class="w-full px-1 flex flex-wrap">
+            
+               <label class="text-left  pl-2 w-full my-3" for="password"
+                    >Ubah Password</label
+                  >
+                  <input
+                    class="w-full
+                            shadow-sm bg-theme_primary_light
+                            py-2 px-4 
+                            rounded-lg mb-3
+                            "
+                    type="text"
+                    v-model="d.password"
+                    placeholder="Ubah Password"
+                  />
+                  
+          </div>
         
 
            <div class="flex flex-wrap">

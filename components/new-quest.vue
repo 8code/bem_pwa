@@ -3,9 +3,8 @@
   <div class="w-full p-2">
 
     <div :class="!$store.state.topMenu ? 'hidden' : ''">
-
-
     <button
+         v-if="!hiddenbottom"
           @click="createNew"
           class=" bg-primary text-secondary p-3 right-0 rounded-full fixed bottom-0 mr-5 z-30 mb-16 lg:mr-20 flex lg:px-5 "
         >
@@ -35,63 +34,144 @@
 </div>
 
 
-      <section v-if="modal_quest" class="w-full bg-transparent flex flex-wrap justify-center content-center z-30 fixed top-0 right-0 h-screen overflow-scroll">
+      <section v-if="modal_quest" class="mx-auto flex flex-wrap  z-30 fixed top-0">
 
-      <div @click="modal_quest = false" class="w-full  flex flex-wrap justify-center content-center bg-theme_primary_dark opacity-50 z-40 fixed top-0 right-0 h-screen " v-if="modal_quest">
+      <div v-if="!hiddenbottom" @click="modal_quest = false" class="w-full  flex flex-wrap justify-center content-center bg-theme_primary_dark opacity-50 z-40 fixed top-0 right-0 h-screen " >
       </div>
 
 <!-- body -->
-      <div class="w-full p-4 lg:w-3/4 flex flex-wrap justify-center z-50 content-center bg-theme_primary rounded-xl">
+   
 
+    <div
+    class="w-full content-start max-w-lg flex flex-wrap justify-center z-50 overflow-y-scroll bg-theme_primary rounded-xl p-4"
+    style="height:90vh"
+  >
+  
+  <div class="rounded-xl w-full" v-if="d.video">
+   <video   width="100%" controls autoplay>
+          <source  :src="d.video" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+  </div>
+  
+     <img v-else class="w-full rounded-xl" :src="d.img">
+
+      
+    <div v-if="d.embed" class="w-full pb-4 videoWrapper">
+          <!-- Spotify -->
+        <iframe v-if="cekSumber(d.embed) == 'spotify'" :src="getUrl(d.embed)" width="100%" height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          <!-- Youtube -->
+        <iframe v-if="cekSumber(d.embed) == 'youtube'" width="560" height="315" :src="getUrl(d.embed)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        
+    </div>
+    <h1 v-if="group">
+      Kirim Ke Group : #{{group.username}}
+    </h1>
+    <textarea
+      v-model="d.text"
+      placeholder="Katakan sesuatu ..."
+      class="bg-theme_primary_dark w-full rounded-lg p-4 mt-3 h-48"
      
-            <div class="w-full lg:w-1/2 p-4 shadow-sm bg-theme_primary_dark rounded-lg">
-                    
-                 <div class="flex">
-                    <img class="w-10 h-10 rounded-full" :src="$store.state.user.avatar" alt="Event 1">
+    ></textarea>
 
-                    <nuxt-link class="p-2" :to="'/@'+$store.state.user.username">
-                      <span class="font-bold">{{ $store.state.user.name }}</span> 
-                      <span class="text-primary text-xs">@{{$store.state.user.username }}</span> 
-                  </nuxt-link>
-                 </div>
-                  <br>
-                  
-                   <div v-if="media" class="w-full pb-4 videoWrapper">
-                          <!-- Spotify -->
-                        <iframe v-if="cekSumber(media) == 'spotify'" :src="getUrl(media)" width="100%" height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                          <!-- Youtube -->
-                        <iframe v-if="cekSumber(media) == 'youtube'" width="560" height="315" :src="getUrl(media)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                   
+    <div class="flex w-full my-5 ">
+      <span class="px-2">Upload Dari :</span>
+      <img
+        @click="showModalQuest('ig')"
+        src="/instagram.png"
+        class="ml-8 cursor-pointer w-8 h-8"
+      />
+      <img
+        @click="showModal = 'yt'"
+        src="/youtube.png"
+        class="ml-8 cursor-pointer w-8 h-8"
+      />
+      <img
+        @click="showModal = 'sp'"
+        src="/spotify.png"
+        class="ml-8 cursor-pointer w-8 h-8"
+      />
+    </div>
+    <button
+      @click="kirim"
+      class=" py-2 w-full rounded-lg mt-2 bg-primary hover:bg-primary_dark text-white shadow-sm"
+    >
+      Kirim
+    </button>
 
-                       
-                   </div>
-                     <span v-for="(tx,i) in textToArray(text)" :key="i"> 
-                      
-                      <nuxt-link class="text-primary" v-if="(tx.slice(0, 1) == '@')" :to="'/'+tx"> {{tx}} </nuxt-link>
-                      <nuxt-link class="text-primary" v-else-if="(tx.slice(0, 1) == '#')" :to="'/'+tx.substring(1)"> {{tx}} </nuxt-link>
-                      <span v-else> {{tx}} </span>
+     <button
+      v-if="!hiddenbottom"
+      @click="modal_quest = false"
+      class=" py-2 w-full rounded-lg mt-2 bg-secondary text-primary shadow-sm"
+    >
+      Batalkan
+    </button>
+    <button
+      v-else
+      @click="$router.back()"
+      class=" py-2 w-full rounded-lg mt-2 bg-secondary text-primary shadow-sm"
+    >
+      Batalkan
+    </button>
 
-                  </span>
+    <section
+      v-if="showModal"
+      class="w-full bg-transparent flex flex-wrap justify-center content-end lg:content-center z-30 fixed bottom-0 right-0 "
+    >
+      <div
+        @click="showModal = ''"
+        class="w-full  flex flex-wrap justify-center content-end bg-theme_primary_dark opacity-50 z-40 fixed bottom-0 right-0 h-screen "
+      
+      ></div>
+
+      <div
+        class="w-full  lg:w-1/3 justify-center flex flex-wrap z-50 content-end bg-theme_primary rounded-xl mb-16 p-5"
+      >
+
+        <div class="w-full flex flex-wrap" v-if="showModal == 'yt'">
+            <h1 class="font-bold p-2">Paste Youtube Share Link</h1>
+
+            <input placeholder="Link Youtube contoh: 'https://youtu.be/hH6hI5grCms'" class="  p-3 bg-theme_primary_dark w-full rounded-lg" type="text" v-model="d.embed">    
+
+        </div>
+         <div class="w-full flex flex-wrap" v-if="showModal == 'sp'">
+            <h1 class="font-bold p-2">Paste Spotify Podcast Link</h1>
+
+            <input placeholder="Spotify Podcast Link contoh: 'https://open.spotify.com/episode/1IJCl8993xjDNdIKR5EVVE?si=K4XrGBSrS12Kcjh3ZHOMZA'" class="  p-3 bg-theme_primary_dark w-full rounded-lg" type="text" v-model="d.embed">    
+
+        </div>
+        <div v-if="showModal == 'ig'">
+           <h1 class="font-bold p-2">Pilih Postingan Instagram</h1>
+            <div
+              class="w-full p-4 shadow-sm bg-theme_primary_dark rounded-lg flex flex-wrap"
+              v-if="feedIg"
+            >
+              
+               <button class="w-full" v-if="group" @click="getPostIggroup">
+                  Dari Instagram Pribadi
+                </button>
+                <div  v-for="f in feedIg" :key="f.thumb" @click="inputIg(f)" class="w-1/3 p-3 rounded-xl flex flex-wrap">
+                  <img  :src="f.thumb" class="w-full rounded-xl">
+                </div>
+
+                <button class="w-full bg-theme_primary_light rounded-xl p-2 my-2" v-if="group" @click="getPostIggroup">
+                  Pilih dari Instagram Group
+                </button>
+                 <div  v-for="f in feedIgGroup" :key="f.thumb" @click="inputIg(f)" class="w-1/3 p-3 rounded-xl flex flex-wrap">
+                  <img  :src="f.thumb" class="w-full rounded-xl">
+                </div>
+
             </div>
-
-
-          <div class="w-full lg:w-1/2 p-4 shadow-sm rounded-lg">
-              
-               <label class="mx-2 text-xs" >Opsional*</label>
-               <input placeholder="Link Podcast -  Spotify / Youtube" class="mx-2  p-3 bg-theme_primary_dark w-full rounded-lg" type="text" v-model="media">    
-
-               
-                
-                <textarea maxlength="255" v-model="text" placeholder="Katakan sesuatu ..." class="mx-2  p-3 bg-theme_primary_dark w-full rounded-lg"></textarea>    
-              
-                <button @click="kirim" class="mx-2 py-2 w-full rounded-lg mt-2 bg-primary hover:bg-primary_dark text-white shadow-sm">
-                  Kirim
-                </button>
-                 <button @click="modal_quest = false" class="mx-2 py-2 w-full rounded-lg mt-2 shadow-sm hover:bg-theme_primary_dark">
-                  Batalkan
-                </button>
-           </div>
-          </div>
+            <div v-else class="w-full text-center ">
+               <span v-if="$store.state.user.instagram">Loading...</span>
+               <span v-else class="px-2 text-danger">
+                 Edit profile dan masukan username instagram kamu :)
+               </span>
+            </div>
+        </div>
+      </div>
+    </section>
+  </div>
       </section>
   </div>
         
@@ -99,88 +179,116 @@
 
 
 <script>
+
 export default {
-   scrollToTop: true,
-   layout: 'app',
-   middleware: 'auth',
-   props: ["group"],
-    data(){
-      return {
-        modal_quest: false,
-        media: '',
-        text: '',
-        feedIg: ''
+  scrollToTop: true,
+  layout: "no-header",
+  middleware: "auth",
+  props: ["showModalDefault","group","hiddenbottom"],
+  data() {
+    return {
+      modal_quest: false,
+      showModal: "",
+      d:{},
+      feedIg: "",
+      feedIgGroup: ""
+    };
+  },
+  created(){
+    if(this.$props.showModalDefault){
+      this.modal_quest = true
+    }
+  },
+  methods: {
+    inputIg(data){
+
+        this.d.video = data.video
+        if(!data.video){
+          this.d.img = data.thumb
+        }
+        this.d.text = data.text
+        this.d.thumb = data.thumb
+        
+        this.showModal = ''
+    },
+    showModalQuest(source){
+        if(source == 'ig'){
+          this.getPostIg();
+          this.showModal = 'ig'
+        }
+    },
+    getPostIg() {
+      if(this.$store.state.user.instagram){
+         this.$axios
+            .$get("/instagram/" + this.$store.state.user.instagram)
+            .then(res => {
+              // console.log(res)
+              this.feedIg = res;
+            });
       }
     },
-    methods:{
-      getPostIg(){
-          this.$axios.$get("/instagram/" + this.$store.state.user.username).then(res => {
-            this.feedIg = res
-        });
-      },
-      createNew(){
-          this.modal_quest = true
-      },
-       cekSumber(str){
-            if(str){
-               if(str.search("spotify") > 0){
-                  return "spotify";
-              }else if(str.search("youtu.be") > 0){
-                  return "youtube";
-              }
-            }
-           
-        },
-      textToArray(text){
-            let str =  text.toString()
-            let forReplace = []
-            
-            return str.split(" ");
-        },
-      getUrl(url){
-            if(url){
-              if(this.cekSumber(url) == 'spotify'){
-                let split = url.split("/")
-                var res = "https://open.spotify.com/embed-podcast/"+split[3]+"/"+split[4].split("?")[0]
-                // https://open.spotify.com/show/5ixPRjtMnO92teoj5Vxbuf?si=3EP-mdiWRZer9xm4pcSg5g
-                // https://open.spotify.com/episode/3etjFQgUuH7e7SPc6K6qXF?si=7JKD8-G_Q_qiZlXKeQ-OhA
-              // <iframe src="https://open.spotify.com/embed-podcast/show/5ixPRjtMnO92teoj5Vxbuf" width="100%" height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-              // <iframe src="https://open.spotify.com/embed-podcast/episode/3etjFQgUuH7e7SPc6K6qXF" width="100%" height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                // https://open.spotify.com/embed-podcast/episode/5RxFtUxpr4d5DFh2BqvpU2 - spotify format
-
-              }else if(this.cekSumber(url) == 'youtube'){
-              
-               let split = url.split("/")
-                var res = "https://www.youtube.com/embed/"+split[3]
-                   
-              //  https://youtu.be/pRuzdbwOJWM
-              //  https://www.youtube.com/embed/pRuzdbwOJWM - youtube format
-              
-              }else{
-                var res = ""
-              }
-
-            
-               return res
-            }else{
-              return ""
-            }
-      },
-      kirim(){
-        this.$axios.$post("/quest",{
-          group_id: this.group.id,
-          text: this.text,
-          audio: this.getUrl(this.media),
-          quest_id: '',
-        }).then(res => {
-          this.modal_quest = false;
-          this.text= ''
-          this.media= ''
-          this.$emit('kirim')
-          // this.$router.push("/"+this.group.username)
-        })
+     getPostIggroup() {
+      if(this.group){
+         this.$axios
+            .$get("/instagram/" + this.group.instagram)
+            .then(res => {
+              this.feedIgGroup = res;
+            });
       }
-    }
-}
+    },
+    createNew() {
+      this.modal_quest = true;
+    },
+    cekSumber(str) {
+      if (str) {
+        if (str.search("spotify") > 0) {
+          return "spotify";
+        } else if (str.search("youtu.be") > 0) {
+          return "youtube";
+        }
+      }
+    },
+    textToArray(text) {
+      let str = text.toString();
+      let forReplace = [];
 
+      return str.split(" ");
+    },
+    getUrl(url) {
+      if (url) {
+        if (this.cekSumber(url) == "spotify") {
+          let split = url.split("/");
+          var res =
+            "https://open.spotify.com/embed-podcast/" +
+            split[3] +
+            "/" +
+            split[4].split("?")[0];
+         
+        } else if (this.cekSumber(url) == "youtube") {
+          let split = url.split("/");
+          var res = "https://www.youtube.com/embed/" + split[3];
+        } else {
+          var res = "";
+        }
+
+        return res;
+      } else {
+        return "";
+      }
+    },
+    kirim() {
+      if(this.group){
+       this.d.group_id = this.group.id
+      }
+      this.d.embed = this.getUrl(this.d.embed)
+      this.$axios
+        .$post("/quest", this.d)
+        .then(res => {
+          // console.log(res)
+          this.$router.push("/quest/"+res.id)
+        });
+    }
+  }
+};
 </script>
+

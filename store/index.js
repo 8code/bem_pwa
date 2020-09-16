@@ -4,6 +4,8 @@ import Vuex from 'vuex'
 const createStore = () => {
     return new  Vuex.Store({
         state: {
+                playing_path: '',
+                playing: '',
                 media_player: '',
                 show_media_player: true,
                 storage: process.env.storageUrl,
@@ -37,11 +39,20 @@ const createStore = () => {
                 state.topMenu = to
             },
             setMediaPlayer(state,to){
-                state.media_player = to
+                state.playing_path = to.path
+
+
+                state.playing = to.data
+                if(to.data.video){
+                    console.log(to.data.video);
+                    state.media_player = to.data.video
+                }else{
+                    state.media_player = to.data.embed
+                }
+               
                 state.show_media_player = true
             },
             setShowMediaPlayer(state,to){
-                console.log(to)
                 state.show_media_player = to
             },
             resetMediaPlayer(state){

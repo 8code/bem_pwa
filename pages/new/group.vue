@@ -57,6 +57,7 @@
                         <option value="UKM">UKM</option>
                         <option value="StartUp">StartUp</option>
                         <option value="Komunitas">Komunitas</option>
+                        <option value="Acara">Acara</option>
                         <option value="Lainnya">Lainnya</option>
 
                       </select>

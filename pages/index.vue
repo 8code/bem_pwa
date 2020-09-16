@@ -10,6 +10,37 @@
         </nuxt-link>
     </div>
 
+
+
+      <ul class="p-4">
+        <li class="bg-theme_primary_dark my-2 rounded-xl p-3">
+          <span class="p-2 text-theme_secondary">Tagar Populer</span>
+          <div class="p-2 text-primary font-bold text-xl" v-for="(tagar,index) in tagarPopuler" :key="tagar.tagar">
+            {{index+1}}. 
+            <nuxt-link :to="'/tag/'+tagar.tagar">{{ tagar.tagar}} </nuxt-link>
+            ({{tagar.total}})
+          </div>
+        </li>
+        <li class="bg-theme_primary_dark my-2 rounded-xl p-3">
+          <span class="p-2 text-theme_secondary">Group Populer</span>
+           <nuxt-link class="p-2 text-primary flex font-bold text-xl" v-for="(g,index) in groupPopuler" :key="g.id" :to="g.username">
+            {{index+1}}. 
+            <img :src="g.avatar" class="w-8 h-8 mx-2" />
+            {{ g.name }}
+          </nuxt-link>
+        </li>
+         <li class="bg-theme_primary_dark my-2 rounded-xl p-3">
+           <span class="p-2 text-theme_secondary">User Populer</span>
+          <nuxt-link class="p-2 text-primary flex font-bold text-xl" v-for="(u,index) in userPopuler" :key="u.id" :to="'/@'+u.username">
+              {{index+1}}. 
+              <img :src="u.user.avatar" class="w-8 h-8 mx-2" />
+              {{ u.user.name }} ({{u.total}})
+            </nuxt-link>
+        </li>
+      </ul>
+      
+     
+
       <balas-quest v-if="balas_quest" v-on:kirim="newQuest" v-on:batal="balas_quest = false" :quest="balas_quest" />
 
       <section class="w-full rounded-xl pb-20 flex flex-wrap">
@@ -34,11 +65,18 @@ export default {
       balas_quest: '',
       page: 1,
       loadMore: false,
-      last_page: false
+      last_page: false,
+      tagarPopuler: '',
+      groupPopuler: '',
+      userPopuler: '',
     };
   },
   fetch(){
+      this.getTagarPopuler()
+      this.getGroupPopuler()
+      this.getUserPopuler()
       this.getData()
+      
   },
     mounted() {
 
@@ -59,6 +97,24 @@ export default {
     },
 
   methods:{
+    getTagarPopuler(){
+      this.$axios.get("/tagar-populer")
+        .then(res => {
+          this.tagarPopuler = res.data
+        })
+    },
+    getGroupPopuler(){
+      this.$axios.get("/group-populer")
+        .then(res => {
+          this.groupPopuler = res.data
+        })
+    },
+    getUserPopuler(){
+      this.$axios.get("/user-populer")
+        .then(res => {
+          this.userPopuler = res.data
+        })
+    },
     loadMoregetData(){
         this.loadMore = true
         this.page = this.page+1

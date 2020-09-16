@@ -6,6 +6,7 @@
       <div class="w-full flex flex-wrap bg-theme_primary p-2 pt-6 rounded-xl ">
         <div class="w-full font-bold flex ">
           <img
+           
             class="w-16 h-16  rounded-full"
             :src="group.avatar"
             :alt="group.name"
@@ -13,7 +14,8 @@
 
           <div class="w-full pl-5 mt-1 flex flex-wrap items-start ">
             <div class="w-full text-xl lg:text-2xl mb-2">
-              {{ group.name }}   <small class="text-primary">#{{ group.username }}</small>
+              {{ group.name }}  
+              <br> <small class="text-primary">#{{ group.username }}</small>
               <br />
               <span class="text-sm">
                 Admin : 
@@ -21,12 +23,13 @@
               </span>
 
 
-            <div class="float-right text-sm -mt-6">
+            <div class="float-right text-sm -mt-12">
               
-                    <div v-if="group.followed" >
-                            <span v-if="group.followed" class="float-right cursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
-                                Diikuti
-                            </span>
+                            <div v-if="group.followed">
+                                <span  class="float-right cursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
+                                  Diikuti
+                              </span>
+                            </div>
                             <div v-else >
                                       <span v-if="!followTemp" @click="followGroup(group.id)" class="cursor-pointer bg-primary px-4 py-1 rounded-full text-secondary">
                                           Ikuti
@@ -35,11 +38,9 @@
                                         Diikuti
                                     </span>
                             </div>
-                    </div>
-                    <br>
                       <router-link
                       v-if="group.user_id == $store.state.user.id"
-                       :to="`/edit/group/${group.username}`" class="float-right  mt-2  cursor-pointer bg-theme_primary_dark px-4 py-1 rounded-full text-primary">
+                       :to="`/edit/group/${group.username}`" class="float-right  mt-4  cursor-pointer bg-theme_primary_dark px-4 py-1 rounded-full text-primary">
                                 Edit Group
                       </router-link>
             </div>
@@ -67,7 +68,7 @@
 
 
     
-      <new-quest v-on:kirim="newQuest" :group="group" />
+      <new-quest v-on:kirim="newQuest"  :group="group" />
 
       <balas-quest v-if="balas_quest" v-on:kirim="newQuest" v-on:batal="balas_quest = false" :quest="balas_quest" />
 
@@ -85,21 +86,8 @@
         <div
           class="-mt-1 -ml-1 h-6 w-6 absolute top-0 left-0 rounded-full shadow-lg bg-primary mr-3"
         ></div>
-          Quest Saja
+          Quest
       </div>
-
-      
-     <div
-        :class="(filter == 'Quest & Balasan') ? filterClassActive : filterClass"
-        @click="filter = 'Quest & Balasan';getData()"
-
-      >
-        <div
-          class="-mt-1 -ml-1 h-6 w-6 absolute top-0 left-0 rounded-full shadow-lg bg-primary mr-3"
-        ></div>
-          Quest & Balasan
-      </div>
-
 
       <div
         :class="(filter == 'Media') ? filterClassActive : filterClass"
@@ -111,6 +99,19 @@
           class="-mt-1 -ml-1 h-6 w-6 absolute top-0 left-0 rounded-full shadow-lg bg-primary mr-3"
         ></div>
           Media
+      </div>
+
+
+      
+     <div
+        :class="(filter == 'Tagar') ? filterClassActive : filterClass"
+        @click="filter = 'Tagar';getData()"
+
+      >
+        <div
+          class="-mt-1 -ml-1 h-6 w-6 absolute top-0 left-0 rounded-full shadow-lg bg-primary mr-3"
+        ></div>
+          #{{ group.username}}
       </div>
 
     </div>
@@ -133,6 +134,7 @@ export default {
   middleware: "auth",
   data() {
     return {
+      
       filterClassActive: "cursor-pointer relative mx-1 px-6 bg-primary text-secondary rounded-xl flex text-sm items-center justify-center p-2",
       filterClass: "cursor-pointer relative mx-1 px-6 bg-theme_primary_dark rounded-xl flex text-sm items-center justify-center p-2",
       group: "",
@@ -144,7 +146,8 @@ export default {
       loadMore: false,
       last_page: false,
       usernameIg: '',
-      feedIg: []
+      feedIg: [],
+      followTemp: false
     };
   },
     mounted() {
@@ -183,16 +186,14 @@ export default {
    
    });
 
-  
-
   },
   methods:{
-    // cekIgData(){
-    //     this.$axios.$get("/instagram/" + this.usernameIg).then(res => {
-    //       console.log("aa",res)
-    //       this.feedIg = res
-    //   });
-    // },
+     followGroup(id){
+      this.$axios.get("/group/follow/"+id)
+        .then(res => {
+            this.followTemp = true
+        })
+    },
     loadMoregetData(){
         this.loadMore = true
         this.page = this.page+1

@@ -1,7 +1,11 @@
 <template>
     <div class="w-full text-center p-2">
     <div class="mx-auto text-sm flex content-center justify-center ">
-            <nuxt-link :to="'/'+name" :class="($route.path == '/'+name) ? activeClass : nonActiveClass"> Followed </nuxt-link>
+            <nuxt-link :to="'/'+name" :class="($route.path == '/'+name) ? activeClass : nonActiveClass"> 
+            
+            {{ $t("Followed")}} 
+
+            </nuxt-link>
             <nuxt-link :to="'/'+name+'/explore'" :class="($route.path == '/'+name+'/explore') ? activeClass : nonActiveClass">
             {{ $t("Explore")}} 
             </nuxt-link>

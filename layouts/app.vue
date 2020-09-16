@@ -2,7 +2,7 @@
 <div  :class="settings">
 
   <div
-    class="w-full min-h-screen flex flex-wrap content-start bg-theme_primary"
+    class="w-full min-h-screen flex flex-wrap content-start bg-theme_primary fixed overflow-y-scroll"
   >
     <settings class="z-50" />
     <main

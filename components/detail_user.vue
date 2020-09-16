@@ -15,13 +15,25 @@
               <br>
               <router-link :to="`@${profile.username}`" class="text-lg text-primary">@{{ profile.username }}</router-link>
 
-                    <div class="float-right text-sm -mt-4" v-if="!editprofile">
-                          <!-- <span class="cursor-pointer bg-primary px-4 py-1 rounded-full text-secondary">
-                              Ikuti
-                          </span> -->
-                          <div class="px-3" v-if="usernameIg">
+                    <div class="float-right text-sm flex" v-if="!editprofile">
+                                <div v-if="profile.followed">
+                                  <span class="cursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
+                                    Diikuti
+                                </span>
+                                </div>
+                                <div v-else >
+                                          <span v-if="!followTemp" @click="followUser(profile.id)" class="cursor-pointer bg-primary px-4 py-1 rounded-full text-secondary">
+                                              Ikuti
+                                          </span>
+                                          <span v-if="followTemp" class="cursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
+                                            Diikuti
+                                        </span>
+                                        
+                              </div>
+                          
+                          <div class="px-3 -mt-2" v-if="usernameIg">
                             <a class="text-primary" :href="`https://instagram.com/${usernameIg}`">
-                              <img src="/instagram.png" class="h-12 w-12 p-2">
+                              <img src="/instagram.png" class="h-10 w-10 p-2">
                             </a>
                           </div>
                     </div>
@@ -51,8 +63,6 @@
         
       </div>
     </section>
-    
-      <!-- <new-quest v-on:kirim="newQuest" :group="group" /> -->
 
       <balas-quest v-if="balas_quest" v-on:kirim="newQuest" v-on:batal="balas_quest = false" :quest="balas_quest" />
 
@@ -127,7 +137,8 @@ export default {
       page: 1,
       loadMore: false,
       last_page: false,
-      usernameIg: ''
+      usernameIg: '',
+      followTemp: false
     };
   },
     mounted() {
@@ -168,6 +179,12 @@ export default {
     });
   },
   methods:{
+     followUser(id){
+      this.$axios.get("/user/follow/"+id)
+        .then(res => {
+            this.followTemp = true
+        })
+    },
     loadMoregetData(){
         this.loadMore = true
         this.page = this.page+1
