@@ -61,6 +61,7 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
     '@nuxtjs/tailwindcss',
+
   ],
   /*
   ** Nuxt.js modules
@@ -68,6 +69,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/onesignal',
     '@nuxtjs/pwa',
     [
       'nuxt-i18n',
@@ -150,6 +152,12 @@ export default {
   */
  axios: {
     baseURL: process.env.BASE_URL,
+  },
+
+  oneSignal: {
+    init: {
+      appId: 'd867ac26-f7be-4c62-9fdd-b756a33c4a8f'
+    }
   },
   /*
   ** Build configuration

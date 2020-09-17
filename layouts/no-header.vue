@@ -10,6 +10,8 @@
       >
         <media-player />
         <transition name="slide-fade">
+
+         
           <Nuxt class="w-full" />
         </transition>
       </main>
@@ -229,6 +231,8 @@
 </template>
 
 <script>
+
+import Push from 'push.js'
 export default {
   data() {
     return {
@@ -250,9 +254,21 @@ export default {
       return this.$store.state.theme + " " + this.$store.state.primaryColor;
     }
   },
+
   created() {
+        Push.create('Hai '+this.$store.state.user.name+" apa kabar? ")
 
-
+        console.log("tes 1")
+         Push.create("Selamat datang di Aplikasi Maba!", {
+            body: "Jangan Lupa Istirahat :) ",
+            icon: '/icon.png',
+            timeout: 4000,
+            onClick: function () {
+                console.log("tes 2")
+                // window.focus();
+                // this.close();
+            }
+        });
  
         
     if(!this.$store.state.gender && !this.$route.path.includes("/edit/profile")){
@@ -277,7 +293,13 @@ export default {
       });
 
   },
+
   mounted() {
+
+
+   
+
+
     var that = this;
     window.addEventListener("scroll", function() {
       if (window.scrollY > that.windowTop) {

@@ -7,7 +7,7 @@
                                    
                                            Membalas :
                                            
-                                           <nuxt-link :to="`/quest/${data.quest_id}`" class="bg-theme_primary_dark text-primary rounded-xl p-1 px-2">
+                                           <nuxt-link :to="`/quest/${data.quest_id}`" class=" text-primary rounded-xl p-1 px-2">
                                         
                                            <b> @{{ data.membalas_user }}</b>
                                                : {{ data.quest.text.substring(0, 20) }} ..
