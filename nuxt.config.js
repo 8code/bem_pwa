@@ -49,6 +49,7 @@ export default {
   */
   plugins: [
     '~/plugins/v-touch',
+    { src: '~plugins/pusher.js', ssr: false },
   ],
   /*
   ** Auto import components
@@ -69,7 +70,6 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/onesignal',
     '@nuxtjs/pwa',
     [
       'nuxt-i18n',
@@ -154,11 +154,6 @@ export default {
     baseURL: process.env.BASE_URL,
   },
 
-  oneSignal: {
-    init: {
-      appId: 'd867ac26-f7be-4c62-9fdd-b756a33c4a8f'
-    }
-  },
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/

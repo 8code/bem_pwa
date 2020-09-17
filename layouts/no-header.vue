@@ -11,7 +11,6 @@
         <media-player />
         <transition name="slide-fade">
 
-         
           <Nuxt class="w-full" />
         </transition>
       </main>
@@ -254,22 +253,28 @@ export default {
       return this.$store.state.theme + " " + this.$store.state.primaryColor;
     }
   },
+  methods:{
+    sayHayPush(){
 
-  created() {
-        Push.create('Hai '+this.$store.state.user.name+" apa kabar? ")
-
-        console.log("tes 1")
-         Push.create("Selamat datang di Aplikasi Maba!", {
-            body: "Jangan Lupa Istirahat :) ",
+        Push.create("Hai Apa Kabar "+this.$store.state.user.name+" !", {
+            body: "Jangan Lupa Makan say... :) ",
             icon: '/icon.png',
             timeout: 4000,
             onClick: function () {
-                console.log("tes 2")
-                // window.focus();
-                // this.close();
+                window.location.href = "https://maba.my.id/notifications"
             }
         });
  
+
+    }
+  },
+
+  created() {
+
+
+    setInterval(this.sayHayPush, 86400000)
+
+
         
     if(!this.$store.state.gender && !this.$route.path.includes("/edit/profile")){
        if(!this.$store.state.user.gender){

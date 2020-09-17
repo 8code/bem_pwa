@@ -1,5 +1,5 @@
 <template>
-      <div class="w-full p-2 relative cursor-pointer border-b border-theme_primary_light overflow-hidden" > 
+      <div v-if="data.id" class="w-full p-2 relative cursor-pointer border-b border-theme_primary_light overflow-hidden" > 
                                   <div class="shadow-sm rounded-xl bg-theme_primary hover:bg-theme_primary_dark p-3 " :class="(active) ? 'bg-theme_primary_dark' : ''">
 
                                         <div v-if="!hideBalasan" class="w-full">
@@ -10,7 +10,8 @@
                                            <nuxt-link :to="`/quest/${data.quest_id}`" class=" text-primary rounded-xl p-1 px-2">
                                         
                                            <b> @{{ data.membalas_user }}</b>
-                                               : {{ data.quest.text.substring(0, 20) }} ..
+                                               : 
+                                            {{ data.quest.text.substring(0, 20) }} 
                                                
                                             </nuxt-link> 
 
@@ -76,7 +77,7 @@
                                                    </div>
                                               
 
-                                                <nuxt-link :to="`/quest/${data.id}`" class="w-full pb-4 text-sm" :class="(bigtext) ? 'text-xl' : ''" >
+                                                <nuxt-link v-if="!active"  :to="`/quest/${data.id}`" class="w-full pb-4 text-sm" :class="(bigtext) ? 'text-xl' : ''"  >
                                                     <span v-for="(tx,i) in textToArray(data.text.slice(0, 200)+' ...')" :key="i"> 
                                                         
                                                         <nuxt-link class="text-primary" v-if="(tx.slice(0, 1) == '@')" :to="'/'+tx"> {{tx}} </nuxt-link>
@@ -85,6 +86,16 @@
 
                                                     </span>
                                                 </nuxt-link>
+                                                 <div v-else class="w-full pb-4 text-sm" :class="(bigtext) ? 'text-xl' : ''"  >
+                                                    <span v-for="(tx,i) in textToArray(data.text)" :key="i"> 
+                                                        
+                                                        <nuxt-link class="text-primary" v-if="(tx.slice(0, 1) == '@')" :to="'/'+tx"> {{tx}} </nuxt-link>
+                                                        <nuxt-link class="text-primary" v-else-if="(tx.slice(0, 1) == '#')" :to="'/'+tx.substring(1)"> {{tx}} </nuxt-link>
+                                                        <span v-else> {{tx}} </span>
+
+                                                    </span>
+                                                </div>
+
 
                                             <div class="flex text-right ">
 

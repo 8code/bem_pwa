@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 const createStore = () => {
     return new  Vuex.Store({
         state: {
+                notif: [],
                 playing_path: '',
                 playing: '',
                 media_player: '',
@@ -31,6 +32,9 @@ const createStore = () => {
 
 
         mutations:{
+            setNotif (state, data) {
+                state.notif.push(data)
+              },
             loading(state,to){
                 state.loading = to
             },
@@ -183,6 +187,11 @@ const createStore = () => {
                         // console.log(res)
                     })
             }
+        },
+        getters:{
+            getNotif (state) {
+                return state.notif
+              }
         }
     })
 }

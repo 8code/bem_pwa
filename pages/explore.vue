@@ -16,16 +16,15 @@
     </div>
 
 
-    
 
       <ul class="p-2">
         <li class="bg-theme_primary_dark my-2 rounded-xl p-3">
           <span class="p-2 text-theme_secondary">Tagar Populer</span>
           <div class="p-2 text-primary font-bold text-xl" v-for="(tagar,index) in tagarPopuler" :key="tagar.tagar">
             {{index+1}}. 
-            <!-- <nuxt-link :to="'/tag/'+tagar.tagar"> -->
+            <nuxt-link :to="'/search?keyword='+(tagar.tagar).substring(1)">
             {{ tagar.tagar}}
-             <!-- </nuxt-link> -->
+             </nuxt-link>
             ({{tagar.total}})
           </div>
         </li>
@@ -35,6 +34,9 @@
             {{index+1}}. 
             <img :src="g.avatar" class="w-8 h-8 mx-2" />
             {{ g.name }}
+          </nuxt-link>
+          <nuxt-link to="/groups/explore" class="p-2 text-primary flex font-bold text-sm">
+            Lihat Group Lainnya
           </nuxt-link>
         </li>
          <li class="bg-theme_primary_dark my-2 rounded-xl p-3">

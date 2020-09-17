@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full p-2 relative flex  border-b border-theme_primary_light">
+  <div v-if="group" class="w-full p-2 relative flex  border-b border-theme_primary_light">
     <div
       class="w-full flex flex-wrap shadow-sm bg-theme_primary hover:bg-theme_primary_dark rounded-xl px-2 lg:py-2 "
     >

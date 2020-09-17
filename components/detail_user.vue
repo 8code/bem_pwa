@@ -152,7 +152,7 @@ export default {
             if(!that.last_page){
               that.loadMoregetData()
             }else{
-              this.loadMore = false
+              that.loadMore = false
             }
           }
       });

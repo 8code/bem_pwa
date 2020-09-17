@@ -1,9 +1,11 @@
 <template>
 <section class="w-full pb-10 p-4">
         <h1 class="text-2xl font-bold p-2 mb-3">Kotak Masuk</h1>
+
         <div v-for="(n,index) in notif" :key="index" class="w-full flex flex-wrap border-b border-theme_primary_light rounded-lg
         hover:bg-theme_primary_light
          my-2">
+            
             
             <nuxt-link :to="n.link" class="w-full mb-1  rounded-lg flex flex-wrap">
               
@@ -46,15 +48,11 @@ export default {
                 last_page: false
           }
   },
-  created(){
-          
 
-        Notification.requestPermission().then(function(result) {
-                console.log(result);
-        });
-  },
+  computed: {
      mounted() {
 
+    
 
 
       var that = this;
@@ -72,6 +70,7 @@ export default {
           }
       });
     },
+  },
   methods:{
             textToArray(text){
             
