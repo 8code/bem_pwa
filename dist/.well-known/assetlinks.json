@@ -3,9 +3,8 @@
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
       "namespace": "android_app",
-      "package_name": "id.my.maba",
-      "sha256_cert_fingerprints": [
-      "C5:63:A2:50:F4:57:08:79:B3:DA:5B:DE:9E:ED:E3:06:6E:94:39:27:86:33:03:8C:56:A2:18:3A:22:9C:AE:76"]
+      "package_name": "xyz.appmaker.pfquhx",
+      "sha256_cert_fingerprints": ["95:39:F5:76:1C:D5:99:44:22:01:74:8B:A2:81:A0:41:97:02:23:D6:65:67:99:11:FB:A1:DC:EB:08:AC:EF:55"]
     }
   }
 ]

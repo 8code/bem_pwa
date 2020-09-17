@@ -7,7 +7,7 @@
         <input
           type="text"
           class="w-full py-2 px-5 rounded-full bg-theme_primary_dark"
-          placeholder="Search"
+          placeholder="Ketikan Nama Group"
           v-model="filter.search"
           @keyup.enter="getData"
 

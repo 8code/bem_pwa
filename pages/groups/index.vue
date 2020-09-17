@@ -25,6 +25,10 @@ export default {
         this.$axios.$get("/mygroup")
             .then(res => {
                 this.listGroup = this.sortByKey(Object.values(res),"last_active").reverse()
+
+                if(this.listGroup.length == 0){
+                    this.$router.push("/groups/explore")
+                }
             })
     },
     methods:{

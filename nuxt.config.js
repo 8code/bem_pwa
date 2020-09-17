@@ -114,7 +114,7 @@ export default {
               Group: 'Group',
               Notif: 'Kotak',
               Profile: 'Profile',
-              Explore: 'Untuk Anda',
+              Explore: 'UntukMu',
               Followed: 'Diikuti'
 
             },
@@ -135,7 +135,7 @@ export default {
               Group: 'Group',
               Notif: 'Kotak',
               Profile: 'Profile',
-              Explore: 'Untuk Anda',
+              Explore: 'UntukMu',
               Followed: 'Diikuti'
               
             }

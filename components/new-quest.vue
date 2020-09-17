@@ -43,7 +43,7 @@
    
 
     <div
-    class="w-full content-start max-w-lg flex flex-wrap justify-center z-50 overflow-y-scroll bg-theme_primary rounded-xl p-4"
+    class="w-full content-start max-w-xl flex flex-wrap justify-center z-50 overflow-y-scroll bg-theme_primary rounded-xl p-4"
     style="height:90vh"
   >
   
@@ -64,7 +64,7 @@
         <iframe v-if="cekSumber(d.embed) == 'youtube'" width="560" height="315" :src="getUrl(d.embed)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         
     </div>
-    <h1 v-if="group">
+    <h1 v-if="group" class="p-2 font-bold">
       Kirim Ke Group : #{{group.username}}
     </h1>
     <textarea
@@ -125,7 +125,7 @@
       ></div>
 
       <div
-        class="w-full  lg:w-1/3 justify-center flex flex-wrap z-50 content-end bg-theme_primary rounded-xl mb-16 p-5"
+        class="w-full  lg:w-1/3 justify-center flex flex-wrap z-50 content-end bg-theme_primary rounded-xl mb-16 p-5 mx-auto"
       >
 
         <div class="w-full flex flex-wrap" v-if="showModal == 'yt'">
