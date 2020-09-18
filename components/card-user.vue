@@ -16,7 +16,7 @@
 
           
           <div class="w-full text-xl lg:text-2xl mb-2">
-           <nuxt-link :to="`@/${data.username}`"> {{ data.name }}</nuxt-link>
+           <nuxt-link :to="`@${data.username}`"> {{ data.name }}</nuxt-link>
             <br />
             <div class=" flex w-full justify-between">
 
