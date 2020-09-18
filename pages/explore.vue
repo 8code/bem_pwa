@@ -28,24 +28,32 @@
             ({{tagar.total}})
           </div>
         </li>
-        <li class="bg-theme_primary_dark my-2 rounded-xl p-3">
+        <li class="bg-theme_primary_dark my-2 rounded-xl py-3">
           <span class="p-2 text-theme_secondary">Group Populer</span>
-           <nuxt-link class="p-2 text-primary flex font-bold text-xl" v-for="(g,index) in groupPopuler" :key="g.id" :to="g.username">
+           <!-- <nuxt-link class="p-2 text-primary flex font-bold text-xl" v-for="(g,index) in groupPopuler" :key="g.id" :to="g.username">
             {{index+1}}. 
             <img :src="g.avatar" class="w-8 h-8 mx-2" />
             {{ g.name }}
-          </nuxt-link>
+          </nuxt-link> -->
+            <card-group v-for="g in groupPopuler" :key="g.id" :group="g" follow="true" />
           <nuxt-link to="/groups/explore" class="p-2 text-primary flex font-bold text-sm">
             Lihat Group Lainnya
           </nuxt-link>
         </li>
-         <li class="bg-theme_primary_dark my-2 rounded-xl p-3">
-           <span class="p-2 text-theme_secondary">Pengguna Populer</span>
-          <nuxt-link class="p-2 text-primary flex font-bold text-xl" v-for="(u,index) in userPopuler" :key="u.user.id" :to="'/@'+u.user.username">
+         <li class="bg-theme_primary_dark my-2 rounded-xl py-3">
+           <span class="p-2 text-theme_secondary">Mahasiswa Populer</span>
+           
+            <card-user v-for="q in userPopuler" :key="q.id" :data="q.user" />
+
+          <!-- <nuxt-link class="p-2 text-primary flex font-bold text-xl" v-for="(u,index) in userPopuler" :key="u.user.id" :to="'/@'+u.user.username">
               {{index+1}}. 
               <img :src="u.user.avatar" class="w-8 h-8 mx-2" />
               {{ u.user.name }} 
-            </nuxt-link>
+            </nuxt-link> -->
+
+              <!-- <nuxt-link to="/users/explore" class="p-2 text-primary flex font-bold text-sm">
+                Lihat Mahasiswa Lainnya
+              </nuxt-link> -->
         </li>
       </ul>
       

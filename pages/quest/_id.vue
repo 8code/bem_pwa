@@ -1,6 +1,6 @@
 <template>
     <div>
-      <card-post v-on:balas="balasQuest"  active="true" bigtext="true" v-if="quest" :data="data" />
+      <card-post v-on:balas="balasQuest"  active="true" bigtext="true" v-if="quest" :data="data" link="true" />
       <h1  v-if="balas_quest" class="px-4">Balasan :</h1>
 
       <balas-quest v-if="balas_quest" v-on:kirim="newQuest" v-on:batal="balas_quest = false" :quest="balas_quest" />
@@ -61,7 +61,7 @@ export default {
         this.$axios.$get("/quest/balasan/"+this.data.id+"?page="+this.page)
         .then(res => {
           res.data = Object.values(res.data)
-          if(res.data.length > 0){
+          if(Object.values(res.data).length > 0){
                let tempp = Object.values(this.quest.data)
                this.quest.data = tempp.concat(res.data)
           }else{

@@ -92,12 +92,14 @@ export default {
      },
      created(){
 
-       console.log(this.$route.query)
-       this.$nextTick(() =>  this.$refs.keyword.focus())
+      //  console.log(this.$route.query)
+      
 
        if(this.$route.query.keyword){
          this.filter.search = this.$route.query.keyword
          this.getData()
+       }else{
+          this.$nextTick(() =>  this.$refs.keyword.focus())
        }
 
        

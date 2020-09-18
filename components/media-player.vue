@@ -97,18 +97,13 @@
                    <span class="px-2"> {{ playing.view}}</span>
 
                 </button> -->
-
-              
               
                 <button  @click="followQuest(playing.id)" class="flex float-left rounded-full p-2 "  :class="(playing.followed || followTemp) ? 'text-danger' : 'text-white'">
 
                 <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
                 </svg>
-                   <span  class="px-2" v-if="playing.total_follower">
-                      {{ playing.total_follower }}
-                  </span>
-                  <span  class="px-2" v-else>
+                   <span  class="px-2">
                       {{ (followTemp) ? (parseInt(playing.total_follower) +1) : playing.total_follower }}
                   </span>
                    suka

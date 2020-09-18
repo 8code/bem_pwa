@@ -167,6 +167,10 @@ export default {
   fetch() {
     this.$axios.$get("/group/" + this.$route.params.url).then(data => {
       this.group = data;
+      if(!this.group.id){
+      // alert(data)
+        this.$router.push("/search?keyword="+this.$route.params.url)
+      }
       
       this.getData()
 

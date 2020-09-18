@@ -16,8 +16,6 @@
         </nuxt-link>
     </div>
 
-   
-    
      
 
       <balas-quest v-if="balas_quest" v-on:kirim="newQuest" v-on:batal="balas_quest = false" :quest="balas_quest" />
@@ -77,14 +75,17 @@ export default {
         this.page = this.page+1
         this.$axios.$get("/quest/home?search="+this.search+"&page="+this.page)
         .then(res => {
-          res.data = Object.values(res.data)
-          if(res.data.length > 0){
-               let tempp = Object.values(this.quest.data)
-               this.quest = tempp.concat(res.data)
-          }else{
-            this.last_page = true
+          if(res){
+              if(res.total > 0){
+               
+                this.quest = this.quest.concat(res.data)
+            }else{
+              this.last_page = true
+            }
           }
+          
           this.loadMore = false
+         
         });
     },
     newQuest(){

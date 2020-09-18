@@ -21,7 +21,7 @@
             <div class=" flex w-full justify-between">
 
                 
-                   <small>#{{ data.username }}</small>
+                   <small>@{{ data.username }}</small>
                
                         <div  v-if="data.followed" class="text-sm">
                            <span class=" cursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
@@ -44,12 +44,12 @@
         </div>
       </div>
 
-      <small class="w-full font-semibold px-4  lg:text-lg py-3 pb-5 flex">
+      <small class="w-full font-semibold px-2 lg:px-4 text-xs lg:text-lg py-3 pb-5 flex">
         <div class="h-4 w-4 rounded-full shadow-lg bg-primary mr-3 mt-1"></div>
         {{ data.study_program }} 
         {{ data.angkatan }}
 
-        <span class="ml-auto text-primary text-sm mt-1 px-3 rounded-full">
+        <span class="ml-auto text-primary text-xs mt-1 text-right rounded-full">
          {{ data.university}}
         </span>
       </small>

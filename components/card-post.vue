@@ -41,8 +41,15 @@
                                                 <span class="text-primary text-xs">@{{ data.user.username }}</span> 
                                             </nuxt-link>
 
-                                            <span class="text-xs ml-auto text-primary_light">
+                                            <span class="text-xs ml-auto text-primary_light flex">
                                             {{ parseQuestDate(data.created_at)}}
+                                               <span class="px-2" v-if="data.user_id == $store.state.user.id"> 
+
+                                                <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-pencil bg-theme_primary_dark p-1 rounded-full" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                                        </svg>
+
+                                                 </span>
                                             </span>
 
 
@@ -91,7 +98,15 @@
                                                         
                                                         <nuxt-link class="text-primary" v-if="(tx.slice(0, 1) == '@')" :to="'/'+tx"> {{tx}} </nuxt-link>
                                                         <nuxt-link class="text-primary" v-else-if="(tx.slice(0, 1) == '#')" :to="'/'+tx.substring(1)"> {{tx}} </nuxt-link>
-                                                        <span v-else> {{tx}} </span>
+                                                        
+                                                        <span v-else>
+                                                            <span v-if="link"> 
+                                                                <a class="text-primary" :href="tx" target="_BLANK" v-if="isLink(tx)">{{tx}}</a>    
+                                                                <span v-else> {{tx}} </span>
+                                                                
+                                                            </span>
+                                                            <span v-else> {{tx}} </span>
+                                                         </span>
 
                                                     </span>
                                                 </div>
@@ -152,7 +167,7 @@
 import util from '~/assets/js/util'
 
 export default {
-    props:['data','bigtext','active','hideBalasan'],
+    props:['data','bigtext','active','hideBalasan',"link"],
     data(){
         return{
             btnFollow: 'flex relative ml-auto py-1 px-3 rounded-tl-xl rounded-br-xl shadow-sm text-xs text-theme_secondary',
@@ -162,6 +177,17 @@ export default {
         }
     },
     methods:{
+        isLink(link){
+            if(link){
+                if(link.substring(0, 4) == 'http'){
+                    return true;
+                }else{
+                    return false
+                }
+            }else{
+                return false
+            }
+        },
         followQuest(id){
                  this.$axios.get("/quest/follow/"+id)
                         .then(res => {
