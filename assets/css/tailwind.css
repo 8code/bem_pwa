@@ -8,7 +8,15 @@
     --color-primary: #667EEA;
     --color-primary_dark: #4C51BF;
 }
-
+*{
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
 .theme-light {
     --theme_primary_light: #fff;
     --theme-primary: #EDF2F7;
