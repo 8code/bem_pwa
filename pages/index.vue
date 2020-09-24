@@ -46,9 +46,11 @@ export default {
     };
   },
   fetch(){
- 
+    if(!this.$store.state.user.gender){
+          this.$router.push("/edit/profile")
+    }else{
       this.getData()
-      
+    }
   },
     mounted() {
 

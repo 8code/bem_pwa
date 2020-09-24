@@ -271,16 +271,12 @@ export default {
 
   created() {
 
+    this.sayHayPush()
 
-    setInterval(this.sayHayPush, 86400000)
+    // setInterval(this.sayHayPush(), 86400000)
 
+ 
 
-        
-    if(!this.$store.state.gender && !this.$route.path.includes("/edit/profile")){
-       if(!this.$store.state.user.gender){
-          this.$router.push("/edit/profile")
-       }
-    }
     let token = localStorage.getItem("access_token") || "";
     this.$axios.setHeader("Authorization", "Bearer " + token);
 
