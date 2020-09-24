@@ -84,7 +84,7 @@
                                                    </div>
                                               
 
-                                                <nuxt-link v-if="!active"  :to="`/quest/${data.id}`" class="w-full pb-4 text-sm" :class="(bigtext) ? 'text-xl' : ''"  >
+                                                <nuxt-link v-if="!active"  :to="`/quest/${data.id}`" class="w-full pb-4 text-sm"  >
                                                     <span v-for="(tx,i) in textToArray(data.text.slice(0, 200)+' ...')" :key="i"> 
                                                         
                                                         <nuxt-link class="text-primary" v-if="(tx.slice(0, 1) == '@')" :to="'/'+tx"> {{tx}} </nuxt-link>
@@ -93,7 +93,7 @@
 
                                                     </span>
                                                 </nuxt-link>
-                                                 <div v-else class="w-full pb-4 text-sm" :class="(bigtext) ? 'text-xl' : ''"  >
+                                                 <div v-else class="w-full pb-4 text-sm" >
                                                     <span v-for="(tx,i) in textToArray(data.text)" :key="i"> 
                                                         
                                                         <nuxt-link class="text-primary" v-if="(tx.slice(0, 1) == '@')" :to="'/'+tx"> {{tx}} </nuxt-link>

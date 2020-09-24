@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="min-h-screen">
       <card-post v-on:balas="balasQuest"  active="true" bigtext="true" v-if="quest" :data="data" link="true" />
       <h1  v-if="balas_quest" class="px-4">Balasan :</h1>
 
@@ -49,7 +49,6 @@ export default {
             }else{
               this.loadMore = false
             }
-           
           }
       });
     },
@@ -68,6 +67,8 @@ export default {
             this.last_page = true
           }
           this.loadMore = false
+        }).catch(res => {
+           this.loadMore = false
         });
     },
     newQuest(){

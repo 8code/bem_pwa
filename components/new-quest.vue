@@ -67,6 +67,30 @@
     <h1 v-if="group" class="p-2 font-bold">
       Kirim Ke Group : #{{group.username}}
     </h1>
+    
+    <div v-if="!umum">
+      
+     <label class="text-left  pl-2 w-full my-3" for="type">Type</label>
+      <select
+      class="w-full
+      shadow-sm bg-theme_primary_light
+      py-2 px-4 
+      rounded-lg mb-3
+      "
+      v-model="d.type"
+        >
+        <option value="0" selected>Umum</option>
+        <option value="1">Pertanyaan </option>
+        <option value="2">Event</option>
+        <option value="3">Donasi</option>
+        <option value="4">Katalog</option>
+        <option value="5">Loker</option>
+        <option value="6">Pengaduan (Private)</option>
+
+      </select>
+
+    </div>
+
     <textarea
       v-model="d.text"
       placeholder="Katakan sesuatu ..."
@@ -76,18 +100,18 @@
 
     <div class="flex w-full my-5 ">
       <span class="px-2">Upload Dari :</span>
+      <div class="ml-8 cursor-pointer text-primary"  @click="showModalQuest('img')">
+        <svg class="w-7 h-8 bi bi-card-image" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 0 0-.5.5v9c0 .013 0 .027.002.04V12l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094L15 9.499V3.5a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm4.502 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+        </svg>
+      </div>
       <img
-        @click="showModalQuest('ig')"
-        src="/instagram.png"
-        class="ml-8 cursor-pointer w-8 h-8"
-      />
-      <img
-        @click="showModal = 'yt'"
+        @click="showModalQuest('yt')"
         src="/youtube.png"
         class="ml-8 cursor-pointer w-8 h-8"
       />
       <img
-        @click="showModal = 'sp'"
+        @click="showModalQuest('sp')"
         src="/spotify.png"
         class="ml-8 cursor-pointer w-8 h-8"
       />
@@ -131,43 +155,20 @@
         <div class="w-full flex flex-wrap" v-if="showModal == 'yt'">
             <h1 class="font-bold p-2">Paste Youtube Share Link</h1>
 
-            <input placeholder="Link Youtube contoh: 'https://youtu.be/hH6hI5grCms'" class="  p-3 bg-theme_primary_dark w-full rounded-lg" type="text" v-model="d.embed">    
+            <input 
+           ref="inputYT"
+          
+             placeholder="Link Youtube contoh: 'https://youtu.be/hH6hI5grCms'" class="  p-3 bg-theme_primary_dark w-full rounded-lg" type="text" v-model="d.embed">    
 
         </div>
          <div class="w-full flex flex-wrap" v-if="showModal == 'sp'">
             <h1 class="font-bold p-2">Paste Spotify Podcast Link</h1>
 
-            <input placeholder="Spotify Podcast Link contoh: 'https://open.spotify.com/episode/1IJCl8993xjDNdIKR5EVVE?si=K4XrGBSrS12Kcjh3ZHOMZA'" class="  p-3 bg-theme_primary_dark w-full rounded-lg" type="text" v-model="d.embed">    
+            <input ref="inputSP" placeholder="Spotify Podcast Link contoh: 'https://open.spotify.com/episode/1IJCl8993xjDNdIKR5EVVE?si=K4XrGBSrS12Kcjh3ZHOMZA'" class="  p-3 bg-theme_primary_dark w-full rounded-lg" type="text" v-model="d.embed">    
 
         </div>
-        <div v-if="showModal == 'ig'" class="w-full flex flex-wrap">
-           <h1 class="font-bold p-2">Pilih Postingan Instagram</h1>
-            <div
-              class="w-full p-4 shadow-sm bg-theme_primary_dark rounded-lg flex flex-wrap"
-              v-if="feedIg"
-            >
-              
-               <button class="w-full" v-if="group" @click="getPostIggroup">
-                  Dari Instagram Pribadi
-                </button>
-                <div  v-for="f in feedIg" :key="f.thumb" @click="inputIg(f)" class="w-1/3 p-3 rounded-xl flex flex-wrap">
-                  <img  :src="f.thumb" class="w-full rounded-xl">
-                </div>
-
-                <button class="w-full bg-theme_primary_light rounded-xl p-2 my-2" v-if="group" @click="getPostIggroup">
-                  Pilih dari Instagram Group
-                </button>
-                 <div  v-for="f in feedIgGroup" :key="f.thumb" @click="inputIg(f)" class="w-1/3 p-3 rounded-xl flex flex-wrap">
-                  <img  :src="f.thumb" class="w-full rounded-xl">
-                </div>
-
-            </div>
-            <div v-else class="w-full text-center ">
-               <span v-if="$store.state.user.instagram">Loading...</span>
-               <span v-else class="px-2 text-danger">
-                 Edit profile dan masukan username instagram kamu :)
-               </span>
-            </div>
+        <div v-if="showModal == 'img'" class="w-full flex flex-wrap">
+           Upload Foto
         </div>
       </div>
     </section>
@@ -184,14 +185,12 @@ export default {
   scrollToTop: true,
   layout: "no-header",
   middleware: "auth",
-  props: ["showModalDefault","group","hiddenbottom"],
+  props: ["showModalDefault","group","hiddenbottom","umum"],
   data() {
     return {
       modal_quest: false,
       showModal: "",
       d:{},
-      feedIg: "",
-      feedIgGroup: ""
     };
   },
   created(){
@@ -200,41 +199,16 @@ export default {
     }
   },
   methods: {
-    inputIg(data){
-
-        this.d.video = data.video
-        if(!data.video){
-          this.d.img = data.thumb
-        }
-        this.d.text = data.text
-        this.d.thumb = data.thumb
-        
-        this.showModal = ''
-    },
     showModalQuest(source){
-        if(source == 'ig'){
-          this.getPostIg();
-          this.showModal = 'ig'
+        if(source == 'img'){
+          this.showModal = 'img'
+        }else  if(source == 'sp'){
+          this.showModal = 'sp'
+          this.$nextTick(() =>  this.$refs.inputSP.focus())
+        } if(source == 'yt'){
+          this.showModal = 'yt'
+          this.$nextTick(() =>  this.$refs.inputYT.focus())
         }
-    },
-    getPostIg() {
-      if(this.$store.state.user.instagram){
-         this.$axios
-            .$get("/instagram/" + this.$store.state.user.instagram)
-            .then(res => {
-              // console.log(res)
-              this.feedIg = res;
-            });
-      }
-    },
-     getPostIggroup() {
-      if(this.group){
-         this.$axios
-            .$get("/instagram/" + this.group.instagram)
-            .then(res => {
-              this.feedIgGroup = res;
-            });
-      }
     },
     createNew() {
       this.modal_quest = true;

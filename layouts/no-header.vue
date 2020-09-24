@@ -25,9 +25,9 @@
             :class="$route.path == '/' ? tactiveClass : tnonActiveClass"
           >
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-house" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
-  <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
-</svg>
+              <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+              <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+            </svg>
             <span :class="$route.path == '/' ? activeClass : nonActiveClass">
               {{ $t("Home") }}
             </span>
@@ -57,7 +57,7 @@
                 $route.path.includes('/groups') ? activeClass : nonActiveClass
               "
             >
-              {{ $t("Group") }}
+              {{ $t("Groups") }}
             </span>
           </nuxt-link>
 
@@ -65,13 +65,11 @@
             to="/apps"
             :class="$route.path == '/apps' ? tactiveClass : tnonActiveClass"
           >
-          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-columns-gap" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M6 1H1v3h5V1zM1 0a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1H1zm14 12h-5v3h5v-3zm-5-1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-5zM6 8H1v7h5V8zM1 7a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H1zm14-6h-5v7h5V1zm-5-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1h-5z"/>
-          </svg>
+            <img width="30px" src="/icon.png" alt="Logo Aplikasi Maba">
             <span
               :class="$route.path == '/apps' ? activeClass : nonActiveClass"
             >
-              Apps
+              App
             </span>
           </nuxt-link>
 
@@ -176,21 +174,22 @@
                   ? activeClassLg
                   : nonActiveClassLg
               "
-              >Groups</span
+              >
+              {{ $t("Group") }}
+              </span
             >
           </nuxt-link>
 
           <nuxt-link
             to="/apps"
-            class="w-full rounded-full flex px-1 py-2 mx-1 my-1"
+            class="w-full rounded-full justify-start content-center items-center flex px-1 py-2 mx-1 my-1"
           >
-<svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-columns-gap" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M6 1H1v3h5V1zM1 0a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1H1zm14 12h-5v3h5v-3zm-5-1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-5zM6 8H1v7h5V8zM1 7a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H1zm14-6h-5v7h5V1zm-5-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1h-5z"/>
-</svg>
+            <img width="30px" height="30px" src="/icon.png" alt="Logo Aplikasi Maba">
+
             <span
               :class="$route.path == '/apps' ? activeClassLg : nonActiveClassLg"
               >
-              Apps
+              App
             </span>
           </nuxt-link>
 
@@ -215,10 +214,10 @@
             to="/notifications"
             class="w-full rounded-full flex px-1 py-2 mx-1 my-1"
           >
-           <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-chat-square-dots" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h2.5a2 2 0 0 1 1.6.8L8 14.333 9.9 11.8a2 2 0 0 1 1.6-.8H14a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-  <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-</svg>
+            <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-chat-square-dots" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h2.5a2 2 0 0 1 1.6.8L8 14.333 9.9 11.8a2 2 0 0 1 1.6-.8H14a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+              <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+            </svg>
             <span
               :class="
                 $route.path == '/notifications'
@@ -258,6 +257,12 @@
     </div>
   </div>
 </template>
+<style scoped>
+.text-xs2{
+  font-size: 8px;
+}
+
+</style>
 
 <script>
 
@@ -266,12 +271,10 @@ export default {
   data() {
     return {
       windowTop: 0,
-      tactiveClass:
-        "rounded-full flex px-1 py-2 mx-1 flex-wrap content-center justify-center items-center pt-2",
-      tnonActiveClass:
-        "rounded-full flex px-1 py-2 mx-1 flex-wrap content-center justify-center items-center text-default pt-2",
-      activeClass: "text-center text-xs w-full rounded-lg mt-1  text-primary",
-      nonActiveClass: "text-center text-xs w-full  text-default mt-1",
+      tactiveClass: "rounded-full flex px-1 py-2 mx-1 flex-wrap content-center justify-center items-center pt-2",
+      tnonActiveClass:"rounded-full flex px-1 py-2 mx-1 flex-wrap content-center justify-center items-center text-default pt-2",
+      activeClass: "text-center text-xs2 w-full rounded-lg mt-1  text-primary",
+      nonActiveClass: "text-center text-xs2 w-full  text-default mt-1",
       activeClassLg:
         "text-left text-lg p-1 px-8 mx-4 rounded-full bg-theme_primary_dark text-primary",
       nonActiveClassLg:

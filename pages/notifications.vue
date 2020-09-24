@@ -1,6 +1,6 @@
 <template>
 <section class="w-full pb-10 p-4">
-        <h1 class="text-2xl font-bold p-2 mb-3">Kotak Masuk</h1>
+        <h1 class="text-2xl font-bold p-2 mb-3">{{ $t('Notif')}}</h1>
 
         <div v-for="(n,index) in notif" :key="index" class="w-full flex flex-wrap border-b border-theme_primary_light rounded-lg
         hover:bg-theme_primary_light

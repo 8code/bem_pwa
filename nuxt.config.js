@@ -113,9 +113,9 @@ export default {
               dark: 'Gelap',
               Home: 'Beranda',
               search: 'Cari',
-              Group: 'Group',
-              Notif: 'Kotak',
-              Profile: 'Profile',
+              Group: 'Grup',
+              Notif: 'Aktivitas',
+              Profile: 'Saya',
               Explore: 'UntukMu',
               Followed: 'Diikuti'
 
@@ -136,7 +136,7 @@ export default {
               search: 'Cari',
               Group: 'Group',
               Notif: 'Kotak',
-              Profile: 'Profile',
+              Profile: 'Saya',
               Explore: 'UntukMu',
               Followed: 'Diikuti'
               
