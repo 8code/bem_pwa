@@ -1,8 +1,8 @@
 <template>
     <div class="mx-auto text-sm flex p-2">
-            <nuxt-link  :to="'/'+name"  :class="($route.path == '/'+name) ? activeClass : nonActiveClass"> {{ $t("Home")}} </nuxt-link>
+            <nuxt-link  :to="'/'+name"  :class="($route.path == '/'+name) ? activeClass : nonActiveClass"> {{ name }} </nuxt-link>
             <nuxt-link :to="'/'+name+'/explore'" :class="($route.path == '/'+name+'/explore') ? activeClass : nonActiveClass">
-            {{ $t("Explore")}}
+            {{ $t("Explore") }}
             </nuxt-link>
                 <nuxt-link to="/search" class="px-5 mx-1 ml-auto py-2  bg-theme_primary_dark text-primary  border-primary rounded-full font-bold">
                     <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

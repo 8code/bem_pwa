@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full" v-touch:swipe="to">
+  <div class="w-full" >
 
 
 

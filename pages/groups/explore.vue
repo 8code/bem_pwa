@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full"  v-touch:swipe="to">
+  <div class="w-full" >
     <subheader name="groups" />
 
     <section class="w-full rounded-xl pb-20">
