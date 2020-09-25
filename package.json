@@ -2,28 +2,26 @@
   "name": "MABA",
   "version": "1.0.0",
   "private": true,
-  "config": {
-    "nuxt": {
-      "host": "192.168.1.101",
-      "port": "3000"
-    }
-  },
-  
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "export": "nuxt export",
+    "generate": "nuxt generate",
     "serve": "nuxt serve"
   },
   "dependencies": {
     "@branu-jp/v-drag": "^0.1.0",
     "@dongido/vue-viaudio": "^0.3.5",
     "@nuxtjs/axios": "^5.11.0",
+    "@nuxtjs/firebase": "^6.1.1",
     "@nuxtjs/onesignal": "^3.0.0-beta.16",
     "@nuxtjs/pwa": "^3.0.0-beta.20",
+    "firebase": "^7.21.1",
+    "laravel-echo": "^1.8.1",
     "nuxt": "^2.13.0",
     "nuxt-i18n": "^6.13.1",
+    "nuxt-socket-io": "^1.1.11",
     "nuxt-vue-select": "^0.1.4",
     "push.js": "^1.0.12",
     "pusher-js": "^7.0.0",
@@ -32,6 +30,7 @@
     "vue2-touch-events": "^2.2.1"
   },
   "devDependencies": {
+    "@nuxtjs/laravel-echo": "^1.1.0",
     "@nuxtjs/tailwindcss": "^2.0.0"
   }
 }

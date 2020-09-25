@@ -8,6 +8,8 @@
         class="w-full mx-auto flex flex-wrap pt-2 content-start min-h-screen bg-theme_primary "
         style="max-width:600px;"
       >
+
+    
         <media-player />
         <transition name="slide-fade">
 
@@ -57,7 +59,7 @@
                 $route.path.includes('/groups') ? activeClass : nonActiveClass
               "
             >
-              {{ $t("Groups") }}
+              {{ $t("Group") }}
             </span>
           </nuxt-link>
 
@@ -69,7 +71,7 @@
             <span
               :class="$route.path == '/apps' ? activeClass : nonActiveClass"
             >
-              App
+              Maba
             </span>
           </nuxt-link>
 
@@ -189,7 +191,7 @@
             <span
               :class="$route.path == '/apps' ? activeClassLg : nonActiveClassLg"
               >
-              App
+              Maba
             </span>
           </nuxt-link>
 
@@ -255,6 +257,10 @@
         </div>
       </nav>
     </div>
+
+
+
+
   </div>
 </template>
 <style scoped>
@@ -270,9 +276,10 @@ import Push from 'push.js'
 export default {
   data() {
     return {
+      notifikasi: [],
       windowTop: 0,
-      tactiveClass: "rounded-full flex px-1 py-2 mx-1 flex-wrap content-center justify-center items-center pt-2",
-      tnonActiveClass:"rounded-full flex px-1 py-2 mx-1 flex-wrap content-center justify-center items-center text-default pt-2",
+      tactiveClass: "text-lg font-bold rounded-full flex px-1 py-2 mx-1 flex-wrap content-center justify-center items-center pt-2",
+      tnonActiveClass:"text-lg font-bold rounded-full flex px-1 py-2 mx-1 flex-wrap content-center justify-center items-center text-default pt-2",
       activeClass: "text-center text-xs2 w-full rounded-lg mt-1  text-primary",
       nonActiveClass: "text-center text-xs2 w-full  text-default mt-1",
       activeClassLg:
@@ -287,10 +294,13 @@ export default {
     }
   },
   methods:{
-    sayHayPush(){
+ 
+    sayHayPush(text){
 
-        Push.create("Hai Apa Kabar "+this.$store.state.user.name+" !", {
-            body: "Jangan Lupa Makan say... :) ",
+
+        console.log(text)
+        Push.create("Halo "+this.$store.state.user.name+" !", {
+            body: text,
             icon: '/icon.png',
             timeout: 4000,
             onClick: function () {
@@ -304,15 +314,10 @@ export default {
 
   created() {
 
-    this.sayHayPush()
-
-    // setInterval(this.sayHayPush(), 86400000)
-
- 
+  
 
     let token = localStorage.getItem("access_token") || "";
     this.$axios.setHeader("Authorization", "Bearer " + token);
-
 
 
       this.$axios.$get("/profile-by-id/" + this.$store.state.user.id)
@@ -331,10 +336,16 @@ export default {
   mounted() {
 
 
-   
 
-
+    
     var that = this;
+
+      var notifff = this.$fireDb.ref('notifikasi');
+         notifff.on('value', function(snapshot) {
+            that.sayHayPush((snapshot.val().text))
+        });
+
+
     window.addEventListener("scroll", function() {
       if (window.scrollY > that.windowTop) {
         if (window.scrollY > 10) {

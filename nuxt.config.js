@@ -48,8 +48,7 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    '~/plugins/v-touch',
-    { src: '~plugins/pusher.js', ssr: false },
+    // '~/plugins/v-touch',
   ],
   /*
   ** Auto import components
@@ -68,9 +67,28 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
+    [
+      '@nuxtjs/firebase',
+      {
+        config: {
+          apiKey: "AIzaSyDMdSD5HDPkbBa_dKoTGrY5Lj-0da4ksZo",
+          authDomain: "aplikasi-maba.firebaseapp.com",
+          databaseURL: "https://aplikasi-maba.firebaseio.com",
+          projectId: "aplikasi-maba",
+          storageBucket: "aplikasi-maba.appspot.com",
+          messagingSenderId: "235964714752",
+          appId: "1:235964714752:web:ed188a7914ee5f232f2de5",
+          measurementId: "G-PXHVCJ8ZV7"
+        },
+        services: {
+          firestore: true,
+          realtimeDb: true,
+        }
+      }
+    ],
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+
     [
       'nuxt-i18n',
       {
@@ -150,6 +168,7 @@ export default {
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
+
  axios: {
     baseURL: process.env.BASE_URL,
   },
