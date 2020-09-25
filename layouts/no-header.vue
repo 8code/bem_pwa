@@ -302,7 +302,7 @@ export default {
         Push.create("Halo "+this.$store.state.user.name+" !", {
             body: text,
             icon: '/icon.png',
-            timeout: 4000,
+            timeout: 50000,
             onClick: function () {
                 window.location.href = "https://maba.my.id/notifications"
             }
