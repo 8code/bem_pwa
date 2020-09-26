@@ -19,7 +19,6 @@
 
       <nav
         class="fixed bottom-0 flex lg:hidden w-full bg-theme_primary"
-        :class="!$store.state.topMenu ? 'hidden' : ''"
       >
         <div class="mx-auto flex content-start text-primary font-bold">
           <nuxt-link
