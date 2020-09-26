@@ -304,7 +304,7 @@ export default {
             icon: '/icon.png',
             timeout: 120000,
             onClick: function () {
-                this.$router.push("/notifications")
+                window.location.href = "https://maba.my.id/notifications"
             }
         });
  

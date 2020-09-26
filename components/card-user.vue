@@ -70,6 +70,11 @@ export default {
       this.$axios.get("/user/follow/"+id)
         .then(res => {
             this.followTemp = true
+            this.$store.commit("setNotif",{
+              to: id,
+              text: "@"+this.$store.state.user.username+" Mengikuti anda"
+            })
+            
         })
     }
   }
