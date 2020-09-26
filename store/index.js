@@ -32,8 +32,14 @@ const createStore = () => {
 
 
         mutations:{
+        
             setNotif (state, data) {
-                state.notif.push(data)
+                console.log(data)
+                this.$fireDb.ref('notifikasi/'+data.to).update({
+                   text: data.text,
+                }).then(function(snapshot) {
+                    console.log(snapshot)
+                });
               },
             loading(state,to){
                 state.loading = to

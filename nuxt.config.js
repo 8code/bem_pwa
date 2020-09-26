@@ -4,7 +4,7 @@ export default {
   ** Nuxt rendering mode
   ** See https://nuxtjs.org/api/configuration-mode
   */
-  mode: 'spa',
+ mode: "spa",
   pwa: {
     meta: {
       title: 'Aplikasi Maba - Sosial Media Mahasiswa Baru',
@@ -16,6 +16,9 @@ export default {
       theme_color: '#EDF2F7',
       start_url: "/",
       description: "Aplikasi Sosial Media Mahasiswa Baru, Mahasiswa Aktif Maupun Alumni, dengan berbagai fitur yang menarik"
+    },
+    workbox: {
+      dev: true // or use a global variable to track the current NODE_ENV, etc to determine dev mode
     }
   },
   /*
@@ -83,6 +86,7 @@ export default {
         services: {
           firestore: true,
           realtimeDb: true,
+          messaging: true,
         }
       }
     ],

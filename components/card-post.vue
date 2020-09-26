@@ -191,7 +191,8 @@ export default {
         followQuest(id){
                  this.$axios.get("/quest/follow/"+id)
                         .then(res => {
-                                        this.followTemp = true
+                            
+                            this.followTemp = true
 
                         })
         },

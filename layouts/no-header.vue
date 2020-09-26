@@ -302,7 +302,7 @@ export default {
         Push.create("Halo "+this.$store.state.user.name+" !", {
             body: text,
             icon: '/icon.png',
-            timeout: 50000,
+            timeout: 120000,
             onClick: function () {
                 window.location.href = "https://maba.my.id/notifications"
             }
@@ -313,6 +313,7 @@ export default {
   },
 
   created() {
+
 
   
 
@@ -334,17 +335,14 @@ export default {
   },
 
   mounted() {
-
-
-
-    
+      
     var that = this;
 
-      var notifff = this.$fireDb.ref('notifikasi');
+      var notifff = this.$fireDb.ref('notifikasi/'+this.$store.state.user.id);
          notifff.on('value', function(snapshot) {
+           console.log(snapshot.val())
             that.sayHayPush((snapshot.val().text))
         });
-
 
     window.addEventListener("scroll", function() {
       if (window.scrollY > that.windowTop) {

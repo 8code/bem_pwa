@@ -52,9 +52,18 @@ export default {
           quest_id: this.quest.id,
           text: this.text,
         }).then(res => {
+       
+          this.$emit('kirim')
+
+            this.$store.commit("setNotif",{
+                to: this.quest.user_id,
+                text: "@"+this.$store.state.user.username+" membalas : "+this.text
+              })
+
           this.text= ''
           this.media= ''
-          this.$emit('kirim')
+
+
         })
       }
     }
