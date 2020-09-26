@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen">
+    <div class="min-h-screen pb-20">
       <card-post v-on:balas="balasQuest"  active="true" bigtext="true" v-if="quest" :data="data" link="true" />
       <h1  v-if="balas_quest" class="px-4">Balasan :</h1>
 

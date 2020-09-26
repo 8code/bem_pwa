@@ -23,7 +23,7 @@
                    {{ n.balasan }}
                 </span>
                  <span v-else class="font-bold  text-sm  p-1 mb-1 rounded-sm">
-                   {{ n.text.substring(0, 20) }}
+                   {{ n.text.substring(0, 200) }}
                 </span>
                
             </nuxt-link>

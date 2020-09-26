@@ -1,23 +1,7 @@
 <template>
       <div v-if="data.id" class="w-full p-2 relative cursor-pointer border-b border-theme_primary_light overflow-hidden" > 
-                                  <div class="shadow-sm rounded-xl bg-theme_primary hover:bg-theme_primary_dark p-3 " :class="(active) ? 'bg-theme_primary_dark' : ''">
+                                  <div class="shadow-sm rounded-xl bg-theme_primary hover:bg-theme_primary_dark p-2 " :class="(active) ? 'bg-theme_primary_dark' : ''">
 
-                                        <div v-if="!hideBalasan" class="w-full">
-                                        <nuxt-link v-if="data.quest_id" class="p-1 text-xs w-full" :to="'/quest/'+data.quest_id" >
-                                   
-                                           Membalas :
-                                           
-                                           <nuxt-link :to="`/quest/${data.quest_id}`" class=" text-primary rounded-xl p-1 px-2">
-                                        
-                                           <b> @{{ data.membalas_user }}</b>
-                                               : 
-                                            {{ data.quest.text.substring(0, 20) }} 
-                                               
-                                            </nuxt-link> 
-
-                                      
-                                        </nuxt-link>
-                                        </div>
 
                                             <div v-if="data.group">
                                                 <span v-if="data.group.user_id == data.user.id" class="bg-primary px-2 rounded-xl  text-xs text-secondary ">admin</span>   
@@ -35,7 +19,7 @@
                                             <img class="w-10 h-10 rounded-full" :src="data.user.avatar" alt="Event 1">
 
                                              <nuxt-link class="p-2"  :to="'/@'+data.user.username">
-                                                <span class="font-bold text-lg">{{ data.user.name }}
+                                                <span class="font-bold text-md">{{ data.user.name }}
                                                 </span> 
                                              
                                                 <span class="text-primary text-xs">@{{ data.user.username }}</span> 
@@ -58,6 +42,26 @@
 
                                             <div class="flex flex-wrap items-start pl-8">
                                                
+                                               
+                                                        <div v-if="!hideBalasan" class="w-full">
+                                                        <nuxt-link v-if="data.quest_id" class="p-1 text-sm w-full" :to="'/quest/'+data.quest_id" >
+                                                
+                                                        
+                                                        
+                                                        <nuxt-link :to="`/quest/${data.quest_id}`" class=" text-primary rounded-xl">
+                                                        
+                                                        <b> @{{ data.membalas_user }}</b>
+                                                            : 
+                                                            {{ data.quest.text.substring(0, 60) }} ... 
+                                                            
+                                                        </nuxt-link> 
+
+                                                        <span> Membalas :</span>
+
+                                                    
+                                                        </nuxt-link>
+                                                        </div>
+                                                        
                                             
                                                     <div v-if="data.embed" class="py-2 w-full media-preview" @click="$store.commit('setMediaPlayer',{data: data,path:$route.path})">
                                                      
