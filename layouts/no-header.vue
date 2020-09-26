@@ -304,7 +304,7 @@ export default {
             icon: '/icon.png',
             timeout: 120000,
             onClick: function () {
-                window.location.href = "https://maba.my.id/notifications"
+                this.$router.push("/notifications")
             }
         });
  
@@ -340,7 +340,7 @@ export default {
 
       var notifff = this.$fireDb.ref('notifikasi/'+this.$store.state.user.id);
          notifff.on('value', function(snapshot) {
-           console.log(snapshot.val())
+            console.log(snapshot.val())
             that.sayHayPush((snapshot.val().text))
         });
 
