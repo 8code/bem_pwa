@@ -77,14 +77,14 @@
                                                         </div>
                                                     </div>
 
-                                                   <div class="w-full media-preview py-2">
+                                                   <div v-if="data.video || data.img" class="w-full media-preview py-2">
                                                         <img @click="$store.commit('setMediaPlayer',{data: data,path:$route.path})" v-if="data.video" src="/play.svg" alt="logo" class="absolute play-button-youtube text-primary bg-primary rounded-full p-1">
                                                         <img @click="$store.commit('setMediaPlayer',{data: data,path:$route.path})" v-if="data.video" class="w-full rounded-xl" :src="data.thumb">
                                                         <img @dblclick="followQuest(data.id)" v-else class="w-full rounded-xl" :src="data.img">
                                                    </div>
                                               
 
-                                                <nuxt-link v-if="!active"  :to="`/quest/${data.id}`" class="w-full pb-4 text-sm"  >
+                                                <nuxt-link v-if="!active"  :to="`/quest/${data.id}`" class="w-full pb-2"  >
                                                     <span v-for="(tx,i) in textToArray(data.text.slice(0, 200)+' ...')" :key="i"> 
                                                         
                                                         <nuxt-link class="text-primary" v-if="(tx.slice(0, 1) == '@')" :to="'/'+tx"> {{tx}} </nuxt-link>
@@ -93,7 +93,7 @@
 
                                                     </span>
                                                 </nuxt-link>
-                                                 <div v-else class="w-full pb-4 text-sm" >
+                                                 <div v-else class="w-full pb-2" >
                                                     <span v-for="(tx,i) in textToArray(data.text)" :key="i"> 
                                                         
                                                         <nuxt-link class="text-primary" v-if="(tx.slice(0, 1) == '@')" :to="'/'+tx"> {{tx}} </nuxt-link>
@@ -189,12 +189,11 @@ export default {
             }
         },
         followQuest(id){
-                 this.$axios.get("/quest/follow/"+id)
-                        .then(res => {
-                            
-                            this.followTemp = true
-
-                        })
+            // console.log("Follow"+id)
+            this.$axios.get("/quest/follow/"+id)
+                .then(res => {
+                    this.followTemp = true
+                })
         },
         parseQuestDate(data){
             return util.parseQuestDate(data)

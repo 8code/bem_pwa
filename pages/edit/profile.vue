@@ -250,7 +250,7 @@ export default {
       ); // 80% compressed jpeg file
 
         if(this.avatar){
- this.d.avatar = this.avatar.generateDataUrl();
+              this.d.avatar = this.avatar.generateDataUrl();
         }
        
       if (this.d.name != null && this.d.username != null && this.d.gender != null && this.d.angkatan != null && this.d.study_program != null && this.d.university != null) {
