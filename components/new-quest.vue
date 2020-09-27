@@ -87,8 +87,8 @@
         >
         <option value="" selected>Umum</option>
         <option value="1">Pertanyaan </option>
-        <option value="3">Donasi</option>
         <option value="2">Event</option>
+        <option value="3">Donasi</option>
         <option value="4">Katalog</option>
         <option value="5">Loker</option>
 

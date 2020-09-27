@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen pb-20">
+    <div class="min-h-screen pb-20 mb-20">
       <card-post v-on:balas="balasQuest"  active="true" bigtext="true" v-if="quest" :data="data" link="true" />
       <h1  v-if="balas_quest" class="px-4">Balasan :</h1>
 
@@ -14,6 +14,7 @@
 
 <script>
 export default {
+  scrollToTop: true,
   layout: "no-header",
   middleware: "auth",
   data() {
@@ -59,8 +60,7 @@ export default {
         this.page = this.page+1
         this.$axios.$get("/quest/balasan/"+this.data.id+"?page="+this.page)
         .then(res => {
-          res.data = Object.values(res.data)
-          if(Object.values(res.data).length > 0){
+          if(res.total > 0){
                let tempp = Object.values(this.quest.data)
                this.quest.data = tempp.concat(res.data)
           }else{
@@ -82,7 +82,7 @@ export default {
       this.last_page = false
       this.page = 1 
       this.$axios.$get("/quest/balasan/"+this.data.id+"?page="+this.page).then(res => {
-        this.quest = res;
+        this.quest = res.data;
       });
     }
   }

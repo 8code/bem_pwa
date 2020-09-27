@@ -11,10 +11,9 @@
 
                                                     </nuxt-link>
                                             </div>
-                                            
-
+                                         
                                      
-                                        <div class="flex pt-2">
+                                        <div class="flex pt-2" v-if="!donasi">
 
                                             <img class="w-10 h-10 rounded-full" :src="data.user.avatar" alt="Event 1">
 
@@ -40,7 +39,7 @@
                                         </div>
                                         <div class="w-auto flex "> 
 
-                                            <div class="flex flex-wrap items-start pl-8">
+                                            <div class="flex flex-wrap items-start" :class="(donasi) ? '' : 'pl-8'">
                                                
                                                
                                                         <div v-if="!hideBalasan" class="w-full">
@@ -88,28 +87,36 @@
                                                    </div>
                                               
 
-                                                <nuxt-link v-if="!active"  :to="`/quest/${data.id}`" class="w-full pb-2"  >
-                                                    <span v-for="(tx,i) in textToArray(data.text.slice(0, 200)+' ...')" :key="i"> 
+                                                <nuxt-link v-if="!active"  :to="`/quest/${data.id}`" class="w-full pb-2  text-theme_secondary"  >
+                                                    <span v-for="(tx,i) in textToArray(data.text.slice(0, 200))" :key="i"> 
                                                         
                                                         <nuxt-link class="text-primary" v-if="(tx.slice(0, 1) == '@')" :to="'/'+tx"> {{tx}} </nuxt-link>
                                                         <nuxt-link class="text-primary" v-else-if="(tx.slice(0, 1) == '#')" :to="'/'+tx.substring(1)"> {{tx}} </nuxt-link>
-                                                        <span v-else> {{tx}} </span>
+                                                        <span v-else> 
+                                                            
+                                                            {{tx}}
+                                                             <div class="w-full pb-2" v-if="(tx.slice(tx.length - 1,tx.length) == '.')"></div>
 
+                                                        </span>
                                                     </span>
+                                                    <span v-if="(data.text).length > 200">...</span>
                                                 </nuxt-link>
-                                                 <div v-else class="w-full pb-2" >
+                                                 <div v-else class="w-full pb-2  text-theme_secondary">
                                                     <span v-for="(tx,i) in textToArray(data.text)" :key="i"> 
                                                         
                                                         <nuxt-link class="text-primary" v-if="(tx.slice(0, 1) == '@')" :to="'/'+tx"> {{tx}} </nuxt-link>
                                                         <nuxt-link class="text-primary" v-else-if="(tx.slice(0, 1) == '#')" :to="'/'+tx.substring(1)"> {{tx}} </nuxt-link>
                                                         
                                                         <span v-else>
+                                                           
                                                             <span v-if="link"> 
                                                                 <a class="text-primary" :href="tx" target="_BLANK" v-if="isLink(tx)">{{tx}}</a>    
                                                                 <span v-else> {{tx}} </span>
                                                                 
                                                             </span>
                                                             <span v-else> {{tx}} </span>
+                                                           
+                                                            <div class="w-full pb-2" v-if="(tx.slice(tx.length - 1,tx.length) == '.')"></div>
                                                          </span>
 
                                                     </span>
@@ -126,7 +133,7 @@
 
                             
                                             <div class="flex mx-3">
-                                                    <button @click="$emit('balas',data)" class="flex relative ml-auto py-1 px-5 mx-2 rounded-tl-xl rounded-br-xl text-xs text-primary  shadow-sm">
+                                                    <button v-if="!donasi" @click="$emit('balas',data)" class="flex relative ml-auto py-1 px-5 mx-2 rounded-tl-xl rounded-br-xl text-xs text-primary  shadow-sm">
                                                         <svg  width="12px" height="12px"  viewBox="0 0 16 16" class="bi bi-plus-circle mt-1 mr-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                             <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
                                                             <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
@@ -171,7 +178,7 @@
 import util from '~/assets/js/util'
 
 export default {
-    props:['data','bigtext','active','hideBalasan',"link"],
+    props:['data','bigtext','active','hideBalasan',"link","donasi"],
     data(){
         return{
             btnFollow: 'flex relative ml-auto py-1 px-3 rounded-tl-xl rounded-br-xl shadow-sm text-xs text-theme_secondary',

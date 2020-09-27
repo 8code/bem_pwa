@@ -1,63 +1,56 @@
 <template>
-<div class="w-full flex flex-wrap relative justify-center p-4">
-<!-- Content -->
+<div class="w-full flex flex-wrap relative">
+        <h1 class="font-bold text-left text-xl p-2 px-4 w-full">
+                Donasi
+        </h1>
 
-       <!-- <div :class="!$store.state.topMenu ? 'hidden' : ''" class="fixed bottom-0 mb-20 flex"> -->
-           
-       <!-- </div> -->
+        <div class="p-2 flex flex-row bg-theme_primary_dark rounded-xl" style="overflow-x:scroll">
+                <div v-for="quest in donations" :key="quest.id" class="cursor-pointer w-full relative mx-1  rounded-xl flex items-center justify-center" >
+                        <card-post  donasi="true" :data="quest"  style="min-width:320px" />
+                </div>   
+                  <div v-if="donations" class="cursor-pointer px-6 font-bold text-xl relative mx-1 bg-primary text-secondary rounded-xl flex items-center justify-center" >
+                          Lihat Donasi Lainnya 
+                </div>   
+                  <div v-else class="cursor-pointer px-6 font-bold text-xl relative mx-1 bg-primary text-secondary rounded-xl flex items-center justify-center" >
+                       Tidak Ada Donasi
+                </div> 
+        </div>
 
-        <section class="w-full ">
-            
-                <!-- <h1 class="text-4xl w-full text-center">Coming Soon </h1> -->
-                <ul>
-                        <li class="flex flex-wrap">
-                                <h1 class="w-full p-2 font-bold">Events</h1>
-                                <div v-for="i in 2" :key="i" class="w-1/2 p-1 relative">
-                                        <img class="rounded-xl z-20 opacity-50" :src="`/sample/event-${i}.jpg`" alt="Event">
-                                        <span class="absolute bottom-0 mb-5 mx-2 font-bold bg-theme_primary px-2 rounded-full">Nama Event</span>
-                                </div>
-                        </li>
-                        <li class="flex flex-wrap">
-                                <h1 class="w-full p-2 font-bold">Donasi</h1>
-                                <div v-for="i in 2" :key="i" class="w-1/2 p-1 relative">
-                                        <img class="rounded-xl z-20 opacity-50" :src="`/sample/donasi-${i}.jpg`" alt="Donasi">
-                                        <span class="absolute bottom-0 mb-5 mx-2 font-bold bg-theme_primary px-2 rounded-full">Nama Donasi</span>
-                                </div>
-                        </li>
-                            <li class="flex flex-wrap">
-                                <h1 class="w-full p-2 font-bold">Cari Teman</h1>
-                                <div v-for="i in 2" :key="i" class="w-1/2 p-1">
-                                        <img class="rounded-xl" :src="`/sample/group-${i}.jpg`" alt="Group">
-                                </div>
-                        </li>
-                        <li class="w-full flex flex-wrap relative justify-center p-4">
-                        <a class="mx-2 text-center mt-4 w-full font-bold p-2 px-6 rounded-full bg-theme_primary_dark text-primary" target="_BLANK" href="https://trello.com/b/cEeYmDi1/aplikasi-maba">
+
+        <h1 class="font-bold text-left text-xl p-2 px-4 w-full">
+                Acara
+        </h1>
+
+        <div class="p-2 flex flex-row bg-theme_primary_dark rounded-xl" style="overflow-x:scroll">
+                <div v-for="quest in events" :key="quest.id" class="cursor-pointer w-full relative mx-1  rounded-xl flex items-center justify-center" >
+                        <card-post  donasi="true" :data="quest"  style="min-width:320px" />
+                </div>   
+                <div v-if="events" class="cursor-pointer px-6 font-bold text-xl relative mx-1 bg-primary text-secondary rounded-xl flex items-center justify-center" >
+                          Lihat Acara Lainnya 
+                </div>   
+                 <div v-else class="cursor-pointer px-6 font-bold text-xl relative mx-1 bg-primary text-secondary rounded-xl flex items-center justify-center" >
+                       Tidak Ada Acara
+                </div>   
+        </div>
         
+        <section class="w-full mb-20 pb-20 ">
+                <ul>
+                        <li class="w-full flex flex-wrap relative justify-center">
+                        <a class="text-center mt-4 w-full font-bold p-2 px-6 rounded-full bg-theme_primary_dark text-primary" target="_BLANK" href="https://trello.com/b/cEeYmDi1/aplikasi-maba">
+
                                 Pengembangan Aplikasi
                         </a>
-                        <a class="mx-2 text-center mt-4 w-full font-bold p-2 px-6 rounded-full bg-primary text-secondary" target="_BLANK" href="https://saweria.co/akew">
+                        <a class="text-center mt-4 w-full font-bold p-2 px-6 rounded-full bg-primary text-secondary" target="_BLANK" href="https://saweria.co/akew">
                         Dukung Kami :)
                         </a>
                                         
-                        </li>
-                    
+                </li>
+                
                         
                 </ul>
 
-                
-                <!-- <div class="w-full flex flex-wrap">
-                        
-                    <div class="flex flex-wrap bg-primary text-secondary rounded-xl text-center my-3 py-3 w-full">
-                                <h1 class="w-full p-2 font-bold">Catatan Keuangan</h1>
-                        </div>
-                          <div class="flex flex-wrap bg-primary text-secondary rounded-xl text-center my-3 py-3 w-full">
-                                <h1 class="w-full p-2 font-bold">Fun Game</h1>
-                        </div>
-                </div> -->
 
-
-
-        </section>
+        </section> 
 
 
           
@@ -69,6 +62,25 @@
 <script>
 export default {
   layout: 'no-header',
-  middleware: 'auth'
+  middleware: 'auth',
+  data(){
+          return{
+                  donations: '',
+                  events: ''
+          }
+  },
+  mounted(){
+     this.$axios.get("/donations")
+        .then(res => {
+                this.donations = res.data
+                // console.log(res);
+        })
+     
+        this.$axios.get("/events")
+        .then(res => {
+                this.events = res.data
+                // console.log(res);
+        })
+  }
 }
 </script>

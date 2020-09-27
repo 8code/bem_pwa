@@ -17,9 +17,9 @@ export default {
       start_url: "/",
       description: "Aplikasi Sosial Media Mahasiswa Baru, Mahasiswa Aktif Maupun Alumni, dengan berbagai fitur yang menarik"
     },
-    workbox: {
-      dev: true // or use a global variable to track the current NODE_ENV, etc to determine dev mode
-    }
+    // workbox: {
+    //   dev: true // or use a global variable to track the current NODE_ENV, etc to determine dev mode
+    // }
   },
   /*
   ** Nuxt target
