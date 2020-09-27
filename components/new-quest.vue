@@ -189,14 +189,13 @@
                 prevent-white-space
                 :width="img.width"
                 :height="img.height"
-                 :quality="1"
+                 :quality="2"
                 :placeholder="'Upload Foto'"
               ></croppa>
-  <br>
+              <br>
               <button v-if="imgTemp"  @click="cropImg" class="bg-primary px-4 py-2 rounded-lg text-secondary">
                 Crop & Simpan
               </button>
-
 
              </div>
         </div>
@@ -315,7 +314,6 @@ export default {
       this.$axios
         .$post("/quest", this.d)
         .then(res => {
-          // console.log(res)
           this.$router.push("/quest/"+res.id)
         });
     }
