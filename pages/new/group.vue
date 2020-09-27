@@ -15,6 +15,7 @@
                           prevent-white-space
                           :height="150"
                           :placeholder="'50x50px'"
+                          :quality="1"
                           @init="onInit"
                           ></croppa>
                 
@@ -131,13 +132,6 @@ export default {
 
     },
     async save(){
-       this.avatar.generateBlob(
-                blob => {
-                  // write code to upload the cropped image file (a file is a blob)
-                },
-                'image/jpeg',
-                0.8
-              ); // 80% compressed jpeg file
 
         if(this.d.name != '' && this.d.desc != '' && this.d.type != ''){
           this.d.avatar = this.avatar.generateDataUrl()

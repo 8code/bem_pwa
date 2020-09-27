@@ -16,6 +16,7 @@
                           :placeholder="'100x100px'"
                           @init="onInit"
                           :initial-image="d.avatar"
+                          :quality="1"
                           ></croppa>
                 
 
@@ -178,13 +179,7 @@ export default {
 
     },
     async save(){
-       this.avatar.generateBlob(
-                blob => {
-                  // write code to upload the cropped image file (a file is a blob)
-                },
-                'image/jpeg',
-                0.8
-              ); // 80% compressed jpeg file
+   
 
       this.d.avatar = this.avatar.generateDataUrl()
 

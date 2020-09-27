@@ -189,6 +189,7 @@
                 prevent-white-space
                 :width="img.width"
                 :height="img.height"
+                 :quality="1"
                 :placeholder="'Upload Foto'"
               ></croppa>
   <br>
@@ -241,18 +242,13 @@ export default {
   },
   methods: {
     cropImg(){
-      this.imgTemp.generateBlob(
-          blob => {
-            // write code to upload the cropped image file (a file is a blob)
-          },
-          "image/jpeg",
-          0.8
-        ); // 80% compressed jpeg file
 
           if(this.imgTemp){
+     
+
                 this.d.img = this.imgTemp.generateDataUrl();
 
-                // console.log(this.d.img)
+                console.log(this.d.img)
                 this.showModal = ''
                 this.$nextTick(() =>  this.$refs.inputTextArea.focus())
 

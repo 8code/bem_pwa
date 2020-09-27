@@ -17,6 +17,8 @@
                 :placeholder="'100x100px'"
                 @init="onInit"
                 :initial-image="$store.state.user.avatar"
+                :quality="1"
+
               ></croppa>
 
               <div class="pl-4 flex flex-wrap w-full">
@@ -241,13 +243,6 @@ export default {
       });
     },
     async save() {
-      this.avatar.generateBlob(
-        blob => {
-          // write code to upload the cropped image file (a file is a blob)
-        },
-        "image/jpeg",
-        0.8
-      ); // 80% compressed jpeg file
 
         if(this.avatar){
               this.d.avatar = this.avatar.generateDataUrl();
