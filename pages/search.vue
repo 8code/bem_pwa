@@ -1,7 +1,7 @@
 <template>
     <div>
     
-       <div class="p-4">
+       <div class="p-2">
         <input
           type="text"
           class="w-full py-2 px-5 rounded-full bg-theme_primary_dark"
@@ -12,7 +12,7 @@
           ref="keyword"
 
         />
-
+<div v-if="filter.search">
   <div class="py-3 flex flex-row" style="overflow-x:scroll">
     
       <div @click="filter.type = 'Quest';getData()"
@@ -65,6 +65,52 @@
       </section>
 
 
+</div>
+<div v-else>
+
+
+
+      <ul class="p-2">
+        <li class="bg-theme_primary_dark my-2 rounded-xl p-3">
+          <span class="p-2 text-theme_secondary">Tagar Populer</span>
+          <div class="p-2 text-primary font-bold text-xl" v-for="(tagar,index) in tagarPopuler" :key="tagar.tagar">
+            {{index+1}}. 
+            <nuxt-link :to="'/search?keyword='+(tagar.tagar).substring(1)">
+            {{ tagar.tagar}}
+             </nuxt-link>
+            ({{tagar.total}})
+          </div>
+           <!-- <nuxt-link to="/groups/explore" class="p-2 text-primary flex font-bold text-sm">
+            Lihat Tagar Lainnya
+          </nuxt-link> -->
+        </li>
+        <li class="bg-theme_primary_dark my-2 rounded-xl py-3">
+          <span class="p-2 text-theme_secondary">Group Populer</span>
+           
+            <card-group v-for="g in groupPopuler" :key="g.id" :group="g" follow="true" />
+          <nuxt-link to="/groups/explore" class="p-2 text-primary flex font-bold text-sm">
+            Lihat Group Lainnya
+          </nuxt-link>
+        </li>
+         <li class="bg-theme_primary_dark my-2 rounded-xl py-3">
+           <span class="p-2 text-theme_secondary">Mahasiswa Populer</span>
+           
+            <card-user v-for="q in userPopuler" :key="q.id" :data="q.user" />
+
+              <!-- <nuxt-link to="/users/explore" class="p-2 text-primary flex font-bold text-sm">
+                Lihat Mahasiswa Lainnya
+              </nuxt-link> -->
+        </li>
+      </ul>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      
+</div>
+
       </div>
     </div>
 </template>
@@ -87,25 +133,30 @@ export default {
             quest: '',
             group: '',
             user: '',
-            last_page: false
+            last_page: false,
+             tagarPopuler: '',
+            groupPopuler: '',
+            userPopuler: '',
          }
      },
      created(){
-
-      //  console.log(this.$route.query)
-      
 
        if(this.$route.query.keyword){
          this.filter.search = this.$route.query.keyword
          this.getData()
        }else{
-          this.$nextTick(() =>  this.$refs.keyword.focus())
+           this.getTagarPopuler()
+          this.getGroupPopuler()
+          this.getUserPopuler()
        }
 
        
       
      },
      mounted(){
+       if(this.filter.search){
+
+       
         var that = this;
         window.addEventListener("scroll", function() {
             let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
@@ -116,9 +167,29 @@ export default {
                 that.loadMore = false
               }
             }
-        });
+        })
+
+       }
      },
      methods:{
+           getTagarPopuler(){
+      this.$axios.get("/tagar-populer")
+        .then(res => {
+          this.tagarPopuler = res.data
+        })
+    },
+    getGroupPopuler(){
+      this.$axios.get("/group-populer")
+        .then(res => {
+          this.groupPopuler = res.data
+        })
+    },
+    getUserPopuler(){
+      this.$axios.get("/user-populer")
+        .then(res => {
+          this.userPopuler = res.data
+        })
+    },
          getData(){
           this.last_page = false
            if(this.filter.type == 'Quest'){

@@ -2,7 +2,7 @@
   <div class="w-full" >
 
     <div class="mx-auto text-sm flex  px-2">
-        <nuxt-link to="/" class="px-5 bg-theme_primary_dark text-primary hover:bg-primary hover:text-white hover:border-0 mx-1 py-2  rounded-full font-bold"> {{ $t("Home")}} </nuxt-link>
+        <nuxt-link to="/" class="px-5 bg-theme_primary_dark text-primary hover:bg-primary hover:text-white hover:border-0 mx-1 py-2  rounded-full font-bold"> {{ $t("Followed")}} </nuxt-link>
           <nuxt-link to="/explore" class="px-5 mx-1  py-2  bg-primary text-white rounded-full font-bold">
           {{ $t("Explore")}} 
           </nuxt-link>
@@ -15,48 +15,6 @@
         
     </div>
 
-
-
-      <ul class="p-2">
-        <li class="bg-theme_primary_dark my-2 rounded-xl p-3">
-          <span class="p-2 text-theme_secondary">Tagar Populer</span>
-          <div class="p-2 text-primary font-bold text-xl" v-for="(tagar,index) in tagarPopuler" :key="tagar.tagar">
-            {{index+1}}. 
-            <nuxt-link :to="'/search?keyword='+(tagar.tagar).substring(1)">
-            {{ tagar.tagar}}
-             </nuxt-link>
-            ({{tagar.total}})
-          </div>
-        </li>
-        <li class="bg-theme_primary_dark my-2 rounded-xl py-3">
-          <span class="p-2 text-theme_secondary">Group Populer</span>
-           <!-- <nuxt-link class="p-2 text-primary flex font-bold text-xl" v-for="(g,index) in groupPopuler" :key="g.id" :to="g.username">
-            {{index+1}}. 
-            <img :src="g.avatar" class="w-8 h-8 mx-2" />
-            {{ g.name }}
-          </nuxt-link> -->
-            <card-group v-for="g in groupPopuler" :key="g.id" :group="g" follow="true" />
-          <nuxt-link to="/groups/explore" class="p-2 text-primary flex font-bold text-sm">
-            Lihat Group Lainnya
-          </nuxt-link>
-        </li>
-         <li class="bg-theme_primary_dark my-2 rounded-xl py-3">
-           <span class="p-2 text-theme_secondary">Mahasiswa Populer</span>
-           
-            <card-user v-for="q in userPopuler" :key="q.id" :data="q.user" />
-
-          <!-- <nuxt-link class="p-2 text-primary flex font-bold text-xl" v-for="(u,index) in userPopuler" :key="u.user.id" :to="'/@'+u.user.username">
-              {{index+1}}. 
-              <img :src="u.user.avatar" class="w-8 h-8 mx-2" />
-              {{ u.user.name }} 
-            </nuxt-link> -->
-
-              <!-- <nuxt-link to="/users/explore" class="p-2 text-primary flex font-bold text-sm">
-                Lihat Mahasiswa Lainnya
-              </nuxt-link> -->
-        </li>
-      </ul>
-      
 
 
       <balas-quest v-if="balas_quest" v-on:kirim="newQuest" v-on:batal="balas_quest = false" :quest="balas_quest" />
@@ -87,16 +45,12 @@ export default {
       page: 1,
       loadMore: false,
       last_page: false,
-      tagarPopuler: '',
-      groupPopuler: '',
-      userPopuler: '',
+     
     };
   },
   fetch(){
       this.getData()
-      this.getTagarPopuler()
-      this.getGroupPopuler()
-      this.getUserPopuler()
+    
   },
     mounted() {
 
@@ -116,24 +70,7 @@ export default {
       });
     },
   methods:{
-     getTagarPopuler(){
-      this.$axios.get("/tagar-populer")
-        .then(res => {
-          this.tagarPopuler = res.data
-        })
-    },
-    getGroupPopuler(){
-      this.$axios.get("/group-populer")
-        .then(res => {
-          this.groupPopuler = res.data
-        })
-    },
-    getUserPopuler(){
-      this.$axios.get("/user-populer")
-        .then(res => {
-          this.userPopuler = res.data
-        })
-    },
+ 
     loadMoregetData(){
         this.loadMore = true
         this.page = this.page+1

@@ -1,6 +1,6 @@
 <template>
 <div  :class="settings">
-
+  <loading />
   <div
     class="w-full min-h-screen flex flex-wrap content-start bg-theme_primary fixed overflow-y-scroll"
   >

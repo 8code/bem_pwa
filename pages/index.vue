@@ -2,7 +2,7 @@
   <div class="w-full" >
 
     <div class="mx-auto text-sm flex px-2">
-        <nuxt-link to="/" class="mx-1 px-5 py-2  bg-primary text-white rounded-full font-bold"> {{ $t("Home")}} </nuxt-link>
+        <nuxt-link to="/" class="mx-1 px-5 py-2 bg-primary text-white rounded-full font-bold"> {{ $t("Followed")}} </nuxt-link>
         <nuxt-link to="/explore" class="bg-theme_primary_dark text-primary hover:bg-primary hover:text-white hover:border-0 mx-1 px-5 py-2  rounded-full font-bold">
         {{ $t("Explore")}}
         </nuxt-link>

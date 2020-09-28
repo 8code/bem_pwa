@@ -93,6 +93,7 @@ const createStore = () => {
             },
     
             login(state,data){
+                state.loading = true
             //    Login
                  this.$axios.$post('login',data)
                     .then(res => {
@@ -119,13 +120,17 @@ const createStore = () => {
                             console.log("gagal")
                             state.errorMessages = res.message
                         }
+                         state.loading = false
+
                     })
                     .catch(err => {
-                        state.errorMessages = "Invalid Request"
-                })
+                        state.errorMessages = "Akun tidak ditemukan"
+                        state.loading = false
+                   })
             },
             loginfb(state,data){
                 //    Login
+                state.loading = true
         
                 this.$axios.$post('loginfb',data)
                         .then(res => {
@@ -151,10 +156,14 @@ const createStore = () => {
                             }else{
                                     state.errorMessages = res.message
                                 }
+                             state.loading = false
+                            
                         })
                         .catch(err => {
-                                console.log(err.response.data.message)
+                                // console.log(err.response.data.message)
                                 state.errorMessages = err.response.data.message
+                                state.loading = false
+
                         })
             },
              logout(){

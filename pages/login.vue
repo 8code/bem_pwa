@@ -7,6 +7,7 @@
   >
 
   
+  <loading />
 
   
     <settings class="z-50" />

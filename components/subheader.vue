@@ -1,6 +1,8 @@
 <template>
-    <div class="mx-auto text-sm flex p-2">
-            <nuxt-link  :to="'/'+name"  :class="($route.path == '/'+name) ? activeClass : nonActiveClass"> {{ name }} </nuxt-link>
+    <div class="mx-auto text-sm flex px-2">
+            <nuxt-link  :to="'/'+name"  :class="($route.path == '/'+name) ? activeClass : nonActiveClass">
+            {{ $t("Followed")}}
+            </nuxt-link>
             <nuxt-link :to="'/'+name+'/explore'" :class="($route.path == '/'+name+'/explore') ? activeClass : nonActiveClass">
             {{ $t("Explore") }}
             </nuxt-link>
