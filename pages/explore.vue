@@ -52,32 +52,31 @@ export default {
       this.getData()
     
   },
-    mounted() {
+  mounted() {
 
-      var that = this;
-      window.addEventListener("scroll", function() {
-      
-          let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+    var that = this;
+    window.addEventListener("scroll", function() {
+    
+        let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
 
-          if(bottomOfWindow){
-            if(!that.last_page){
-                that.loadMoregetData()
-            }else{
-              this.loadMore = false
-            }
-           
+        if(bottomOfWindow){
+          if(!that.last_page){
+              that.loadMoregetData()
+          }else{
+            this.loadMore = false
           }
-      });
-    },
+          
+        }
+    });
+  },
   methods:{
- 
     loadMoregetData(){
         this.loadMore = true
         this.page = this.page+1
         this.$axios.$get("/quest/home/explore?search="+this.search+"&page="+this.page)
         .then(res => {
           res.data = Object.values(res.data)
-          if(res.data.length > 0){
+          if(res.total > 0){
                let tempp = Object.values(this.quest.data)
                
                this.quest.data = tempp.concat(res.data)
