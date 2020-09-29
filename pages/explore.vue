@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full" >
+  <div class="w-full min-h-screen mb-20" >
 
     <div class="mx-auto text-sm flex  px-2">
         <nuxt-link to="/" class="px-5 bg-theme_primary_dark text-primary hover:bg-primary hover:text-white hover:border-0 mx-1 py-2  rounded-full font-bold"> {{ $t("Followed")}} </nuxt-link>
@@ -23,7 +23,7 @@
 
           <!-- <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lialiulialiu/video/6858238623725161729" data-video-id="6858238623725161729" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@lialiulialiu" href="https://www.tiktok.com/@lialiulialiu">@lialiulialiu</a> <p>mertua mana mertua?  <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp">##fyp</a> <a title="foryou" target="_blank" href="https://www.tiktok.com/tag/foryou">##foryou</a> <a title="samasamadirumah" target="_blank" href="https://www.tiktok.com/tag/samasamadirumah">##samasamadirumah</a></p> <a target="_blank" title="♬ berbeza kasta - TSIC💟'gunawan" href="https://www.tiktok.com/music/berbeza-kasta-6855537853565291265">♬ berbeza kasta - TSIC💟'gunawan</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script> -->
 
-          <card-post v-on:balas="balasQuest" v-for="quest in quest.data" :key="quest.id" :data="quest" />
+          <card-post v-on:balas="balasQuest" v-for="quest in questdata" :key="quest.id" :data="quest" />
 
           <span v-if="loadMore" class="p-4 text-center w-full">
             Memuat ...
@@ -39,7 +39,7 @@ export default {
   middleware: "auth",
   data() {
     return {
-      quest: "",
+      questdata: "",
       search: "",
       balas_quest: '',
       page: 1,
@@ -75,13 +75,13 @@ export default {
         this.page = this.page+1
         this.$axios.$get("/quest/home/explore?search="+this.search+"&page="+this.page)
         .then(res => {
-          res.data = Object.values(res.data)
-          if(res.total > 0){
-               let tempp = Object.values(this.quest.data)
-               
-               this.quest.data = tempp.concat(res.data)
-          }else{
-            this.last_page = true
+          console.log(res)
+           if(res){
+              if(res.total > 0){
+                this.questdata = this.questdata.concat(Object.values(res.data))
+                }else{
+                  this.last_page = true
+                }
           }
           this.loadMore = false
         });
@@ -97,7 +97,7 @@ export default {
       this.last_page = false
       this.page = 1 
       this.$axios.$get("/quest/home/explore?search="+this.search+"&page="+this.page).then(res => {
-        this.quest = res;
+        this.questdata = Object.values(res.data);
       });
     },
     to(directions) {
