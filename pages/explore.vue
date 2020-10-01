@@ -53,9 +53,13 @@ export default {
      
     };
   },
-  fetch(){
-      this.getData()
-    
+  created(){
+       if(!this.$store.state.data_quest_explore){
+          this.getData()
+        }else{
+          this.quest = this.$store.state.data_quest_explore.data
+          this.page = this.$store.state.data_quest_explore.page
+        }
   },
   methods:{
     async loadMoregetData($state){
@@ -65,6 +69,10 @@ export default {
           if(res.total > 0){
               $state.loaded();
               this.questdata = this.questdata.concat(Object.values(res.data))
+                this.$store.commit("setDataQuestExplore",{
+                  data: this.questdata,
+                  page: this.page
+                })
             }else{
               $state.complete();
             
@@ -83,13 +91,14 @@ export default {
       this.page = 1 
       this.$axios.$get("/quest/home/explore?search="+this.search+"&page="+this.page).then(res => {
         this.questdata = Object.values(res.data);
+
+           this.$store.commit("setDataQuestExplore",{
+                  data: this.questdata,
+                  page: this.page
+                })
       });
     },
-    to(directions) {
-      if (directions == "right") {
-        this.$router.push("/");
-      }
-    },
+ 
   }
 };
 </script>

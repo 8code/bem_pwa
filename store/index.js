@@ -22,17 +22,23 @@ const createStore = () => {
                 primaryColor: localStorage.getItem("primary-color") || 'primary-yellow',
                 topMenu: true,
                 loading:false,
-                data_quest_profile: '',
-                data_quest_home: '',
-                data_quest_search: '',
-                data_group: '',
-                data_group_search: '',
-                data_notifications: '',
+                data_quest_following: '',
+                data_quest_explore: '',
+                // data_quest_home: '',
+                // data_quest_search: '',
+                // data_group: '',
+                // data_group_search: '',
+                // data_notifications: '',
             },
 
 
         mutations:{
-        
+            set_scroll_home(state,data){
+                state.scroll_home_state = data
+            },
+            setDataQuestFollowing (state, data) {
+                state.data_quest_following = data
+            },
             setNotif (state, data) {
                 console.log(data)
                 this.$fireDb.ref('notifikasi/'+data.to).update({

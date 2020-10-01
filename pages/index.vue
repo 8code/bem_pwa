@@ -20,7 +20,7 @@
       <balas-quest v-if="balas_quest"  v-on:batal="balas_quest = false" :quest="balas_quest" />
 
       <section class="w-full rounded-xl pb-20 flex flex-wrap">
-      <card-post v-on:balas="balasQuest" v-for="quest in quest" :key="quest.id" :data="quest" />
+      <card-post @click="$store.commit('set_scroll_home',document.documentElement.scrollTop)" v-on:balas="balasQuest" v-for="quest in $store.state.data_quest_following.data" :key="quest.id" :data="quest" />
 
 
        <infinite-loading @infinite="loadMoregetData">
@@ -43,7 +43,7 @@ export default {
   },
   layout: "no-header",
   middleware: "auth",
-  scrollToTop: true,
+  scrollToTop: false,
   data() {
     return {
       quest: "",
@@ -52,23 +52,34 @@ export default {
       page: 1,
     };
   },
-  fetch(){
+
+
+  created(){
     if(!this.$store.state.user.gender){
           this.$router.push("/edit/profile")
     }else{
-      this.getData()
+      if(!this.$store.state.data_quest_following){
+         this.getData()
+      }else{
+        this.quest = this.$store.state.data_quest_following.data
+        this.page = this.$store.state.data_quest_following.page
+      }
     }
   },
   methods:{
   loadMoregetData($state){
-        this.lastPage = true
-        this.loadMore = true
         this.page = this.page+1
         this.$axios.$get("/quest/home?search="+this.search+"&page="+this.page)
         .then(res => {
             if(res.total > 0){
                 this.lastPage = false               
                 this.quest = this.quest.concat(res.data)
+
+                this.$store.commit("setDataQuestFollowing",{
+                  data: this.quest,
+                  page: this.page
+                })
+                
                 $state.loaded();
             }else{
                 $state.complete();
@@ -87,6 +98,11 @@ export default {
       this.page = 1 
       this.$axios.$get("/quest/home?search="+this.search+"&page="+this.page).then(res => {
         this.quest = res.data;
+        this.$store.commit("setDataQuestFollowing",{
+                  data: this.quest,
+                  page: this.page
+                })
+
         if(this.quest.length == 0){
           this.$router.push("/explore")
         }

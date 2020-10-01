@@ -38,7 +38,6 @@ export default {
         .then(res => {
             this.data = res.data
             this.getData();
-             window.scrollTo(0,0);
         })
 
         
