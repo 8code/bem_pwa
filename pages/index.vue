@@ -17,7 +17,7 @@
      <new-quest  umum="true" />
      
 
-      <balas-quest v-if="balas_quest" v-on:kirim="newQuest" v-on:batal="balas_quest = false" :quest="balas_quest" />
+      <balas-quest v-if="balas_quest"  v-on:batal="balas_quest = false" :quest="balas_quest" />
 
       <section class="w-full rounded-xl pb-20 flex flex-wrap">
       <card-post v-on:balas="balasQuest" v-for="quest in quest" :key="quest.id" :data="quest" />

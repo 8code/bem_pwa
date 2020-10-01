@@ -53,7 +53,6 @@ export default {
           text: this.text,
         }).then(res => {
        
-          this.$emit('kirim')
 
             this.$store.commit("setNotif",{
                 to: this.quest.user_id,
@@ -62,6 +61,8 @@ export default {
 
           this.text= ''
           this.media= ''
+
+          this.$emit('batal')
 
 
         })

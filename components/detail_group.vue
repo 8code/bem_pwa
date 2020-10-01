@@ -70,7 +70,7 @@
     
       <new-quest v-on:kirim="newQuest"  :group="group" />
 
-      <balas-quest v-if="balas_quest" v-on:kirim="newQuest" v-on:batal="balas_quest = false" :quest="balas_quest" />
+      <balas-quest v-if="balas_quest"  v-on:batal="balas_quest = false" :quest="balas_quest" />
 
 
 
