@@ -120,16 +120,24 @@
     <section class="w-full rounded-xl pb-20 flex flex-wrap">
       <card-post v-on:balas="balasQuest" v-for="quest in quest.data" :key="quest.id" :data="quest" />
 
-      <span v-if="loadMore" class="p-4 text-center w-full">
-        Memuat ...
-      </span>
+          <infinite-loading @infinite="loadMoregetData">
+
+            <div slot="no-more" class="text-center flex w-full p-4"></div>
+            <div slot="no-results"></div>
+
+        </infinite-loading>
 
     </section>
   </div>
 </template>
 
 <script>
+import InfiniteLoading from 'vue-infinite-loading';
+
 export default {
+   components: {
+    InfiniteLoading,
+  },
   layout: "no-header",
   middleware: "auth",
   data() {
@@ -143,27 +151,11 @@ export default {
       filter: "Quest Only",
       balas_quest: '',
       page: 1,
-      loadMore: false,
-      last_page: false,
       usernameIg: '',
       feedIg: [],
       followTemp: false
     };
   },
-    mounted() {
-      var that = this;
-      window.addEventListener("scroll", function() {
-      
-          let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
-          if(bottomOfWindow){
-            if(!that.last_page){
-              that.loadMoregetData()
-            }else{
-              that.loadMore = false
-            }
-          }
-      });
-    },
   fetch() {
     this.$axios.$get("/group/" + this.$route.params.url).then(data => {
       this.group = data;
@@ -198,17 +190,16 @@ export default {
             this.followTemp = true
         })
     },
-    loadMoregetData(){
-        this.loadMore = true
+    loadMoregetData($state){
         this.page = this.page+1
         this.$axios.$get("/group/quest/" + this.group.id+"?filter="+this.filter+"&search="+this.search+"&page="+this.page)
         .then(res => {
           if(res.data.length > 0){
+              $state.loaded()
                this.quest.data = this.quest.data.concat(res.data)
           }else{
-            this.last_page = true
+             $state.complete()
           }
-          this.loadMore = false
         });
     },
     newQuest(){

@@ -22,10 +22,12 @@
       <section class="w-full rounded-xl pb-20 flex flex-wrap">
       <card-post v-on:balas="balasQuest" v-for="quest in quest" :key="quest.id" :data="quest" />
 
-      <span v-if="loadMore" class="p-4 text-center w-full">
-        Memuat...
-      </span>
 
+       <infinite-loading @infinite="loadMoregetData">
+
+           <div slot="no-more">Selamat kamu sudah berada di bagian terakhir :) </div>
+
+       </infinite-loading>
 
 
     </section>
@@ -33,7 +35,12 @@
 </template>
 
 <script>
+import InfiniteLoading from 'vue-infinite-loading';
+
 export default {
+   components: {
+    InfiniteLoading,
+  },
   layout: "no-header",
   middleware: "auth",
   data() {
@@ -42,8 +49,6 @@ export default {
       search: "",
       balas_quest: '',
       page: 1,
-      loadMore: false,
-      last_page: false,
     };
   },
   fetch(){
@@ -53,46 +58,21 @@ export default {
       this.getData()
     }
   },
-    mounted() {
-
-      var that = this;
-      window.addEventListener("scroll", function() {
-      
-          let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
-
-          if(bottomOfWindow){
-            if(!that.last_page){
-                that.loadMoregetData()
-            }else{
-                 that.loadMore = false
-            }
-           
-          }
-      });
-    },
-
   methods:{
-   
-    loadMoregetData(){
-        this.last_page = true
+  loadMoregetData($state){
+        this.lastPage = true
         this.loadMore = true
         this.page = this.page+1
         this.$axios.$get("/quest/home?search="+this.search+"&page="+this.page)
         .then(res => {
-          // if(res){
-              if(res.total > 0){
-                this.last_page = false               
+            if(res.total > 0){
+                this.lastPage = false               
                 this.quest = this.quest.concat(res.data)
+                $state.loaded();
             }else{
-              this.last_page = true
+                $state.complete();
             }
-          // }
-          this.loadMore = false
         })
-        .catch(res => {
-                this.last_page = false    
-                this.loadMore = true
-        });
     },
     newQuest(){
       this.balas_quest = ""
@@ -102,7 +82,7 @@ export default {
         this.balas_quest = data
     },
     getData(){
-      this.last_page = false
+      this.lastPage = false
       this.page = 1 
       this.$axios.$get("/quest/home?search="+this.search+"&page="+this.page).then(res => {
         this.quest = res.data;

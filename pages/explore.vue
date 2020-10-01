@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full min-h-screen mb-20" >
+  <div class="w-full min-h-screen" >
 
     <div class="mx-auto text-sm flex  px-2">
         <nuxt-link to="/" class="px-5 bg-theme_primary_dark text-primary hover:bg-primary hover:text-white hover:border-0 mx-1 py-2  rounded-full font-bold"> {{ $t("Followed")}} </nuxt-link>
@@ -21,16 +21,26 @@
 
           <card-post v-on:balas="balasQuest" v-for="quest in questdata" :key="quest.id" :data="quest" />
 
-          <span v-if="loadMore" class="p-4 text-center w-full">
-            Memuat ...
-          </span>
+          <infinite-loading @infinite="loadMoregetData">
 
+              <div slot="no-more" class="text-center flex w-full p-4"> ... </div>
+
+          </infinite-loading>
+        
         </section>
+
+
       </div>
 </template>
 
 <script>
+
+import InfiniteLoading from 'vue-infinite-loading';
+
 export default {
+   components: {
+    InfiniteLoading,
+  },
   layout: "no-header",
   middleware: "auth",
   data() {
@@ -39,8 +49,6 @@ export default {
       search: "",
       balas_quest: '',
       page: 1,
-      loadMore: false,
-      last_page: false,
      
     };
   },
@@ -48,41 +56,19 @@ export default {
       this.getData()
     
   },
-  created() {
-
-    var that = this;
-    window.addEventListener("scroll", function() {
-    
-        let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
-
-        if(bottomOfWindow){
-          if(!that.last_page){
-              that.loadMoregetData()
-          }else{
-               that.loadMore = false
-          }
-          
-        }
-    });
-  },
   methods:{
-    loadMoregetData(){
-        this.last_page = true
-        this.loadMore = true
+    async loadMoregetData($state){
         this.page = this.page+1
-        this.$axios.$get("/quest/home/explore?search="+this.search+"&page="+this.page)
+        await this.$axios.$get("/quest/home/explore?search="+this.search+"&page="+this.page)
         .then(res => {
           if(res.total > 0){
-            this.last_page = false
-            this.questdata = this.questdata.concat(Object.values(res.data))
+              $state.loaded();
+              this.questdata = this.questdata.concat(Object.values(res.data))
             }else{
-              this.last_page = true
+              $state.complete();
+            
             }
-          this.loadMore = false
-        }).catch(res => {
-                this.last_page = false    
-                this.loadMore = true
-        });
+        })
     },
     newQuest(){
       this.balas_quest = ""

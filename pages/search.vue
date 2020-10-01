@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="pb-20">
     
        <div class="p-2">
         <input
@@ -42,27 +42,37 @@
         </div>
 
           
+
+      <div v-if="filter.search">
       <section class="w-full rounded-xl pb-20 flex flex-wrap"  v-if="filter.type == 'Quest'" >
         <card-post v-for="q in quest" :key="q.id" :data="q" />
-        <span v-if="loadMore" class="p-4 text-center w-full">
-          Memuat ...
-        </span>
+          <infinite-loading  @infinite="loadMoregetData">
+
+              <div slot="no-more" class="text-center flex w-full p-4"> ... </div>
+
+          </infinite-loading>
       </section>
 
         <section class="w-full rounded-xl pb-20 flex flex-wrap"  v-if="filter.type == 'Group'" >
 
         <card-group v-for="g in group" :key="g.id" :group="g" follow="true" />
-        <span v-if="loadMore" class="p-4 text-center w-full">
-          Memuat ...
-        </span>
+         <infinite-loading  @infinite="loadMoregetData">
+
+              <div slot="no-more" class="text-center flex w-full p-4"> ... </div>
+
+          </infinite-loading>
       </section>
 
         <section class="w-full rounded-xl pb-20 flex flex-wrap"  v-if="filter.type == 'User'" >
         <card-user v-for="q in user" :key="q.id" :data="q" />
-        <span v-if="loadMore" class="p-4 text-center w-full">
-          Memuat ...
-        </span>
+        <infinite-loading  @infinite="loadMoregetData">
+
+              <div slot="no-more" class="text-center flex w-full p-4"> ... </div>
+
+          </infinite-loading>
       </section>
+
+      </div>
 
 
 </div>
@@ -90,29 +100,27 @@
           </nuxt-link>
         </li>
          <li class="bg-theme_primary_dark my-2 rounded-xl py-3">
-           <span class="p-2 text-theme_secondary">User Populer</span>
-           
-            <card-user v-for="q in userPopuler" :key="q.id" :data="q.user" />
+              <span class="p-2 text-theme_secondary">User Populer</span>
+              
+                <card-user v-for="q in userPopuler" :key="q.id" :data="q.user" />
 
-            <nuxt-link to="/users/explore" class="p-2 text-primary flex font-bold text-sm">
-              Lihat User Lainnya
-            </nuxt-link>
-        </li>
-      </ul>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      
-</div>
+                <nuxt-link to="/users/explore" class="p-2 text-primary flex font-bold text-sm">
+                  Lihat User Lainnya
+                </nuxt-link>
+            </li>
+          </ul>
+    </div>
 
       </div>
     </div>
 </template>
 <script>
+import InfiniteLoading from 'vue-infinite-loading';
+
 export default {
+   components: {
+    InfiniteLoading,
+  },
      layout: "no-header",
      middleware: "auth",
      data(){
@@ -126,7 +134,6 @@ export default {
                 search: '',
                 page: 1
             },
-            loadMore: false,
             quest: '',
             group: '',
             user: '',
@@ -155,20 +162,6 @@ export default {
           this.getUserPopuler()
        }
 
-       if(this.filter.search){
-        var that = this;
-        window.addEventListener("scroll", function() {
-            let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
-            if(bottomOfWindow){
-              if(!that.last_page){
-                that.loadMoregetData()
-              }else{
-                that.loadMore = false
-              }
-            }
-        })
-
-       }
      },
      methods:{
            getTagarPopuler(){
@@ -210,41 +203,39 @@ export default {
               })
            }
          },
-          loadMoregetData(){
-              this.loadMore = true
+          loadMoregetData($state){
               this.filter.page = this.filter.page+1
-
                if(this.filter.type == 'Quest'){
                   this.$axios.get("/search/quest/"+this.filter.search+"?page="+this.filter.page)
                     .then(res => {
                       if(res.data.total > 0){
+                        $state.loaded()
                           this.quest = Object.values(this.quest).concat(Object.values(res.data.data))
                       }else{
-                        this.last_page = true
+                        $state.complete()
                       }
-                      this.loadMore = false
                       
                     })
                 }else if(this.filter.type == 'Group'){
                       this.$axios.get("/search/group/"+this.filter.search+"?page="+this.filter.page)
                           .then(res => {
                             if(res.data.total > 0){
+                               $state.loaded()
                                 this.group = Object.values(this.group).concat(Object.values(res.data.data))
                             }else{
-                              this.last_page = true
+                               $state.complete()
                             }
-                            this.loadMore = false
                             
                           })
                  }else if(this.filter.type == 'User'){
                       this.$axios.get("/search/user/"+this.filter.search+"?page="+this.filter.page)
                             .then(res => {
                               if(Object.values(res.data).length > 0){
+                                 $state.loaded()
                                   this.user = Object.values(this.user).concat(Object.values(res.data))
                               }else{
-                                this.last_page = true
+                                  $state.complete()
                               }
-                              this.loadMore = false
                             })
                  }
 

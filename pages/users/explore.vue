@@ -43,16 +43,25 @@
         :key="user.id"
         :data="user"
       />
-      <span v-if="loadMore" class="p-4 text-center w-full flex flex-wrap">
-        Memuat ...
-      </span>
+          <infinite-loading @infinite="loadMoregetData">
+
+              <div slot="no-more" class="text-center flex w-full p-4"></div>
+              <div slot="no-results"></div>
+
+          </infinite-loading>
 
     </section>
   </div>
 </template>
 
 <script>
+
+import InfiniteLoading from 'vue-infinite-loading';
+
 export default {
+   components: {
+    InfiniteLoading,
+  },
   layout: "no-header",
   middleware: "auth",
   data() {
@@ -64,54 +73,30 @@ export default {
         type: '',
         search: '',
         page: 1
-      },
-      loadMore: false,
-      lastPage: false
+      }
     };
   },
   created() {
     this.getData()
   },
-   mounted() {
-
-        var that = this;
-        window.addEventListener("scroll", function() {
-        
-            let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
-
-            if(bottomOfWindow){
-                if(!that.lastPage){
-                    that.loadMoregetData()
-                }else{
-                    that.loadMore = false
-                  }
-             
-            }
-        });
-      },
   methods: {
     getData(){
         this.$axios.$get("/users?type="+this.filter.type+"&search="+this.filter.search+"&page="+this.filter.page).then(res => {
           this.data = res
         });
     },
-    loadMoregetData(){
-      this.lastPage = true
-
-        this.loadMore = true
-      
+    loadMoregetData($state){
+    
         this.filter.page = this.filter.page+1
         this.$axios.$get("/users?type="+this.filter.type+"&search="+this.filter.search+"&page="+this.filter.page)
         .then(res => {
           console.log(res.data);
           if(res.data){
-            this.lastPage = false
+              $state.loaded()
                this.data.data = this.data.data.concat(res.data)
           }else{
-            this.lastPage = true
+              $state.complete()
           }
-
-          this.loadMore = false
          
         });
     },

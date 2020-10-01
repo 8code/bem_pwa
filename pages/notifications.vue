@@ -36,13 +36,18 @@
             </nuxt-link>
         </div>
 
-      
+          <infinite-loading @infinite="loadMoregetData">
+
+              <div slot="no-more" class="text-center flex w-full p-4"> ... </div>
+
+          </infinite-loading>
+
 
           <h1 v-if="userPopuler" class="font-bold text-left text-xl p-2 px-4 w-full">
               Cari Teman
         </h1>
 
-        <div v-if="userPopuler" class="p-2 flex flex-row bg-theme_primary_dark rounded-xl" style="overflow-x:scroll">
+        <div v-if="userPopuler" class="p-2 flex flex-row bg-theme_primary_dark rounded-xl mb-20" style="overflow-x:scroll">
                 <div  v-for="q in userPopuler" :key="q.id" class="cursor-pointer w-full relative mx-1  rounded-xl flex items-center justify-center" >
                     <card-user :data="q.user" style="min-width:320px"  />
                 </div>   
@@ -51,20 +56,19 @@
                 </router-link>
         </div>
 
-        
-        <span v-if="loadMore" class="p-4 text-center w-full">
-                Memuat ...
-        </span>
-
-
-
 </section>
         
 </template>
 
 
 <script>
+
+import InfiniteLoading from 'vue-infinite-loading';
+
 export default {
+   components: {
+    InfiniteLoading,
+  },
   layout: 'no-header',
   middleware: 'auth',
   data(){
@@ -77,22 +81,7 @@ export default {
           }
   },
 
-mounted() {
-var that = this;
-window.addEventListener("scroll", function() {
 
-        let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
-
-        if(bottomOfWindow){
-        if(!that.last_page){
-        that.loadMoregetData()
-        }else{
-        this.loadMore = false
-        }
-        
-        }
-});
-},
   methods:{
             textToArray(text){
             
@@ -101,21 +90,18 @@ window.addEventListener("scroll", function() {
             
             return str.split(" ");
         },
-          loadMoregetData(){
-                this.last_page = true
-
-                this.loadMore = true
+          loadMoregetData($state){
                 this.page = this.page+1
                        this.$axios.get("/notifications?page="+this.page)
                         .then(res => {
                                 if(res.data.length > 0){
-                                        this.last_page = false
+                                        $state.loaded()
                                         let tempp = Object.values(this.notif)
                                         this.notif = tempp.concat(res.data)
                                 }else{
-                                        this.last_page = true
+                                        $state.complete()
+                                        
                                 }
-                                this.loadMore = false
                         })
                         
         },
