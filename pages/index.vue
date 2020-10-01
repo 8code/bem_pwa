@@ -43,6 +43,7 @@ export default {
   },
   layout: "no-header",
   middleware: "auth",
+  scrollToTop: true,
   data() {
     return {
       quest: "",

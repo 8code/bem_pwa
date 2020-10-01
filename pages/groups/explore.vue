@@ -66,6 +66,7 @@ export default {
   },
   layout: "no-header",
   middleware: "auth",
+  scrollToTop: true,
   data() {
     return {
       className: 'cursor-pointer relative mx-1 px-6 bg-theme_primary_dark rounded-xl flex text-sm items-center justify-center p-2',
