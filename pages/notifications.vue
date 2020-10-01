@@ -2,9 +2,9 @@
 <section class="w-full pb-10 px-4">
         <h1 class="text-2xl font-semibold p-2 mb-3 flex">{{ $t('Notif')}}
 
-                  <button class="ml-auto font-semibold">
+                  <!-- <button class="ml-auto font-semibold">
                         pesan
-                </button>
+                </button> -->
         </h1>
 
       
@@ -35,9 +35,29 @@
                
             </nuxt-link>
         </div>
-         <span v-if="loadMore" class="p-4 text-center w-full">
-        Memuat ...
-      </span>
+
+      
+
+          <h1 v-if="userPopuler" class="font-bold text-left text-xl p-2 px-4 w-full">
+              Cari Teman
+        </h1>
+
+        <div v-if="userPopuler" class="p-2 flex flex-row bg-theme_primary_dark rounded-xl" style="overflow-x:scroll">
+                <div  v-for="q in userPopuler" :key="q.id" class="cursor-pointer w-full relative mx-1  rounded-xl flex items-center justify-center" >
+                    <card-user :data="q.user" style="min-width:320px"  />
+                </div>   
+                <router-link to="/users/explore"  class="cursor-pointer px-6 font-bold text-xl relative mx-1 bg-primary text-secondary rounded-xl flex items-center justify-center" >
+                        Lihat Saran Lainnya 
+                </router-link>
+        </div>
+
+        
+        <span v-if="loadMore" class="p-4 text-center w-full">
+                Memuat ...
+        </span>
+
+
+
 </section>
         
 </template>
@@ -49,6 +69,7 @@ export default {
   middleware: 'auth',
   data(){
           return {
+                userPopuler: '',
                 notif: '',
                 page: 1,
                 loadMore: false,
@@ -81,11 +102,14 @@ window.addEventListener("scroll", function() {
             return str.split(" ");
         },
           loadMoregetData(){
+                this.last_page = true
+
                 this.loadMore = true
                 this.page = this.page+1
                        this.$axios.get("/notifications?page="+this.page)
                         .then(res => {
                                 if(res.data.length > 0){
+                                        this.last_page = false
                                         let tempp = Object.values(this.notif)
                                         this.notif = tempp.concat(res.data)
                                 }else{
@@ -103,8 +127,16 @@ window.addEventListener("scroll", function() {
         }
   },
   created(){
+
        this.page = 1
        this.getData()
+
+
+        this.$axios.get("/user-populer")
+        .then(res => {
+          this.userPopuler = res.data
+        })
+
   }
 }
 </script>

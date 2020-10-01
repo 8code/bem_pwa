@@ -4,7 +4,7 @@
       class="w-full flex flex-wrap shadow-sm bg-theme_primary hover:bg-theme_primary_dark rounded-xl px-2 lg:py-2 "
     >
      
-      <div class="w-full font-bold flex px-2 pt-4 ">
+      <div class="w-full flex px-2 pt-4 ">
      
         <img
           class="w-16 h-16  rounded-full"
@@ -15,13 +15,13 @@
         <div class="w-full pl-5 mt-1 flex flex-wrap items-start">
 
           
-          <div class="w-full text-xl lg:text-2xl mb-2">
-           <nuxt-link :to="`/@${data.username}`"> {{ data.name }}</nuxt-link>
+          <div class="w-full mb-2">
+           <nuxt-link class="font-bold" :to="`/@${data.username}`"> {{ data.name }}</nuxt-link>
             <br />
             <div class=" flex w-full justify-between">
 
                 
-                   <small>@{{ data.username }}</small>
+                    <nuxt-link class="font-semibold text-primary" :to="`/@${data.username}`">@{{ data.username }}</nuxt-link>
                
                         <div  v-if="data.followed" class="text-sm">
                            <span class=" cursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
@@ -44,7 +44,7 @@
         </div>
       </div>
 
-      <small class="w-full font-semibold px-2 lg:px-4 text-xs lg:text-lg py-3 pb-5 flex">
+      <small class="w-full font-semibold px-2 lg:px-4 text-xs py-3 pb-5 flex">
         <div class="h-4 w-4 rounded-full shadow-lg bg-primary mr-3 mt-1"></div>
         {{ data.study_program }} 
         {{ data.angkatan }}

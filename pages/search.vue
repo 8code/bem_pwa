@@ -80,9 +80,6 @@
              </nuxt-link>
             ({{tagar.total}})
           </div>
-           <!-- <nuxt-link to="/groups/explore" class="p-2 text-primary flex font-bold text-sm">
-            Lihat Tagar Lainnya
-          </nuxt-link> -->
         </li>
         <li class="bg-theme_primary_dark my-2 rounded-xl py-3">
           <span class="p-2 text-theme_secondary">Group Populer</span>
@@ -93,13 +90,13 @@
           </nuxt-link>
         </li>
          <li class="bg-theme_primary_dark my-2 rounded-xl py-3">
-           <span class="p-2 text-theme_secondary">Mahasiswa Populer</span>
+           <span class="p-2 text-theme_secondary">User Populer</span>
            
             <card-user v-for="q in userPopuler" :key="q.id" :data="q.user" />
 
-              <!-- <nuxt-link to="/users/explore" class="p-2 text-primary flex font-bold text-sm">
-                Lihat Mahasiswa Lainnya
-              </nuxt-link> -->
+            <nuxt-link to="/users/explore" class="p-2 text-primary flex font-bold text-sm">
+              Lihat User Lainnya
+            </nuxt-link>
         </li>
       </ul>
       <br>
@@ -139,9 +136,17 @@ export default {
             userPopuler: '',
          }
      },
-     created(){
+     watch:{
+         $route (to, from){
+              if(this.$route.query.keyword){
+                this.filter.search = this.$route.query.keyword
+                this.getData()
+              }
+        }
+     },
+     mounted(){
 
-       if(this.$route.query.keyword){
+      if(this.$route.query.keyword){
          this.filter.search = this.$route.query.keyword
          this.getData()
        }else{
@@ -150,13 +155,7 @@ export default {
           this.getUserPopuler()
        }
 
-       
-      
-     },
-     mounted(){
        if(this.filter.search){
-
-       
         var that = this;
         window.addEventListener("scroll", function() {
             let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;

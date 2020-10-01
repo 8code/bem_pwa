@@ -56,6 +56,22 @@
                   />
                   
           </div>
+
+
+                     
+          <div class="w-full px-1 flex flex-wrap">
+            
+               <label class="text-left  pl-2 w-full my-3" for="password"
+                    >Ubah Bio</label
+                  >
+               <textarea
+                      v-model="d.bio"
+                      placeholder="Biografi singkat untuk ditampikan di profile"
+                      class="bg-theme_primary_light w-full rounded-lg p-4 mt-3 h-20"
+                    
+                    ></textarea>
+                  
+          </div>
           
             
           <div class="w-full px-1 flex flex-wrap">
@@ -81,7 +97,7 @@
               <label class="text-left  pl-2 w-full my-3" for="email"
               >Gender*</label>
 
-              <label class="inline-flex items-center px-2">
+                 <label class="inline-flex items-center px-2">
                   <input  class="border-2 border-primary" type="radio" v-model="d.gender" name="gender" value="L"> 
                   <span class="ml-2">Laki Laki</span>
                 </label>

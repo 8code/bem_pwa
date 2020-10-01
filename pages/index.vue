@@ -72,13 +72,14 @@ export default {
   methods:{
    
     loadMoregetData(){
+        this.last_page = true
         this.loadMore = true
         this.page = this.page+1
         this.$axios.$get("/quest/home?search="+this.search+"&page="+this.page)
         .then(res => {
           if(res){
               if(res.total > 0){
-               
+                this.last_page = false               
                 this.quest = this.quest.concat(res.data)
             }else{
               this.last_page = true

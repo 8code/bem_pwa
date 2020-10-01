@@ -13,23 +13,26 @@
             <div class="w-full text-xl lg:text-2xl mb-2">
               {{ profile.name }}
               <br>
+
+            
+
               <router-link :to="`@${profile.username}`" class="text-lg text-primary">@{{ profile.username }}</router-link>
 
-                    <div class="float-right text-sm flex" v-if="!editprofile">
-                                <div v-if="profile.followed">
-                                  <span class="cursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
+                    <div class="float-right text-sm flex">
+                    
+                              <div v-if="profile.followed">
+                                <span class="cursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
+                                  Diikuti
+                              </span>
+                              </div>
+                              <div v-else >
+                                  <span v-if="!followTemp" @click="followUser(profile.id)" class="cursor-pointer bg-primary px-4 py-1 rounded-full text-secondary">
+                                      Ikuti
+                                  </span>
+                                  <span v-if="followTemp" class="cursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
                                     Diikuti
                                 </span>
-                                </div>
-                                <div v-else >
-                                          <span v-if="!followTemp" @click="followUser(profile.id)" class="cursor-pointer bg-primary px-4 py-1 rounded-full text-secondary">
-                                              Ikuti
-                                          </span>
-                                          <span v-if="followTemp" class="cursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
-                                            Diikuti
-                                        </span>
-                                        
-                              </div>
+                            </div>
                           
                           <div class="px-3 -mt-2" v-if="usernameIg">
                             <a class="text-primary" :href="`https://instagram.com/${usernameIg}`">
@@ -39,17 +42,24 @@
                     </div>
 
 
-                    <div v-if="editprofile"  class="float-right text-sm -mt-6">
-                        <span @click="$store.commit('toggleSetting',true)" class="mb-2 text-center cursor-pointer bg-theme_primary_dark  px-4 py-1 rounded-full text-primary">
-                                Pengaturan
-                         </span>
-                         <div class="w-full pt-3 text-right">
-                            <router-link to="/edit/profile" class="mb-2 text-center cursor-pointer bg-theme_primary_dark px-4 py-1 rounded-full text-primary">
-                                    Edit Profile
-                            </router-link>
+                    <div class="flex text-sm  float-right pt-2 lg:pt-0">
+                         
+                          <span class="font-normal text-center px-4">
+                              Follower
+                              <div class="font-bold text-primary">{{ profile.follower }}</div>
+                            </span>
 
-                           </div>
+                             <span class="font-normal text-center px-4">
+                              Following
+                              <div class="font-bold text-primary">{{ profile.following }}</div>
+                            </span>
+
                     </div>
+                    <div class="flex text-sm float-left pt-2 font-normal">
+                      {{ profile.bio }}
+                    </div>
+
+             
 
             </div>
           </div>
