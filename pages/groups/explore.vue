@@ -96,9 +96,8 @@ export default {
         this.filter.page = this.filter.page+1
         this.$axios.$get("/group?type="+this.filter.type+"&search="+this.filter.search+"&page="+this.filter.page)
         .then(res => {
-          console.log(res.data);
-          if(res.data){
-            $state.loaded()
+          if(res.total){
+               $state.loaded()
                this.data.data = this.data.data.concat(res.data)
           }else{
             $state.complete()
