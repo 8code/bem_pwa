@@ -48,7 +48,7 @@ export default {
       this.getData()
     
   },
-  mounted() {
+  created() {
 
     var that = this;
     window.addEventListener("scroll", function() {
@@ -59,7 +59,7 @@ export default {
           if(!that.last_page){
               that.loadMoregetData()
           }else{
-            this.loadMore = false
+               that.loadMore = false
           }
           
         }
@@ -67,22 +67,21 @@ export default {
   },
   methods:{
     loadMoregetData(){
-        this.last_page = false
+        this.last_page = true
         this.loadMore = true
         this.page = this.page+1
         this.$axios.$get("/quest/home/explore?search="+this.search+"&page="+this.page)
         .then(res => {
-          console.log(res)
-           if(res){
-              if(res.total > 0){
-                this.last_page = false
-                this.questdata = this.questdata.concat(Object.values(res.data))
-                }else{
-                  this.last_page = true
-                }
-                
-          }
+          if(res.total > 0){
+            this.last_page = false
+            this.questdata = this.questdata.concat(Object.values(res.data))
+            }else{
+              this.last_page = true
+            }
           this.loadMore = false
+        }).catch(res => {
+                this.last_page = false    
+                this.loadMore = true
         });
     },
     newQuest(){

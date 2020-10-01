@@ -26,6 +26,8 @@
         Memuat...
       </span>
 
+
+
     </section>
   </div>
 </template>
@@ -62,7 +64,7 @@ export default {
             if(!that.last_page){
                 that.loadMoregetData()
             }else{
-              this.loadMore = false
+                 that.loadMore = false
             }
            
           }
@@ -77,17 +79,19 @@ export default {
         this.page = this.page+1
         this.$axios.$get("/quest/home?search="+this.search+"&page="+this.page)
         .then(res => {
-          if(res){
+          // if(res){
               if(res.total > 0){
                 this.last_page = false               
                 this.quest = this.quest.concat(res.data)
             }else{
               this.last_page = true
             }
-          }
-          
+          // }
           this.loadMore = false
-         
+        })
+        .catch(res => {
+                this.last_page = false    
+                this.loadMore = true
         });
     },
     newQuest(){
@@ -106,11 +110,6 @@ export default {
           this.$router.push("/explore")
         }
       });
-    },
-    to(directions) {
-      if (directions == "left") {
-        this.$router.push("/explore");
-      }
     },
   }
 };
