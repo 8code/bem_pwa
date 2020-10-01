@@ -80,7 +80,12 @@ export default {
             let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
 
             if(bottomOfWindow){
-              that.loadMoregetData()
+                if(!that.lastPage){
+                    that.loadMoregetData()
+                }else{
+                    that.loadMore = false
+                  }
+             
             }
         });
       },
@@ -91,6 +96,7 @@ export default {
         });
     },
     loadMoregetData(){
+      this.lastPage = true
 
         this.loadMore = true
       
@@ -99,9 +105,10 @@ export default {
         .then(res => {
           console.log(res.data);
           if(res.data){
+            this.lastPage = false
                this.data.data = this.data.data.concat(res.data)
           }else{
-            this.filter.page = this.filter.page-1
+            this.lastPage = true
           }
 
           this.loadMore = false

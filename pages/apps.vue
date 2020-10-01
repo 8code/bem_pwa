@@ -25,9 +25,9 @@
                 <div v-for="quest in donations" :key="quest.id" class="cursor-pointer w-full relative mx-1  rounded-xl flex items-center justify-center" >
                         <card-post  donasi="true" :data="quest"  style="min-width:320px" />
                 </div>   
-                  <div  class="cursor-pointer px-6 font-bold text-xl relative mx-1 bg-primary text-secondary rounded-xl flex items-center justify-center" >
+                  <nuxt-link :to="'/search?keyword=Donasi'"  class="cursor-pointer px-6 font-bold text-xl relative mx-1 bg-primary text-secondary rounded-xl flex items-center justify-center" >
                           Lihat Donasi Lainnya 
-                </div>   
+                  </nuxt-link>   
                
         </div>
 
@@ -40,9 +40,9 @@
                 <div v-for="quest in events" :key="quest.id" class="cursor-pointer w-full relative mx-1  rounded-xl flex items-center justify-center" >
                         <card-post  donasi="true" :data="quest"  style="min-width:320px" />
                 </div>   
-                <div v-if="events" class="cursor-pointer px-6 font-bold text-xl relative mx-1 bg-primary text-secondary rounded-xl flex items-center justify-center" >
+                <nuxt-link :to="'/search?keyword=Acara'" class="cursor-pointer px-6 font-bold text-xl relative mx-1 bg-primary text-secondary rounded-xl flex items-center justify-center" >
                           Lihat Acara Lainnya 
-                </div>   
+                </nuxt-link>   
             
         </div>
 

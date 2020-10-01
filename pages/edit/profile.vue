@@ -48,12 +48,13 @@
                             shadow-sm bg-theme_primary_light
                             py-2 px-4 
                             rounded-lg mb-3
-                            "
+                            " 
                     type="text"
                     @keyup="updateToString('username')"
                     v-model="d.username"
                     placeholder="Username"
                   />
+                  
                   
           </div>
 
@@ -249,6 +250,7 @@ export default {
     updateToString(to){
       if(to == 'username'){
         this.d.username = this.d.username.replace(/[^a-zA-Z0-9]/g,'_');
+        this.d.username = this.d.username.toLowerCase().slice(0, 20)
       }
     },
     onInit() {

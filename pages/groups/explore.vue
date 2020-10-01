@@ -67,7 +67,8 @@ export default {
         search: '',
         page: 1
       },
-      loadMore: false
+      loadMore: false,
+      lastPage: false
     };
   },
   created() {
@@ -81,7 +82,12 @@ export default {
             let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
 
             if(bottomOfWindow){
-              that.loadMoregetData()
+              if(!that.lastPage){
+                that.loadMoregetData()
+              }else{
+                that.loadMore = false
+              }
+              
             }
         });
       },
@@ -94,15 +100,17 @@ export default {
     loadMoregetData(){
 
         this.loadMore = true
+        this.lastPage = true
       
         this.filter.page = this.filter.page+1
         this.$axios.$get("/group?type="+this.filter.type+"&search="+this.filter.search+"&page="+this.filter.page)
         .then(res => {
           console.log(res.data);
           if(res.data){
+               this.lastPage = false
                this.data.data = this.data.data.concat(res.data)
           }else{
-            this.filter.page = this.filter.page-1
+            this.lastPage = true
           }
 
           this.loadMore = false

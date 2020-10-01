@@ -311,9 +311,11 @@ export default {
       }
       this.d.embed = this.getUrl(this.d.embed)
 
+      this.$store.commit("setLoading",true)
       this.$axios
         .$post("/quest", this.d)
         .then(res => {
+          this.$store.commit("setLoading",false)
           this.$router.push("/quest/"+res.id)
         });
     }

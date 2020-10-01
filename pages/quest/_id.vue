@@ -33,11 +33,16 @@ export default {
             this.data = res.data
 
             this.getData();
+
+            
+             window.scrollTo(0,0);
         })
 
         
   },
   mounted() {
+
+
 
       var that = this;
       window.addEventListener("scroll", function() {
@@ -56,11 +61,13 @@ export default {
 
   methods:{
     loadMoregetData(){
+        this.last_page = true
         this.loadMore = true
         this.page = this.page+1
         this.$axios.$get("/quest/balasan/"+this.data.id+"?page="+this.page)
         .then(res => {
           if(res.total > 0){
+              this.last_page = false
                let tempp = Object.values(this.quest.data)
                this.quest.data = tempp.concat(res.data)
           }else{
