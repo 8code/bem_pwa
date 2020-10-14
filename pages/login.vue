@@ -134,6 +134,7 @@
 
 <script>
 export default {
+  middleware: 'noauth',
   data() {
     return {
       showModal: false,
@@ -145,10 +146,6 @@ export default {
     };
   },
   fetch() {
-    if (this.$store.state.auth) {
-      this.$router.push("/groups");
-    }
-
     window.fbAsyncInit = function() {
       FB.init({
         appId: "303728384144081",

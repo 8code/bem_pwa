@@ -258,11 +258,7 @@
 <script>
 export default {
       layout: "app",
-      created(){
-          if (this.$store.state.auth) {
-              this.$router.push("/groups");
-            }
-      },
+       middleware: 'noauth',
       computed: {
         settings() {
         return (
