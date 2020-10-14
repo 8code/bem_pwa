@@ -6,7 +6,6 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "export": "nuxt export",
     "generate": "nuxt generate",
     "serve": "nuxt serve"
   },
