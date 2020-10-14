@@ -61,7 +61,9 @@
 
         
             <div class="px-3 w-full" v-if="usernameIg">
-               Instagram: <a class="text-primary" :href="`https://instagram.com/${usernameIg}`">@{{usernameIg}}</a>
+                <a class="text-primary" :href="`https://instagram.com/${usernameIg}`">
+                  <img src="/instagram.png" class="h-10 w-10 p-2">
+                </a>
             </div>
       </div>
     </section>
@@ -157,6 +159,8 @@ export default {
     };
   },
   fetch() {
+
+    
     this.$axios.$get("/group/" + this.$route.params.url).then(data => {
       this.group = data;
       if(!this.group.id){

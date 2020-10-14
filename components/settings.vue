@@ -197,14 +197,14 @@
       </h1>
 
       <div class="flex flex-wrap justify-center">
-        <div class="px-2 w-full lg:w-1/3">
+        <div class="px-2 w-full lg:w-1/2">
           <nuxt-link
             class="bg-theme_primary neu-in cursor-pointer   hover:text-primary rounded-lg flex p-2 px-4 justify-center w-full mb-2"
             :to="switchLocalePath('id')"
             >Indonesia</nuxt-link
           >
         </div>
-        <div class="px-2 w-full lg:w-1/3">
+        <div class="px-2 w-full lg:w-1/2">
           <nuxt-link
             :to="switchLocalePath('en')"
             class="bg-theme_primary neu-in cursor-pointer rounded-lg  hover:text-primary flex p-2 px-4 justify-center w-full mb-2"
@@ -212,14 +212,7 @@
             Enghlish
           </nuxt-link>
         </div>
-        <div class="px-2 w-full lg:w-1/3">
-          <nuxt-link
-            :to="switchLocalePath('sd')"
-            class="bg-theme_primary neu-in cursor-pointer rounded-lg  hover:text-primary flex p-2 px-4 justify-center w-full mb-2"
-          >
-            Sunda
-          </nuxt-link>
-        </div>
+       
       </div>
 
 

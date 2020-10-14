@@ -96,7 +96,7 @@ export default {
     [
       'nuxt-i18n',
       {
-        locales: ['en','id','sd'],
+        locales: ['en','id'],
         defaultLocale: 'id',
         vueI18n: {
           fallbackLocale: 'id',
@@ -116,10 +116,11 @@ export default {
               Home: 'Home',
               search: 'search',
               Group: 'Group',
-              Notif: 'Message',
+              Notif: 'Notif',
               Profile: 'Profile',
               Explore: 'For You',
-              Followed: 'Followed'
+              Followed: 'Followed',
+              Channels: 'Channels',
             },
             id: {
               welcome: 'Selamat Datang Mahasiswa!',
@@ -136,32 +137,12 @@ export default {
               Home: 'Beranda',
               search: 'Cari',
               Group: 'Grup',
-              Notif: 'Aktivitas',
+              Notif: 'Notifikasi',
               Profile: 'Saya',
               Explore: 'UntukMu',
-              Followed: 'Diikuti'
+              Followed: 'Diikuti',
+              Channels: 'Channels',
 
-            },
-            sd: {
-              welcome: 'Wilujeng Sumping Mahasiswa!',
-              loginwith: 'Login Kalayan',
-              tos: 'Sarat Service jeung Sarat jeung Kaayaan Pamakéan',
-              selectLang: 'Pilih Bahasa',
-              primaryColor: 'Warna Primér',
-              BackgroundTheme: 'Téma latar',
-              Done: 'Rengse',
-              Settings: 'Setélan',
-              light: 'Caang',
-              blue: 'Biru',
-              dark: 'Poek',
-              Home: 'Beranda',
-              search: 'Cari',
-              Group: 'Group',
-              Notif: 'Kotak',
-              Profile: 'Saya',
-              Explore: 'UntukMu',
-              Followed: 'Diikuti'
-              
             }
           }
         }

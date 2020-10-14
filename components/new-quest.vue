@@ -73,29 +73,7 @@
       Kirim Ke Group : #{{group.username}}
     </h1>
     
-    <div v-if="!umum" class="w-full flex">
-      
-     <label class="text-left  pl-2 w-full my-3" for="type">Type</label>
-      <select
-      class="w-full
-      shadow-sm bg-theme_primary_light
-      py-2 px-4 
-      rounded-lg mb-3
-      "
-      placeholder="Type"
-      v-model="d.type"
-        >
-        <option value="" selected>Umum</option>
-        <option value="1">Pertanyaan </option>
-        <option value="2">Event</option>
-        <option value="3">Donasi</option>
-        <option value="4">Katalog</option>
-        <option value="5">Loker</option>
-
-      </select>
-
-    </div>
-
+    
     <textarea
       ref="inputTextArea"
       @click="showModal = ''"
@@ -104,6 +82,28 @@
       class="bg-theme_primary_dark w-full rounded-lg p-4 mt-3 h-48"
      
     ></textarea>
+
+
+    <div v-if="!umum" class="w-full flex">
+      
+      <v-select
+      class="w-full
+        shadow-sm bg-theme_primary_light
+        rounded-lg 
+        mt-3
+        "
+      placeholder="Pilih Tipe"
+      v-model="d.type"
+      :reduce="tpx => tpx.id"
+      label="text"
+      :options="typeOptions"
+      
+        >
+
+      </v-select>
+
+    </div>
+
 
     <div class="flex w-full my-5 ">
       <span class="px-2">Upload Dari :</span>
@@ -215,11 +215,19 @@ import "vue-croppa/dist/vue-croppa.css";
 
 Vue.use(Croppa);
 
+import vSelect from 'vue-select'
+import 'vue-select/dist/vue-select.css';
+
+
+
 export default {
   scrollToTop: true,
   layout: "no-header",
   middleware: "auth",
   props: ["showModalDefault","group","hiddenbottom","umum"],
+    components: {
+    "v-select": vSelect
+  },
   data() {
     return {
       modal_quest: false,
@@ -229,7 +237,21 @@ export default {
         width: 320,
         height: 320
       },
-      imgTemp: null
+      imgTemp: null,
+      typeOptions: [
+    
+      {
+        id: 1,
+        text: "Pertanyaan"
+      },
+      {
+        id: 2,
+        text: "Event (Channel)"
+      },
+      {
+        id: 3,
+        text: "Katalog (Produk)"
+      }]
     };
   },
   created(){

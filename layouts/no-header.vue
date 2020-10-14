@@ -1,6 +1,6 @@
 <template>
   <div :class="settings">
-  <loading />
+    <loading />
 
     <div
       class="w-full min-h-screen flex flex-wrap content-start bg-theme_primary"
@@ -10,32 +10,14 @@
         class="w-full mx-auto flex flex-wrap pt-2 content-start min-h-screen bg-theme_primary "
         style="max-width:600px;"
       >
-
-    
         <media-player />
         <transition name="slide-fade">
-
           <Nuxt class="w-full" />
         </transition>
       </main>
 
-      <nav
-        class="fixed bottom-0 flex lg:hidden w-full bg-theme_primary"
-      >
+      <nav class="fixed bottom-0 flex lg:hidden w-full bg-theme_primary">
         <div class="mx-auto flex content-start text-primary font-bold">
-          <nuxt-link
-            to="/"
-            :class="$route.path == '/' ? tactiveClass : tnonActiveClass"
-          >
-            <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-house" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
-              <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
-            </svg>
-            <span :class="($route.path == '/' || $route.path == '/explore') ? activeClass : nonActiveClass">
-              {{ $t("Home") }}
-            </span>
-          </nuxt-link>
-
           <nuxt-link
             to="/groups"
             :class="
@@ -65,42 +47,80 @@
           </nuxt-link>
 
           <nuxt-link
-            to="/apps"
-            :class="$route.path == '/apps' ? tactiveClass : tnonActiveClass"
+            to="/channels"
+            :class="$route.path == '/channels' ? tactiveClass : tnonActiveClass"
           >
-            <img width="30px" src="/icon.png" alt="Logo Aplikasi Maba">
-            <span
-              :class="$route.path == '/apps' ? activeClass : nonActiveClass"
+            <svg
+              width="1.2em"
+              height="1.2em"
+              viewBox="0 0 16 16"
+              class="bi bi-chat-square-dots"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              Maba
+              <path
+                fill-rule="evenodd"
+                d="M14 1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h2.5a2 2 0 0 1 1.6.8L8 14.333 9.9 11.8a2 2 0 0 1 1.6-.8H14a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
+              />
+              <path
+                d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
+              />
+            </svg>
+            <span
+              :class="$route.path == '/channels' ? activeClass : nonActiveClass"
+            >
+              {{ $t("Channel") }}
             </span>
           </nuxt-link>
 
-            <!-- <nuxt-link
-            to="/new/quest"
-            :class="$route.path == '/new/quest' ? tactiveClass : tnonActiveClass"
+          <nuxt-link
+            to="/search"
+            :class="$route.path == '/search' ? tactiveClass : tnonActiveClass"
           >
-              <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-            <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-          </svg>
-            <span
-              :class="$route.path == '/new/quest' ? activeClass : nonActiveClass"
+            <svg
+              width="1.2em"
+              height="1.2em"
+              viewBox="0 0 16 16"
+              class="bi bi-search"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              Quest
+              <path
+                fill-rule="evenodd"
+                d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"
+              />
+            </svg>
+            <span
+              :class="$route.path == '/search' ? activeClass : nonActiveClass"
+            >
+              {{ $t("Search") }}
             </span>
-          </nuxt-link> -->
+          </nuxt-link>
 
           <nuxt-link
-                  to="/notifications"
-                  :class="
-                    $route.path == '/notifications' ? tactiveClass : tnonActiveClass
-                  "
-                >
-                <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-chat-square-dots" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h2.5a2 2 0 0 1 1.6.8L8 14.333 9.9 11.8a2 2 0 0 1 1.6-.8H14a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-        <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-      </svg>
+            to="/notifications"
+            :class="
+              $route.path == '/notifications' ? tactiveClass : tnonActiveClass
+            "
+          >
+            <svg
+              width="1.2em"
+              height="1.2em"
+              viewBox="0 0 16 16"
+              class="bi bi-bell"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2z" />
+              <path
+                fill-rule="evenodd"
+                d="M8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"
+              />
+            </svg>
             <span
               :class="
                 $route.path == '/notifications' ? activeClass : nonActiveClass
@@ -141,22 +161,8 @@
           class="mx-auto flex flex-wrap content-center text-theme_secondary font-bold"
         >
           <nuxt-link
-            to="/"
-            class="w-full rounded-full flex px-1 py-2 mx-1 my-1"
-          >
-           <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-house" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
-  <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
-</svg>
-            <span
-              :class="($route.path == '/' || $route.path == '/explore') ? activeClassLg : nonActiveClassLg"
-              >{{ $t("Home") }}</span
-            >
-          </nuxt-link>
-
-          <nuxt-link
             to="/groups"
-            class="w-full rounded-full flex px-1 py-2 mx-1 my-1"
+            class="w-full rounded-full flex px-1 py-2 mx-1 my-1 to-hover"
           >
             <svg
               width="1.5em"
@@ -177,49 +183,85 @@
                   ? activeClassLg
                   : nonActiveClassLg
               "
-              >
+            >
               {{ $t("Group") }}
-              </span
+            </span>
+          </nuxt-link>
+
+          <nuxt-link
+            to="/channels"
+            class="w-full rounded-full flex px-1 py-2 mx-1 my-1 to-hover"
+          >
+            <svg
+              width="1.5em"
+              height="1.5em"
+              viewBox="0 0 16 16"
+              class="bi bi-chat-square-dots"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M14 1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h2.5a2 2 0 0 1 1.6.8L8 14.333 9.9 11.8a2 2 0 0 1 1.6-.8H14a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
+              />
+              <path
+                d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
+              />
+            </svg>
+            <span
+              :class="
+                $route.path == '/channels' ? activeClassLg : nonActiveClassLg
+              "
+              >{{ $t("Channels") }}</span
             >
           </nuxt-link>
 
           <nuxt-link
-            to="/apps"
-            class="w-full rounded-full justify-start content-center items-center flex px-1 py-2 mx-1 my-1"
+            to="/search"
+            class="w-full rounded-full flex px-1 py-2 mx-1 my-1 to-hover"
           >
-            <img width="30px" height="30px" src="/icon.png" alt="Logo Aplikasi Maba">
-
+            <svg
+              width="1.5em"
+              height="1.5em"
+              viewBox="0 0 16 16"
+              class="bi bi-search"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"
+              />
+            </svg>
             <span
-              :class="$route.path == '/apps' ? activeClassLg : nonActiveClassLg"
-              >
-              Maba
-            </span>
+              :class="
+                $route.path == '/search' ? activeClassLg : nonActiveClassLg
+              "
+              >{{ $t("Search") }}</span
+            >
           </nuxt-link>
-
-
-           <!-- <nuxt-link
-            to="/new/quest"
-            class="w-full rounded-full flex px-1 py-2 mx-1 my-1"
-          >
-              <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-            <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-          </svg>
-            <span
-              :class="$route.path == '/new/quest' ? activeClassLg : nonActiveClassLg"
-              >
-              Quest
-            </span>
-          </nuxt-link>
-           -->
 
           <nuxt-link
             to="/notifications"
-            class="w-full rounded-full flex px-1 py-2 mx-1 my-1"
+            class="w-full rounded-full flex px-1 py-2 mx-1 my-1 to-hover"
           >
-            <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-chat-square-dots" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h2.5a2 2 0 0 1 1.6.8L8 14.333 9.9 11.8a2 2 0 0 1 1.6-.8H14a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-              <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+            <svg
+              width="1.5em"
+              height="1.5em"
+              viewBox="0 0 16 16"
+              class="bi bi-bell"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2z" />
+              <path
+                fill-rule="evenodd"
+                d="M8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"
+              />
             </svg>
             <span
               :class="
@@ -233,7 +275,7 @@
 
           <nuxt-link
             to="/profile"
-            class="w-full rounded-full flex px-1 py-2 mx-1 my-1"
+            class="w-full rounded-full flex px-1 py-2 mx-1 my-1 to-hover"
           >
             <svg
               width="1.5em"
@@ -258,35 +300,31 @@
         </div>
       </nav>
     </div>
-
-
-
-
   </div>
 </template>
 <style scoped>
-.text-xs2{
+.text-xs2 {
   font-size: 8px;
 }
-
 </style>
 
 <script>
-
-import Push from 'push.js'
+import Push from "push.js";
 export default {
   data() {
     return {
       notifikasi: [],
       windowTop: 0,
-      tactiveClass: "text-lg font-bold rounded-full flex px-1 py-2 mx-1 flex-wrap content-center justify-center items-center pt-2",
-      tnonActiveClass:"text-lg font-bold rounded-full flex px-1 py-2 mx-1 flex-wrap content-center justify-center items-center text-default pt-2",
+      tactiveClass:
+        "text-lg font-bold rounded-full flex px-1 py-2 mx-1 flex-wrap content-center justify-center items-center pt-2",
+      tnonActiveClass:
+        "text-lg font-bold rounded-full flex px-1 py-2 mx-1 flex-wrap content-center justify-center items-center text-default pt-2",
       activeClass: "text-center text-xs2 w-full rounded-lg mt-1  text-primary",
       nonActiveClass: "text-center text-xs2 w-full  text-default mt-1",
       activeClassLg:
-        "text-left text-lg p-1 px-8 mx-4 rounded-full bg-theme_primary_dark text-primary",
+        "hovered text-left text-lg p-1 px-8 mx-4 rounded-full bg-theme_primary_dark text-primary",
       nonActiveClassLg:
-        "text-left text-lg p-1 px-8 mx-4 rounded-full text-default hover:bg-theme_primary_dark hover:text-primary"
+        "hovered text-left text-lg p-1 px-8 mx-4 rounded-full text-default hover:bg-theme_primary_dark hover:text-primary"
     };
   },
   computed: {
@@ -294,56 +332,46 @@ export default {
       return this.$store.state.theme + " " + this.$store.state.primaryColor;
     }
   },
-  methods:{
- 
-    sayHayPush(text){
-
-
-        console.log(text)
-        Push.create("Halo "+this.$store.state.user.name+" !", {
-            body: text,
-            icon: '/icon.png',
-            timeout: 120000,
-            onClick: function () {
-                window.location.href = "https://maba.my.id/notifications"
-            }
-        });
- 
-
+  methods: {
+    sayHayPush(text) {
+      console.log(text);
+      Push.create("Halo " + this.$store.state.user.name + " !", {
+        body: text,
+        icon: "/icon.png",
+        timeout: 120000,
+        onClick: function() {
+          window.location.href = "https://maba.my.id/notifications";
+        }
+      });
     }
   },
 
   created() {
-
-
-  
-
     let token = localStorage.getItem("access_token") || "";
     this.$axios.setHeader("Authorization", "Bearer " + token);
 
-
-      this.$axios.$get("/profile-by-id/" + this.$store.state.user.id)
+    this.$axios
+      .$get("/profile-by-id/" + this.$store.state.user.id)
       .then(data => {
-          if(data){
-            this.$store.commit("updateProfile",data)
-          }else{
-            localStorage.clear()
-          }
-      }).catch(res => {
-            localStorage.clear()
+        if (data) {
+          this.$store.commit("updateProfile", data);
+        } else {
+          localStorage.clear();
+        }
+      })
+      .catch(res => {
+        localStorage.clear();
       });
-
   },
 
   mounted() {
-      
     var that = this;
 
-      var notifff = this.$fireDb.ref('notifikasi/'+this.$store.state.user.id);
-         notifff.on('value', function(snapshot) {
-            console.log(snapshot.val())
-            that.sayHayPush((snapshot.val().text))
-        });
+    var notifff = this.$fireDb.ref("notifikasi/" + this.$store.state.user.id);
+    notifff.on("value", function(snapshot) {
+      console.log(snapshot.val());
+      that.sayHayPush(snapshot.val().text);
+    });
 
     window.addEventListener("scroll", function() {
       if (window.scrollY > that.windowTop) {

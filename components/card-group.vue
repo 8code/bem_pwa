@@ -1,16 +1,18 @@
 <template>
   <div v-if="group" class="w-full p-2 relative flex  border-b border-theme_primary_light">
+        <nuxt-link :to="`/${group.username}`"> 
     <div
       class="w-full flex flex-wrap shadow-sm bg-theme_primary hover:bg-theme_primary_dark rounded-xl px-2 lg:py-2 "
     >
      
       <div class="w-full font-bold flex px-2 pt-4 ">
-     
+
         <img
           class="w-16 h-16  rounded-full"
           :src="group.avatar"
           :alt="group.name"
         />
+   
 
         <div class="w-full pl-5 mt-1 flex flex-wrap items-start">
 
@@ -21,7 +23,7 @@
           
           
           <div class="w-full text-xl lg:text-2xl mb-2">
-           <nuxt-link :to="`/${group.username}`"> {{ group.name }}</nuxt-link>
+          {{ group.name }}
             <br />
             <div class=" flex w-full justify-between">
 
@@ -66,6 +68,8 @@
         </nuxt-link>
       </small>
     </div>
+
+      </nuxt-link>
   </div>
 </template>
 

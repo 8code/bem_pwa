@@ -127,10 +127,10 @@ button:focus,input:focus,select:focus,textarea:focus{
 }
 
 .hovered{
-    display: none;
+    opacity: 0;;
 }
 .to-hover:hover .hovered{
-    display: block;
+    opacity: 1;
 }
 
 ::-webkit-scrollbar{

@@ -46,7 +46,7 @@
 
       <div v-if="filter.search">
       <section class="w-full rounded-xl pb-20 flex flex-wrap"  v-if="filter.type == 'Quest'" >
-        <card-post v-for="q in quest" :key="q.id" :data="q" />
+        <card-post v-for="q in quest" :key="q.id" :data="q" v-on:balas="balasQuest" />
           <infinite-loading  @infinite="loadMoregetData">
 
               <div slot="no-more" class="text-center flex w-full p-4"> ... </div>
@@ -83,7 +83,7 @@
 
       <ul class="p-2">
         <li class="bg-theme_primary_dark my-2 rounded-xl p-3">
-          <span class="p-2 text-theme_secondary">Tagar Populer</span>
+          <span class="p-2 text-theme_secondary">Populer</span>
           <div class="p-2 text-primary font-bold text-xl" v-for="(tagar,index) in tagarPopuler" :key="tagar.tagar">
             {{index+1}}. 
             <nuxt-link :to="'/search?keyword='+(tagar.tagar).substring(1)">
@@ -92,27 +92,32 @@
             ({{tagar.total}})
           </div>
         </li>
-        <li class="bg-theme_primary_dark my-2 rounded-xl py-3">
-          <span class="p-2 text-theme_secondary">Group Populer</span>
-           
-            <card-group v-for="g in groupPopuler" :key="g.id" :group="g" follow="true" />
-          <nuxt-link to="/groups/explore" class="p-2 text-primary flex font-bold text-sm">
-            Lihat Group Lainnya
-          </nuxt-link>
-        </li>
-         <li class="bg-theme_primary_dark my-2 rounded-xl py-3">
-              <span class="p-2 text-theme_secondary">User Populer</span>
-              
-                <card-user v-for="q in userPopuler" :key="q.id" :data="q.user" />
+        <li class="bg-theme_primary_dark my-2 rounded-xl p-3">
+          
+          <span class="p-2 text-theme_secondary"> Event (Channel)</span>
 
-                <nuxt-link to="/users/explore" class="p-2 text-primary flex font-bold text-sm">
-                  Lihat User Lainnya
-                </nuxt-link>
-            </li>
-          </ul>
-    </div>
+
+            <card-post v-on:balas="balasQuest" v-for="quest in events" :key="quest.id" :data="quest" />
+
+
+
+        </li>
+      </ul>
+
+
 
       </div>
+
+    </div>
+
+
+
+
+  <balas-quest v-if="balas_quest"  v-on:batal="balas_quest = false" :quest="balas_quest" />
+
+    
+
+
     </div>
 </template>
 <script>
@@ -139,9 +144,9 @@ export default {
             group: '',
             user: '',
             last_page: false,
-             tagarPopuler: '',
-            groupPopuler: '',
-            userPopuler: '',
+            tagarPopuler: '',
+            balas_quest: '',
+            events: ''
          }
      },
      watch:{
@@ -154,35 +159,30 @@ export default {
      },
      mounted(){
 
+
       if(this.$route.query.keyword){
          this.filter.search = this.$route.query.keyword
          this.getData()
        }else{
            this.getTagarPopuler()
-          this.getGroupPopuler()
-          this.getUserPopuler()
+
+            this.$axios.get("/events")
+              .then(res => {
+                      this.events = res.data
+              })
        }
 
      },
      methods:{
-           getTagarPopuler(){
-      this.$axios.get("/tagar-populer")
-        .then(res => {
-          this.tagarPopuler = res.data
-        })
-    },
-    getGroupPopuler(){
-      this.$axios.get("/group-populer")
-        .then(res => {
-          this.groupPopuler = res.data
-        })
-    },
-    getUserPopuler(){
-      this.$axios.get("/user-populer")
-        .then(res => {
-          this.userPopuler = res.data
-        })
-    },
+        balasQuest(data){
+            this.balas_quest = data
+        },
+        getTagarPopuler(){
+            this.$axios.get("/tagar-populer")
+              .then(res => {
+                this.tagarPopuler = res.data
+              })
+          },
          getData(){
           this.last_page = false
            if(this.filter.type == 'Quest'){

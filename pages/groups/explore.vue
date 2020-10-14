@@ -22,7 +22,7 @@
           <div
             class="-mt-1 -ml-1 h-6 w-6 absolute top-0 left-0 rounded-full shadow-lg bg-primary mr-3"
           ></div>
-           Semua
+           Populer
         </div>
 
         <div
