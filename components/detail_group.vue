@@ -92,28 +92,28 @@
       </div>
 
       <div
-        :class="(filter == 'Media') ? filterClassActive : filterClass"
-        @click="filter = 'Media';getData()"
+        :class="(filter == 'Event') ? filterClassActive : filterClass"
+        @click="filter = 'Event';getData()"
 
       >
       
       <div
           class="-mt-1 -ml-1 h-6 w-6 absolute top-0 left-0 rounded-full shadow-lg bg-primary mr-3"
         ></div>
-          Media
+          Event
       </div>
 
 
       
      <div
-        :class="(filter == 'Tagar') ? filterClassActive : filterClass"
-        @click="filter = 'Tagar';getData()"
+        :class="(filter == 'Produk') ? filterClassActive : filterClass"
+        @click="filter = 'Produk';getData()"
 
       >
         <div
           class="-mt-1 -ml-1 h-6 w-6 absolute top-0 left-0 rounded-full shadow-lg bg-primary mr-3"
         ></div>
-          #{{ group.username}}
+          Produk
       </div>
 
     </div>

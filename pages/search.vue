@@ -1,8 +1,27 @@
 <template>
     <div class="pb-20">
     
+
+    
+    <div class="mx-auto text-sm flex  px-2">
+          <nuxt-link to="/feed" class="px-5 bg-theme_primary_dark text-primary hover:bg-primary hover:text-white hover:border-0 mx-1 py-2  rounded-full font-bold"> {{ $t("Followed")}} </nuxt-link>
+          <nuxt-link to="/feed/explore" class="px-5 bg-theme_primary_dark text-primary hover:bg-primary hover:text-white hover:border-0 mx-1 py-2  rounded-full font-bold">
+            {{ $t("Explore")}} 
+          </nuxt-link>
+          <div class="px-5 mx-1 ml-auto py-2  bg-primary text-white rounded-full font-bold">
+          <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+            <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+          </svg>
+        </div>
+        
+    </div>
+
+
        <div class="p-2">
-        <input
+
+      <div class="p-2">
+          <input
           type="text"
           class="w-full py-2 px-5 rounded-full bg-theme_primary_dark"
           placeholder="Ketikan Sesuatu"
@@ -12,6 +31,8 @@
           ref="keyword"
 
         />
+      </div>
+        
         
 <div v-if="filter.search">
   <div class="py-3 flex flex-row" style="overflow-x:scroll">
@@ -92,6 +113,23 @@
             ({{tagar.total}})
           </div>
         </li>
+
+        
+        <h1 v-if="userPopuler" class="font-bold text-left text-xl p-2 px-4 w-full">
+              Cari Teman
+        </h1>
+
+        <div v-if="userPopuler" class=" flex flex-row bg-theme_primary_dark rounded-xl mb-2" style="overflow-x:scroll">
+                <div  v-for="q in userPopuler" :key="q.id" class="cursor-pointer w-4/5  relative mx-4  rounded-xl flex items-center justify-center" >
+                    <card-user :data="q.user" style="min-width:320px"  />
+                </div>   
+                <router-link to="/users/explore"  class="cursor-pointer px-6 font-bold text-xl relative mx-1 bg-primary text-secondary rounded-xl flex items-center justify-center" >
+                        Lihat Saran Lainnya 
+                </router-link>
+        </div>
+
+
+
         <li class="bg-theme_primary_dark my-2 rounded-xl p-3">
           
           <span class="p-2 text-theme_secondary"> Event (Channel)</span>
@@ -146,7 +184,9 @@ export default {
             last_page: false,
             tagarPopuler: '',
             balas_quest: '',
-            events: ''
+            events: '',
+            userPopuler: '',
+
          }
      },
      watch:{
@@ -160,6 +200,7 @@ export default {
      mounted(){
 
 
+
       if(this.$route.query.keyword){
          this.filter.search = this.$route.query.keyword
          this.getData()
@@ -170,6 +211,12 @@ export default {
               .then(res => {
                       this.events = res.data
               })
+
+                
+            this.$axios.get("/user-populer")
+            .then(res => {
+              this.userPopuler = res.data
+            })
        }
 
      },

@@ -44,7 +44,7 @@
                Sosial Medianya Mahasiswa
             </h1>
 			<p class="leading-normal md:text-2xl mb-8 text-center md:text-left slide-in-bottom-subtitle text-theme_secondary">
-               Cari Teman, Diskusi Organisasi, Acara, Donasi. dan jadilah Mahasiswa yang berguna.
+              Diskusi Organisasi, Live Event dan Cari Teman. dan jadilah Mahasiswa yang berguna.
             </p>
 		
 			<p class="font-bold pb-8 lg:pb-6 text-center md:text-left fade-in">Masuk / Download:</p>
@@ -258,7 +258,7 @@
 <script>
 export default {
       layout: "app",
-       middleware: 'noauth',
+      middleware: 'noauth',
       computed: {
         settings() {
         return (

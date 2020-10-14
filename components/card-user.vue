@@ -4,15 +4,15 @@
       class="w-full flex flex-wrap shadow-sm bg-theme_primary hover:bg-theme_primary_dark rounded-xl px-2 lg:py-2 "
     >
      
-      <div class="w-full flex px-2 pt-4 ">
+      <div class="w-full flex px-2 pt-2 ">
      
         <img
-          class="w-16 h-16  rounded-full"
+          class="w-10 h-10  rounded-full"
           :src="data.avatar"
           :alt="data.name"
         />
 
-        <div class="w-full pl-5 mt-1 flex flex-wrap items-start">
+        <div class="w-full pl-3  flex flex-wrap items-start">
 
           
           <div class="w-full mb-2">
@@ -44,8 +44,8 @@
         </div>
       </div>
 
-      <small class="w-full font-semibold px-2 lg:px-4 text-xs py-3 pb-5 flex">
-        <div class="h-4 w-4 rounded-full shadow-lg bg-primary mr-3 mt-1"></div>
+      <small class="w-full font-semibold px-2 lg:px-4 text-xs pb-2 flex">
+        <div class="h-2 w-2 rounded-full shadow-lg bg-primary mr-1 mt-1"></div>
         {{ data.study_program }} 
         {{ data.angkatan }}
 

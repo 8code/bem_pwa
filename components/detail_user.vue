@@ -4,19 +4,19 @@
       <div class="w-full flex flex-wrap bg-theme_primary p-2 pt-6 rounded-xl ">
         <div class="w-full font-bold flex justify-start  ">
           <img
-            class="w-12 h-12 mt-4 rounded-full"
+            class="w-12 h-12  rounded-full"
             :src="profile.avatar"
             :alt="profile.name"
           />
 
-          <div class="w-full pl-5 flex flex-wrap items-start ">
-            <div class="w-full text-xl lg:text-2xl mb-2">
+          <div class="w-full pl-3 flex flex-wrap items-start ">
+            <div class="w-full lg:text-md ">
               {{ profile.name }}
               <br>
 
             
 
-              <router-link :to="`@${profile.username}`" class="text-lg text-primary">@{{ profile.username }}</router-link>
+              <router-link :to="`@${profile.username}`" class="text-sm text-primary">@{{ profile.username }}</router-link>
 
                     <div class="float-right text-sm flex">
                     
@@ -42,7 +42,7 @@
                     </div>
 
 
-                    <div class="flex text-sm  float-right pt-2 lg:pt-0">
+                    <div class="flex text-sm  float-right">
                          
                           <span class="font-normal text-center px-4">
                               Follower
@@ -81,7 +81,7 @@
         <div
           class="-mt-1 -ml-1 h-6 w-6 absolute top-0 left-0 rounded-full shadow-lg bg-primary mr-3"
         ></div>
-          Quest Saja
+          Quest
       </div>
 
       
@@ -94,19 +94,6 @@
           class="-mt-1 -ml-1 h-6 w-6 absolute top-0 left-0 rounded-full shadow-lg bg-primary mr-3"
         ></div>
           Quest & Balasan
-      </div>
-
-
-      <div
-        :class="(filter == 'Media') ? filterClassActive : filterClass"
-        @click="filter = 'Media';getData()"
-
-      >
-      
-      <div
-          class="-mt-1 -ml-1 h-6 w-6 absolute top-0 left-0 rounded-full shadow-lg bg-primary mr-3"
-        ></div>
-          Media
       </div>
 
 

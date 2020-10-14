@@ -1,5 +1,5 @@
 <template>
-<section class="w-full pb-10 px-4">
+<section class="w-full pb-10 px-4 mb-20">
         <h1 class="text-2xl font-semibold p-2 mb-3 flex">{{ $t('Notif')}}
 
                   <!-- <button class="ml-auto font-semibold">
@@ -43,18 +43,23 @@
           </infinite-loading>
 
 
-          <h1 v-if="userPopuler" class="font-bold text-left text-xl p-2 px-4 w-full">
-              Cari Teman
+        <h1 v-if="userPopuler" class="font-bold text-center text-xl p-2 px-4 w-full">
+              Follow Seseorang
         </h1>
 
-        <div v-if="userPopuler" class="p-2 flex flex-row bg-theme_primary_dark rounded-xl mb-20" style="overflow-x:scroll">
-                <div  v-for="q in userPopuler" :key="q.id" class="cursor-pointer w-full relative mx-1  rounded-xl flex items-center justify-center" >
+        <div v-if="userPopuler" class=" flex flex-row bg-theme_primary_dark rounded-xl mb-2" style="overflow-x:scroll">
+                <div  v-for="q in userPopuler" :key="q.id" class="cursor-pointer w-4/5  relative mx-4  rounded-xl flex items-center justify-center" >
                     <card-user :data="q.user" style="min-width:320px"  />
                 </div>   
                 <router-link to="/users/explore"  class="cursor-pointer px-6 font-bold text-xl relative mx-1 bg-primary text-secondary rounded-xl flex items-center justify-center" >
                         Lihat Saran Lainnya 
                 </router-link>
         </div>
+
+          <nuxt-link to="/groups/explore" class="flex justify-center text-center font-bold text-xl p-2 px-4 w-full">
+              Follow Sebuah Group
+        </nuxt-link>
+
 
 </section>
         
