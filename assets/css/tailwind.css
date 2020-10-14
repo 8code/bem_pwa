@@ -18,6 +18,8 @@
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 .theme-light {
+    transition: all 2s ease-in-out;
+
     --theme_primary_light: #fff;
     --theme-primary: #EDF2F7;
     --theme-primary_dark: #dbe5ef;
@@ -29,6 +31,8 @@
 }
 
 .theme-dark {
+    transition: all 2s ease-in-out;
+
     --theme_primary_light: #11141c;
     --theme-primary: #0a0d0f;
     --theme-primary_dark: #000;
@@ -38,6 +42,10 @@
     color: var(--theme-secondary);
 }
 .theme-dark-blue {
+    transition: all 2s ease-in-out;
+
+
+
     --theme_primary_light: 	#192734;
     --theme-primary:  #15202b;
     --theme-primary_dark: #101922;
@@ -51,6 +59,7 @@
 /* Primary Color */
 /* Red */
 .primary-red{
+    transition: all 1s ease-in-out;
     --color-primary_light: #FEB2B2;
     --color-primary: #F56565;
     --color-primary_dark: #C53030

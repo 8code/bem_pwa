@@ -1,33 +1,18 @@
 <template>
-<div  :class="settings">
-  <loading />
-  <div
-    class="w-full min-h-screen flex flex-wrap content-start bg-theme_primary fixed overflow-y-scroll"
-  >
-    <settings class="z-50" />
+<div  :class="settings" class="fixed overflow-y-scroll">
     <main
-      class="w-full mx-auto flex flex-wrap pt-2 content-start min-h-screen bg-theme_primary "
-      style="max-width:600px"
+      class="w-full mx-auto flex flex-wrap pt-2 content-start"
     >
-        <media-player />
       <transition name="slide-fade">
         <Nuxt class="w-full" />
       </transition>
     </main>
-
-
-  </div>
-  
 </div>
 </template>
 
+
 <script>
 export default {
-  data() {
-    return {
-      windowTop: 0
-    }
-  },
   computed: {
     settings() {
       return (
@@ -37,23 +22,6 @@ export default {
         this.$store.state.primaryColor
       );
     }
-  },
-  created() {
-    let token = localStorage.getItem("access_token") || "";
-    this.$axios.setHeader("Authorization", "Bearer " + token);
-  },
-  mounted() {
-    var that = this;
-    window.addEventListener("scroll", function() {
-      if (window.scrollY > that.windowTop) {
-        if (window.scrollY > 10) {
-          that.$store.commit("setTopMenu", false);
-        }
-      } else {
-        that.$store.commit("setTopMenu", true);
-      }
-      that.windowTop = window.scrollY;
-    });
   }
 };
 </script>

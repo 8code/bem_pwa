@@ -52,8 +52,6 @@ export default {
       page: 1,
     };
   },
-
-
   created(){
     if(!this.$store.state.user.gender){
           this.$router.push("/edit/profile")
