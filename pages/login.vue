@@ -146,7 +146,7 @@ export default {
   },
   fetch() {
     if (this.$store.state.auth) {
-      this.$router.push("/");
+      this.$router.push("/groups");
     }
 
     window.fbAsyncInit = function() {

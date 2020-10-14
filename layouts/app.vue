@@ -1,5 +1,5 @@
 <template>
-<div  :class="settings" class="fixed overflow-y-scroll">
+<div  :class="settings">
     <main
       class="w-full mx-auto flex flex-wrap pt-2 content-start"
     >
