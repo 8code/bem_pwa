@@ -14,7 +14,7 @@
           alt="Avatar"
         />
 
-        <nuxt-link class="p-2 -mt-2" :to="'/@' + data.user.username">
+        <nuxt-link class="px-2" :to="'/@' + data.user.username">
           <span class="font-semibold text-sm">{{ data.user.name }}</span>
           <span class="text-primary text-xs">@{{ data.user.username }}</span>
           <span class="text-xs pl-2">
@@ -42,6 +42,7 @@
       </div>
       <div class="w-auto flex ">
         <div class="flex flex-wrap items-start">
+
           <span v-if="!hideBalasan" class="w-full">
             <span
               v-if="data.quest_id"
@@ -63,7 +64,7 @@
           >
             <div
               v-if="data.embed"
-              class="py-2 w-1/2 media-preview"
+              class="pb-2 w-1/2 media-preview"
               @click="
                 $store.commit('setMediaPlayer', {
                   data: data,
@@ -250,12 +251,12 @@
           <div class="flex  px-4 mt-2">
             <nuxt-link
               :to="`/quest/${data.id}`"
-              class="text-xs lg:text-base text-primary "
+              class="text-xs lg:text-base text-primary -mt-1 "
             >
               {{ data.total_qna }} balasan
             </nuxt-link>
 
-            <div class="flex  ">
+            <div class="flex">
               <div
                 @click="followQuest(data.id)"
                 :class="data.followed || followTemp ? btnFollowed : btnFollow"
@@ -283,7 +284,6 @@
                       : data.total_follower
                   }}
                 </span>
-                <span class="px-1" v-if="data.followed"></span>
               </div>
             </div>
 

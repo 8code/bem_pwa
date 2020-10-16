@@ -1,7 +1,7 @@
 {
   "name": "Maba - Sosial Media",
   "short_name": "MABA",
-  "description": "Aplikasi Sosial Media Mahasiswa Baru, Mahasiswa Aktif Maupun Alumni, dengan berbagai fitur yang menarik",
+  "description": "Aplikasi Sosial Media Mahasiswa untuk berbagai aktifitas kampus",
   "icons": [
     {
       "src": "/_nuxt/icons/icon_64x64.819b1e.png",
@@ -49,6 +49,6 @@
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#EDF2F7",
+  "theme_color": "#f1f1f1",
   "lang": "id"
 }

@@ -7,15 +7,15 @@ export default {
  mode: "spa",
   pwa: {
     meta: {
-      title: 'Aplikasi Maba - Sosial Media Mahasiswa Baru',
+      title: 'Aplikasi Maba - Sosial Media Mahasiswa',
       author: 'Ari Bahtiar',
     },
     manifest: {
       name: 'Maba - Sosial Media',
       lang: 'id',
-      theme_color: '#EDF2F7',
+      theme_color: '#f1f1f1',
       start_url: "/",
-      description: "Aplikasi Sosial Media Mahasiswa Baru, Mahasiswa Aktif Maupun Alumni, dengan berbagai fitur yang menarik"
+      description: "Aplikasi Sosial Media Mahasiswa untuk berbagai aktifitas kampus"
     },
     // workbox: {
     //   dev: true // or use a global variable to track the current NODE_ENV, etc to determine dev mode
@@ -31,11 +31,11 @@ export default {
   ** See https://nuxtjs.org/api/configuration-head
   */
   head: {
-    title: 'Aplikasi Maba - Sosial Media Mahasiswa Baru',
+    title: 'Aplikasi Maba - Sosial Media Mahasiswa',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: "Aplikasi Maba - Sosial Media Mahasiswa Baru, Mahasiswa Aktif Maupun Alumni, dengan berbagai fitur yang menarik" }
+      { hid: 'description', name: 'description', content: "Aplikasi Maba - Sosial Media Mahasiswa  untuk berbagai aktifitas kampus" }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }

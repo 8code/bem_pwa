@@ -1,9 +1,6 @@
 <template>
 <section class="w-full pb-10 px-4 mb-20">
-        <h1 class=" font-semibold p-2 mb-3 flex">{{ $t('Notif')}}
-
- 
-        </h1>
+        <h1 class=" font-semibold p-2 mb-3 flex">{{ $t('Notif')}} </h1>
 
       
 
@@ -24,11 +21,11 @@
                         <span v-if="n.tipe == 6" > mengikuti Anda</span>
                         :
                 </span>
-                <span v-if="n.tipe == 2" class="font-bold text-sm  p-1 mb-1 rounded-sm">
+                <span v-if="n.tipe == 2" class="text-sm  p-1 mb-1 rounded-sm">
                    {{ n.balasan }}
                 </span>
-                 <span v-else class="font-bold  text-sm  p-1 mb-1 rounded-sm">
-                   {{ n.text.substring(0, 200) }}
+                 <span v-else class=" text-sm  p-1 mb-1 rounded-sm">
+                   {{ n.text.substring(0, 150) }} ...
                 </span>
                
             </nuxt-link>
