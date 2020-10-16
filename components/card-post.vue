@@ -23,7 +23,7 @@
         </nuxt-link>
 
         <span class="text-xs ml-auto flex">
-          <span class="px-2" v-if="data.user_id == $store.state.user.id">
+          <span class="px-2" >
             <svg
               width="1.2em"
               height="1.2em"
@@ -128,6 +128,15 @@
                 >
                   {{ tx }}
                 </nuxt-link>
+                <span v-if="isLink(tx)" class="w-full" >
+                    
+                    <a
+                    class="text-primary"
+                    :href="tx"
+                    target="_BLANK"
+                    
+                    >{{ tx }}</a>
+                </span>
                 <span v-else> {{ tx }} </span>
               </span>
               <span class="text-primary"> ...</span>
@@ -214,9 +223,6 @@
               />
             </div>
 
-            <p>
-              {{ data.text }}
-            </p>
 
             <span v-for="(tx, i) in textToArray(data.text)" :key="i">
               <nuxt-link
@@ -233,30 +239,33 @@
               >
                 {{ tx }}
               </nuxt-link>
-
-              <span v-else>
-                <span class="w-full" v-if="link">
-                  <a
+                <span v-if="isLink(tx)" class="w-full" >
+                    
+                    <a
                     class="text-primary"
                     :href="tx"
                     target="_BLANK"
-                    v-if="isLink(tx)"
-                    >{{ tx }}</a
-                  >
+                    
+                    >{{ tx }}</a>
                 </span>
+
+              <span v-else>
+                {{ tx }}
+              
               </span>
             </span>
           </div>
 
           <div class="flex  px-4 mt-2">
+           
+
+            <div class="flex">
             <nuxt-link
               :to="`/quest/${data.id}`"
-              class="text-xs lg:text-base text-primary -mt-1 "
+              class="text-xs lg:text-base text-primary "
             >
               {{ data.total_qna }} balasan
             </nuxt-link>
-
-            <div class="flex">
               <div
                 @click="followQuest(data.id)"
                 :class="data.followed || followTemp ? btnFollowed : btnFollow"
@@ -289,7 +298,7 @@
 
             <nuxt-link
               v-if="data.group"
-              class="text-primary  text-xs flex"
+              class="text-primary  text-xs flex lg:mt-1"
               :to="'/' + data.group.username"
             >
               #{{ data.group.username }}
@@ -309,9 +318,9 @@ export default {
   data() {
     return {
       btnFollow:
-        "flex relative ml-auto px-3 rounded-tl-xl rounded-br-xl text-xs text-theme_secondary",
+        "flex relative ml-auto px-3 lg:mt-1 rounded-tl-xl rounded-br-xl text-xs text-theme_secondary",
       btnFollowed:
-        "flex relative ml-auto px-3 rounded-tl-xl rounded-br-xl text-xs text-primary",
+        "flex relative ml-auto px-3 lg:mt-1 rounded-tl-xl rounded-br-xl text-xs text-primary",
       followTemp: false
     };
   },

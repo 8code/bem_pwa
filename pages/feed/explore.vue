@@ -12,7 +12,8 @@
 
           <infinite-loading @infinite="loadMoregetData">
 
-              <div slot="no-more" class="text-center flex w-full p-4"> ... </div>
+              <div slot="no-more"></div>
+               <div slot="no-results"></div>
 
           </infinite-loading>
         

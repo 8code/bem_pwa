@@ -42,33 +42,59 @@
       v-model="d.text"
       placeholder="Deskripsi Singkat"
       class="bg-theme_primary_dark w-full rounded-lg p-4 mt-3"
-      style="min-height:120px"
+      style="height:120px"
       maxlength="255"
-
-
-     
     ></textarea>
 
+   <div class="flex w-full mt-2">
 
-    <div v-if="!umum" class="w-full flex">
-      
-      <v-select
-      class="w-full
-        shadow-sm bg-theme_primary_light
-        rounded-lg 
-        mt-3
-        "
-      placeholder="Pilih Tipe"
-      v-model="d.type"
-      :reduce="tpx => tpx.id"
-      label="text"
-      :options="typeOptions"
-      
-        >
 
-      </v-select>
+    <button @click="d.type = 1" class="bg-theme_primary_dark text-xs p-2 w-full flex justify-center" :class="(d.type == 1) ? 'bg-primary text-secondary': ''">
+      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle mt-1 mx-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+      <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+    </svg>
+      Cerita
+    </button>
 
+    <button @click="d.type = 2" class="bg-theme_primary_dark text-xs p-2 w-full flex justify-center" :class="(d.type == 2) ? 'bg-primary text-secondary': ''">
+      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle mt-1 mx-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+</svg>
+      Event 
+    </button>
+
+     <button @click="d.type = 3" class="bg-theme_primary_dark text-xs p-2 w-full flex justify-center" :class="(d.type == 3) ? 'bg-primary text-secondary': ''">
+       <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle mt-1 mx-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+</svg>
+      Katalog
+    </button>
+
+   </div>
+
+  <div v-if="d.type" class="flex flex-wrap w-full p-2 mt-3">
+    
+    
+
+     <div class="w-full" v-if="d.type == 1">
+        Cerita
     </div>
+    <div class="w-full" v-if="d.type == 2">
+      Event (Channel)
+    </div>
+    <div class="w-full" v-if="d.type == 3">
+      Katalog (Produk)
+    </div>
+
+      <button @click="d.type = ''" class="bg-danger p-1 rounded-full px-3 mt-1 text-xs ml-auto">
+       x
+      </button>
+
+
+  </div>
 
 
     <div class="flex w-full my-5 ">
@@ -189,7 +215,9 @@ export default {
     return {
       modal_quest: false,
       showModal: "",
-      d:{},
+      d:{
+        type: ''
+      },
       img:{
         width: 320,
         height: 320
@@ -290,13 +318,16 @@ export default {
       }
       this.d.embed = this.getUrl(this.d.embed)
 
-      this.$store.commit("setLoading",true)
-      this.$axios
-        .$post("/quest", this.d)
-        .then(res => {
-          this.$store.commit("setLoading",false)
-          this.$router.push("/quest/"+res.id)
-        });
+      if(this.d.text){
+          this.$store.commit("setLoading",true)
+          this.$axios
+            .$post("/quest", this.d)
+            .then(res => {
+              this.$store.commit("setLoading",false)
+              this.$router.push("/quest/"+res.id)
+            });
+      }
+    
     }
   }
 };

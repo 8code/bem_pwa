@@ -16,6 +16,9 @@
         <div slot="no-results"></div>
        </infinite-loading>
 
+          <new-quest  />
+
+
 
     </section>
   </div>
