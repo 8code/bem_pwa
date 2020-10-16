@@ -38,11 +38,14 @@
                                         Diikuti
                                     </span>
                             </div>
-                      <router-link
-                      v-if="group.user_id == $store.state.user.id"
-                       :to="`/edit/group/${group.username}`" class="float-right  mt-4  cursor-pointer bg-theme_primary_dark px-4 py-1 rounded-full text-primary">
-                                Edit Group
-                      </router-link>
+
+                             <div class="px-3 w-full" v-if="usernameIg">
+                              <a class="text-primary" :href="`https://instagram.com/${usernameIg}`">
+                                <img src="/instagram.png" class="h-10 w-10 p-2">
+                              </a>
+                          </div>
+                          
+                     
             </div>
                   
             </div>
@@ -50,6 +53,13 @@
             <div class=" font-normal">
                 {{ group.desc }}
             </div>
+
+
+             <router-link
+              v-if="group.user_id == $store.state.user.id"
+                :to="`/edit/group/${group.username}`" class="text-sm ml-auto cursor-pointer bg-theme_primary_dark px-4 py-1 rounded-full text-primary">
+                        Edit Group
+              </router-link>
 
             
             
@@ -60,11 +70,7 @@
         </div>
 
         
-            <div class="px-3 w-full" v-if="usernameIg">
-                <a class="text-primary" :href="`https://instagram.com/${usernameIg}`">
-                  <img src="/instagram.png" class="h-10 w-10 p-2">
-                </a>
-            </div>
+           
       </div>
     </section>
 

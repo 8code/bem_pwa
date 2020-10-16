@@ -1,7 +1,9 @@
 <template>
-<div class="w-full flex flex-wrap p-4 text-center">
+<div class="w-full">
 
         <subheader name="channels" />
+        <br>
+        <br>
 
         <h1 class="text-md text-center w-full">
                 Coming Soon

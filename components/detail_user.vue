@@ -97,7 +97,7 @@
         @click="filter = 'Event';getData()"
 
       >
-          Event
+         Channels
       </div>
 
 

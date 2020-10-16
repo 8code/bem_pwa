@@ -32,7 +32,6 @@ export default {
    components: {
     InfiniteLoading,
   },
-  scrollToTop: true,
   layout: "no-header",
   middleware: "auth",
   data() {

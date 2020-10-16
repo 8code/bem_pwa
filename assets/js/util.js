@@ -20,14 +20,14 @@ const util = {
             if(sinceSec==30)
               var since='30 detik';
             else if(sinceSec<60)
-              var since='< 1 menit';
+              var since='1 menit';
             else
               var since='1 menit';
         }
         else if(sinceMin<45)
             var since=sinceMin+' menit';
         else if(sinceMin>44&&sinceMin<60)
-            var since='< 1 jam';
+            var since='1 jam';
         else if(sinceMin<1440){
             var sinceHr=Math.round(sinceMin/60);
         if(sinceHr==1)

@@ -21,7 +21,7 @@
     transition: all 2s ease-in-out;
 
     --theme_primary_light: #fff;
-    --theme-primary: #EDF2F7;
+    --theme-primary: #f2f2f2;
     --theme-primary_dark: #dbe5ef;
 
     --theme-secondary: #718096;

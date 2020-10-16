@@ -1,5 +1,9 @@
 <template>
-    <div class="mx-auto text-sm flex ">
+<div class="mb-12 w-full">
+    <div class="text-sm flex fixed top-0 z-50 bg-theme_primary w-full mx-auto pt-2"
+    
+       style="max-width:600px;"
+       >
             <nuxt-link  :to="'/'+name"  :class="($route.path == '/'+name) ? activeClass : nonActiveClass">
             {{ $t("Followed")}}
             </nuxt-link>
@@ -12,7 +16,8 @@
                 <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
             </svg>
             </nuxt-link>
-        </div>
+    </div>
+</div>
 </template>
 
 <script>

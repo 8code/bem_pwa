@@ -12,9 +12,8 @@
 
 
        <infinite-loading @infinite="loadMoregetData">
-
-           <div slot="no-more">Selamat kamu sudah berada di bagian terakhir :) </div>
-
+        <div slot="no-more"></div>
+        <div slot="no-results"></div>
        </infinite-loading>
 
 

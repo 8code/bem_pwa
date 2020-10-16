@@ -124,7 +124,6 @@
          Daftar dengan Email
       </a>
 
-
     </div>
   </div>
 
