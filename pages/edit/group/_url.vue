@@ -181,7 +181,7 @@ export default {
     async save(){
    
 
-      this.d.avatar = this.avatar.generateDataUrl()
+      this.d.avatar = this.avatar.generateDataUrl('image/jpeg', 0.8)
 
         if(this.d.name != '' && this.d.desc != '' && this.d.type != ''){
          

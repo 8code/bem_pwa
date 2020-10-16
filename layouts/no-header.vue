@@ -1,13 +1,13 @@
 <template>
-  <div :class="settings">
+  <div :class="settings"  style="height:100vh;overflow-y:scroll">
     <loading />
 
     <div
-      class="w-full min-h-screen flex flex-wrap content-start bg-theme_primary"
+      class="w-full min-h-screen flex flex-wrap content-start "
     >
-      <settings class="z-50" />
+    
       <main
-        class="w-full mx-auto flex flex-wrap pt-2 content-start min-h-screen bg-theme_primary "
+        class="w-full mx-auto flex flex-wrap pt-2 content-start min-h-screen  "
         style="max-width:600px;"
       >
         <media-player />
@@ -16,8 +16,28 @@
         </transition>
       </main>
 
-      <nav class="fixed bottom-0 flex lg:hidden w-full bg-theme_primary">
-        <div class="mx-auto flex content-start text-primary font-bold">
+      <nav class="fixed bottom-0 flex lg:hidden w-full bg-theme_primary  ">
+        <div class="flex w-full text-primary font-bold">
+
+           <nuxt-link
+            to="/feed"
+            :class="
+              $route.path.includes('/feed') ? tactiveClass : tnonActiveClass
+            "
+          >
+           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-house" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+            <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+          </svg>
+            <span
+              :class="
+                $route.path.includes('/feed') ? activeClass : nonActiveClass
+              "
+            >
+              {{ $t("Home") }}
+            </span>
+          </nuxt-link>
+
           <nuxt-link
             to="/groups"
             :class="
@@ -61,33 +81,7 @@
             </span>
           </nuxt-link>
 
-          <nuxt-link
-            to="/search"
-            :class="$route.path == '/search' ? tactiveClass : tnonActiveClass"
-          >
-            <svg
-              width="1em"
-              height="1em"
-              viewBox="0 0 16 16"
-              class="bi bi-search"
-              fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"
-              />
-              <path
-                fill-rule="evenodd"
-                d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"
-              />
-            </svg>
-            <span
-              :class="$route.path == '/search' ? activeClass : nonActiveClass"
-            >
-              {{ $t("search") }}
-            </span>
-          </nuxt-link>
+        
 
           <nuxt-link
             to="/notifications"
@@ -149,8 +143,26 @@
           class="mx-auto flex flex-wrap content-center text-theme_secondary font-bold"
         >
           <nuxt-link
+            to="/feed"
+            class="w-full rounded-full flex px-1 py-2 mx-1 my-1 to-hover hover:text-primary"
+          >
+          <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-house" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+  <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+</svg>
+            <span
+              :class="
+                $route.path.includes('feed')
+                  ? activeClassLg
+                  : nonActiveClassLg
+              "
+            >
+              {{ $t("Home") }}
+            </span>
+          </nuxt-link>
+          <nuxt-link
             to="/groups"
-            class="w-full rounded-full flex px-1 py-2 mx-1 my-1 to-hover"
+            class="w-full rounded-full flex px-1 py-2 mx-1 my-1 to-hover hover:text-primary"
           >
             <svg
               width="1.5em"
@@ -178,7 +190,7 @@
 
           <nuxt-link
             to="/channels"
-            class="w-full rounded-full flex px-1 py-2 mx-1 my-1 to-hover"
+            class="w-full rounded-full flex px-1 py-2 mx-1 my-1 to-hover hover:text-primary"
           >
               <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-chat-text" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
   <path fill-rule="evenodd" d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
@@ -192,38 +204,10 @@
             >
           </nuxt-link>
 
-          <nuxt-link
-            to="/search"
-            class="w-full rounded-full flex px-1 py-2 mx-1 my-1 to-hover"
-          >
-            <svg
-              width="1.5em"
-              height="1.5em"
-              viewBox="0 0 16 16"
-              class="bi bi-search"
-              fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"
-              />
-              <path
-                fill-rule="evenodd"
-                d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"
-              />
-            </svg>
-            <span
-              :class="
-                $route.path == '/search' ? activeClassLg : nonActiveClassLg
-              "
-              >{{ $t("search") }}</span
-            >
-          </nuxt-link>
 
           <nuxt-link
             to="/notifications"
-            class="w-full rounded-full flex px-1 py-2 mx-1 my-1 to-hover"
+            class="w-full rounded-full flex px-1 py-2 mx-1 my-1 to-hover hover:text-primary"
           >
             <svg
               width="1.5em"
@@ -251,7 +235,7 @@
 
           <nuxt-link
             to="/profile"
-            class="w-full rounded-full flex px-1 py-2 mx-1 my-1 to-hover"
+            class="w-full rounded-full flex px-1 py-2 mx-1 my-1 to-hover hover:text-primary"
           >
             <svg
               width="1.5em"
@@ -292,9 +276,9 @@ export default {
       notifikasi: [],
       windowTop: 0,
       tactiveClass:
-        "text-lg font-bold rounded-full flex px-1 py-2 mx-1 flex-wrap content-center justify-center items-center pt-2",
+        "text-lg font-bold rounded-full flex w-1/5 px-1 py-2 mx-1 flex-wrap content-center justify-center items-center pt-2",
       tnonActiveClass:
-        "text-lg font-bold rounded-full flex px-1 py-2 mx-1 flex-wrap content-center justify-center items-center text-default pt-2",
+        "text-lg font-bold rounded-full flex w-1/5 px-1 py-2 mx-1 flex-wrap content-center justify-center items-center text-default pt-2",
       activeClass: "text-center text-xs2 w-full rounded-lg mt-1  text-primary",
       nonActiveClass: "text-center text-xs2 w-full  text-default mt-1",
       activeClassLg:

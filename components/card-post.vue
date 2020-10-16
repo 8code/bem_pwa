@@ -2,36 +2,42 @@
       <div v-if="data.id" class="w-full p-2 relative cursor-pointer border-b border-theme_primary_light overflow-hidden" > 
                                   <div class="shadow-sm rounded-xl bg-theme_primary hover:bg-theme_primary_dark p-2 " :class="(active) ? 'bg-theme_primary_dark' : ''">
 
-
-                                            <div v-if="data.group">
-                                                <span v-if="data.group.user_id == data.user.id" class="bg-primary px-2 rounded-xl  text-xs text-secondary ">admin</span>   
-                                                    <nuxt-link v-if="data.group_id "  class="text-primary p-1 px-4 bg-theme_primary_dark rounded-tl-xl rounded-br-xl text-xs" :to="'/'+data.group.username" >
-                                                        
-                                                    #{{ data.group.username }} 
-
-                                                    </nuxt-link>
-                                            </div>
-                                         
                                      
-                                        <div class="flex pt-2" v-if="!donasi">
+                                        <div class="flex content-start" >
 
-                                            <img class="w-10 h-10 rounded-full" :src="data.user.avatar" alt="Event 1">
+                                            <img class="w-5 h-5 rounded-full" :src="data.user.avatar" alt="Avatar">
 
-                                             <nuxt-link class="p-2"  :to="'/@'+data.user.username">
-                                                <span class="font-bold text-md">{{ data.user.name }}
-                                                </span> 
-                                             
+                                             <nuxt-link class="p-2 -mt-2"  :to="'/@'+data.user.username">
+                                                <span class="font-semibold text-sm">{{ data.user.name }}</span> 
                                                 <span class="text-primary text-xs">@{{ data.user.username }}</span> 
                                             </nuxt-link>
 
-                                            <span class="text-xs ml-auto text-primary_light flex">
-                                            {{ parseQuestDate(data.created_at)}}
+                                            <span class="text-xs ml-auto text-primary flex">
+                                              
+                                              
+                                                <div v-if="data.group">
+                                                    
+                                                        <nuxt-link v-if="data.group_id "  class="text-primary px-3 mb-2 text-xs flex" :to="'/'+data.group.username" >
+                                                            
+                                                           #{{ data.group.username }} 
+
+                                                           <span v-if="data.group.user_id == data.user.id" class="text-primary px-1">
+                                                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                                    <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
+                                                                </svg>
+                                                            </span>  
+
+                                                        </nuxt-link>
+                                                     
+                                                </div>
+                                                
+                                              {{ parseQuestDate(data.created_at)}}
                                                <span class="px-2" v-if="data.user_id == $store.state.user.id"> 
 
-                                                <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-pencil bg-theme_primary_dark p-1 rounded-full" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil mt-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
                                                         </svg>
-
                                                  </span>
                                             </span>
 
@@ -39,69 +45,90 @@
                                         </div>
                                         <div class="w-auto flex "> 
 
-                                            <div class="flex flex-wrap items-start" :class="(donasi) ? '' : 'pl-8'">
+                                            <div class="flex flex-wrap items-start">
                                                
-                                               
-                                                        <div v-if="!hideBalasan" class="w-full">
-                                                        <nuxt-link v-if="data.quest_id" class="p-1 text-sm w-full" :to="'/quest/'+data.quest_id" >
-                                                
-                                                        
-                                                        
-                                                        <nuxt-link :to="`/quest/${data.quest_id}`" class=" text-primary rounded-xl">
-                                                        
-                                                        <b> @{{ data.membalas_user }}</b>
-                                                            : 
-                                                            {{ data.quest.text.substring(0, 60) }} ... 
+                                                <span v-if="!hideBalasan" class="w-full">
+                                                    <span v-if="data.quest_id" class="px-4 text-xs w-full" :to="'/quest/'+data.quest_id" >
+                                                        <nuxt-link :to="`/quest/${data.quest_id}`" >
+                                                    
+                                                        Membalas :<span class="text-primary"> @{{ data.membalas_user }}</span>
                                                             
                                                         </nuxt-link> 
-
-                                                        <span> Membalas :</span>
-
-                                                    
-                                                        </nuxt-link>
-                                                        </div>
+                                                    </span>
+                                                </span>
                                                         
                                             
-                                                    <div v-if="data.embed" class="py-2 w-full media-preview" @click="$store.commit('setMediaPlayer',{data: data,path:$route.path})">
-                                                     
-                                                        <div v-if="cekSumber(data.embed) == 'youtube'">
-                                                            <img src="/youtube.png" alt="logo" class="absolute play-button-youtube">
-                                                            <img class="w-full rounded-xl" :src="imgPreview(data.embed)" alt="Preview">
-                                                        </div>
+                                                
 
-                                                         <div v-if="cekSumber(data.embed) == 'spotify'" class="bg-primary justify-beetween text-secondary w-full flex rounded-xl p-3 px-4 h-auto" >
-                                                      
-                                                            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-play" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                                <path fill-rule="evenodd" d="M10.804 8L5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"/>
-                                                            </svg>
-                                                            <span class="p-1 px-2 font-bold">Play Podcast</span>
+                                                <nuxt-link v-if="!active"  :to="`/quest/${data.id}`" class="w-full items-start flex px-2  text-theme_secondary"  >
 
-                                                                
-                                                        </div>
-                                                    </div>
-
-                                                   <div v-if="data.video || data.img" class="w-full media-preview py-2">
-                                                        <img @click="$store.commit('setMediaPlayer',{data: data,path:$route.path})" v-if="data.video" src="/play.svg" alt="logo" class="absolute play-button-youtube text-primary bg-primary rounded-full p-1">
-                                                        <img @click="$store.commit('setMediaPlayer',{data: data,path:$route.path})" v-if="data.video" class="w-full rounded-xl" :src="data.thumb">
-                                                        <img @dblclick="followQuest(data.id)" v-else class="w-full rounded-xl" :src="data.img">
-                                                   </div>
-                                              
-
-                                                <nuxt-link v-if="!active"  :to="`/quest/${data.id}`" class="w-full pb-2  text-theme_secondary"  >
-                                                        {{ data.text.slice(0, 200) }}
-
-                                                      <span v-for="(tx,i) in textToArray(data.text.slice(0, 200))" :key="i"> 
                                                         
-                                                        <nuxt-link class="text-primary" v-if="(tx.slice(0, 1) == '@')" :to="'/'+tx"> {{tx}} </nuxt-link>
-                                                        <nuxt-link class="text-primary" v-else-if="(tx.slice(0, 1) == '#')" :to="'/'+tx.substring(1)"> {{tx}} </nuxt-link>
+                 
+                                                         <div v-if="data.embed" class="py-2 w-1/2 media-preview" @click="$store.commit('setMediaPlayer',{data: data,path:$route.path})">
+                                                        
+                                                            <div v-if="cekSumber(data.embed) == 'youtube'">
+                                                                <img src="/youtube.png" alt="logo" class="absolute play-button-youtube">
+                                                                <img class="w-full rounded-xl" :src="imgPreview(data.embed)" alt="Preview">
+                                                            </div>
+
+                                                            <div v-if="cekSumber(data.embed) == 'spotify'" class="bg-primary justify-beetween text-secondary w-full flex rounded-xl p-3 px-4 h-auto" >
+                                                        
+                                                                <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-play" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path fill-rule="evenodd" d="M10.804 8L5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"/>
+                                                                </svg>
+                                                                <span class="p-1 px-2 font-bold">Play Podcast</span>
+
+                                                            </div>
+                                                        </div>
 
 
-                                                    </span>
+                                                        <img  v-if="data.video" class="w-1/4 rounded-xl" :src="data.thumb">
+                                                        <img v-if="data.img" class="w-1/4 rounded-xl" :src="data.img">
+                                
+
+                                                        <span class="w-3/4 px-4 mt-2 text-xs lg:text-base">
+                                                            <span v-for="(tx,i) in textToArray(data.text.slice(0, 200))" :key="i"> 
+                                                                <nuxt-link class="text-primary" v-if="(tx.slice(0, 1) == '@')" :to="'/'+tx"> {{tx}} </nuxt-link>
+                                                                <nuxt-link class="text-primary" v-else-if="(tx.slice(0, 1) == '#')" :to="'/'+tx.substring(1)"> {{tx}} </nuxt-link>
+                                                                <span v-else> {{tx}} </span>
+                                                            </span>
+                                                           <span class="text-primary"> ...</span>
+                                                        </span>
+
+                                                      
                                                 </nuxt-link>
+
 
                                                 
                                                  <div v-else class="w-full pb-2  text-theme_secondary">
-                                                      {{ data.text.slice(0, 200) }}
+
+
+                                                       <div v-if="data.embed" class="py-2 w-full media-preview" @click="$store.commit('setMediaPlayer',{data: data,path:$route.path})">
+                                                        
+                                                            <div v-if="cekSumber(data.embed) == 'youtube'">
+                                                                <img src="/youtube.png" alt="logo" class="absolute play-button-youtube">
+                                                                <img class="w-full rounded-xl" :src="imgPreview(data.embed)" alt="Preview">
+                                                            </div>
+
+                                                            <div v-if="cekSumber(data.embed) == 'spotify'" class="bg-primary justify-beetween text-secondary w-full flex rounded-xl p-3 px-4 h-auto" >
+                                                        
+                                                                <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-play" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path fill-rule="evenodd" d="M10.804 8L5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"/>
+                                                                </svg>
+                                                                <span class="p-1 px-2 font-bold">Play Podcast</span>
+
+                                                                    
+                                                            </div>
+                                                        </div>
+
+                                                        <div v-if="data.video || data.img" class="w-full media-preview py-2">
+                                                            <img @click="$store.commit('setMediaPlayer',{data: data,path:$route.path})" v-if="data.video" src="/play.svg" alt="logo" class="absolute play-button-youtube text-primary bg-primary rounded-full p-1">
+                                                            <img @click="$store.commit('setMediaPlayer',{data: data,path:$route.path})" v-if="data.video" class="w-full rounded-xl" :src="data.thumb">
+                                                            <img @dblclick="followQuest(data.id)" v-else class="w-full rounded-xl" :src="data.img">
+                                                    </div>
+
+
+                                                      {{ data.text }}
 
                                                     <span v-for="(tx,i) in textToArray(data.text)" :key="i"> 
                                                         
@@ -119,11 +146,11 @@
                                                 </div>
 
 
-                                            <div class="flex text-right ">
+                                            <div class="flex text-right px-2 mt-2">
 
                                             
                                             <nuxt-link :to="`/quest/${data.id}`" 
-                                            class="text-xs lg:text-lg text-primary ">
+                                            class="text-xs lg:text-base text-primary ">
                                             {{ data.total_qna }} Balasan
                                             </nuxt-link>
 
@@ -131,7 +158,7 @@
                                             <div class="flex mx-3 justify-end ">
 
                                                 
-                                                    <button v-if="!donasi" @click="$emit('balas',data)" class="flex relative ml-auto py-1 px-5 mx-2 rounded-tl-xl rounded-br-xl text-xs text-primary  shadow-sm">
+                                                    <button  @click="$emit('balas',data)" class="flex relative ml-auto py-1 px-5 mx-2 rounded-tl-xl rounded-br-xl text-xs text-primary  shadow-sm">
                                                         <svg  width="12px" height="12px"  viewBox="0 0 16 16" class="bi bi-plus-circle mt-1 mr-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                             <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
                                                             <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
@@ -176,7 +203,7 @@
 import util from '~/assets/js/util'
 
 export default {
-    props:['data','bigtext','active','hideBalasan',"link","donasi"],
+    props:['data','bigtext','active','hideBalasan',"link"],
     data(){
         return{
             btnFollow: 'flex relative ml-auto py-1 px-3 rounded-tl-xl rounded-br-xl shadow-sm text-xs text-theme_secondary',

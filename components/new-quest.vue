@@ -34,17 +34,17 @@
 </div>
 
 
-      <section v-if="modal_quest" class="mx-auto flex flex-wrap  z-30 fixed top-0">
+      <section v-if="modal_quest" class="mx-auto flex flex-wrap content-start  z-30 fixed top-0" style="overflow-y:scroll;height:100vh">
 
-      <div v-if="!hiddenbottom" @click="modal_quest = false" class="w-full  flex flex-wrap justify-center content-center bg-theme_primary_dark opacity-50 z-40 fixed top-0 right-0 h-screen " >
+      <div v-if="!hiddenbottom" @click="modal_quest = false" class="w-full  flex flex-wrap justify-center content-center bg-theme_primary_dark opacity-50 z-40 fixed top-0 right-0  h-screen" >
       </div>
 
 <!-- body -->
    
 
     <div
-    class="w-full content-start max-w-xl flex flex-wrap justify-center z-50 overflow-y-scroll bg-theme_primary rounded-xl p-4"
-    style="height:90vh"
+    class="w-full content-start max-w-xl bg-theme_primary_light flex flex-wrap justify-center z-50 overflow-y-scroll  rounded-xl p-4" 
+  
     
   >
   
@@ -79,7 +79,7 @@
       @click="showModal = ''"
       v-model="d.text"
       placeholder="Katakan sesuatu ..."
-      class="bg-theme_primary_dark w-full rounded-lg p-4 mt-3 h-48"
+      class="bg-theme_primary_dark w-full rounded-lg p-4 mt-3"
      
     ></textarea>
 
@@ -189,7 +189,7 @@
                 prevent-white-space
                 :width="img.width"
                 :height="img.height"
-                 :quality="2"
+                 :quality="1"
                 :placeholder="'Upload Foto'"
               ></croppa>
               <br>
@@ -267,7 +267,7 @@ export default {
           if(this.imgTemp){
      
 
-                this.d.img = this.imgTemp.generateDataUrl();
+                this.d.img = this.imgTemp.generateDataUrl('image/jpeg', 0.8)
 
                 console.log(this.d.img)
                 this.showModal = ''

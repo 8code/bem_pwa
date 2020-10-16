@@ -134,7 +134,7 @@ export default {
     async save(){
 
         if(this.d.name != '' && this.d.desc != '' && this.d.type != ''){
-          this.d.avatar = this.avatar.generateDataUrl()
+          this.d.avatar = this.avatar.generateDataUrl('image/jpeg', 0.8)
           if(this.d.avatar){
             // this.d.avatar = '/icon.png';
             await this.$store.commit("createGroup",this.d)

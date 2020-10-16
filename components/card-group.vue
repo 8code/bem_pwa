@@ -1,6 +1,6 @@
 <template>
-  <div v-if="group" class="w-full p-2 relative flex  border-b border-theme_primary_light">
-        <nuxt-link :to="`/${group.username}`"> 
+  <div v-if="group" class="w-full" >
+        <nuxt-link class="w-full p-2 relative flex  border-b border-theme_primary_light"  :to="`/${group.username}`"> 
     <div
       class="w-full flex flex-wrap shadow-sm bg-theme_primary hover:bg-theme_primary_dark rounded-xl px-2 lg:py-2 "
     >
@@ -25,14 +25,14 @@
                 
                    <small class="text-xs">#{{ group.username }}</small>
                   <div v-if="follow" class="text-xs">
-                        <span v-if="group.followed" class="cursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
+                        <span v-if="group.followed" class="cursor-pointer bg-theme_primary_light text-primary px-4 py-1 rounded-full">
                             Diikuti
                         </span>
                         <div v-else >
                           <span v-if="!followTemp" @click="followGroup(group.id)" class="cursor-pointer bg-primary px-4 py-1 rounded-full text-secondary">
                               Ikuti
                           </span>
-                          <span v-if="followTemp" class="fursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
+                          <span v-if="followTemp" class="fursor-pointer bg-theme_primary_light text-primary px-4 py-1 rounded-full">
                             Diikuti
                         </span>
                         </div>
@@ -40,7 +40,7 @@
                   </div>
 
                     <div v-if="totalFollower" class="text-xs">
-                        <span class="cursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
+                        <span class="cursor-pointer bg-theme_primary_light text-primary px-4 py-1 rounded-full">
                             {{ group.follow_total}} Pengikut
                         </span>
                       

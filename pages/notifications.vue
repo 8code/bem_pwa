@@ -1,10 +1,8 @@
 <template>
 <section class="w-full pb-10 px-4 mb-20">
-        <h1 class="text-2xl font-semibold p-2 mb-3 flex">{{ $t('Notif')}}
+        <h1 class=" font-semibold p-2 mb-3 flex">{{ $t('Notif')}}
 
-                  <!-- <button class="ml-auto font-semibold">
-                        pesan
-                </button> -->
+ 
         </h1>
 
       
@@ -38,26 +36,17 @@
 
           <infinite-loading @infinite="loadMoregetData">
 
-              <div slot="no-more" class="text-center flex w-full p-4"> ... </div>
+              <div slot="no-more" class="text-center flex w-full p-4"> </div>
 
           </infinite-loading>
 
 
-        <h1 v-if="userPopuler" class="font-bold text-center text-xl p-2 px-4 w-full">
-              Follow Seseorang
-        </h1>
+        <router-link to="/users/explore" class="bg-theme_primary_light mb-3 rounded-full flex justify-center text-center font-bold text-md p-2 px-4 w-full">
+              Ikuti Seseorang
+        </router-link>
 
-        <div v-if="userPopuler" class=" flex flex-row bg-theme_primary_dark rounded-xl mb-2" style="overflow-x:scroll">
-                <div  v-for="q in userPopuler" :key="q.id" class="cursor-pointer w-4/5  relative mx-4  rounded-xl flex items-center justify-center" >
-                    <card-user :data="q.user" style="min-width:320px"  />
-                </div>   
-                <router-link to="/users/explore"  class="cursor-pointer px-6 font-bold text-xl relative mx-1 bg-primary text-secondary rounded-xl flex items-center justify-center" >
-                        Lihat Saran Lainnya 
-                </router-link>
-        </div>
-
-          <nuxt-link to="/groups/explore" class="flex justify-center text-center font-bold text-xl p-2 px-4 w-full">
-              Follow Sebuah Group
+          <nuxt-link to="/groups/explore" class="bg-theme_primary_light mb-3 rounded-full flex justify-center text-center font-bold text-md p-2 px-4 w-full">
+              Ikuti Sebuah Grup
         </nuxt-link>
 
 
@@ -79,7 +68,6 @@ export default {
   scrollToTop: true,
   data(){
           return {
-                userPopuler: '',
                 notif: '',
                 page: 1,
                 loadMore: false,
@@ -122,12 +110,6 @@ export default {
 
        this.page = 1
        this.getData()
-
-
-        this.$axios.get("/user-populer")
-        .then(res => {
-          this.userPopuler = res.data
-        })
 
   }
 }

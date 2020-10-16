@@ -75,25 +75,29 @@
     <div class="p-2 flex flex-row mt-2" style="overflow-x:scroll">
  
      <div
-        :class="(filter == 'Quest Only') ? filterClassActive : filterClass"
-        @click="filter = 'Quest Only';getData()"
+        :class="(filter == 'Quest') ? filterClassActive : filterClass"
+        @click="filter = 'Quest';getData()"
       >
-        <div
-          class="-mt-1 -ml-1 h-6 w-6 absolute top-0 left-0 rounded-full shadow-lg bg-primary mr-3"
-        ></div>
           Quest
       </div>
 
       
      <div
-        :class="(filter == 'Quest & Balasan') ? filterClassActive : filterClass"
-        @click="filter = 'Quest & Balasan';getData()"
+        :class="(filter == 'Group') ? filterClassActive : filterClass"
+        @click="filter = 'Group';getData()"
 
       >
-        <div
-          class="-mt-1 -ml-1 h-6 w-6 absolute top-0 left-0 rounded-full shadow-lg bg-primary mr-3"
-        ></div>
-          Quest & Balasan
+     
+          Group
+      </div>
+
+  
+     <div
+        :class="(filter == 'Event') ? filterClassActive : filterClass"
+        @click="filter = 'Event';getData()"
+
+      >
+          Event
       </div>
 
 
@@ -132,7 +136,7 @@ export default {
       profile: "",
       quest: "",
       search: "",
-      filter: "Quest Only",
+      filter: "Quest",
       balas_quest: '',
       page: 1,
       loadMore: false,

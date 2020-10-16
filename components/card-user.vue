@@ -24,7 +24,7 @@
                     <nuxt-link class="font-semibold text-primary" :to="`/@${data.username}`">@{{ data.username }}</nuxt-link>
                
                         <div  v-if="data.followed" class="text-sm">
-                           <span class=" cursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
+                           <span class=" cursor-pointer bg-theme_primary_light text-primary px-4 py-1 rounded-full">
                               Diikuti
                           </span>
                         </div>
@@ -32,7 +32,7 @@
                           <span v-if="!followTemp" @click="followUser(data.id)" class="cursor-pointer bg-primary px-4 py-1 rounded-full text-secondary">
                               Ikuti
                           </span>
-                          <span v-if="followTemp" class="fursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
+                          <span v-if="followTemp" class="fursor-pointer bg-theme_primary_light text-primary px-4 py-1 rounded-full">
                             Diikuti
                         </span>
                         </div>

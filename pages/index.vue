@@ -10,7 +10,7 @@
             <div class="w-full flex flex-wrap items-center justify-center lg:justify-between">
                 <div class="flex">
                     
-                <nuxt-link to="/" class="flex items-center text-primary  font-bold text-2xl lg:text-4xl" > 
+                <nuxt-link to="/" class="flex items-center text-primary  font-bold text-2xl " > 
                    <span class="bg-primary  border-primary border-2 rounded-full">
                         <img class="w-8 h-8" src="/logo.png" alt="Logo Aplikasi Maba">
                    </span>
@@ -22,13 +22,10 @@
                     
                 
                 <div class="hidden lg:flex  justify-end content-center font-bold">	
-                        <nuxt-link to="/login" class="mr-8 flex items-center  no-underline hover:no-underline text-xl" > 
+                        <nuxt-link to="/login" class="text-center cursor-pointer bg-theme_primary_dark  px-4 my-2 py-1 rounded-full text-primary" > 
                             Masuk
                         </nuxt-link>	
 
-                       <span @click="$store.commit('toggleSetting',true)" class="text-center cursor-pointer bg-theme_primary_dark  px-4 my-2 py-1 rounded-full text-primary">
-                            Pengaturan
-                    </span>
                 </div>
                 
             </div>
@@ -58,7 +55,7 @@
 		</div>
 		
 		<!--Right Col-->
-		<div class="w-full xl:w-1/2 py-6 hover:p-0 overflow-y-hidden relative cursor-pointer">
+		<div class="w-full xl:w-1/2 pb-6 hover:p-0 overflow-y-hidden relative cursor-pointer">
             <a href="https://www.youtube.com/watch?v=GSdKaaH0D04&t=107s" target="_BLANK" class="absolute bg-primary p-2 rounded-full text-secondary" style="top:50%;right:0">
                 <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-play-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>

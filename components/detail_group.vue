@@ -13,7 +13,7 @@
           />
 
           <div class="w-full pl-5 mt-1 flex flex-wrap items-start ">
-            <div class="w-full text-xl lg:text-2xl mb-2">
+            <div class="w-full lg:text-md mb-2">
               {{ group.name }}  
               <br> <small class="text-primary">#{{ group.username }}</small>
               <br />

@@ -118,7 +118,7 @@ export default {
               Group: 'Group',
               Notif: 'Notif',
               Profile: 'Profile',
-              Explore: 'For You',
+              Explore: 'Populer',
               Followed: 'Followed',
               Channels: 'Channels',
             },
@@ -139,7 +139,7 @@ export default {
               Group: 'Grup',
               Notif: 'Notifikasi',
               Profile: 'Saya',
-              Explore: 'UntukMu',
+              Explore: 'Populer',
               Followed: 'Diikuti',
               Channels: 'Channels',
 

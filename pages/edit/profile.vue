@@ -263,7 +263,7 @@ export default {
     async save() {
 
         if(this.avatar){
-              this.d.avatar = this.avatar.generateDataUrl();
+              this.d.avatar = this.avatar.generateDataUrl('image/jpeg', 0.8)
         }
        
       if (this.d.name != null && this.d.username != null && this.d.gender != null && this.d.angkatan != null && this.d.study_program != null && this.d.university != null) {
