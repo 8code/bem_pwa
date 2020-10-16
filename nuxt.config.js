@@ -45,13 +45,16 @@ export default {
   ** Global CSS
   */
   css: [
+    'medium-editor/dist/css/medium-editor.css',
+    'vuejs-medium-editor/src/themes/default.css',
+    // 'highlight.js/styles/ocean.css' //if using code highlight
   ],
   /*
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    // '~/plugins/v-touch',
+    '~/plugins/v-touch',
   ],
   /*
   ** Auto import components

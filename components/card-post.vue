@@ -40,7 +40,7 @@
           </span>
         </span>
       </div>
-      <div class="w-auto flex ">
+      <div class="w-auto flex mt-1">
         <div class="flex flex-wrap items-start">
 
           <span v-if="!hideBalasan" class="w-full">

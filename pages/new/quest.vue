@@ -75,12 +75,20 @@
 
    </div>
 
-  <div v-if="d.type" class="flex flex-wrap w-full p-2 mt-3">
+  <div v-if="d.type" class="flex flex-wrap w-full mt-3">
     
     
 
-     <div class="w-full" v-if="d.type == 1">
-        Cerita
+    <div class="w-full" v-if="d.type == 1">
+       <medium-editor
+             class="bg-theme_primary_dark p-2 px-5 rounded-lg"
+            v-model="content"
+            :prefill="defaultValue"
+            :options="options"
+            :onChange="onChange"
+            >
+        </medium-editor>
+
     </div>
     <div class="w-full" v-if="d.type == 2">
       Event (Channel)
@@ -89,8 +97,8 @@
       Katalog (Produk)
     </div>
 
-      <button @click="d.type = ''" class="bg-danger p-1 rounded-full px-3 mt-1 text-xs ml-auto">
-       x
+      <button @click="d.type = ''" class="bg-danger text-white p-1 rounded-full px-3 mt-1 text-xs ml-auto">
+       x batalkan
       </button>
 
 
@@ -166,7 +174,6 @@
             <span  @click="showModal = ''" class="text-danger ml-auto">Tutup</span>
 
              <div class="w-full text-center">
-
                     <croppa
                 class="shadow-sm rounded-lg bg-primary"
                 v-model="imgTemp"
@@ -201,6 +208,10 @@ Vue.use(Croppa);
 import vSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css';
 
+import MediumEditor from 'vuejs-medium-editor'
+
+Vue.component('medium-editor', MediumEditor)
+
 
 
 export default {
@@ -211,8 +222,40 @@ export default {
     components: {
     "v-select": vSelect
   },
+
+
   data() {
     return {
+        content: ``,
+      defaultValue: `<h5>Vuejs <b>Medium Editor</b></h5>
+
+             <a href="https://bit.ly/aplikasi-maba">Download Aplikasi</a>
+             
+             
+             <p>
+             
+             
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde tempora voluptas in quae dolore dolor enim, nulla alias facere aspernatur, inventore qui maxime nostrum quisquam exercitationem, sint magnam possimus? Numquam.
+
+             </p>`,
+      options: {
+        
+        imgur: false,
+        toolbar: {
+          buttons: ["bold", "italic",
+          {
+              name: 'anchor',
+              action: 'createLink',
+              aria: 'link',
+              tagNames: ['a'],
+              contentDefault: '<b>🔗</b>',
+              contentFA: '<i class="fa fa-link"></i>',
+          },
+          "underline", "quote","h5", "h6",
+          'unorderedlist', 'orderedlist',
+          ]
+        }
+      },
       modal_quest: false,
       showModal: "",
       d:{
@@ -247,6 +290,9 @@ export default {
     }
   },
   methods: {
+    onChange() {
+        console.log(this.content)
+    },
     cropImg(){
 
           if(this.imgTemp){

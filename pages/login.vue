@@ -10,8 +10,6 @@
   <loading />
 
   
-    <settings class="z-50" />
-    
 
     <main
       class="w-full  mx-auto flex flex-wrap   px-10 pt-10"

@@ -25,10 +25,12 @@
     "push.js": "^1.0.12",
     "pusher-js": "^7.0.0",
     "tiptap": "^1.30.0",
+    "tiptap-extensions": "^1.33.2",
     "videojs-record": "^4.1.0",
     "vue-croppa": "^1.3.8",
     "vue-infinite-loading": "^2.4.5",
-    "vue2-touch-events": "^2.2.1"
+    "vue2-touch-events": "^2.2.1",
+    "vuejs-medium-editor": "^1.2.1"
   },
   "devDependencies": {
     "@nuxtjs/laravel-echo": "^1.1.0",
