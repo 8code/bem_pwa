@@ -8,7 +8,7 @@
     --color-primary: #667EEA;
     --color-primary_dark: #4C51BF;
 }
-.disable-copy{
+*{
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
      -khtml-user-select: none; /* Konqueror HTML */
