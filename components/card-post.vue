@@ -2,6 +2,7 @@
   <div
     v-if="data.id"
     class="w-full p-2 relative cursor-pointer border-b border-theme_primary_light overflow-hidden"
+    
   >
     <div
       class="shadow-sm rounded-xl bg-theme_primary hover:bg-theme_primary_dark p-2 "
@@ -9,7 +10,7 @@
     >
       <div class="flex content-start">
         <img
-          class="w-5 h-5 rounded-full"
+          class="w-6 h-6 lg:w-8 lg:h-8 rounded-full"
           :src="data.user.avatar"
           alt="Avatar"
         />
@@ -47,30 +48,25 @@
             <span
               v-if="data.quest_id"
               class="px-4 text-xs w-full"
-              :to="'/quest/' + data.quest_id"
             >
               <nuxt-link :to="`/quest/${data.quest_id}`">
                 membalas :<span class="text-primary">
-                  @{{ data.membalas_user }}</span
-                >
+                  @{{ data.membalas_user }} :
+                  <span>{{ data.quest.text.slice(0,25) }}</span>
+                </span>
               </nuxt-link>
             </span>
           </span>
 
-          <nuxt-link
+
+          <div
             v-if="!active"
-            :to="`/quest/${data.id}`"
-            class="w-full items-start flex px-2  text-theme_secondary"
+            class="w-full items-start flex px-2  text-theme_secondary mt-2"
+            @click="showDetail"
           >
             <div
               v-if="data.embed"
-              class="pb-2 w-1/2 media-preview"
-              @click="
-                $store.commit('setMediaPlayer', {
-                  data: data,
-                  path: $route.path
-                })
-              "
+              class="pb-2 w-full media-preview"
             >
               <div v-if="cekSumber(data.embed) == 'youtube'">
                 <img
@@ -106,10 +102,10 @@
               </div>
             </div>
 
-            <img v-if="data.video" class="w-1/4 rounded-xl" :src="data.thumb" />
-            <img v-if="data.img" class="w-1/4 rounded-xl" :src="data.img" />
+            <img v-if="data.video" class="w-1/4 lg:w-1/5 rounded-xl" :src="data.thumb" />
+            <img v-if="data.img" class="w-1/4 lg:w-1/5 rounded-xl" :src="data.img" />
 
-            <span class="w-full px-4 mt-2 text-xs lg:text-base" :class="(data.text.length <= 150) ? 'text-base lg:text-xl': ''">
+            <span class="w-full px-2 lg:mt-2 text-xs lg:text-base" :class="(data.text.length <= 150) ? 'text-base lg:text-xl': ''">
               <span
                 v-for="(tx, i) in textToArray(data.text.slice(0, 200))"
                 :key="i"
@@ -128,7 +124,10 @@
                 >
                   {{ tx }}
                 </nuxt-link>
-                <span v-if="isLink(tx)" class="w-full" >
+               
+                <span v-else>
+                  
+                   <span v-if="isLink(tx)" class="w-full" >
                     
                     <a
                     class="text-primary"
@@ -138,13 +137,13 @@
                     >{{ tx }}</a>
                 </span>
                 <span v-else> {{ tx }} </span>
+                
+                 </span>
               </span>
-              <span class="text-primary" v-if="data.type != 2"> ... </span>
+              <span class="text-primary" v-if="data.type != 2">  </span>
             </span>
-          
-            
 
-          </nuxt-link>
+          </div>
       
 
           <div v-else class="w-full p-2  text-theme_secondary">
@@ -238,6 +237,7 @@
               >
                 {{ tx }}
               </nuxt-link>
+              
               <nuxt-link
                 class="text-primary"
                 v-else-if="tx.slice(0, 1) == '#'"
@@ -245,6 +245,9 @@
               >
                 {{ tx }}
               </nuxt-link>
+
+               <span v-else>
+                  
                 <span v-if="isLink(tx)" class="w-full" >
                     
                     <a
@@ -255,8 +258,10 @@
                     >{{ tx }}</a>
                 </span>
 
-              <span v-else>
-                {{ tx }}
+             
+                <span v-else>
+                   {{ tx }}
+                </span>
               
               </span>
             </span>
@@ -266,34 +271,59 @@
            
           </div>
 
-            <button v-if="data.type == 2" class="ml-auto bg-primary p-1 px-5 rounded-full text-secondary text-xs mr-2">
-                   Daftar Acara
-              </button>
+           
 
-        
+        <div class="flex w-full">
+            <nuxt-link
+              v-if="data.group"
+              class="text-primary font-bold mr-auto px-4 mt-2"
+              :to="'/' + data.group.username"
+            >
+              #{{ data.group.username }}
+            </nuxt-link>
+
+             <button v-if="data.type == 2" @click="joinEvent(data.event_id)" class="ml-auto mr-4 mt-2 bg-primary p-1 px-5 rounded-full text-secondary text-xs">
+                  Daftar Acara
+              </button>
+        </div>
+
           <div class="flex w-full px-4 mt-2">
            
             
-            <div class="flex " >
+            <div class="flex w-full" >
               
+            
+
             <nuxt-link
               :to="`/quest/${data.id}`"
-              class="text-xs lg:text-base text-primary p-1 mt-1 lg:mt-0"
+              class="text-xs lg:text-base text-primary p-1"
             >
               {{ data.total_qna }} balasan
             </nuxt-link>
-                <div @click="$emit('balas',data)" class="p-1 px-5 text-primary">
-                   <svg width="22px" height="22px" viewBox="0 0 16 16" class="bi bi-chat-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z"/>
-                  </svg>
-                </div>
-              <div
+
+              
+            
+
+
+            </div>
+           <div class="flex absolute right-0 px-6" >      
+
+
+              <div @click="$emit('balas',data)" class="p-1 px-5  flex">
+                <svg width="18px" height="18px" viewBox="0 0 16 16" class="bi bi-chat-dots mt-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
+  <path d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+</svg>
+                <span class="px-2">Balas</span>
+              </div>
+
+             <div
                 @click="followQuest(data.id)"
                 :class="data.followed || followTemp ? btnFollowed : btnFollow"
               >
                 <svg
-                  width="20px"
-                  height="20px"
+                  width="18px"
+                  height="18px"
                   viewBox="0 0 16 16"
                   class="bi bi-heart-fill mr-1 mt-1"
                   fill="currentColor"
@@ -303,6 +333,7 @@
                     fill-rule="evenodd"
                     d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
                   />
+                  
                 </svg>
                 <span class="mt-1" v-if="data.followed">
                   {{ data.total_follower }}
@@ -314,18 +345,10 @@
                       : data.total_follower
                   }}
                 </span>
+
               </div>
-            </div>
 
-            <nuxt-link
-              v-if="data.group"
-              class="text-primary  text-xs flex p-1 mt-1 px-4"
-              :to="'/' + data.group.username"
-            >
-              #{{ data.group.username }}
-            </nuxt-link>
-
-            
+ </div>
 
           </div>
         </div>
@@ -349,6 +372,20 @@ export default {
     };
   },
   methods: {
+    joinEvent(id){
+      this.$axios.get("/join-event/"+id)
+        .then(res => {
+          this.$router.push("/channel/"+id)
+        })
+    },
+    showDetail(){
+        if(this.$props.data.quest == null){
+          this.$router.push("/quest/"+this.$props.data.id)
+        }else{
+          this.$router.push("/quest/"+this.$props.data.quest_id+"?reply="+this.$props.data.id)
+          this.$emit('balas',this.$props.data)
+        }
+    },
     isLink(link) {
       if (link) {
         if (link.substring(0, 4) == "http") {

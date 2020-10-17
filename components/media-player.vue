@@ -1,7 +1,7 @@
 <template>
 
 
-  <div class="w-full flex justify-center  flex-wrap" v-if="media_player">
+  <div class="w-full flex justify-center flex-wrap" v-if="media_player">
 
 
 

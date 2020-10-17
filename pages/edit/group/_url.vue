@@ -141,7 +141,6 @@ import 'vue-croppa/dist/vue-croppa.css'
  Vue.use(Croppa) 
 
 export default {
-  scrollToTop: true,
   layout: 'no-header',
   middleware: 'auth',
   data(){

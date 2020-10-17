@@ -255,7 +255,7 @@
                 prevent-white-space
                 :width="img.width"
                 :height="img.height"
-                :quality="1"
+                :quality="2"
                 :placeholder="'Upload Foto'"
               ></croppa>
               <br />
@@ -297,7 +297,6 @@ import MediumEditor from "vuejs-medium-editor";
 Vue.component("medium-editor", MediumEditor);
 
 export default {
-  scrollToTop: true,
   layout: "no-header",
   middleware: "auth",
   components: {

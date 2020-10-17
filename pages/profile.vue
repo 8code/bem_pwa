@@ -19,7 +19,6 @@
 </template>
 <script>
 export default {
-      scrollToTop: true,
      layout: "no-header",
      middleware: "auth",
 }

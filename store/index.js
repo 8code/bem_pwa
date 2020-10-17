@@ -22,13 +22,10 @@ const createStore = () => {
                 primaryColor: localStorage.getItem("primary-color") || 'primary-yellow',
                 topMenu: true,
                 loading:false,
+                data_my_events: '',
                 data_quest_following: '',
                 data_quest_explore: '',
-                // data_quest_home: '',
-                // data_quest_search: '',
-                // data_group: '',
-                // data_group_search: '',
-                // data_notifications: '',
+                scroll_home_state: ''
             },
 
 
@@ -39,6 +36,13 @@ const createStore = () => {
             setDataQuestFollowing (state, data) {
                 state.data_quest_following = data
             },
+            setDataQuestExplore (state, data) {
+                state.data_quest_explore = data
+            },
+            setDataMyEvents(state, data) {
+                state.data_my_events = data
+            },
+        
             setNotif (state, data) {
                 console.log(data)
                 this.$fireDb.ref('notifikasi/'+data.to).update({

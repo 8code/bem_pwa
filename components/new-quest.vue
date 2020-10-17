@@ -21,7 +21,6 @@
 
 <script>
 export default {
-  scrollToTop: true,
   layout: "no-header",
   middleware: "auth",
   props:['group']

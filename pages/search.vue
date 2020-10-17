@@ -5,7 +5,7 @@
     
     <div class="mx-auto text-sm flex">
           <nuxt-link to="/feed" class="px-5 mx-1 py-2   font-bold"> {{ $t("Followed")}} </nuxt-link>
-          <nuxt-link to="/feed/explore" class="px-5 mx-1 py-2 font-bold">
+          <nuxt-link to="/feed-explore" class="px-5 mx-1 py-2 font-bold">
             {{ $t("Explore")}} 
           </nuxt-link>
           <div class="px-5 mx-1 ml-auto py-2  text-primary font-bold mt-1">

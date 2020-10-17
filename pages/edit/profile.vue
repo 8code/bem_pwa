@@ -218,7 +218,6 @@ import 'vue-select/dist/vue-select.css';
 
 
 export default {
-  scrollToTop: true,
   layout: "no-header",
   middleware: "auth",
   components: {

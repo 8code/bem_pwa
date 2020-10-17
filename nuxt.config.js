@@ -73,6 +73,7 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    ['vue-scrollto/nuxt', { duration: 300 }],
     [
       '@nuxtjs/firebase',
       {
@@ -123,7 +124,7 @@ export default {
               Profile: 'Profile',
               Explore: 'Populer',
               Followed: 'Followed',
-              Channels: 'Channels',
+              events: 'events',
             },
             id: {
               welcome: 'Selamat Datang Mahasiswa!',
@@ -144,7 +145,7 @@ export default {
               Profile: 'Saya',
               Explore: 'Populer',
               Followed: 'Diikuti',
-              Channels: 'Channels',
+              events: 'Acara',
 
             }
           }
