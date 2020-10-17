@@ -50,7 +50,7 @@
               :to="'/quest/' + data.quest_id"
             >
               <nuxt-link :to="`/quest/${data.quest_id}`">
-                Membalas :<span class="text-primary">
+                membalas :<span class="text-primary">
                   @{{ data.membalas_user }}</span
                 >
               </nuxt-link>
@@ -87,7 +87,7 @@
 
               <div
                 v-if="cekSumber(data.embed) == 'spotify'"
-                class="bg-primary justify-beetween text-secondary w-full flex rounded-xl p-3 px-4 h-auto"
+                class="bg-primary justify-beetween text-secondary w-full flex rounded-xl p-2 px-4 h-auto"
               >
                 <svg
                   width="2em"
@@ -102,14 +102,14 @@
                     d="M10.804 8L5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"
                   />
                 </svg>
-                <span class="p-1 px-2 font-bold">Play Podcast</span>
+                <span class="p-1 px-2 font-bold">Play </span>
               </div>
             </div>
 
             <img v-if="data.video" class="w-1/4 rounded-xl" :src="data.thumb" />
             <img v-if="data.img" class="w-1/4 rounded-xl" :src="data.img" />
 
-            <span class="w-full px-4 mt-2 text-xs lg:text-base">
+            <span class="w-full px-4 mt-2 text-xs lg:text-base" :class="(data.text.length <= 150) ? 'text-base lg:text-xl': ''">
               <span
                 v-for="(tx, i) in textToArray(data.text.slice(0, 200))"
                 :key="i"
@@ -139,9 +139,13 @@
                 </span>
                 <span v-else> {{ tx }} </span>
               </span>
-              <span class="text-primary"> ...</span>
+              <span class="text-primary" v-if="data.type != 2"> ... </span>
             </span>
+          
+            
+
           </nuxt-link>
+      
 
           <div v-else class="w-full p-2  text-theme_secondary">
             <div
@@ -169,7 +173,7 @@
 
               <div
                 v-if="cekSumber(data.embed) == 'spotify'"
-                class="bg-primary justify-beetween text-secondary w-full flex rounded-xl p-3 px-4 h-auto"
+                class="bg-primary justify-beetween text-secondary w-full flex rounded-xl p-2 px-4 h-auto"
               >
                 <svg
                   width="2em"
@@ -184,7 +188,7 @@
                     d="M10.804 8L5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"
                   />
                 </svg>
-                <span class="p-1 px-2 font-bold">Play Podcast</span>
+                <span class="p-1 px-2 font-bold">Play</span>
               </div>
             </div>
 
@@ -223,6 +227,8 @@
               />
             </div>
 
+            <div class="px-2">
+
 
             <span v-for="(tx, i) in textToArray(data.text)" :key="i">
               <nuxt-link
@@ -254,25 +260,40 @@
               
               </span>
             </span>
+            
+            </div>
+
+           
           </div>
 
-          <div class="flex  px-4 mt-2">
-           
+            <button v-if="data.type == 2" class="ml-auto bg-primary p-1 px-5 rounded-full text-secondary text-xs mr-2">
+                   Daftar Acara
+              </button>
 
-            <div class="flex">
+        
+          <div class="flex w-full px-4 mt-2">
+           
+            
+            <div class="flex " >
+              
             <nuxt-link
               :to="`/quest/${data.id}`"
-              class="text-xs lg:text-base text-primary "
+              class="text-xs lg:text-base text-primary p-1 mt-1 lg:mt-0"
             >
               {{ data.total_qna }} balasan
             </nuxt-link>
+                <div @click="$emit('balas',data)" class="p-1 px-5 text-primary">
+                   <svg width="22px" height="22px" viewBox="0 0 16 16" class="bi bi-chat-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z"/>
+                  </svg>
+                </div>
               <div
                 @click="followQuest(data.id)"
                 :class="data.followed || followTemp ? btnFollowed : btnFollow"
               >
                 <svg
-                  width="12px"
-                  height="12px"
+                  width="20px"
+                  height="20px"
                   viewBox="0 0 16 16"
                   class="bi bi-heart-fill mr-1 mt-1"
                   fill="currentColor"
@@ -283,10 +304,10 @@
                     d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
                   />
                 </svg>
-                <span v-if="data.followed">
+                <span class="mt-1" v-if="data.followed">
                   {{ data.total_follower }}
                 </span>
-                <span v-else>
+                <span class="mt-1" v-else>
                   {{
                     followTemp
                       ? parseInt(data.total_follower) + 1
@@ -298,11 +319,14 @@
 
             <nuxt-link
               v-if="data.group"
-              class="text-primary  text-xs flex lg:mt-1"
+              class="text-primary  text-xs flex p-1 mt-1 px-4"
               :to="'/' + data.group.username"
             >
               #{{ data.group.username }}
             </nuxt-link>
+
+            
+
           </div>
         </div>
       </div>
@@ -318,9 +342,9 @@ export default {
   data() {
     return {
       btnFollow:
-        "flex relative ml-auto px-3 lg:mt-1 rounded-tl-xl rounded-br-xl text-xs text-theme_secondary",
+        "flex relative ml-auto p-1 rounded-tl-xl rounded-br-xl text-xs text-theme_secondary",
       btnFollowed:
-        "flex relative ml-auto px-3 lg:mt-1 rounded-tl-xl rounded-br-xl text-xs text-primary",
+        "flex relative ml-auto p-1 rounded-tl-xl rounded-br-xl text-xs text-primary",
       followTemp: false
     };
   },

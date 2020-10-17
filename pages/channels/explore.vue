@@ -1,48 +1,76 @@
 <template>
-<div class="w-full">
+  <div class="w-full" >
 
-        <subheader name="channels" />
-        <br>
-        <br>
+       <subheader name="channels" />
 
-        <h1 class="text-md text-center w-full">
-                Coming Soon
-        </h1>
+      <balas-quest v-if="balas_quest"  v-on:batal="balas_quest = false" :quest="balas_quest" />
 
-        <br>
-     List Room Channel (Event)
+      <section class="w-full rounded-xl pb-20 flex flex-wrap">
+      <card-post v-on:balas="balasQuest" v-for="q in quest" :key="q.id" :data="q" />
 
-     <br>
-        Berlangsung
-     <br>
-        Akan Datang
-     <br>
-        Selesai
+       <infinite-loading @infinite="loadMoregetData">
+        <div slot="no-more"></div>
+        <div slot="no-results"></div>
+       </infinite-loading>
 
-     <br>
-     Room Fitur :
-     Group Chat,
-     Live Podcast,
-      dan Video Conference like (Zoom / Google Meet)
+          <new-quest  />
 
-          
-</div>
-        
+
+
+    </section>
+  </div>
 </template>
 
-
 <script>
-export default {
-  layout: 'no-header',
-  middleware: 'auth',
-  scrollToTop: true,
-  data(){
-          return{
-                  events: '',
-          }
-  },
-  mounted(){
+import InfiniteLoading from 'vue-infinite-loading';
 
+export default {
+   components: {
+    InfiniteLoading,
+  },
+  layout: "no-header",
+  middleware: "auth",
+  scrollToTop: false,
+  data() {
+    return {
+      quest: "",
+      search: "",
+      balas_quest: '',
+      page: 1,
+    };
+  },
+  created(){
+   this.getData()
+  },
+  methods:{
+  loadMoregetData($state){
+        this.page = this.page+1
+        this.$axios.$get("/event/explore?search="+this.search+"&page="+this.page)
+        .then(res => {
+            if(res.total > 0){
+                this.lastPage = false               
+                this.quest = this.quest.concat(res.data)
+                
+                $state.loaded();
+            }else{
+                $state.complete();
+            }
+        })
+    },
+    newQuest(){
+      this.balas_quest = ""
+      this.getData()
+    },
+    balasQuest(data){
+        this.balas_quest = data
+    },
+    getData(){
+      this.lastPage = false
+      this.page = 1 
+      this.$axios.$get("/event/explore?search="+this.search+"&page="+this.page).then(res => {
+        this.quest = res.data;
+      });
+    },
   }
-}
+};
 </script>

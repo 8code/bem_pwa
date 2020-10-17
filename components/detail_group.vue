@@ -98,15 +98,15 @@
       </div>
 
       <div
-        :class="(filter == 'Event') ? filterClassActive : filterClass"
-        @click="filter = 'Event';getData()"
+        :class="(filter == 'Acara') ? filterClassActive : filterClass"
+        @click="filter = 'Acara';getData()"
 
       >
       
       <div
           class="-mt-1 -ml-1 h-6 w-6 absolute top-0 left-0 rounded-full shadow-lg bg-primary mr-3"
         ></div>
-          Event
+          Acara
       </div>
 
 

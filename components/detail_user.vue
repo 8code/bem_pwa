@@ -94,11 +94,11 @@
 
   
      <div
-        :class="(filter == 'Event') ? filterClassActive : filterClass"
-        @click="filter = 'Event';getData()"
+        :class="(filter == 'Acara') ? filterClassActive : filterClass"
+        @click="filter = 'Acara';getData()"
 
       >
-         Channels
+         Acara
       </div>
 
 

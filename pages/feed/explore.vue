@@ -59,10 +59,10 @@ export default {
           if(res.total > 0){
               $state.loaded();
               this.questdata = this.questdata.concat(Object.values(res.data))
-                this.$store.commit("setDataQuestExplore",{
-                  data: this.questdata,
-                  page: this.page
-                })
+                // this.$store.commit("setDataQuestExplore",{
+                //   data: this.questdata,
+                //   page: this.page
+                // })
             }else{
               $state.complete();
             
@@ -82,10 +82,10 @@ export default {
       this.$axios.$get("/quest/home/explore?search="+this.search+"&page="+this.page).then(res => {
         this.questdata = Object.values(res.data);
 
-           this.$store.commit("setDataQuestExplore",{
-                  data: this.questdata,
-                  page: this.page
-                })
+          //  this.$store.commit("setDataQuestExplore",{
+          //         data: this.questdata,
+          //         page: this.page
+          //       })
       });
     },
  

@@ -47,7 +47,7 @@ export default {
   css: [
     'medium-editor/dist/css/medium-editor.css',
     'vuejs-medium-editor/src/themes/default.css',
-    // 'highlight.js/styles/ocean.css' //if using code highlight
+    'highlight.js/styles/ocean.css' //if using code highlight
   ],
   /*
   ** Plugins to load before mounting the App

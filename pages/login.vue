@@ -15,6 +15,11 @@
       class="w-full  mx-auto flex flex-wrap   px-10 pt-10"
       style="max-width:400px"
     >
+ <span class="mx-auto bg-primary rounded-full p-1 mb-4"> <img src="/logo.png" class="w-16 h-16" alt="Logo Aplikasi Maba"> </span>
+
+    
+    
+
       <div v-if="loginWithUsername" class="flex w-full flex-wrap justify-start">
         <div
           v-if="$store.state.errorMessages"
@@ -22,11 +27,11 @@
         >
           {{ $store.state.errorMessages }}
         </div>
-        <label class="w-full py-3 px-2">Username or Email</label>
+        <label class="w-full py-3 px-2">Username / Email</label>
         <input
           v-model="login.username"
           type="text"
-          placeholder="Username or Email"
+          placeholder="Username / Email"
           class=" 
                         bg-theme_primary_dark
                         py-2 px-8 
@@ -51,31 +56,30 @@
 
         <button
           @click="loginAct"
-          class="w-full  py-2 px-4 bg-primary hover:opacity-75 rounded-full mt-5 text-white font-bold"
+          class="w-full  py-2 px-4 bg-primary hover:bg-primary_dark  rounded-full mt-5 text-white font-bold"
         >
           Login
         </button>
       </div>
 
-      <h1 v-if="!loginWithUsername" class="w-full text-center text-4xl mb-20">
-        {{ $t("welcome") }}
-      </h1>
 
-      <button
+
+       <div
         @click="cekLoginFb"
-        class="text-white h-12 w-full p-2 rounded-full bg-blue-600 hover:bg-blue-700 mt-5"
+        class="w-full p-2 flex justify-center primary-blue bg-primary_dark rounded-full mt-2 text-white cursor-pointer"
       >
-        {{ $t("loginwith") }} Facebook
-      </button>
+          <img src="/fb-login.png" class="w-6 h-6" alt="Login Fb">    
+          <span class="px-2"> Login With Facebook    </span>
+      </div>
 
-      <button
-        v-if="!loginWithUsername"
-        loginWithUsername
-        @click="loginWithUsername = true"
-        class="w-full p-2 h-12  rounded-full bg-theme_primary_light  mt-5"
+      <!-- <div
+        class="w-full p-2 flex justify-center bg-white text-black rounded-full mt-2"
       >
-        {{ $t("loginwith") }} Username
-      </button>
+          <img src="/g-login.png" class="w-6 h-6" alt="Login Fb">    
+          <span class="px-2"> Login With Google    </span>
+      </div> -->
+
+      
 
 
        <button
@@ -89,6 +93,10 @@
       <p class="w-full text-center p-2 pt-10 text-sm">
         <a href="/privacy-policy.html" class="text-primary">{{ $t("tos") }}</a>
       </p>
+      <nuxt-link to="/" class="text-center w-full  text-xs text-primary ">
+
+      Tentang Kami
+      </nuxt-link>
     </main>
 
 
@@ -135,7 +143,7 @@ export default {
   data() {
     return {
       showModal: false,
-      loginWithUsername: false,
+      loginWithUsername: true,
       login: {
         username: "",
         password: ""

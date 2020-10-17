@@ -18,7 +18,7 @@
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 .theme-light {
-    transition: all 2s ease-in-out;
+    transition: all .5s ease-in-out;
 
     --theme_primary_light: #fff;
     --theme-primary: #EDF2F7;
@@ -31,7 +31,7 @@
 }
 
 .theme-dark {
-    transition: all 2s ease-in-out;
+    transition: all .5s ease-in-out;
 
     --theme_primary_light: #11141c;
     --theme-primary: #0a0d0f;
@@ -42,8 +42,7 @@
     color: var(--theme-secondary);
 }
 .theme-dark-blue {
-    transition: all 2s ease-in-out;
-
+    transition: all .5s ease-in-out;
 
 
     --theme_primary_light: 	#192734;
@@ -59,7 +58,6 @@
 /* Primary Color */
 /* Red */
 .primary-red{
-    transition: all 1s ease-in-out;
     --color-primary_light: #FEB2B2;
     --color-primary: #F56565;
     --color-primary_dark: #C53030
