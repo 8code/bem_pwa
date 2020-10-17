@@ -31,7 +31,7 @@ export default {
   ** See https://nuxtjs.org/api/configuration-head
   */
   head: {
-    title: 'Aplikasi Maba - Sosial Media Mahasiswa',
+    title: 'Aplikasi Maba - Sosial Medianya Mahasiswa',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
