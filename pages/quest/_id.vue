@@ -3,7 +3,7 @@
     <input type="hidden" ref="inputText">
     <button
       @click="$router.back()"
-      class="flex p-3 bg-theme_primary_dark mx-2 rounded-full "
+      class="flex p-3 bg-theme_primary_dark mx-2 rounded-full sticky top-0 z-50 lg:-ml-20 mb-auto" style="top:10px"
     >
       <svg
         width="1.2em"
@@ -92,10 +92,10 @@
         </div>
  <div class="flex flex-wrap px-2 " v-if="data">
         <h2
-          v-if="data.event.desc || data.desc"
+          v-if="data.event || data.desc"
           class="w-full flex mt-1 bg-theme_primary_dark rounded-xl flex-wrap px-5  py-3 "
         >
-          <span @click="showDesc = !showDesc" class="flex w-full">
+          <span @click="showDesc = !showDesc" class="flex w-full" >
             <span class="px-2 font-bold"> lihat Desckripsi</span>
 
             <svg
@@ -132,8 +132,9 @@
             </svg>
           </span>
 
-          <div class="w-full flex mt-1 py-3" v-if="showDesc">
-            <div v-if="showDesc" v-html="data.event.desc"></div>
+          <div  class="w-full flex mt-1 py-3" v-if="showDesc">
+            <div  v-if="data.event.desc" v-html="data.event.desc"></div>
+            <div  v-if="data.desc" v-html="data.desc"></div>
           </div>
         </h2>
 
@@ -146,10 +147,19 @@
           :quest="balas_quest"
         />
 
-      
+          
+          <input
+            @keyup.enter="kirim"
+            maxlength="255"
+            v-model="text"
+            placeholder="Katakan sesuatu ..."
+            class="bg-theme_primary_dark w-full rounded-xl fixed lg:relative bottom-0 z-50 lg:z-0 p-3 px-5 right-0 mt-1"
+          />
 
           <h1 class="mt-2 px-4 lg:px-2">Balasan :</h1>
         </div>
+
+
 
           <card-post
             hideBalasan="true"
@@ -159,27 +169,22 @@
             :data="que"
             :id="'reply' + que.id"
           />
-          <infinite-loading @infinite="loadMoregetData">
+        
+
+
+       
+        </div>
+  <infinite-loading @infinite="loadMoregetData">
             <div slot="no-more" class="text-center flex w-full p-4"></div>
             <div slot="no-results"></div>
           </infinite-loading>
-
-
-           
-          <input
-            @keyup.enter="kirim"
-            maxlength="255"
-            v-model="text"
-            placeholder="Katakan sesuatu ..."
-            class="bg-theme_primary_dark w-full rounded-lg fixed lg:relative bottom-0 z-50 lg:z-0 p-3 px-5 right-0 mt-1"
-          />
-        </div>
-
 
  </div>
 
 
       </div>
+
+      
   </div>
 </template>
 

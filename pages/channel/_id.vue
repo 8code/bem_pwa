@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-screen z-50">
+  <div class="w-full h-screen z-50 bg-theme_primary">
     <div class="flex">
       <button
         @click="$router.back()"
@@ -166,7 +166,7 @@
       </div>
       <div
         class="w-full lg:w-3/4  bg-theme_primary_light rounded-xl flex relative flex-wrap"
-        style="height:85vh"
+        style="height:87vh"
       >
         <div class="w-full bg-theme_primary p-4 rounded-xl text-xs" style="height:90%">
           Pesan / Video / Audio

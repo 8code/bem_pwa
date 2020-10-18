@@ -119,7 +119,7 @@
               Ikuti Seseorang
         </router-link>
 
-          <nuxt-link to="/groups/explore" class="bg-theme_primary_dark mb-3 rounded-full flex justify-center text-center font-bold text-md p-2 px-4 w-full">
+          <nuxt-link to="/groups-explore" class="bg-theme_primary_dark mb-3 rounded-full flex justify-center text-center font-bold text-md p-2 px-4 w-full">
               Ikuti Sebuah Grup
         </nuxt-link>
 

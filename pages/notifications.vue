@@ -31,20 +31,22 @@
             </nuxt-link>
         </div>
 
-          <infinite-loading @infinite="loadMoregetData">
-
-              <div slot="no-more" class="text-center flex w-full p-4"> </div>
-
-          </infinite-loading>
 
 
         <router-link to="/users/explore" class="bg-theme_primary_light mb-3 rounded-full flex justify-center text-center font-bold text-md p-2 px-4 w-full">
               Ikuti Seseorang
         </router-link>
 
-          <nuxt-link to="/groups/explore" class="bg-theme_primary_light mb-3 rounded-full flex justify-center text-center font-bold text-md p-2 px-4 w-full">
+          <nuxt-link to="/groups-explore" class="bg-theme_primary_light mb-3 rounded-full flex justify-center text-center font-bold text-md p-2 px-4 w-full">
               Ikuti Sebuah Grup
         </nuxt-link>
+
+        
+          <infinite-loading @infinite="loadMoregetData">
+                <div slot="no-more"></div>
+                <div slot="no-results"></div>
+
+          </infinite-loading>
 
 
 </section>
