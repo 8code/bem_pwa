@@ -10,7 +10,7 @@
     >
       <div class="flex content-start">
         <img
-          class="w-6 h-6 lg:w-8 lg:h-8 rounded-full"
+          class="w-6 h-6  rounded-full"
           :src="data.user.avatar"
           alt="Avatar"
         />
@@ -61,7 +61,7 @@
 
           <div
             v-if="!active"
-            class="w-full items-start flex px-2  text-theme_secondary mt-2"
+            class="w-full items-start flex px-2  text-theme_secondary "
             @click="showDetail"
           >
             <div
@@ -105,7 +105,7 @@
             <img v-if="data.video" class="w-1/4 lg:w-1/5 rounded-xl" :src="data.thumb" />
             <img v-if="data.img" class="w-1/4 lg:w-1/5 rounded-xl" :src="data.img" />
 
-            <span class="w-full px-2 lg:mt-2 text-xs lg:text-base" :class="(data.text.length <= 150) ? 'text-base lg:text-xl': ''">
+            <span class="w-full px-2 text-xs lg:text-base" :class="(data.text.length <= 150) ? 'text-base lg:text-lg': ''">
               <span
                 v-for="(tx, i) in textToArray(data.text.slice(0, 200))"
                 :key="i"
@@ -273,21 +273,21 @@
 
            
 
-        <div class="flex w-full">
+        <div class="flex w-full" v-if="!data.quest_id">
             <nuxt-link
               v-if="data.group"
-              class="text-primary font-bold mr-auto px-4 mt-2"
+              class="text-primary font-bold mr-auto px-4 "
               :to="'/' + data.group.username"
             >
               #{{ data.group.username }}
             </nuxt-link>
 
-             <button v-if="data.type == 2" @click="joinEvent(data.event_id)" class="ml-auto mr-4 mt-2 bg-primary p-1 px-5 rounded-full text-secondary text-xs">
+             <button v-if="data.type == 2" @click="joinEvent(data.event_id)" class="ml-auto mr-4  bg-primary p-1 px-5 rounded-full text-secondary text-xs">
                   Daftar Acara
               </button>
         </div>
 
-          <div class="flex w-full px-4 mt-2">
+          <div class="flex w-full px-4">
            
             
             <div class="flex w-full" >

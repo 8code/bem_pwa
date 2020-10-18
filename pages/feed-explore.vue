@@ -62,8 +62,9 @@ export default {
   methods:{
     scrollToLast(){
             let lastQuest = this.questdata[this.questdata.length - 8]
-              console.log(lastQuest)
+              if(lastQuest){
               this.$scrollTo("#feed"+lastQuest.id);
+              }
     },
     async loadMoregetData($state){
         this.page = this.page+1

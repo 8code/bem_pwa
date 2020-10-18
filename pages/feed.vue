@@ -56,9 +56,11 @@ export default {
   },
   methods:{
     scrollToLast(){
-            let lastQuest = this.quest[this.quest.length - 8]
-              // console.log(lastQuest)
-              this.$scrollTo("#feed"+lastQuest.id);
+            let lastQuest = this.quest[this.quest.length - 5]
+              if(lastQuest){
+                this.$scrollTo("#feed"+lastQuest.id);
+              }
+            
     },
   loadMoregetData($state){
         this.page = this.page+1

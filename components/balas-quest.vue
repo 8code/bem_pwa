@@ -61,8 +61,8 @@ export default {
                 this.text= ''
                 this.media= ''
 
-                // this.$emit('batal')
-                // this.$emit('kirim')
+                this.$emit('batal')
+                this.$emit('kirim')
 
                 this.$router.push("/quest/"+this.quest.id)
 
