@@ -1,14 +1,14 @@
 <template>
-  <div class="w-full h-screen z-50 bg-theme_primary" style="height:100%">
-    <div class="flex">
+  <div class="w-full z-50 bg-theme_primary_light " style="height:100%;padding-top:5vh">
+    <div class="flex fixed top-0 pt-2 w-full ">
 
       <button
         @click="$router.back()"
-        class="flex p-3 bg-theme_primary_light mx-2 rounded-full "
+        class="flex p-3 bg-theme_primary mx-2 rounded-full "
       >
         <svg
-          width="1.2em"
-          height="1.2em"
+          width="1em"
+          height="1em"
           viewBox="0 0 16 16"
           class="bi bi-arrow-left-circle"
           fill="currentColor"
@@ -26,10 +26,10 @@
       </button>
 
       <div class="ml-auto flex">
-        <button class="flex p-3 bg-theme_primary_light mx-2 rounded-full  ">
+        <button class="flex p-3 bg-theme_primary mx-2 rounded-full  ">
           <svg
-            width="1.2em"
-            height="1.2em"
+            width="1em"
+            height="1em"
             viewBox="0 0 16 16"
             class="bi bi-camera-video-off"
             fill="currentColor"
@@ -42,10 +42,10 @@
           </svg>
         </button>
 
-        <button class="flex p-3 bg-theme_primary_light mx-2 rounded-full  ">
+        <button class="flex p-3 bg-theme_primary mx-2 rounded-full  ">
           <svg
-            width="1.2em"
-            height="1.2em"
+            width="1em"
+            height="1em"
             viewBox="0 0 16 16"
             class="bi bi-mic-mute"
             fill="currentColor"
@@ -58,10 +58,10 @@
           </svg>
         </button>
 
-        <button class="flex p-3 bg-theme_primary_light mx-2 rounded-full  ">
+        <nuxt-link to="/settings" class="flex p-3 bg-theme_primary mx-2 rounded-full  ">
           <svg
-            width="1.2em"
-            height="1.2em"
+            width="1em"
+            height="1em"
             viewBox="0 0 16 16"
             class="bi bi-gear"
             fill="currentColor"
@@ -76,12 +76,12 @@
               d="M8 5.754a2.246 2.246 0 1 0 0 4.492 2.246 2.246 0 0 0 0-4.492zM4.754 8a3.246 3.246 0 1 1 6.492 0 3.246 3.246 0 0 1-6.492 0z"
             />
           </svg>
-        </button>
+        </nuxt-link>
       </div>
     </div>
 
     <section
-      class="w-full rounded-xl flex flex-wrap bg-theme_primary_light p-2 mt-2"
+      class="w-full rounded-xl flex flex-wrap bg-theme_primary_light p-2 pt-5"
     >
       <div class="hidden lg:block w-full lg:w-1/12 pr-2">
                 <div class="w-full bg-theme_primary p-4 rounded-xl text-xs" style="height:100%">
@@ -152,7 +152,7 @@
                 class="bg-theme_primary_light w-full rounded-lg p-1 px-3"
               />
             </li>
-               <li class="flex text-xs px-2 mt-2 font-semibold cursor-pointer">
+               <li class="flex text-xs px-2 font-semibold cursor-pointer">
               20K Aktif
             </li>
              <li class="flex px-2 font-semibold cursor-pointer">
@@ -165,7 +165,7 @@
               @nama
             </li>
            
-             <li class="flex text-xs px-2 mt-2 font-semibold cursor-pointer">
+             <li class="flex text-xs px-2 font-semibold cursor-pointer">
               20K Member
             </li>
           </ul>
@@ -173,18 +173,18 @@
       </div>
       <div
         class="w-full lg:w-6/12  bg-theme_primary_light rounded-xl flex relative flex-wrap"
-        style="height:89vh"
+        style="height:90vh"
       >
-        <div class="w-full bg-theme_primary p-4 rounded-xl text-xs" style="height:90%">
+        <div class="w-full bg-theme_primary p-4 rounded-xl text-xs" style="height:83vh">
           Pesan / Video / Audio
         </div>
         <div class="w-full">
           <input
-           height="10%"
+           height="10vh"
             maxlength="255"
             v-model="text"
             placeholder="Katakan sesuatu ..."
-            class="bg-theme_primary w-full text-xs rounded-xl absolute border-2 border-theme_primary_light bottom-0 p-3 px-5 z-50"
+            class="bg-theme_primary w-full text-xs rounded-full absolute border border-theme_primary_light bottom-0 p-3  px-5 z-50"
           />
         </div>
       </div>
@@ -198,6 +198,7 @@
         </div>
       </div>
     </section>
+    
   </div>
 </template>
 

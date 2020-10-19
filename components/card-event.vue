@@ -17,7 +17,7 @@
         <div class="w-full pl-3 mt-1 flex flex-wrap items-start">
 
           
-          <div class="w-full lg:text-lg">
+          <div class="w-full text-sm lg:text-lg">
           {{ data.name }}
           </div>
         </div>

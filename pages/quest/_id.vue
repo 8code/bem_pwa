@@ -1,6 +1,7 @@
 <template>
   <div class="flex flex-wrap w-full pb-10">
     <input type="hidden" ref="inputText">
+    
     <button
       @click="$router.back()"
       class="flex p-3 bg-theme_primary_dark mx-2 rounded-full sticky top-0 z-50 lg:-ml-20 mb-auto" style="top:10px"
