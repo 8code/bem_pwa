@@ -1,22 +1,20 @@
 <template>
 
-  <div class="w-full p-2">
+  <div class="w-full p-2" >
 
 
+      <section class="w-full bg-transparent flex flex-wrap justify-center content-end z-30 fixed top-0 right-0 h-screen">
 
-
-      <section class="w-full bg-transparent flex flex-wrap justify-center content-center z-30 fixed top-0 right-0 h-screen">
-
-      <div @click="$emit('batal')"  class="w-full  flex flex-wrap justify-center content-center bg-theme_primary_dark opacity-50 z-40 fixed top-0 right-0 h-screen ">
+      <div @click="$emit('batal')"  class="w-full  flex flex-wrap justify-center content-end bg-theme_primary_dark opacity-50 z-40 fixed top-0 right-0 h-screen ">
       </div>
-      <div class="w-full p-4 lg:w-1/2 flex flex-wrap justify-center z-50 content-center bg-theme_primary rounded-xl">
+      <div class="w-full p-4 lg:w-1/2 flex flex-wrap justify-center items-end z-50 content-end bg-theme_primary rounded-xl">
 
           <div class="w-full shadow-sm rounded-lg">
                  Membalas @{{ quest.user.username }}
                 <input @keyup.enter="kirim" ref="inputText" maxlength="255" v-model="text" placeholder="Katakan sesuatu ..." class="mt-5 p-3 bg-theme_primary_dark w-full rounded-lg" />           
-                <button @click="kirim" class="py-2 w-full rounded-lg mt-2 bg-primary hover:bg-primary_dark text-white shadow-sm">
+                <!-- <button @click="kirim" class="py-2 w-full rounded-lg mt-2 bg-primary hover:bg-primary_dark text-white shadow-sm">
                   Kirim
-                </button>
+                </button> -->
            </div>
           </div>
       </section>

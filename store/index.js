@@ -18,7 +18,7 @@ const createStore = () => {
                 access_token: localStorage.getItem("access_token") || '',
                 errorMessages: '',
                 settings: false,
-                theme: localStorage.getItem("theme") || 'theme-light',
+                theme: localStorage.getItem("theme") || 'theme-dark-blue',
                 primaryColor: localStorage.getItem("primary-color") || 'primary-yellow',
                 topMenu: true,
                 loading:false,

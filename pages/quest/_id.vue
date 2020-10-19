@@ -96,7 +96,8 @@
           class="w-full flex mt-1 bg-theme_primary_dark rounded-xl flex-wrap px-5  py-3 "
         >
           <span @click="showDesc = !showDesc" class="flex w-full" >
-            <span class="px-2 font-bold"> lihat Desckripsi</span>
+            <span class="px-2 font-bold" v-if="data.event"> lihat Desckripsi</span>
+            <span class="px-2 font-bold" v-if="data.desc"> Baca Cerita</span>
 
             <svg
               v-if="!showDesc"
@@ -133,7 +134,9 @@
           </span>
 
           <div  class="w-full flex mt-1 py-3" v-if="showDesc">
-            <div  v-if="data.event.desc" v-html="data.event.desc"></div>
+            <span  v-if="data.event">
+              <div v-if="data.event.desc" v-html="data.event.desc"></div>
+            </span>
             <div  v-if="data.desc" v-html="data.desc"></div>
           </div>
         </h2>
@@ -146,14 +149,13 @@
           v-on:batal="balas_quest = false"
           :quest="balas_quest"
         />
-
           
           <input
             @keyup.enter="kirim"
             maxlength="255"
             v-model="text"
             placeholder="Katakan sesuatu ..."
-            class="bg-theme_primary_dark w-full rounded-xl fixed lg:relative bottom-0 z-50 lg:z-0 p-3 px-5 right-0 mt-1"
+            class="bg-theme_primary_dark w-full rounded-xl fixed lg:relative bottom-0 z-10 lg:z-0 p-3 px-5 right-0 mt-1"
           />
 
           <h1 class="mt-2 px-4 lg:px-2">Balasan :</h1>

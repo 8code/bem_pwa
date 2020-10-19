@@ -1,9 +1,10 @@
 <template>
-  <div class="w-full h-screen z-50 bg-theme_primary">
+  <div class="w-full h-screen z-50 bg-theme_primary" style="height:100%">
     <div class="flex">
+
       <button
         @click="$router.back()"
-        class="flex p-3 bg-theme_primary_dark mx-2 rounded-full "
+        class="flex p-3 bg-theme_primary_light mx-2 rounded-full "
       >
         <svg
           width="1.2em"
@@ -25,7 +26,7 @@
       </button>
 
       <div class="ml-auto flex">
-        <button class="flex p-3 bg-theme_primary_dark mx-2 rounded-full  ">
+        <button class="flex p-3 bg-theme_primary_light mx-2 rounded-full  ">
           <svg
             width="1.2em"
             height="1.2em"
@@ -41,7 +42,7 @@
           </svg>
         </button>
 
-        <button class="flex p-3 bg-theme_primary_dark mx-2 rounded-full  ">
+        <button class="flex p-3 bg-theme_primary_light mx-2 rounded-full  ">
           <svg
             width="1.2em"
             height="1.2em"
@@ -57,7 +58,7 @@
           </svg>
         </button>
 
-        <button class="flex p-3 bg-theme_primary_dark mx-2 rounded-full  ">
+        <button class="flex p-3 bg-theme_primary_light mx-2 rounded-full  ">
           <svg
             width="1.2em"
             height="1.2em"
@@ -82,7 +83,13 @@
     <section
       class="w-full rounded-xl flex flex-wrap bg-theme_primary_light p-2 mt-2"
     >
-      <div class="hidden lg:block w-full lg:w-1/4 pr-2">
+      <div class="hidden lg:block w-full lg:w-1/12 pr-2">
+                <div class="w-full bg-theme_primary p-4 rounded-xl text-xs" style="height:100%">
+                List Channel
+              </div>
+      </div>
+      <div class="hidden lg:block w-full lg:w-2/12 pr-2">
+
         <div class="flex bg-theme_primary rounded-xl p-4 min-h-full">
           <ul class="text-xs w-full">
            
@@ -165,19 +172,29 @@
         </div>
       </div>
       <div
-        class="w-full lg:w-3/4  bg-theme_primary_light rounded-xl flex relative flex-wrap"
-        style="height:87vh"
+        class="w-full lg:w-6/12  bg-theme_primary_light rounded-xl flex relative flex-wrap"
+        style="height:89vh"
       >
         <div class="w-full bg-theme_primary p-4 rounded-xl text-xs" style="height:90%">
           Pesan / Video / Audio
         </div>
         <div class="w-full">
           <input
+           height="10%"
             maxlength="255"
             v-model="text"
             placeholder="Katakan sesuatu ..."
-            class="bg-theme_primary w-full text-xs rounded-xl absolute  bottom-0 p-3 px-5 z-50"
+            class="bg-theme_primary w-full text-xs rounded-xl absolute border-2 border-theme_primary_light bottom-0 p-3 px-5 z-50"
           />
+        </div>
+      </div>
+      <div
+        class="w-full lg:w-3/12  rounded-xl hidden lg:flex relative flex-wrap px-2"
+      >
+        <div class="w-full">
+                <div class="w-full bg-theme_primary p-4 rounded-xl text-xs" style="height:100%">
+                Tentang Channel
+              </div>
         </div>
       </div>
     </section>
@@ -192,7 +209,7 @@ export default {
     InfiniteLoading
   },
   scrollToTop: true,
-  layout: "no-header",
+  layout: "no-menu",
   middleware: "auth",
   data() {
     return {
