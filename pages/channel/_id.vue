@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full z-50 bg-theme_primary_light " style="height:100%;padding-top:5vh">
-    <div class="flex fixed top-0 pt-2 w-full ">
+  <div class="w-full z-50 bg-theme_primary_dark " style="height:100%;padding-top:5vh">
+    <div class="flex fixed top-0 mt-2 w-full rounded-xl">
 
       <button
         @click="$router.back()"
@@ -24,6 +24,8 @@
           />
         </svg>
       </button>
+
+      <span class="p-2 hidden lg:block"> Nama Channel </span>
 
       <div class="ml-auto flex">
         <button class="flex p-3 bg-theme_primary mx-2 rounded-full  ">
@@ -81,10 +83,10 @@
     </div>
 
     <section
-      class="w-full rounded-xl flex flex-wrap bg-theme_primary_light p-2 pt-5"
+      class="w-full rounded-xl flex flex-wrap p-2 pt-5"
     >
       <div class="hidden lg:block w-full lg:w-1/12 pr-2">
-                <div class="w-full bg-theme_primary p-4 rounded-xl text-xs" style="height:100%">
+                <div class="w-full p-4 rounded-xl text-xs" style="height:100%">
                 List Channel
               </div>
       </div>
@@ -145,11 +147,11 @@
               </svg>
               <span class="px-2">Video Conference</span>
             </li>
-            <li class="flex px-2 p-1 font-semibold cursor-pointer">
+            <li class="flex p-1 font-semibold cursor-pointer">
                <input
                 maxlength="20"
                 placeholder="Cari Nama"
-                class="bg-theme_primary_light w-full rounded-lg p-1 px-3"
+                class="bg-theme_primary_light w-full rounded-lg p-1 px-3 my-2"
               />
             </li>
                <li class="flex text-xs px-2 font-semibold cursor-pointer">
@@ -172,7 +174,7 @@
         </div>
       </div>
       <div
-        class="w-full lg:w-6/12  bg-theme_primary_light rounded-xl flex relative flex-wrap"
+        class="w-full lg:w-6/12  rounded-xl flex relative flex-wrap"
         style="height:90vh"
       >
         <div class="w-full bg-theme_primary p-4 rounded-xl text-xs" style="height:83vh">
@@ -184,7 +186,7 @@
             maxlength="255"
             v-model="text"
             placeholder="Katakan sesuatu ..."
-            class="bg-theme_primary w-full text-xs rounded-full absolute border border-theme_primary_light bottom-0 p-3  px-5 z-50"
+            class="bg-theme_primary_light w-full text-xs rounded-xl absolute border border-theme_primary_light bottom-0 p-3  px-5 z-50"
           />
         </div>
       </div>
