@@ -52,16 +52,17 @@
         maxlength="255"
       ></textarea>
 
-    <div class="w-full p-2 flex flex-wrap justify-center">
+    <div class="w-full p-2 flex flex-wrap justify-center lg:hidden">
 
       
    
-     <vue-record-audio mode="press" @stream="onStream" @result="onResult" class="lg:mx-3" />
+     <vue-record-audio mode="hold" @result="onResult" class="lg:mx-3" />
       
      <audio v-if="recordings" :src="recordings" controls class="mt-2" />
-
+     
 
     </div>
+     <span v-if="recordings" @click="d.audio = ''; recordings = ''" class="text-danger text-xs">Hapus Audio</span>
 
 
       <div class="flex w-full mt-3 ">
@@ -300,13 +301,12 @@
 
 <script>
 import Vue from "vue";
-import Croppa from "vue-croppa";
-import "vue-croppa/dist/vue-croppa.css";
-
 
 import VueRecord from '@codekraft-studio/vue-record'
 Vue.use(VueRecord)
 
+import Croppa from "vue-croppa";
+import "vue-croppa/dist/vue-croppa.css";
 
 Vue.use(Croppa);
 
