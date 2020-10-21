@@ -3,11 +3,11 @@
   <div class="w-full p-2" >
 
 
-      <section class="w-full bg-transparent flex flex-wrap justify-center content-end z-30 fixed top-0 right-0 h-screen">
+      <section class="w-full bg-transparent flex flex-wrap justify-center content-end z-50 fixed top-0 right-0 h-screen">
 
-      <div @click="$emit('batal')"  class="w-full  flex flex-wrap justify-center content-end bg-theme_primary_dark opacity-50 z-40 fixed top-0 right-0 h-screen ">
+      <div @click="$emit('batal')"  class="w-full  flex flex-wrap justify-center content-end bg-theme_primary_dark opacity-50 z-50 fixed top-0 right-0 h-screen ">
       </div>
-      <div class="w-full p-4 lg:w-1/2 flex flex-wrap justify-center items-end z-50 content-end bg-theme_primary rounded-xl">
+      <div class="w-full p-4 lg:w-1/2 flex flex-wrap justify-center items-end content-end bg-theme_primary rounded-xl" style="z-index:10000">
 
           <div class="lg:hidden flex flex-wrap justify-center my-2">
                   

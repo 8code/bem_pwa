@@ -157,14 +157,7 @@
           v-on:batal="balas_quest = false"
           :quest="balas_quest"
         />
-          
-          <input
-            @keyup.enter="kirim"
-            maxlength="255"
-            v-model="text"
-            placeholder="Katakan sesuatu ..."
-            class="bg-theme_primary_dark w-full rounded-xl fixed lg:relative bottom-0 z-10 lg:z-0 p-3 px-5 right-0 mt-1"
-          />
+     
 
           <h1 class="mt-2 px-4 lg:px-2">Balasan :</h1>
         </div>
@@ -232,27 +225,7 @@ export default {
           this.$router.push("/channel/"+id)
         })
     },
-    kirim() {
-      this.$axios
-        .$post("/quest", {
-          group_id: this.data.group_id,
-          quest_id: this.data.id,
-          text: this.text
-        })
-        .then(res => {
-          this.$store.commit("setNotif", {
-            to: this.data.user_id,
-            text:
-              "@" + this.$store.state.user.username + " membalas : " + this.text
-          });
-
-          this.text = "";
-          this.getData();
-
-          this.$nextTick(() =>  this.$refs.inputText.focus())
-
-        });
-    },
+    
     async loadMoregetData($state) {
       this.page = this.page + 1;
       this.$axios

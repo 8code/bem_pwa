@@ -1,7 +1,8 @@
 <template>
     <div class="pb-20">
     
-
+  <new-quest  />
+  
     
     <div class="mx-auto text-sm flex">
           <nuxt-link to="/feed" class="px-5 mx-1 py-2   font-bold"> {{ $t("Followed")}} </nuxt-link>
@@ -18,7 +19,7 @@
     </div>
 
 
-      <new-quest  />
+    
 
 
 
