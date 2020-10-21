@@ -43,22 +43,24 @@ export default {
     };
   },
   mounted(){
-    if(!this.$store.state.user.gender){
-          this.$router.push("/edit/profile")
-    }else{
      
-     if(!this.$store.state.data_quest_following){
+     if(this.$store.state.data_quest_following.data){
+        
+
+      if(this.$store.state.data_quest_following.data.length == 0){
          this.getData()
       }else{
-        
-        this.quest = this.$store.state.data_quest_following.data
-        this.page = this.$store.state.data_quest_following.page
+          this.quest = this.$store.state.data_quest_following.data
+          this.page = this.$store.state.data_quest_following.page
 
-        this.$nextTick(() => {
-           this.scrollToLast()
-        });
-
+          this.$nextTick(() => {
+            this.scrollToLast()
+          });
       }
+      
+        
+      }else{
+         this.getData()
     }
   },
   methods:{
@@ -96,7 +98,7 @@ export default {
       this.page = 1 
        await this.$axios.$get("/quest/home?search="+this.search+"&page="+this.page).then(res => {
         this.quest = Object.values(res.data);
-        // console.log(this.quest)
+      
         this.$store.commit("setDataQuestFollowing",{
             data: this.quest,
             page: this.page

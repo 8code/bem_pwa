@@ -52,6 +52,17 @@
         maxlength="255"
       ></textarea>
 
+    <div class="w-full p-2 flex flex-wrap justify-center">
+
+      
+   
+     <vue-record-audio mode="hold" @stream="onStream" @result="onResult" class="lg:mx-3" />
+      
+     <audio v-if="recordings" :src="recordings" controls class="mt-2" />
+
+
+    </div>
+
 
       <div class="flex w-full mt-3 ">
         <span class="px-2">Upload  :</span>
@@ -287,14 +298,18 @@ import Vue from "vue";
 import Croppa from "vue-croppa";
 import "vue-croppa/dist/vue-croppa.css";
 
+
+import VueRecord from '@codekraft-studio/vue-record'
+Vue.use(VueRecord)
+
+
 Vue.use(Croppa);
 
 import vSelect from "vue-select";
 import "vue-select/dist/vue-select.css";
-
 import MediumEditor from "vuejs-medium-editor";
-
 Vue.component("medium-editor", MediumEditor);
+
 
 export default {
   layout: "no-header",
@@ -305,6 +320,7 @@ export default {
 
   data() {
     return {
+      recordings: '',
       group: '',
       defaultValue: ``,
       options: {
@@ -343,8 +359,8 @@ export default {
         type: ""
       },
       img: {
-        width: 320,
-        height: 320
+        width: 300,
+        height: 200
       },
       imgTemp: null,
       typeOptions: [
@@ -374,8 +390,15 @@ export default {
      }
     },
   methods: {
+
+    onStream (stream) {
+      console.log('Got a stream object:', stream);
+    },
+    onResult (data) {
+      this.recordings = window.URL.createObjectURL(data)
+    },
     onChange() {
-      console.log(this.d.desc);
+      // console.log(this.d.desc);
     },
     cropImg() {
       if (this.imgTemp) {

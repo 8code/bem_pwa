@@ -178,6 +178,9 @@
         style="height:90vh"
       >
         <div class="w-full bg-theme_primary p-4 rounded-xl text-xs" style="height:83vh">
+          
+          <b class="w-full text-lg text-center font-bold">Coming Soon Fitur</b>
+          <br>
           Pesan / Video / Audio
         </div>
         <div class="w-full">
@@ -186,7 +189,7 @@
             maxlength="255"
             v-model="text"
             placeholder="Katakan sesuatu ..."
-            class="bg-theme_primary_light w-full text-xs rounded-xl absolute border border-theme_primary_light bottom-0 p-3  px-5 z-50"
+            class="bg-theme_primary w-full text-xs rounded-xl absolute border border-theme_primary_light bottom-0 p-3  px-5 z-50"
           />
         </div>
       </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-wrap w-full pb-10">
+  <div class="flex flex-wrap w-full pb-20">
     <input type="hidden" ref="inputText">
     
     <button
@@ -65,7 +65,6 @@
           </h2>
 
           <h2
-            @click="showDesc = !showDesc"
             class="w-full  flex bg-theme_primary_dark rounded-xl px-5 py-3 mt-1"
           >
             <span v-if="!data.event.price" class="px-2 font-bold">Gratis</span>
@@ -94,9 +93,11 @@
  <div class="flex flex-wrap px-2 " v-if="data">
         <h2
           v-if="data.event || data.desc"
-          class="w-full flex mt-1 bg-theme_primary_dark rounded-xl flex-wrap px-5  py-3 "
+          class="w-full flex mt-1 bg-theme_primary_dark rounded-xl flex-wrap px-5  py-3 " 
+          :class="(showDesc) ? 'fixed lg:relative left-0 right-0 mx-auto z-50 top-0 overflow-y-scroll lg:overflow-y-auto h-screen ' : ''"
+          @click="showDesc = !showDesc"
         >
-          <span @click="showDesc = !showDesc" class="flex w-full" >
+          <span  class="flex w-full "  >
             <span class="px-2 font-bold" v-if="data.event"> lihat Desckripsi</span>
             <span class="px-2 font-bold" v-if="data.desc"> Baca Cerita</span>
 

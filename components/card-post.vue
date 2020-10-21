@@ -16,8 +16,7 @@
         />
 
         <nuxt-link class="px-2" :to="'/@' + data.user.username">
-          <span class="font-semibold text-sm">@{{ data.user.name }}</span>
-          <!-- <span class="text-primary text-xs">@{{ data.user.username }}</span> -->
+          <span class="font-semibold text-sm">{{ data.user.name }}</span>
           <span class="text-xs pl-2">
             {{ parseQuestDate(data.created_at) }}
           </span>
@@ -61,20 +60,28 @@
 
           <div
             v-if="!active"
-            class="w-full items-start flex px-2  text-theme_secondary "
-            @click="showDetail"
+            class="w-full  flex flex-wrap px-2  text-theme_secondary "
+            
           >
             <div
               v-if="data.embed"
               class="pb-2 w-full media-preview"
             >
-              <div v-if="cekSumber(data.embed) == 'youtube'">
+              <div v-if="cekSumber(data.embed) == 'youtube'" 
+              
+               @click="
+                    $store.commit('setMediaPlayer', {
+                      data: data,
+                      path: $route.path
+                    })
+                  ">
                 <img
                   src="/youtube.png"
                   alt="logo"
                   class="absolute play-button-youtube"
                 />
                 <img
+                
                   class="w-full rounded-xl"
                   :src="imgPreview(data.embed)"
                   alt="Preview"
@@ -102,10 +109,10 @@
               </div>
             </div>
 
-            <img v-if="data.video" class="w-1/4 lg:w-1/5 rounded-xl" :src="data.thumb" />
-            <img v-if="data.img" class="w-1/4 lg:w-1/5 rounded-xl" :src="data.img" />
+            <img v-if="data.video" class="w-full rounded-xl" :src="data.thumb" />
+            <img v-if="data.img" class="w-full rounded-xl" :src="data.img" />
 
-            <span class="w-full px-2 text-xs lg:text-base" :class="(data.text.length <= 150) ? 'text-base lg:text-lg': ''">
+            <span @click="showDetail" class="w-full p-1 text-xs lg:text-base" :class="(data.text.length <= 150) ? 'text-base lg:text-lg': ''">
               <span
                 v-for="(tx, i) in textToArray(data.text.slice(0, 200))"
                 :key="i"
@@ -146,7 +153,7 @@
           </div>
       
 
-          <div v-else class="w-full p-2  text-theme_secondary">
+          <div v-else class="w-full p-1  text-theme_secondary">
             <div
               v-if="data.embed"
               class="py-2 w-full media-preview"
@@ -226,7 +233,7 @@
               />
             </div>
 
-            <div class="px-2">
+            <div class="px-2" >
 
 
             <span v-for="(tx, i) in textToArray(data.text)" :key="i">
@@ -361,7 +368,7 @@
 import util from "~/assets/js/util";
 
 export default {
-  props: ["data", "bigtext", "active", "hideBalasan", "link"],
+  props: ["data", "bigtext", "active", "hideBalasan", "link","sumber"],
   data() {
     return {
       btnFollow:
@@ -379,12 +386,12 @@ export default {
         })
     },
     showDetail(){
-        if(this.$props.data.quest == null){
+        // if(this.$props.data.quest == null){
           this.$router.push("/quest/"+this.$props.data.id)
-        }else{
-          this.$router.push("/quest/"+this.$props.data.quest_id+"?reply="+this.$props.data.id)
-          this.$emit('balas',this.$props.data)
-        }
+        // }else{
+        //   this.$router.push("/quest/"+this.$props.data.quest_id+"?reply="+this.$props.data.id)
+        //   this.$emit('balas',this.$props.data)
+        // }
     },
     isLink(link) {
       if (link) {
@@ -457,6 +464,7 @@ export default {
 }
 .media-preview {
   position: relative;
+  width: 100%;
 }
 .media-preview:hover .play-button-youtube {
   opacity: 1;

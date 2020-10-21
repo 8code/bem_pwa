@@ -127,6 +127,20 @@ and limitations under the License.
 /*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 
 /**
+ *  StartAudioContext.js
+ *  @author Yotam Mann
+ *  @license http://opensource.org/licenses/MIT MIT License
+ *  @copyright 2016 Yotam Mann
+ */
+
+/**
+ *  Tone.js
+ *  @author Yotam Mann
+ *  @license http://opensource.org/licenses/MIT MIT License
+ *  @copyright 2014-2019 Yotam Mann
+ */
+
+/**
  * @license
  *
  * Push v1.0.9

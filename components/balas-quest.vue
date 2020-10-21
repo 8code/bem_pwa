@@ -19,7 +19,6 @@
           </div>
       </section>
   </div>
-        
 </template>
 
 
@@ -42,12 +41,10 @@ export default {
         this.$store.commit("loading",true)
         if(this.text){
            this.$axios.$post("/quest",{
-                group_id: this.quest.group_id,
                 quest_id: this.quest.id,
                 text: this.text,
               }).then(res => {
 
-                  
             
                   this.$store.commit("loading",false)
 

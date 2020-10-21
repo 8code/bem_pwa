@@ -38,6 +38,7 @@ export default {
       page: 1,
     };
   },
+
   mounted(){
 
       if(!this.$store.state.data_my_events){

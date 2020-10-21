@@ -9,7 +9,7 @@
          my-2">
             
             
-            <nuxt-link :to="n.link" class="w-full mb-1  rounded-lg flex flex-wrap">
+            <div @click="balas_quest = n.for_balasan" class="w-full mb-1  rounded-lg flex flex-wrap">
               
 
                 <img class=" float-left rounded-xl h-8 w-8 -mt-1" :src="n.avatar" alt="Avatar">
@@ -24,12 +24,15 @@
                 <span v-if="n.tipe == 2" class="text-sm  p-1 mb-1 rounded-sm">
                    {{ n.balasan }}
                 </span>
-                 <span v-else class=" text-sm  p-1 mb-1 rounded-sm">
-                   {{ n.text.substring(0, 150) }} ...
-                </span>
+                 <nuxt-link :to="'/quest/'+n.quest_id" v-else class=" text-sm  p-1 mb-1 rounded-sm">
+                   {{ n.text.substring(0, 50) }} ...
+                </nuxt-link>
                
-            </nuxt-link>
+            </div>
         </div>
+
+
+      <balas-quest v-if="balas_quest"  v-on:batal="balas_quest = false" :quest="balas_quest" />
 
 
 
@@ -69,7 +72,8 @@ export default {
                 notif: '',
                 page: 1,
                 loadMore: false,
-                last_page: false
+                last_page: false,
+                balas_quest: ''
           }
   },
 
