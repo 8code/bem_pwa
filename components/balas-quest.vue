@@ -68,8 +68,8 @@ export default {
           }
       },
       kirim(){
-        this.$store.commit("loading",true)
-        if(this.text){
+        if(!this.$store.state.loading){
+         this.$store.commit("loading",true)
            this.$axios.$post("/quest",{
                 quest_id: this.quest.id,
                 text: this.text,

@@ -468,11 +468,11 @@ export default {
       this.d.embed = this.getUrl(this.d.embed);
 
       if (this.d.text) {
-        // console.log(this.d)
 
-        this.$store.commit("setLoading", true);
+        this.$store.commit("loading", true);
+        
         this.$axios.$post("/quest", this.d).then(res => {
-          this.$store.commit("setLoading", false);
+          this.$store.commit("loading", false);
           this.$router.push("/quest/" + res.id);
         });
       }
