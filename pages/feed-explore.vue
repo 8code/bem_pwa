@@ -6,6 +6,8 @@
 
       <balas-quest v-if="balas_quest"  v-on:batal="balas_quest = false" :quest="balas_quest" />
 
+      <new-quest  />
+
         <section class="w-full rounded-xl pb-20 flex flex-wrap">
 
           <card-post v-on:balas="balasQuest" v-for="quest in questdata" :key="quest.id" :data="quest" :id="'feed'+quest.id"  />
@@ -61,7 +63,7 @@ export default {
   },
   methods:{
     scrollToLast(){
-            let lastQuest = this.questdata[this.questdata.length - 8]
+            let lastQuest = this.questdata[this.questdata.length - 5]
               if(lastQuest){
               this.$scrollTo("#feed"+lastQuest.id);
               }

@@ -65,7 +65,7 @@
           </h2>
 
           <h2
-            class="w-full  flex bg-theme_primary_dark rounded-xl px-5 py-3 mt-1"
+            class="w-1/2  flex bg-theme_primary_dark rounded-xl px-5 py-3 mt-1"
           >
             <span v-if="!data.event.price" class="px-2 font-bold">Gratis</span>
             <span v-else class="px-2 font-bold"
@@ -89,8 +89,14 @@
               />
             </svg>
           </h2>
+          
+  <button v-if="data.type == 2" @click="joinEvent(data.event_id)" class="w-1/2  flex bg-primary justify-center text-white text-center hover:bg-primary_dark rounded-xl px-5 py-3 mt-1">
+                  Daftar Acara
+              </button>
+
+
         </div>
- <div class="flex flex-wrap px-2 " v-if="data">
+ <div class="flex flex-wrap px-2 cursor-pointer " v-if="data">
         <h2
           v-if="data.event || data.desc"
           class="w-full flex mt-1 bg-theme_primary_dark rounded-xl flex-wrap px-5  py-3 " 
@@ -220,6 +226,12 @@ export default {
   },
 
   methods: {
+     joinEvent(id){
+      this.$axios.get("/join-event/"+id)
+        .then(res => {
+          this.$router.push("/channel/"+id)
+        })
+    },
     kirim() {
       this.$axios
         .$post("/quest", {

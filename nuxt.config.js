@@ -125,6 +125,8 @@ export default {
               Explore: 'Populer',
               Followed: 'Followed',
               events: 'events',
+              Following: 'Following',
+              Follower: 'Follower'
             },
             id: {
               welcome: 'Selamat Datang Mahasiswa!',
@@ -143,10 +145,11 @@ export default {
               Group: 'Grup',
               Notif: 'Notifikasi',
               Profile: 'Saya',
-              Explore: 'Populer',
+              Explore: 'Untukmu',
               Followed: 'Diikuti',
-              events: 'Acara',
-
+              events: 'Channels',
+              Following: 'Mengikuti',
+              Follower: 'Pengikut'
             }
           }
         }

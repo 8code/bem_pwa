@@ -59,6 +59,15 @@
 
 
           <div
+            v-if="data.audio"
+            class="w-full  flex flex-wrap p-2  text-theme_secondary "
+          >
+          <!-- <audio-player :src="data.audio" />  -->
+              <audio :src="data.audio" controls />
+            
+          </div>
+
+          <div
             v-if="!active"
             class="w-full  flex flex-wrap px-2  text-theme_secondary "
             
@@ -114,7 +123,7 @@
 
             <span @click="showDetail" class="w-full p-1 text-xs lg:text-base" :class="(data.text.length <= 150) ? 'text-base lg:text-lg': ''">
               <span
-                v-for="(tx, i) in textToArray(data.text.slice(0, 200))"
+                v-for="(tx, i) in textToArray(data.text)"
                 :key="i"
               >
                 <nuxt-link
@@ -386,12 +395,12 @@ export default {
         })
     },
     showDetail(){
-        // if(this.$props.data.quest == null){
+        if(this.$props.data.quest == null){
           this.$router.push("/quest/"+this.$props.data.id)
-        // }else{
-        //   this.$router.push("/quest/"+this.$props.data.quest_id+"?reply="+this.$props.data.id)
-        //   this.$emit('balas',this.$props.data)
-        // }
+        }else{
+          // this.$router.push("/quest/"+this.$props.data.quest_id+"?reply="+this.$props.data.id)
+          this.$emit('balas',this.$props.data)
+        }
     },
     isLink(link) {
       if (link) {

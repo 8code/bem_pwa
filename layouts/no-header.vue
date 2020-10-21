@@ -8,7 +8,7 @@
     
       <main
         class="w-full mx-auto flex flex-wrap pt-2 content-start  "
-        :style="$route.path.includes('/quest/') ? 'max-width:800px' : `max-width:600px`"
+        :style="$route.path.includes('/quest/') ? 'max-width:1100px' : `max-width:600px`"
       >
         <media-player />
         <transition name="slide-fade">

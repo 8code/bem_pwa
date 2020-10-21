@@ -43,15 +43,16 @@
                     </div>
 
 
-                    <div class="flex text-sm  float-right">
+                    <div class="flex text-sm  float-right cursor-pointer">
                          
                           <span class="font-normal text-center px-4">
-                              Follower
+                               {{ $t('Follower') }}
                               <div class="font-bold text-primary">{{ profile.follower }}</div>
                             </span>
 
                              <span class="font-normal text-center px-4">
-                              Following
+                               {{ $t('Following') }}
+                              
                               <div class="font-bold text-primary">{{ profile.following }}</div>
                             </span>
 

@@ -56,7 +56,7 @@
 
       
    
-     <vue-record-audio mode="hold" @stream="onStream" @result="onResult" class="lg:mx-3" />
+     <vue-record-audio mode="press" @stream="onStream" @result="onResult" class="lg:mx-3" />
       
      <audio v-if="recordings" :src="recordings" controls class="mt-2" />
 
@@ -97,32 +97,35 @@
 
 
       <div class="flex w-full mt-2 bg-theme_primary_dark rounded-full">
-        <button
-          @click="d.type = 2"
-          class=" text-xs p-2 w-full flex justify-center"
-          :class="d.type == 2 ? 'bg-primary text-secondary rounded-full' : ''"
-        >
        
-          Acara
-        </button>
-
-        <button
-          @click="d.type = 3"
-          class=" text-xs p-2 w-full flex justify-center"
-          :class="d.type == 3 ? 'bg-primary text-secondary rounded-full' : ''"
-        >
-        
-          Produk
-        </button>
-
         <button
           @click="d.type = 1"
           class=" text-xs p-2 w-full flex justify-center"
           :class="d.type == 1 ? 'bg-primary text-secondary rounded-full' : ''"
         >
        
-          Cerita
+          Story
         </button>
+
+        <button
+          @click="d.type = 2"
+          class=" text-xs p-2 w-full flex justify-center"
+          :class="d.type == 2 ? 'bg-primary text-secondary rounded-full' : ''"
+        >
+       
+          Channel
+        </button>
+
+        <!-- <button
+          @click="d.type = 3"
+          class=" text-xs p-2 w-full flex justify-center"
+          :class="d.type == 3 ? 'bg-primary text-secondary rounded-full' : ''"
+        >
+        
+          Produk
+        </button> -->
+
+  
 
         <button
           v-if="d.type"
@@ -130,7 +133,7 @@
           class="bg-danger rounded-full text-white text-xs p-2 w-full flex justify-center"
           :class="d.type == 3 ? 'bg-primary text-secondary' : ''"
         >
-          Hapus
+          Batalkan
         </button>
       </div>
 
@@ -138,6 +141,7 @@
         <div class="w-full" v-if="d.type == 2">
 
             <div class="flex flex-wrap">
+           
             <div class="flex w-full lg:w-1/2 flex-wrap p-2">
               <label class="py-2">Tanggal Mulai</label>
               <input
@@ -157,30 +161,31 @@
                 class="w-full  shadow-sm bg-theme_primary_dark py-2 px-4 rounded-lg mb-3"
               />
             </div>
+
           </div>
 
-          <div class="flex p-2">
-            <label class="w-full py-2">Harga :</label>
+          <div class="flex p-2 items-start flex-wrap">
+            <label class="w-full lg:w-1/2 py-2">Harga :  
+              <br> <small class="text-xs">"Kosongkan jika gratis untuk siapa saja"</small>
+             
+              </label>
             <input
               type="number"
               v-model="d.price"
               placeholder="Rp.0 "
-              class="w-full  shadow-sm bg-theme_primary_dark py-2 px-4 rounded-lg mb-3"
+              class="w-full lg:w-1/2 shadow-sm bg-theme_primary_dark py-2 px-4 rounded-lg mb-3"
             />
+             <br> <small class="text-xs">"Untuk Verifikasi pembayaran anggota dilakukan oleh admin channel / acara"</small>
+          </div>
+
+          <div class="flex w-full text-center flex-wrap p-2">
+              "Untuk Membuat Channel / Acara anda harus memebayar Rp.50rb kepada Kami untuk supporting system :)"
           </div>
         
         </div>
-        <div class="w-full" v-if="d.type == 3">
-          <div class="flex p-2">
-            <label class="w-full  py-2">Harga :</label>
-            <input
-              type="number"
-              placeholder="Rp.0 "
-               v-model="d.price"
-              class="w-full  shadow-sm bg-theme_primary_dark py-2 px-4 rounded-lg mb-3"
-            />
-          </div>
-        </div>
+
+         
+
       </div>
 
       <div class="w-full" v-if="d.type">
@@ -359,24 +364,11 @@ export default {
         type: ""
       },
       img: {
+        audio: '',
         width: 300,
         height: 200
       },
-      imgTemp: null,
-      typeOptions: [
-        {
-          id: 1,
-          text: "Pertanyaan"
-        },
-        {
-          id: 2,
-          text: "Event (Channel)"
-        },
-        {
-          id: 3,
-          text: "Katalog (Produk)"
-        }
-      ]
+      imgTemp: null
     };
   },
   created() {
@@ -392,10 +384,18 @@ export default {
   methods: {
 
     onStream (stream) {
-      console.log('Got a stream object:', stream);
+      // console.log('Got a stream object:', stream);
     },
     onResult (data) {
-      this.recordings = window.URL.createObjectURL(data)
+      var audioURL = window.URL.createObjectURL(data);
+        this.recordings  = audioURL;
+        var that = this
+        var reader = new window.FileReader();
+        reader.readAsDataURL(data);
+        reader.onloadend = function () {
+              // console.log(reader.result)
+              that.d.audio = reader.result;
+        }
     },
     onChange() {
       // console.log(this.d.desc);
@@ -404,7 +404,7 @@ export default {
       if (this.imgTemp) {
         this.d.img = this.imgTemp.generateDataUrl("image/jpeg", 0.8);
 
-        console.log(this.d.img);
+        // console.log(this.d.img);
         this.showModal = "";
         this.$nextTick(() => this.$refs.inputTextArea.focus());
       }
@@ -468,8 +468,7 @@ export default {
       this.d.embed = this.getUrl(this.d.embed);
 
       if (this.d.text) {
-
-        console.log(this.d);
+        // console.log(this.d)
 
         this.$store.commit("setLoading", true);
         this.$axios.$post("/quest", this.d).then(res => {
