@@ -16,13 +16,20 @@
                 <span class=" float-left  pl-1"> 
                         <nuxt-link class="text-primary" :to="'/@'+n.username">@{{n.username}}</nuxt-link>
                         <span v-if="n.tipe == 1" > <span v-if="n.total > 1">dan {{ n.total}} lainnya</span> menyukai quest anda</span>
-                        <span v-if="n.tipe == 2" > membalas quest anda</span>
+                        <span v-if="n.tipe == 2" > membalas</span>
                         <span v-if="n.tipe == 3" > menandai anda di sebuah quest</span>
                         <span v-if="n.tipe == 6" > mengikuti Anda</span>
                         :
                 </span>
-                <span v-if="n.tipe == 2" class="text-sm  p-1 mb-1 rounded-sm">
+                <span v-if="n.tipe == 2" class="text-sm flex flex-wrap p-1 mb-1 rounded-sm">
+
+                   
+
                    {{ n.balasan }}
+                        <br>
+                   <blockquote class="text-xs opacity-50 w-full">
+                         " {{ n.text.substring(0, 50) }} ... "
+                   </blockquote>
                 </span>
                  <nuxt-link :to="'/quest/'+n.quest_id" v-else class=" text-sm  p-1 mb-1 rounded-sm">
                    {{ n.text.substring(0, 50) }} ...

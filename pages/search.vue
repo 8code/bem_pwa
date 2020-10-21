@@ -18,6 +18,10 @@
     </div>
 
 
+      <new-quest  />
+
+
+
        <div class="p-2">
 
       <div class="p-2">
