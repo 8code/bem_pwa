@@ -15,6 +15,8 @@
             
           <audio v-if="recordings" :src="recordings" controls class="mt-2" />
 
+           <span v-if="recordings" @click="d.audio = ''; recordings = ''" class="w-full text-center text-danger text-xs mt-2">Hapus Audio</span>
+
           </div>
           
           <div class="w-full shadow-sm rounded-lg">
