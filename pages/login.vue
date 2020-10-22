@@ -93,7 +93,7 @@
       <p class="w-full text-center p-2 pt-10 text-sm">
         <a href="/privacy-policy.html" class="text-primary">{{ $t("tos") }}</a>
       </p>
-      <nuxt-link to="/" class="text-center w-full  text-xs text-primary ">
+      <nuxt-link :to="localePath('/')" class="text-center w-full  text-xs text-primary ">
 
       Tentang Kami
       </nuxt-link>

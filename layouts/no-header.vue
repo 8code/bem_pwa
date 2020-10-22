@@ -20,9 +20,9 @@
         <div class="flex w-full text-primary font-bold ">
 
            <nuxt-link
-            to="/feed"
+            :to="localePath('/feed')"
             :class="
-              $route.path.includes('/feed') ? tactiveClass : tnonActiveClass
+              $route.path.includes('feed') ? tactiveClass : tnonActiveClass
             "
           >
             <svg  v-if="$route.path.includes('/feed')" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-house-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -45,7 +45,7 @@
           </nuxt-link>
 
           <nuxt-link
-            to="/groups"
+             :to="localePath('/groups')"
             :class="
               $route.path.includes('/groups') ? tactiveClass : tnonActiveClass
             "
@@ -79,7 +79,7 @@
           </nuxt-link>
 
           <nuxt-link
-            to="/events"
+             :to="localePath('/events')"
             :class="$route.path.includes('/events') ? tactiveClass : tnonActiveClass"
           >
 
@@ -100,7 +100,7 @@
         
 
           <nuxt-link
-            to="/notifications"
+             :to="localePath('/notifications')"
             :class="
               $route.path == '/notifications' ? tactiveClass : tnonActiveClass
             "
@@ -133,7 +133,7 @@
           </nuxt-link>
 
           <nuxt-link
-            to="/profile"
+            :to="localePath('/profile')"
             :class="$route.path == '/profile' ? tactiveClass : tnonActiveClass"
           >
 
@@ -170,7 +170,7 @@
           class="mx-auto flex flex-wrap content-center text-theme_secondary font-bold"
         >
           <nuxt-link
-            to="/feed"
+             :to="localePath('/feed')"
             class="w-full rounded-full flex px-1 py-2 mx-1 my-1 to-hover hover:text-primary"
           >
            <svg  v-if="$route.path.includes('/feed')" width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-house-fill text-primary" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -193,7 +193,7 @@
             </span>
           </nuxt-link>
           <nuxt-link
-            to="/groups"
+             :to="localePath('/groups')"
             class="w-full rounded-full flex px-1 py-2 mx-1 my-1 to-hover hover:text-primary"
           >
            <svg v-if="$route.path.includes('groups')" width="1.5em" height="1.5em" viewBox="0 0 16 16" class="text-primary bi bi-people-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -224,7 +224,7 @@
           </nuxt-link>
 
           <nuxt-link
-            to="/events"
+           :to="localePath('/events')"
             class="w-full rounded-full flex px-1 py-2 mx-1 my-1 to-hover hover:text-primary"
           >
        
@@ -245,7 +245,7 @@
 
 
           <nuxt-link
-            to="/notifications"
+           :to="localePath('/notifications')"
             class="w-full rounded-full flex px-1 py-2 mx-1 my-1 to-hover hover:text-primary"
           >
             <svg v-if="$route.path == '/notifications'" width="1.5em" height="1.5em" viewBox="0 0 16 16" class="text-primary bi bi-bell-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -276,7 +276,7 @@
           </nuxt-link>
 
           <nuxt-link
-            to="/profile"
+            :to="localePath('/profile')"
             class="w-full rounded-full flex px-1 py-2 mx-1 my-1 to-hover hover:text-primary"
           >
 
@@ -372,6 +372,11 @@ export default {
   },
 
   mounted() {
+
+     console.log(this.localePath)
+    // this.switchLocalePath('id')
+
+
     var that = this;
 
     var notifff = this.$fireDb.ref("notifikasi/" + this.$store.state.user.id);

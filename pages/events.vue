@@ -90,7 +90,7 @@ export default {
           })
 
         if(this.quest.length == 0){
-          this.$router.push("events-explore")
+          this.$router.push(this.localePath("/events-explore"))
         }
       });
     },

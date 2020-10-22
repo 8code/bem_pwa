@@ -15,7 +15,7 @@
           alt="Avatar"
         />
 
-        <nuxt-link class="px-2" :to="'/@' + data.user.username">
+        <nuxt-link class="px-2" :to="localePath('/@' + data.user.username)">
           <span class="font-semibold text-sm">{{ data.user.name }}</span>
           <span class="text-xs pl-2">
             {{ parseQuestDate(data.created_at) }}
@@ -48,7 +48,7 @@
               v-if="data.quest_id"
               class="px-4 text-xs w-full"
             >
-              <nuxt-link :to="`/quest/${data.quest_id}`">
+              <nuxt-link :to="localePath(`/quest/${data.quest_id}`)">
                 membalas :<span class="text-primary">
                   @{{ data.membalas_user }} :
                   <span>{{ data.quest.text.slice(0,25) }}</span>
@@ -129,14 +129,14 @@
                 <nuxt-link
                   class="text-primary"
                   v-if="tx.slice(0, 1) == '@'"
-                  :to="'/' + tx"
+                  :to="localePath('/' + tx)"
                 >
                   {{ tx }}
                 </nuxt-link>
                 <nuxt-link
                   class="text-primary"
                   v-else-if="tx.slice(0, 1) == '#'"
-                  :to="'/' + tx.substring(1)"
+                  :to="localePath('/' + tx.substring(1))"
                 >
                   {{ tx }}
                 </nuxt-link>
@@ -249,7 +249,7 @@
               <nuxt-link
                 class="text-primary"
                 v-if="tx.slice(0, 1) == '@'"
-                :to="'/' + tx"
+                :to="localePath('/' + tx)"
               >
                 {{ tx }}
               </nuxt-link>
@@ -257,7 +257,7 @@
               <nuxt-link
                 class="text-primary"
                 v-else-if="tx.slice(0, 1) == '#'"
-                :to="'/' + tx.substring(1)"
+                :to="localePath('/' + tx.substring(1))"
               >
                 {{ tx }}
               </nuxt-link>
@@ -293,7 +293,7 @@
             <nuxt-link
               v-if="data.group"
               class="text-primary font-bold mr-auto px-4 "
-              :to="'/' + data.group.username"
+              :to="localePath('/' + data.group.username)"
             >
               #{{ data.group.username }}
             </nuxt-link>
@@ -311,7 +311,7 @@
             
 
             <nuxt-link
-              :to="`/quest/${data.id}`"
+              :to="localePath(`/quest/${data.id}`)"
               class="text-xs lg:text-base text-primary p-1"
             >
               {{ data.total_qna }} balasan
@@ -391,14 +391,13 @@ export default {
     joinEvent(id){
       this.$axios.get("/join-event/"+id)
         .then(res => {
-          this.$router.push("/channel/"+id)
+          this.$router.push(this.localePath("/channel/"+id))
         })
     },
     showDetail(){
         if(this.$props.data.quest == null){
-          this.$router.push("/quest/"+this.$props.data.id)
+          this.$router.push(this.localePath("/quest/"+this.$props.data.id))
         }else{
-          // this.$router.push("/quest/"+this.$props.data.quest_id+"?reply="+this.$props.data.id)
           this.$emit('balas',this.$props.data)
         }
     },

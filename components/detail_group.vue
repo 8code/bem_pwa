@@ -19,7 +19,7 @@
               <br />
               <span class="text-sm">
                 Admin : 
-                <nuxt-link class="text-primary cursor-pointer" :to="'/@'+group.owner.username" >@{{group.owner.username}}</nuxt-link>
+                <nuxt-link class="text-primary cursor-pointer" :to="localePath('/@'+group.owner.username)" >@{{group.owner.username}}</nuxt-link>
               </span>
 
 
@@ -171,7 +171,7 @@ export default {
       this.group = data;
       if(!this.group.id){
       // alert(data)
-        this.$router.push("/search?keyword="+this.$route.params.url)
+        this.$router.push(this.localePath("/search?keyword="+this.$route.params.url))
       }
       
       this.getData()

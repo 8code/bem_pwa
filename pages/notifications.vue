@@ -14,7 +14,7 @@
 
                 <img class=" float-left rounded-xl h-8 w-8 -mt-1" :src="n.avatar" alt="Avatar">
                 <span class=" float-left  pl-1"> 
-                        <nuxt-link class="text-primary" :to="'/@'+n.username">@{{n.username}}</nuxt-link>
+                        <nuxt-link class="text-primary" :to="localePath('/@'+n.username)">@{{n.username}}</nuxt-link>
                         <span v-if="n.tipe == 1" > <span v-if="n.total > 1">dan {{ n.total}} lainnya</span> menyukai quest anda</span>
                         <span v-if="n.tipe == 2" > membalas</span>
                         <span v-if="n.tipe == 3" > menandai anda di sebuah quest</span>
@@ -31,7 +31,7 @@
                          " {{ n.text.substring(0, 50) }} ... "
                    </blockquote>
                 </span>
-                 <nuxt-link :to="'/quest/'+n.quest_id" v-else class=" text-sm  p-1 mb-1 rounded-sm">
+                 <nuxt-link :to="localePath('/quest/'+n.quest_id)" v-else class=" text-sm  p-1 mb-1 rounded-sm">
                    {{ n.text.substring(0, 50) }} ...
                 </nuxt-link>
                
@@ -43,11 +43,11 @@
 
 
 
-        <router-link to="/users/explore" class="bg-theme_primary_light mb-3 rounded-full flex justify-center text-center font-bold text-md p-2 px-4 w-full">
+        <router-link :to="localePath('/users/explore')" class="bg-theme_primary_light mb-3 rounded-full flex justify-center text-center font-bold text-md p-2 px-4 w-full">
               Ikuti Seseorang
         </router-link>
 
-          <nuxt-link to="/groups-explore" class="bg-theme_primary_light mb-3 rounded-full flex justify-center text-center font-bold text-md p-2 px-4 w-full">
+          <nuxt-link :to="localePath('/groups-explore')" class="bg-theme_primary_light mb-3 rounded-full flex justify-center text-center font-bold text-md p-2 px-4 w-full">
               Ikuti Sebuah Grup
         </nuxt-link>
 

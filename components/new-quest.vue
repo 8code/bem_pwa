@@ -3,7 +3,7 @@
   <div class="w-full p-2">
 
     <div :class="!$store.state.topMenu ? 'hidden' : ''">
-      <nuxt-link :to="(group) ? `/new/quest?group_id=${group.id}&group_username=${group.username}`: `/new/quest?text=${text}`"
+      <nuxt-link :to="localePath((group) ? `/new/quest?group_id=${group.id}&group_username=${group.username}`: urlQuest)"
            
             class="bg-theme_primary_dark text-primary p-3 right-0 rounded-full fixed bottom-0 mr-5 z-30 mb-16 lg:mr-20 flex lg:px-5 "
           >
@@ -23,7 +23,16 @@
 export default {
   layout: "no-header",
   middleware: "auth",
-  props:['group','text']
+  props:['group','text'],
+  computed:{
+    urlQuest(){
+      if(this.$props.text){
+        return `/new/quest?text=${this.$props.text}`
+      }else{
+        return `/new/quest`
+      }
+    }
+  }
 };
 </script>
 

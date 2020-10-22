@@ -90,7 +90,7 @@ export default {
                 this.$emit('batal')
                 this.$emit('kirim')
 
-                this.$router.push("/quest/"+this.quest.id)
+                this.$router.push(this.localePath("/quest/"+this.quest.id))
 
 
               })

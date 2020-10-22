@@ -222,7 +222,7 @@ export default {
      joinEvent(id){
       this.$axios.get("/join-event/"+id)
         .then(res => {
-          this.$router.push("/channel/"+id)
+          this.$router.push(this.localePath("/channel/"+id))
         })
     },
     

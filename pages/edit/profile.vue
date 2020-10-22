@@ -190,13 +190,12 @@
               Simpan Perubahan
             </button>
 
-            <nuxt-link
-              to="/profile"
+            <div   @click="$router.back()"
               class="w-full text-center py-2 px-4 bg-theme_primary_light hover:opacity-75 rounded-lg mt-5"
             >
               <i class="fa fa-plus"></i>
               Batalkan
-            </nuxt-link>
+            </div>
           </div>
         </div>
       </div>
@@ -276,7 +275,7 @@ export default {
                     this.messageErr = "Username Telah digunakan";
                 }else{
                     this.$store.commit("updateProfile",res.data.data)
-                    this.$router.push("/profile")
+                    this.$router.push(this.localePath("/profile"))
                                       
                 }
               })

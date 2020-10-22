@@ -5,8 +5,7 @@
         class="w-full neu-in p-5 lg:p-10 rounded-xl flex flex-wrap justify-center text-center pb-20"
       >
    
-       <button
-              @click="$router.back()"
+       <nuxt-link :to="localePath('/profile')"
              class="flex p-3 bg-theme_primary_dark mx-2 rounded-full sticky top-0 z-50 lg:-ml-20 mb-auto" style="top:10px"
             >
               <svg
@@ -26,7 +25,7 @@
                   d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"
                 />
               </svg>
-            </button>
+            </nuxt-link>
         <h1 class="mb-8 w-full text-primary font-bold text-md">
           
           
@@ -231,13 +230,13 @@
         
       
 
-        <button @click="$router.back()"
+        <nuxt-link :to="localePath('/profile')"
           
           class="w-full px-10 py-2 text-white font-bold bg-primary neu-in hover:neu-out mt-5 rounded-full"
         >
           {{ $t("Done") }}
 
-        </button>
+        </nuxt-link>
         <button
         @click="$store.commit('logout')"
         class="w-full px-10 py-2 text-danger font-bold border border-danger neu-in hover:neu-out mt-10 rounded-full"

@@ -80,8 +80,8 @@
                           Buat Group
                       </button>
 
-                       <nuxt-link to="/groups"
-                      class="w-full text-center py-2 px-4 bg-theme_primary_light hover:opacity-75 rounded-lg mt-5">
+                       <nuxt-link :to="localePath('/groups')"
+                          class="w-full text-center py-2 px-4 bg-theme_primary_light hover:opacity-75 rounded-lg mt-5">
                           <i class="fa fa-plus"></i>
                           Batal
                       </nuxt-link>
@@ -137,7 +137,7 @@ export default {
           if(this.d.avatar){
             // this.d.avatar = '/icon.png';
             await this.$store.commit("createGroup",this.d)
-            await this.$router.push("/groups")
+            await this.$router.push(this.localePath("/groups"))
           }
         }
     }

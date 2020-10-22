@@ -27,7 +27,7 @@ export default {
                 this.listGroup = this.sortByKey(Object.values(res),"last_active").reverse()
 
                 if(this.listGroup.length == 0){
-                    this.$router.push("/groups-explore")
+                    this.$router.push(this.localePath("/groups-explore"))
                 }
             })
     },
@@ -40,7 +40,7 @@ export default {
             },
         to(directions){
             if(directions == 'left'){
-                this.$router.push('/groups-explore')
+                this.$router.push(this.localePath('/groups-explore'))
             }
         }
     }

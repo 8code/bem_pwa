@@ -105,7 +105,7 @@ export default {
           })
 
         if(this.quest.length == 0){
-          this.$router.push("/feed-explore")
+          this.$router.push(this.localePath("/feed-explore"))
         }
       });
     },

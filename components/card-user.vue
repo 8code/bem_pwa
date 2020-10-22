@@ -16,12 +16,12 @@
 
           
           <div class="w-full mb-2">
-           <nuxt-link class="font-bold" :to="`/@${data.username}`"> {{ data.name }}</nuxt-link>
+           <nuxt-link class="font-bold" :to="localePath(`/@${data.username}`)"> {{ data.name }}</nuxt-link>
             <br />
             <div class=" flex w-full justify-between">
 
                 
-                    <nuxt-link class="font-semibold text-primary" :to="`/@${data.username}`">@{{ data.username }}</nuxt-link>
+                    <nuxt-link class="font-semibold text-primary" :to="localePath(`/@${data.username}`)">@{{ data.username }}</nuxt-link>
                
                         <div  v-if="data.followed" class="text-sm">
                            <span class=" cursor-pointer bg-theme_primary_light text-primary px-4 py-1 rounded-full">

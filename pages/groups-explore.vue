@@ -112,7 +112,7 @@ export default {
     },
     to(directions) {
       if (directions == "right") {
-        this.$router.push("/groups");
+        this.$router.push(this.localePath("/groups"));
       }
     },
     

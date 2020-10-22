@@ -5,8 +5,8 @@
   
     
     <div class="mx-auto text-sm flex">
-          <nuxt-link to="/feed" class="px-5 mx-1 py-2   font-bold"> {{ $t("Followed")}} </nuxt-link>
-          <nuxt-link to="/feed-explore" class="px-5 mx-1 py-2 font-bold">
+          <nuxt-link :to="localePath('/feed')" class="px-5 mx-1 py-2   font-bold"> {{ $t("Followed")}} </nuxt-link>
+          <nuxt-link :to="localePath('/feed-explore')" class="px-5 mx-1 py-2 font-bold">
             {{ $t("Explore")}} 
           </nuxt-link>
           <div class="px-5 mx-1 ml-auto py-2  text-primary font-bold mt-1">
@@ -112,7 +112,7 @@
           <span class="p-2 text-theme_secondary">Populer</span>
           <div class="p-2 text-primary font-bold" v-for="(tagar,index) in tagarPopuler" :key="tagar.tagar">
             {{index+1}}. 
-            <nuxt-link :to="'/search?keyword='+(tagar.tagar).substring(1)">
+            <nuxt-link :to="localePath('/search?keyword='+(tagar.tagar).substring(1))">
             {{ tagar.tagar}}
              </nuxt-link>
             ({{tagar.total}})
@@ -120,11 +120,11 @@
         </li>
 
         
-      <router-link to="/users/explore" class="bg-theme_primary_dark mb-3 rounded-full flex justify-center text-center font-bold text-md p-2 px-4 w-full">
+      <router-link :to="localePath('/users/explore')" class="bg-theme_primary_dark mb-3 rounded-full flex justify-center text-center font-bold text-md p-2 px-4 w-full">
               Ikuti Seseorang
         </router-link>
 
-          <nuxt-link to="/groups-explore" class="bg-theme_primary_dark mb-3 rounded-full flex justify-center text-center font-bold text-md p-2 px-4 w-full">
+          <nuxt-link :to="localePath('/groups-explore')" class="bg-theme_primary_dark mb-3 rounded-full flex justify-center text-center font-bold text-md p-2 px-4 w-full">
               Ikuti Sebuah Grup
         </nuxt-link>
 

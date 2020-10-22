@@ -73,6 +73,8 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/sitemap',
+    '@nuxtjs/google-analytics',
     'nuxt-socket-io',
     ['vue-scrollto/nuxt', { duration: 300 }],
     [
@@ -101,7 +103,7 @@ export default {
     [
       'nuxt-i18n',
       {
-        locales: ['en','id'],
+        locales: ['id','en'],
         defaultLocale: 'id',
         vueI18n: {
           fallbackLocale: 'id',
@@ -173,7 +175,22 @@ export default {
       url: process.env.REALTIME_URL
     }]
   },
-
+  googleAnalytics: {
+    id: process.env.GOOGLE_ANALYTICS_ID, // Use as fallback if no runtime config is provided
+  },
+  publicRuntimeConfig: {
+    googleAnalytics: {
+      id: process.env.GOOGLE_ANALYTICS_ID
+    }
+  },
+  sitemap:{
+      path: '/sitemap.xml',
+      hostname: process.env.BASE_URL_NOT_API,
+      exclude: [
+        '/en/**',
+      ],
+  
+  },
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/

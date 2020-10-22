@@ -483,7 +483,7 @@ export default {
         
         this.$axios.$post("/quest", this.d).then(res => {
           this.$store.commit("loading", false);
-          this.$router.push("/quest/" + res.id);
+          this.$router.push(this.localePath("/quest/" + res.id));
         });
       }
     }

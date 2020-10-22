@@ -66,15 +66,15 @@
 
             <div class="flex flex-wrap z-50 w-full p-2"  @click="hideModal">
 
-                <nuxt-link class="font-bold text-lg py-2 text-primary"  :to="`@${playing.user.username}`" >
+                <nuxt-link class="font-bold text-lg py-2 text-primary"  :to="localePath(`@${playing.user.username}`)" >
                   {{ `@${playing.user.username}` }}
                 </nuxt-link>
               
-                <nuxt-link :to="`/quest/${playing.id}`" class="w-full  text-sm" >
+                <nuxt-link :to="localePath(`/quest/${playing.id}`)" class="w-full  text-sm" >
                       <span v-for="(tx,i) in textToArray(playing.text)" :key="i"> 
                           
-                          <nuxt-link class="text-primary" v-if="(tx.slice(0, 1) == '@')" :to="'/'+tx"> {{tx}} </nuxt-link>
-                          <nuxt-link class="text-primary" v-else-if="(tx.slice(0, 1) == '#')" :to="'/'+tx.substring(1)"> {{tx}} </nuxt-link>
+                          <nuxt-link class="text-primary" v-if="(tx.slice(0, 1) == '@')" :to="localePath('/'+tx)"> {{tx}} </nuxt-link>
+                          <nuxt-link class="text-primary" v-else-if="(tx.slice(0, 1) == '#')" ::to="localePath('/'+tx.substring(1))"> {{tx}} </nuxt-link>
                           <span v-else> {{tx}} </span>
 
                       </span>
@@ -113,7 +113,7 @@
 
 <span  @click="hideModal" >
 
-              <nuxt-link  :to="`/quest/${playing.id}`"  class=" flex float-left rounded-full p-2  text-white">
+              <nuxt-link  :to="localePath(`/quest/${playing.id}`)"  class=" flex float-left rounded-full p-2  text-white">
 
 
                   <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-chat-square-dots-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

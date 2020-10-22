@@ -115,11 +115,11 @@
                           Simpan Perubahan
                       </button>
 
-                       <nuxt-link to="/groups"
+                       <div   @click="$router.back()"
                       class="w-full text-center py-2 px-4 bg-theme_primary_light hover:opacity-75 rounded-lg mt-5">
                           <i class="fa fa-plus"></i>
                           Batal
-                      </nuxt-link>
+                      </div>
 
                 </div>
                  
@@ -156,7 +156,7 @@ export default {
               console.log(data)
                this.d = data;
             }else{
-              this.$router.push("/groups")
+              this.$router.push(this.localePath("/groups"))
             }
            
           });
@@ -189,7 +189,7 @@ export default {
                     if(res.data.info){
                         this.errMessges = "Username Telah digunakan";
                     }else{
-                        this.$router.push(`/${this.d.username}`)
+                        this.$router.push(this.localePath(`/${this.d.username}`))
                     }
                  
                 })

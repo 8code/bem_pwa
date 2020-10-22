@@ -4,10 +4,10 @@
      <new-quest  />
 
     <div  class="text-sm flex p-2">
-        <nuxt-link to="/settings" class="mb-2 text-center cursor-pointer bg-theme_primary_dark  px-4 py-1 rounded-full text-primary">
+        <nuxt-link :to="localePath('/settings')" class="mb-2 text-center cursor-pointer bg-theme_primary_dark  px-4 py-1 rounded-full text-primary">
                 Pengaturan
         </nuxt-link>
-        <router-link to="/edit/profile" class="ml-auto mb-2 text-center cursor-pointer bg-theme_primary_dark px-4 py-1 rounded-full text-primary">
+        <router-link :to="localePath('/edit/profile')" class="ml-auto mb-2 text-center cursor-pointer bg-theme_primary_dark px-4 py-1 rounded-full text-primary">
                 Edit Profile
         </router-link>
         </div>

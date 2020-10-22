@@ -10,7 +10,7 @@
             <div class="w-full flex flex-wrap items-center justify-center lg:justify-between">
                 <div class="flex">
                     
-                <nuxt-link to="/" class="flex items-center text-primary  font-bold text-2xl " > 
+                <nuxt-link :to="localePath('/')" class="flex items-center text-primary  font-bold text-2xl " > 
                    <span class="bg-primary  border-primary border-2 rounded-full">
                         <img class="w-8 h-8" src="/logo.png" alt="Logo Aplikasi Maba">
                    </span>
@@ -22,7 +22,7 @@
                     
                 
                 <div class="hidden lg:flex  justify-end content-center font-bold">	
-                        <nuxt-link to="/login" class="text-center cursor-pointer bg-theme_primary_dark  px-4 my-2 py-1 rounded-full text-primary" > 
+                        <nuxt-link :to="localePath('/login')" class="text-center cursor-pointer bg-theme_primary_dark  px-4 my-2 py-1 rounded-full text-primary" > 
                             Masuk
                         </nuxt-link>	
 
@@ -46,7 +46,7 @@
 		
 			<p class="font-bold pb-8 lg:pb-6 text-center md:text-left fade-in">Masuk / Download:</p>
 			<div class="flex w-full justify-center md:justify-start pb-24 lg:pb-0 fade-in">
-				<nuxt-link to="/login" class="py-2 px-12 mr-2 bg-primary hover:bg-primary_dark rounded-lg text-white font-bold text-xl">Masuk</nuxt-link>
+				<nuxt-link :to="localePath('/login')" class="py-2 px-12 mr-2 bg-primary hover:bg-primary_dark rounded-lg text-white font-bold text-xl">Masuk</nuxt-link>
 				<a href="https://play.google.com/store/apps/details?id=xyz.appmaker.gyqacr">
                     <img src="/Play Store.svg" class="h-12 bounce-top-icons">
                 </a>

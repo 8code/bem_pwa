@@ -64,7 +64,7 @@
           </svg>
         </button>
 
-        <nuxt-link to="/settings" class="flex p-3 bg-theme_primary mx-2 rounded-full  ">
+        <div class="flex p-3 bg-theme_primary mx-2 rounded-full  ">
           <svg
             width="1em"
             height="1em"
@@ -82,7 +82,7 @@
               d="M8 5.754a2.246 2.246 0 1 0 0 4.492 2.246 2.246 0 0 0 0-4.492zM4.754 8a3.246 3.246 0 1 1 6.492 0 3.246 3.246 0 0 1-6.492 0z"
             />
           </svg>
-        </nuxt-link>
+        </div>
       </div>
     </div>
 
@@ -191,7 +191,7 @@ export default {
           });
 
           if (this.quest.length == 0) {
-            this.$router.push("feed-explore");
+            this.$router.push(this.localePath("/feed-explore"));
           }
         });
     }
