@@ -48,7 +48,7 @@
 			<div class="flex w-full justify-center md:justify-start pb-24 lg:pb-0 fade-in">
 				<nuxt-link :to="localePath('/login')" class="py-2 px-12 mr-2 bg-primary hover:bg-primary_dark rounded-lg text-white font-bold text-xl">Masuk</nuxt-link>
 				<a href="https://play.google.com/store/apps/details?id=xyz.appmaker.gyqacr">
-                    <img src="/Play Store.svg" class="h-12 bounce-top-icons">
+                    <img src="/Play Store.svg" class="h-12 bounce-top-icons" alt="Aplikasi Maba PlayStore">
                 </a>
 			</div>
 
@@ -61,9 +61,9 @@
                 <path d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
                 </svg>
             </a>
-			<img @click="$store.commit('setTheme', 'theme-dark')" v-if="$store.state.theme == 'theme-light'" class="px-4 lg:px-10 mx-auto lg:mr-0 " style="transition: all 2s ease-in-out" src="/demo/light-mobile.png">
-			<img @click="$store.commit('setTheme', 'theme-dark-blue')" v-if="$store.state.theme == 'theme-dark'" class="px-4 lg:px-10 mx-auto lg:mr-0 " style="transition: all 2s ease-in-out" src="/demo/dark-mobile.png">
-			<img @click="$store.commit('setTheme', 'theme-light')" v-if="$store.state.theme == 'theme-dark-blue'" class="px-4 lg:px-10 mx-auto lg:mr-0 " style="transition: all 2s ease-in-out" src="/demo/light-desktop.png">
+			<img @click="$store.commit('setTheme', 'theme-dark')" v-if="$store.state.theme == 'theme-light'" class="px-4 lg:px-10 mx-auto lg:mr-0 " style="transition: all 2s ease-in-out" alt="Aplikasi Maba" src="/demo/u-light-mobile.png">
+			<img @click="$store.commit('setTheme', 'theme-dark-blue')" v-if="$store.state.theme == 'theme-dark'" class="px-4 lg:px-10 mx-auto lg:mr-0 " style="transition: all 2s ease-in-out" alt="Aplikasi Maba" src="/demo/u-dark-mobile.png">
+			<img @click="$store.commit('setTheme', 'theme-light')" v-if="$store.state.theme == 'theme-dark-blue'" class="px-4 lg:px-10 mx-auto lg:mr-0 " style="transition: all 2s ease-in-out" alt="Aplikasi Maba" src="/demo/u-light-desktop.png">
 		</div>
 
 
@@ -256,14 +256,5 @@
 export default {
       layout: "app",
       middleware: 'noauth',
-      computed: {
-        settings() {
-        return (
-            this.$store.state.theme +
-            " " +
-            this.$store.state.primaryColor
-        );
-        }
-    },
 }
 </script>
