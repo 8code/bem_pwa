@@ -8,7 +8,7 @@
     
       <main
         class="w-full mx-auto flex flex-wrap pt-2 content-start  "
-        :style="$route.path.includes('/quest/') ? 'max-width:1100px' : `max-width:600px`"
+        :style="$route.path.includes('/quest/') || $route.path.includes('/channel/') || $route.path.includes('/find/') ? 'max-width:1100px' : `max-width:600px`"
       >
         <media-player />
         <transition name="slide-fade">
@@ -165,7 +165,7 @@
         </div>
       </nav>
 
-      <nav class="hidden left-0 fixed pb-3 lg:flex h-screen ml-10 w-64 text-lg">
+      <nav class="hidden left-0 fixed pb-3 lg:flex h-screen ml-5 w-10 text-lg">
         <div
           class="mx-auto flex flex-wrap content-center text-theme_secondary font-bold"
         >
@@ -329,9 +329,9 @@ export default {
       activeClass: "text-center text-xs2 w-full rounded-lg mt-1  text-primary",
       nonActiveClass: "text-center text-xs2 w-full  text-default mt-1",
       activeClassLg:
-        "hovered text-left text-lg p-1 px-8 mx-4 rounded-full bg-theme_primary_dark text-primary",
+        "hovered absolute text-left text-lg p-1 px-8 ml-10 rounded-full bg-theme_primary_dark text-primary",
       nonActiveClassLg:
-        "hovered text-left text-lg p-1 px-8 mx-4 rounded-full text-default hover:bg-theme_primary_dark hover:text-primary"
+        "hovered absolute text-left text-lg p-1 px-8 ml-10 rounded-full text-default hover:bg-theme_primary_dark hover:text-primary"
     };
   },
   computed: {

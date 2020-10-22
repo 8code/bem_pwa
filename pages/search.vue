@@ -1,7 +1,7 @@
 <template>
     <div class="pb-20">
     
-  <new-quest  />
+    <new-quest :text="`${filter.search}`"  />
   
     
     <div class="mx-auto text-sm flex">

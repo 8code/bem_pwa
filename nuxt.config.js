@@ -73,6 +73,7 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    'nuxt-socket-io',
     ['vue-scrollto/nuxt', { duration: 300 }],
     [
       '@nuxtjs/firebase',
@@ -163,6 +164,14 @@ export default {
 
  axios: {
     baseURL: process.env.BASE_URL,
+  },
+
+  io: {
+    // module options
+    sockets: [{
+      name: 'main',
+      url: process.env.REALTIME_URL
+    }]
   },
 
   /*

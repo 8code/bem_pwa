@@ -7,7 +7,7 @@
    
        <button
               @click="$router.back()"
-              class="flex p-3 bg-theme_primary_dark mx-2 rounded-full absolute top-0 left-0 m-4"
+             class="flex p-3 bg-theme_primary_dark mx-2 rounded-full sticky top-0 z-50 lg:-ml-20 mb-auto" style="top:10px"
             >
               <svg
                 width="1em"

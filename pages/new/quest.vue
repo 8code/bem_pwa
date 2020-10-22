@@ -46,11 +46,13 @@
         ref="inputTextArea"
         @click="showModal = ''"
         v-model="d.text"
-        placeholder="Deskripsi Singkat"
+        placeholder="Katakan Sesuatu"
         class="bg-theme_primary_dark w-full rounded-lg p-4 mt-3"
         style="height:120px"
         maxlength="255"
-      ></textarea>
+      >
+
+      </textarea>
 
     <div class="w-full p-2 flex flex-wrap justify-center lg:hidden">
 
@@ -108,6 +110,17 @@
           Story
         </button>
 
+
+        <button
+          @click="d.type = 3"
+          class=" text-xs p-2 w-full flex justify-center"
+          :class="d.type == 3 ? 'bg-primary text-secondary rounded-full' : ''"
+        >
+        
+          Produk
+        </button>
+
+        
         <button
           @click="d.type = 2"
           class=" text-xs p-2 w-full flex justify-center"
@@ -116,15 +129,6 @@
        
           Channel
         </button>
-
-        <!-- <button
-          @click="d.type = 3"
-          class=" text-xs p-2 w-full flex justify-center"
-          :class="d.type == 3 ? 'bg-primary text-secondary rounded-full' : ''"
-        >
-        
-          Produk
-        </button> -->
 
   
 
@@ -190,7 +194,7 @@
       </div>
 
       <div class="w-full" v-if="d.type">
-       
+        
         <medium-editor
           class="bg-theme_primary_dark p-2 px-5 rounded-lg"
           v-model="d.desc"
@@ -199,6 +203,9 @@
           :onChange="onChange"
         >
         </medium-editor>
+        <div class="w-full text-primary text-center my-2" v-if="d.type == 3">
+            "Untuk Produk akan langsung di arahkan ke No Whatsapp, jadi isi dulu no Whatsapp di Profil"
+        </div>
          <h1 class="text-xs text-center w-full p-2 mb-2 lg:hidden">
           Rekomendasi Menggunakan Laptop / PC *
         </h1>
@@ -374,12 +381,15 @@ export default {
   created() {
      this.$nextTick(() =>  this.$refs.inputTextArea.focus())
 
-     if(this.$route.query.group_id){
-       this.group = {
-         id: this.$route.query.group_id,
-         username: this.$route.query.username,
-       }
-     }
+        if(this.$route.query.group_id){
+          this.group = {
+            id: this.$route.query.group_id,
+            username: this.$route.query.group_username,
+          }
+          this.d.text = '#'+this.group.username+' '
+        }else if(this.$route.query.text){
+          this.d.text = '#'+this.$route.query.text+' '
+        }
     },
   methods: {
 
