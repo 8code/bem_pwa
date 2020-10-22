@@ -73,6 +73,7 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/robots',
     '@nuxtjs/sitemap',
     '@nuxtjs/google-analytics',
     'nuxt-socket-io',
