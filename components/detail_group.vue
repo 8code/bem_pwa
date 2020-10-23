@@ -17,15 +17,12 @@
               {{ group.name }}  
               <br> <small class="text-primary">#{{ group.username }}</small>
               <br />
-              <span class="text-sm">
-                Admin : 
-                <nuxt-link class="text-primary cursor-pointer" :to="localePath('/@'+group.owner.username)" >@{{group.owner.username}}</nuxt-link>
-              </span>
+             
 
 
             <div class="float-right text-sm -mt-12">
               
-                            <div v-if="group.followed">
+                            <div v-if="group.followed" @click="unFollow(group.id)">
                                 <span  class="float-right cursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
                                   Diikuti
                               </span>
@@ -39,16 +36,44 @@
                                     </span>
                             </div>
 
+                                
+                      
+
                              <div class="px-3 w-full" v-if="usernameIg">
                               <a class="text-primary" :href="`https://instagram.com/${usernameIg}`">
                                 <img src="/instagram.png" class="h-10 w-10 p-2">
                               </a>
                           </div>
+
+
+                            <div class="flex text-sm  float-right cursor-pointer">
+                            
+                            
+
+
+                        </div>
+                        
                           
                      
             </div>
+            
                   
             </div>
+<div class="w-full pr-2">
+    <span class="text-sm">
+                Admin : 
+                <nuxt-link class="text-primary cursor-pointer" :to="localePath('/@'+group.owner.username)" >@{{group.owner.username}}</nuxt-link>
+              </span>
+
+
+               <nuxt-link :to="localePath('/followed/group/'+group.id)"  class="font-bold mb-2 float-right">
+               <span class="text-primary"> {{ $t('Follower') }}
+                  10K</span>
+              </nuxt-link>
+</div>
+       
+          
+
 
             <div class=" font-normal">
                 {{ group.desc }}
@@ -194,6 +219,13 @@ export default {
 
   },
   methods:{
+    unFollow(id){
+         this.$axios.get("/group/unfollow/"+id)
+          .then(res => {
+              this.followTemp = false
+              this.group.followed = false
+          })
+    },
      followGroup(id){
       this.$axios.get("/group/follow/"+id)
         .then(res => {

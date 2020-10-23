@@ -25,7 +25,8 @@
                 
                    <small class="text-xs">#{{ group.username }}</small>
                   <div v-if="follow" class="text-xs">
-                        <span v-if="group.followed" class="cursor-pointer bg-theme_primary_light text-primary px-4 py-1 rounded-full">
+                        <span v-if="group.followed" 
+                         class="cursor-pointer bg-theme_primary_light text-primary px-4 py-1 rounded-full">
                             Diikuti
                         </span>
                         <div v-else >

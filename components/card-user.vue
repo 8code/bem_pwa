@@ -23,7 +23,7 @@
                 
                     <nuxt-link class="font-semibold text-primary" :to="localePath(`/@${data.username}`)">@{{ data.username }}</nuxt-link>
                
-                        <div  v-if="data.followed" class="text-sm">
+                        <div  v-if="data.followed" class="text-sm" >
                            <span class=" cursor-pointer bg-theme_primary_light text-primary px-4 py-1 rounded-full">
                               Diikuti
                           </span>
@@ -66,6 +66,7 @@ export default {
     }
   },
   methods:{
+  
     followUser(id){
       this.$axios.get("/user/follow/"+id)
         .then(res => {

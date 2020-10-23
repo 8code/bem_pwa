@@ -58,7 +58,7 @@
 
       
    
-     <vue-record-audio mode="hold" @result="onResult" class="lg:mx-3" />
+     <vue-record-audio v-if="!recordings" mode="hold" @result="onResult" class="lg:mx-3" />
       
      <audio v-if="recordings" :src="recordings" controls class="mt-2" />
      

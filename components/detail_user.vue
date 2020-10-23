@@ -20,7 +20,7 @@
 
                     <div class="float-right text-sm flex">
                     
-                              <div v-if="profile.followed">
+                              <div v-if="profile.followed" @click="unFollow(profile.id)">
                                 <span class="cursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
                                   Diikuti
                               </span>
@@ -45,16 +45,16 @@
 
                     <div class="flex text-sm  float-right cursor-pointer">
                          
-                          <span class="font-normal text-center px-4">
+                          <nuxt-link :to="localePath('/followed/user/'+profile.id)"  class="font-normal text-center px-4">
                                {{ $t('Follower') }}
                               <div class="font-bold text-primary">{{ profile.follower }}</div>
-                            </span>
+                            </nuxt-link>
 
-                             <span class="font-normal text-center px-4">
+                             <nuxt-link :to="localePath('/following/'+profile.id)" class="font-normal text-center px-4">
                                {{ $t('Following') }}
                               
                               <div class="font-bold text-primary">{{ profile.following }}</div>
-                            </span>
+                            </nuxt-link>
 
                     </div>
                     <div class="flex text-sm float-left pt-2 font-normal">
@@ -179,6 +179,13 @@ export default {
                 })
                 
         })
+    },
+       unFollow(id){
+         this.$axios.get("/user/unfollow/"+id)
+          .then(res => {
+              this.followTemp = false
+              this.profile.followed = false
+          })
     },
     loadMoregetData($state){
         this.page = this.page+1

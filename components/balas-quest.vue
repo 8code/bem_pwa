@@ -11,7 +11,7 @@
 
           <div class="lg:hidden flex flex-wrap justify-center my-2">
                   
-          <vue-record-audio mode="hold" @result="onResult" class="lg:mx-3" />
+          <vue-record-audio v-if="!recordings" mode="hold" @result="onResult" class="lg:mx-3" />
             
           <audio v-if="recordings" :src="recordings" controls class="mt-2" />
 
@@ -22,9 +22,7 @@
           <div class="w-full shadow-sm rounded-lg">
                  Membalas @{{ quest.user.username }}
                 <input @keyup.enter="kirim" ref="inputText" maxlength="255" v-model="text" placeholder="Katakan sesuatu ..." class="mt-2 p-3 bg-theme_primary_dark w-full rounded-lg" />           
-                <!-- <button @click="kirim" class="py-2 w-full rounded-lg mt-2 bg-primary hover:bg-primary_dark text-white shadow-sm">
-                  Kirim
-                </button> -->
+              
            </div>
           </div>
       </section>
@@ -63,7 +61,6 @@ export default {
           var reader = new window.FileReader();
           reader.readAsDataURL(data);
           reader.onloadend = function () {
-                // console.log(reader.result)
                 that.audio = reader.result;
           }
       },

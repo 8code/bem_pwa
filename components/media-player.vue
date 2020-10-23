@@ -74,7 +74,7 @@
                       <span v-for="(tx,i) in textToArray(playing.text)" :key="i"> 
                           
                           <nuxt-link class="text-primary" v-if="(tx.slice(0, 1) == '@')" :to="localePath('/'+tx)"> {{tx}} </nuxt-link>
-                          <nuxt-link class="text-primary" v-else-if="(tx.slice(0, 1) == '#')" ::to="localePath('/'+tx.substring(1))"> {{tx}} </nuxt-link>
+                          <nuxt-link class="text-primary" v-else-if="(tx.slice(0, 1) == '#')" :to="localePath('/'+tx.substring(1))"> {{tx}} </nuxt-link>
                           <span v-else> {{tx}} </span>
 
                       </span>
@@ -176,7 +176,7 @@ import Media from '@dongido/vue-viaudio'
 import { mapState } from 'vuex';
 
 export default {
-   components: {
+  components: {
     Media
   },
   data(){

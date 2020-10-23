@@ -75,15 +75,20 @@
             <div
               v-if="data.embed"
               class="pb-2 w-full media-preview"
-            >
-              <div v-if="cekSumber(data.embed) == 'youtube'" 
-              
+
+                
                @click="
                     $store.commit('setMediaPlayer', {
                       data: data,
                       path: $route.path
                     })
-                  ">
+                  "
+                  
+            >
+              <div v-if="cekSumber(data.embed) == 'youtube'" 
+            
+                  
+                  >
                 <img
                   src="/youtube.png"
                   alt="logo"
@@ -99,6 +104,8 @@
 
               <div
                 v-if="cekSumber(data.embed) == 'spotify'"
+
+                
                 class="bg-primary justify-beetween text-secondary w-full flex rounded-xl p-2 px-4 h-auto"
               >
                 <svg
@@ -298,9 +305,14 @@
               #{{ data.group.username }}
             </nuxt-link>
 
-             <button v-if="data.type == 2" @click="joinEvent(data.event_id)" class="ml-auto mr-4  bg-primary p-1 px-5 rounded-full text-secondary text-xs">
+             <button v-if="data.type == 2" @click="joinEvent(data.event_id)" class="ml-auto mr-4  bg-theme_primary_dark p-1 px-5 rounded-full text-primary font-bold text-xs">
                   Daftar Acara
               </button>
+              <a :href="`https://wa.me/${data.user.whatsapp}?text=Saya%20tertarik%20dengan%20produk%20Anda%20yang%20dijual%20di%20Aplikasi%20Maba%20:%20${(data.text).replace(' ','%20')}`" 
+              v-if="data.type == 3"
+              class="ml-auto flex mr-4  bg-theme_primary_dark p-2 px-5 rounded-full text-primary text-xs">
+                  <img src="/whatsapp.png" width="20px" alt=""> <span class="font-bold px-2">Hubungi Penjual</span>
+              </a>
         </div>
 
           <div class="flex w-full px-4">
