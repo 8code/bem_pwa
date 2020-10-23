@@ -22,11 +22,17 @@
                         :
                 </span>
                 <span v-if="n.tipe == 2" class="text-sm flex flex-wrap p-1 mb-1 rounded-sm">
-
-                   
-
                    {{ n.balasan }}
                         <br>
+                        
+
+                        <div
+                        v-if="n.audio"
+                        class="w-full  flex flex-wrap p-2  text-theme_secondary "
+                        >
+                        <audio :src="n.audio" controls />
+                        
+                        </div>
                    <blockquote class="text-xs opacity-50 w-full">
                          " {{ n.text.substring(0, 50) }} ... "
                    </blockquote>

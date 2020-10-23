@@ -1,7 +1,7 @@
 {
-  "name": "Maba - Sosial Media",
+  "name": "Aplikasi Maba",
   "short_name": "MABA",
-  "description": "Aplikasi Sosial Media Mahasiswa untuk berbagai aktifitas kampus",
+  "description": "Aplikasi Sosial Media Mahasiswa , tempat Untuk Curhat, Cari Teman atau Diskusi dan tentunya bisa atasin permasalahan mahasiswa (GABUT)",
   "icons": [
     {
       "src": "/_nuxt/icons/icon_64x64.819b1e.png",

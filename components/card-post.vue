@@ -62,7 +62,6 @@
             v-if="data.audio"
             class="w-full  flex flex-wrap p-2  text-theme_secondary "
           >
-          <!-- <audio-player :src="data.audio" />  -->
               <audio :src="data.audio" controls />
             
           </div>

@@ -11,11 +11,11 @@ export default {
       author: 'Ari Bahtiar',
     },
     manifest: {
-      name: 'Maba - Sosial Media',
+      name: 'Aplikasi Maba',
       lang: 'id',
       theme_color: '#f1f1f1',
       start_url: "/",
-      description: "Aplikasi Sosial Media Mahasiswa untuk berbagai aktifitas kampus"
+      description: "Aplikasi Sosial Media Mahasiswa , tempat Untuk Curhat, Cari Teman atau Diskusi dan tentunya bisa atasin permasalahan mahasiswa (GABUT)"
     },
     // workbox: {
     //   dev: true // or use a global variable to track the current NODE_ENV, etc to determine dev mode
@@ -31,11 +31,11 @@ export default {
   ** See https://nuxtjs.org/api/configuration-head
   */
   head: {
-    title: 'Aplikasi Maba - Sosial Medianya Mahasiswa',
+    title: 'Aplikasi Maba - Sosial Media Mahasiswa',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: "Aplikasi Maba - Sosial Media Mahasiswa  untuk berbagai aktifitas kampus" }
+      { hid: 'description', name: 'description', content: "Aplikasi Sosial Media Mahasiswa , tempat Untuk Curhat, Cari Teman atau Diskusi dan tentunya bisa atasin permasalahan mahasiswa (GABUT)" }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -110,7 +110,7 @@ export default {
           fallbackLocale: 'id',
           messages: {
             en: {
-              welcome: 'Welcome College students!',
+              welcome: 'Welcome Back Mabs!',
               loginwith: 'Login With',
               tos: 'Terms of Service and Privacy Policy',
               selectLang: 'Select Leanguage',
@@ -126,14 +126,14 @@ export default {
               Group: 'Group',
               Notif: 'Notif',
               Profile: 'Profile',
-              Explore: 'Populer',
+              Explore: 'For You',
               Followed: 'Followed',
-              events: 'events',
+              events: 'Channels',
               Following: 'Following',
               Follower: 'Follower'
             },
             id: {
-              welcome: 'Selamat Datang Mahasiswa!',
+              welcome: 'Selamat Datang Mabs!',
               loginwith: 'Masuk dengan',
               tos: 'Ketentuan Layanan dan Kebijakan Privasi',
               selectLang: 'Pilih Bahasa',
