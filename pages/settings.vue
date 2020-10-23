@@ -219,7 +219,7 @@
             :to="switchLocalePath('en')"
             class="bg-theme_primary_light neu-in cursor-pointer justify-center rounded-lg  hover:text-primary flex p-2 px-4 w-full mb-2"
           >
-            Enghlish
+            Inggris
           </nuxt-link>
         </div>
        
