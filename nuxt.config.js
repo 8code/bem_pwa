@@ -197,6 +197,7 @@ export default {
   build: {
   },
   env: {
+    socketUrl: process.env.SOCKET_URL,
     storageUrl: process.env.STORAGE_URL
   }
 }

@@ -1,20 +1,10 @@
 <template>
-  <div :class="settings" style="min-height:100vh">
-    <loading />
+  <div :class="settings"  class="bg-theme_primary h-screen">
+        <loading />
+        <transition name="slide-fade">
+          <Nuxt class="w-full" />
+        </transition>
 
-    <div
-      class="w-full flex flex-wrap content-start "
-    >
-    
-      <main
-        class="w-full mx-auto flex flex-wrap pt-2 content-start  "
-         >
-        <media-player />
-          <transition name="slide-fade">
-            <Nuxt class="w-full" />
-          </transition>
-        </main>
-    </div>
   </div>
 </template>
 <style scoped>
