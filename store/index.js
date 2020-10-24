@@ -190,9 +190,14 @@ const createStore = () => {
                         data.avatar = state.storage + res.url
                         this.$axios.$post("/group",data)
                             .then(res => {
-                                console.log(res)
                                 if(res.success){
-                                    this.commit("getMyGroup")
+                                  
+                                    if(this.$i18n.locale !== 'id'){
+                                        this.$router.push("/"+this.$i18n.locale+"/groups")
+                                    }else{
+                                        this.$router.push("/groups")
+                                    }
+                                    
                                 }else{
                                     this.commit("errorMessages")
                                 }

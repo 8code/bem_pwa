@@ -3,7 +3,7 @@
 
 
  <nuxt-link
-      :to="localePath('link')"
+      :to="localePath('/new/group')"
       class="bg-theme_primary_dark text-primary p-3 right-0 rounded-full fixed bottom-0 mr-5 z-30 mb-16 lg:mr-20 flex lg:px-5 "
     >
       <svg

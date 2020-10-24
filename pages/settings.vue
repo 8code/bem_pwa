@@ -225,11 +225,6 @@
        
       </div>
 
-
-
-        
-      
-
         <nuxt-link :to="localePath('/profile')"
           
           class="w-full px-10 py-2 text-white font-bold bg-primary neu-in hover:neu-out mt-5 rounded-full"

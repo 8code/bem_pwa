@@ -1,6 +1,6 @@
 <template>
 
-  <div class="w-full p-2" >
+  <div class="w-full p-2" v-if="quest">
 
 
       <section class="w-full bg-transparent flex flex-wrap justify-center content-end z-50 fixed top-0 right-0 h-screen">
@@ -11,7 +11,7 @@
 
           <div class="lg:hidden flex flex-wrap justify-center my-2">
                   
-          <vue-record-audio v-if="!recordings" mode="hold" @result="onResult" class="lg:mx-3" />
+          <vue-record-audio v-if="!recordings" mode="press" @result="onResult" class="lg:mx-3" />
             
           <audio v-if="recordings" :src="recordings" controls class="mt-2" />
 
@@ -36,6 +36,7 @@
 import Vue from "vue";
 
 import VueRecord from '@codekraft-studio/vue-record'
+
 Vue.use(VueRecord)
 
 export default {

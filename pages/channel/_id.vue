@@ -1,16 +1,18 @@
 <template>
-  <div class="w-full  bg-theme_primary z-10 lg:z-0 rounded-xl " style="height:100%;padding-top:5vh;max-width:1100px">
-    <div class="flex fixed top-0 mt-3 w-full rounded-xl" style="max-width:1100px">
-
+  <div
+    class="w-full  bg-theme_primary z-10 rounded-xl "
+    style="height:100%;padding-top:5vh;"
+  >
+    <div class="flex fixed top-0 mt-3 w-full rounded-xl">
       <button
-        @click="$router.back()"
+        @click="leaveChannel()"
         class="flex p-3 bg-theme_primary_light mx-2 rounded-full "
       >
         <svg
           width="1em"
           height="1em"
           viewBox="0 0 16 16"
-          class="bi bi-arrow-left-circle"
+          class="bi bi-x-circle"
           fill="currentColor"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -20,7 +22,7 @@
           />
           <path
             fill-rule="evenodd"
-            d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"
+            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
           />
         </svg>
       </button>
@@ -82,106 +84,106 @@
       </div>
     </div>
 
-    <section
-      class="w-full rounded-xl flex flex-wrap p-2 pt-5"
-    >
-
+    <section class="w-full rounded-xl flex flex-wrap p-2 pt-5">
       <div class="hidden lg:block w-full lg:w-2/12 pr-2">
-
         <div class="flex bg-theme_primary_light rounded-xl p-4 min-h-full">
           <ul class="text-xs w-full">
-
-            <li class="flex text-xs p-2 rounded-full font-bold cursor-pointer bg-theme_primary hover:bg-theme_primary_dark">
-                        <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-volume-up-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/>
-                          <path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"/>
-                          <path d="M8.707 11.182A4.486 4.486 0 0 0 10.025 8a4.486 4.486 0 0 0-1.318-3.182L8 5.525A3.489 3.489 0 0 1 9.025 8 3.49 3.49 0 0 1 8 10.475l.707.707z"/>
-                          <path fill-rule="evenodd" d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06z"/>
-                        </svg>
-
-              <span class="px-2"> Podcast </span>
-            </li>
-
-             <li class="flex text-xs p-2 mt-2 rounded-full font-bold cursor-pointer bg-theme_primary hover:bg-theme_primary_dark">
-                        <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-volume-up-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/>
-                          <path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"/>
-                          <path d="M8.707 11.182A4.486 4.486 0 0 0 10.025 8a4.486 4.486 0 0 0-1.318-3.182L8 5.525A3.489 3.489 0 0 1 9.025 8 3.49 3.49 0 0 1 8 10.475l.707.707z"/>
-                          <path fill-rule="evenodd" d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06z"/>
-                        </svg>
-
-              <span class="px-2"> Video </span>
-            </li>
-             
-            
             <li class="flex text-xs py-2 font-bold cursor-pointer">
-              Online
+              Online ({{ userList.length }})
             </li>
-            <li v-for="i in 5" :key="'a'+i" class="flex text-xs p-1 text-success font-semibold cursor-pointer">
-              User {{ i }} 
+            <li
+              v-for="(i, index) in userList"
+              :key="'online-user-' + index"
+              class="flex text-xs p-1 text-success font-semibold cursor-pointer"
+            >
+              @ {{ i.user.name }}
             </li>
-             <li  class="flex text-xs py-2 font-bold cursor-pointer">
-              Offline
-            </li>
-            <li v-for="i in 5" :key="'b'+i" class="flex text-xs p-1 font-semibold text-danger cursor-pointer">
-              User {{ i }} 
-            </li>
-            
-
           </ul>
         </div>
       </div>
+
       <div
-        class="w-full lg:w-10/12 z-50 bg-theme_primary  rounded-xl flex relative flex-wrap"
+        class="w-full lg:w-8/12 z-50 bg-theme_primary  rounded-xl flex relative flex-wrap"
         style="height:90vh"
       >
+        <div class="w-full">
+          <div
+            class="w-full bg-theme_primary_light p-4 rounded-xl text-xs pb-20"
+            style="height:82vh;overflow-y:scroll" id="list-chat"
+          >
+            <b class="w-full text-lg font-bold absolute top-0 left-0 p-4">Live Chat</b>
 
-      <div class="w-full">
-                    
-                      <div class="w-full bg-theme_primary_light p-4 rounded-xl text-xs" style="height:82vh">
 
-                        <b class="w-full text-lg text-center font-bold">Live Podcast</b>
-                          
-                          <div class="flex flex-wrap justify-center">
-                            <span class="w-1/4 text-center flex justify-center p-4 bg-theme_primary rounded-full mt-3 cursor-pointer" v-for="i in 8" :key="'c'+i">
-                              <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                  <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                                </svg>  
-                            </span>
-                          </div>
+                <chat-message
+                  v-for="(m, index) in messages"
+                  :key="'c-' + index"
+                  :id="'c-' + index"
+                  :c="m"
+                />
 
-                        </div>
-                          <div class="w-full flex justify-left mt-2  lg:mt-1">
-                            <button class="bg-theme_primary_light rounded-full px-5">
-                              St
-                            </button>
-                          <input
-                              maxlength="255"
-                              v-model="text"
-                              placeholder="Katakan sesuatu ..."
-                              class="bg-theme_primary_light w-full rounded-full border-2 border-theme_primary bottom-0 p-3  px-5 z-50"
-                            />
-                            <button class="bg-theme_primary_light rounded-full px-5">
-                              Au
-                            </button>
-                        </div>
+          </div>
+          <div class="w-full flex justify-left mt-2  lg:mt-1">
+
+            
+
+      
+            <textarea
+              maxlength="255"
+              v-model="text"
+              placeholder="Katakan sesuatu ..."
+              class="bg-theme_primary_light w-full rounded-full border-2 border-theme_primary bottom-0 p-3  px-5 z-50"
+              style="height:52px"
+               @keyup.enter="sendMessage"
+            ></textarea>
+
+
+            
+                 <button class="bg-theme_primary_light rounded-full  px-4" @click="sendMessage">
+                    <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-arrow-right-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                      <path fill-rule="evenodd" d="M4 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5A.5.5 0 0 0 4 8z"/>
+                    </svg>
+
+            </button>
+
+
+          </div>
         </div>
       </div>
-      <!-- <div
-        class="w-full lg:w-3/12  rounded-xl hidden lg:flex relative flex-wrap px-2"
-      >
-              <div class="w-full bg-theme_primary p-4 rounded-xl text-xs" style="height:100%">
 
-                    About Channel
-              </div>
-      </div> -->
+      <div class="hidden lg:block w-full lg:w-2/12 lg:pl-2">
+        <div class="flex bg-theme_primary_light rounded-xl p-4 min-h-full">
+          <ul class="text-xs w-full">
+            <li class="flex text-xs py-2 font-bold cursor-pointer">
+              Activity
+            </li>
+            <li
+              v-for="(i, index) in activity"
+              :key="'act-' + index"
+              class="flex text-xs p-1 font-semibold cursor-pointer"
+              :class="i.type == 0 ? 'text-danger' : 'text-success'"
+            >
+              {{ i.text }}
+            </li>
+          </ul>
+        </div>
+      </div>
     </section>
-    
   </div>
 </template>
+<style scoped>
+.video-list{
+  width: 100%;
+}
 
+.video-item{
+  width: 50%;
+}
+</style>
 <script>
+
+
+
 import InfiniteLoading from "vue-infinite-loading";
 
 export default {
@@ -189,62 +191,75 @@ export default {
     InfiniteLoading
   },
   scrollToTop: true,
-  layout: "no-header",
+  layout: "channel",
   middleware: "auth",
   data() {
     return {
       text: "",
-      quest: "",
-      search: "",
-      balas_quest: "",
-      page: 1
+      anonim: true,
+      messages: [],
+      activity: [],
+      userList: []
     };
   },
-  mounted() {},
+  sockets: {
+    roomUsers: function({ room, users }) {
+      this.userList = users;
+    },
+    message: function(message) {
+      this.messages.push(message);
+    },
+    activity: function(act) {
+      this.activity = act;
+    }
+  },
+  mounted() {
+    this.getDataChannel();
+
+    this.getUserregistered();
+
+   
+    let MyProfil = {
+        username: this.$store.state.user.username,
+        name: this.$store.state.user.name,
+        avatar: this.$store.state.user.avatar
+      }
+
+
+    this.$socket.emit("joinRoom", {
+      user: MyProfil,
+      room: this.$route.params.id
+    });
+  },
+
   methods: {
-    loadMoregetData($state) {
-      this.page = this.page + 1;
-      this.$axios
-        .$get("/quest/home?search=" + this.search + "&page=" + this.page)
-        .then(res => {
-          if (res.total > 0) {
-            this.lastPage = false;
-            this.quest = this.quest.concat(res.data);
-
-            this.$store.commit("setDataQuestFollowing", {
-              data: this.quest,
-              page: this.page
-            });
-
-            $state.loaded();
-          } else {
-            $state.complete();
-          }
-        });
+    scrollToLast(){
+      var container = this.$el.querySelector("#list-chat");
+      container.scrollTop = container.scrollHeight;
     },
-    newQuest() {
-      this.balas_quest = "";
-      this.getData();
-    },
-    balasQuest(data) {
-      this.balas_quest = data;
-    },
-    getData() {
-      this.lastPage = false;
-      this.page = 1;
-      this.$axios
-        .$get("/quest/home?search=" + this.search + "&page=" + this.page)
-        .then(res => {
-          this.quest = res.data;
-          this.$store.commit("setDataQuestFollowing", {
-            data: this.quest,
-            page: this.page
-          });
+    getDataChannel() {
 
-          if (this.quest.length == 0) {
-            this.$router.push(this.localePath("feed-explore"));
-          }
-        });
+    },
+    leaveChannel() {
+      alert("Percakapan akan hilang setelah kamu keluar");
+      this.$router.back();
+    },
+    sendMessage() {
+
+      if(this.text){
+          let dt = {
+              text: this.text
+          };
+          this.$socket.emit("sendMessage", dt);
+          this.text = ""
+          
+          this.scrollToLast()
+      }
+    },
+    getUserregistered() {
+      this.$axios.get("/user-channel/" + this.$route.params.id).then(res => {
+        this.userJoin = res.data;
+      });
     }
   }
 };

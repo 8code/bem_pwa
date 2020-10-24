@@ -4,10 +4,10 @@
     
        style="max-width:600px;"
        >
-            <nuxt-link  :to="localePath('/'+name)"  :class="($route.path == '/'+name) ? activeClass : nonActiveClass">
+            <nuxt-link  :to="localePath('/'+name)"  :class="($route.path.includes(name)) ? activeClass : nonActiveClass">
             {{ $t("Followed")}}
             </nuxt-link>
-            <nuxt-link :to="localePath('/'+name+'-explore')" :class="($route.path == '/'+name+'-explore') ? activeClass : nonActiveClass">
+            <nuxt-link :to="localePath('/'+name+'-explore')" :class="($route.path.includes(+name+'-explore')) ? activeClass : nonActiveClass">
             {{ $t("Explore") }}
             </nuxt-link>
              <nuxt-link :to="localePath('/search')" class="px-5 mx-1 ml-auto py-2 font-bold mt-1">

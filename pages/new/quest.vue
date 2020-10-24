@@ -58,7 +58,7 @@
 
       
    
-     <vue-record-audio v-if="!recordings" mode="hold" @result="onResult" class="lg:mx-3" />
+     <vue-record-audio v-if="!recordings" mode="press" @result="onResult" class="lg:mx-3" />
       
      <audio v-if="recordings" :src="recordings" controls class="mt-2" />
      
@@ -107,7 +107,7 @@
           :class="d.type == 1 ? 'bg-primary text-secondary rounded-full' : ''"
         >
        
-          Story
+          {{ $t("story") }}
         </button>
 
 
@@ -127,7 +127,7 @@
           :class="d.type == 2 ? 'bg-primary text-secondary rounded-full' : ''"
         >
        
-          Channel
+          {{ $t("events")}}
         </button>
 
   
@@ -386,16 +386,14 @@ export default {
             id: this.$route.query.group_id,
             username: this.$route.query.group_username,
           }
-          this.d.text = '#'+this.group.username+' '
+          // this.d.text = '#'+this.group.username+' '
         }else if(this.$route.query.text){
           this.d.text = '#'+this.$route.query.text+' '
         }
     },
   methods: {
 
-    onStream (stream) {
-      // console.log('Got a stream object:', stream);
-    },
+ 
     onResult (data) {
       var audioURL = window.URL.createObjectURL(data);
         this.recordings  = audioURL;

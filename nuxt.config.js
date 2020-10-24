@@ -55,6 +55,7 @@ export default {
   */
   plugins: [
     '~/plugins/v-touch',
+    '~/plugins/socket.js'
   ],
   /*
   ** Auto import components
@@ -76,7 +77,6 @@ export default {
     '@nuxtjs/robots',
     '@nuxtjs/sitemap',
     '@nuxtjs/google-analytics',
-    'nuxt-socket-io',
     ['vue-scrollto/nuxt', { duration: 300 }],
     [
       '@nuxtjs/firebase',
@@ -128,9 +128,11 @@ export default {
               Profile: 'Profile',
               Explore: 'For You',
               Followed: 'Followed',
-              events: 'Channels',
+              events: 'Event',
               Following: 'Following',
-              Follower: 'Follower'
+              Follower: 'Follower',
+              messages: 'Messages',
+              story: 'Story',
             },
             id: {
               welcome: 'Selamat Datang Mabs!',
@@ -151,9 +153,11 @@ export default {
               Profile: 'Saya',
               Explore: 'Untukmu',
               Followed: 'Diikuti',
-              events: 'Channels',
+              events: 'Acara',
               Following: 'Mengikuti',
-              Follower: 'Pengikut'
+              Follower: 'Pengikut',
+              messages: 'Pesan',
+              story: 'Cerita',
             }
           }
         }
@@ -169,13 +173,7 @@ export default {
     baseURL: process.env.BASE_URL,
   },
 
-  io: {
-    // module options
-    sockets: [{
-      name: 'main',
-      url: process.env.REALTIME_URL
-    }]
-  },
+
   googleAnalytics: {
     id: process.env.GOOGLE_ANALYTICS_ID, // Use as fallback if no runtime config is provided
   },

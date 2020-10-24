@@ -1,14 +1,14 @@
 <template>
   <div v-if="data" class="w-full" >
-        <nuxt-link class="w-full p-2 relative flex  border-b border-theme_primary_light"  :to="localePath(`/channel/${data.id}`)"> 
+        <nuxt-link class="w-full p-2 relative flex  border-b border-theme_primary_light"  :to="localePath(`/channel/${data.channel.room_id}`)"> 
     <div
       class="w-full flex flex-wrap shadow-sm bg-theme_primary hover:bg-theme_primary_dark rounded-xl px-2 lg:py-2 "
     >
      
       <div class="w-full font-bold flex px-2 pt-4 ">
 
-        <img
-          class="w-12 h-12  rounded-full"
+        <img v-if="data.image"
+          class="w-12 rounded-lg"
           :src="data.image"
           :alt="data.name"
         />
@@ -28,9 +28,7 @@
         {{ dateIndo(data.start) }}
 
         <div  class="ml-auto text-primary text-xs mt-1 px-3 rounded-full">
-          <span v-if="data.status == null">
-            Menunggu
-          </span>
+           2 Pesan Baru
         </div>
       </small>
     </div>

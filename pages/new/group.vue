@@ -137,7 +137,6 @@ export default {
           if(this.d.avatar){
             // this.d.avatar = '/icon.png';
             await this.$store.commit("createGroup",this.d)
-            await this.$router.push(this.localePath("/groups"))
           }
         }
     }
