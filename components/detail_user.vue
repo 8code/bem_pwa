@@ -25,28 +25,31 @@
         </button>
 
 
-      <div class="w-full flex flex-wrap bg-theme_primary p-2 rounded-xl justify-center ">
+      <div class="w-full flex flex-wrap bg-theme_primary p-2 rounded-xl justify-center -mt-10 lg:mt-0">
 
-
-
-
-        <div class="w-1/2 flex justify-center lg:justify-start lg:pt-3">
+        <div class="w-full lg:w-1/2 flex justify-center lg:justify-start lg:pt-3">
         
           <img
-            class="w-16 h-16  rounded-full"
+            class="w-16 h-16  rounded-full hidden lg:block"
             :src="profile.avatar"
             :alt="profile.name"
           />
-          <div class="text-left mt-3 pl-3">
+          <div class="lg:text-left mt-3 lg:pl-3">
                 <div class="w-full text-left font-bold ">
                   {{ profile.name }} 
                 </div>
+                
+                <img
+                  class="w-20 h-20  rounded-full lg:hidden my-2"
+                  :src="profile.avatar"
+                  :alt="profile.name"
+                />
                 <router-link :to="`@${profile.username}`" class="text-sm text-primary">@{{ profile.username }}</router-link>
           </div>
 
         </div>
 
-          <div class="w-1/2 flex flex-wrap justify-center">
+          <div class="w-full lg:w-1/2 flex flex-wrap justify-center">
 
         <div class="flex w-full justify-center lg:justify-end mt-2">
                         
@@ -68,31 +71,29 @@
           <div class="flex w-full justify-center lg:justify-end mt-5">
                     
                     <div v-if="profile.followed || followTemp">
-                      <span class="cursor-pointer bg-primary text-secondary mr-2 text-primary px-4 py-1 rounded-full">
-                          pesan
+                      <span @click="chatTo" class="cursor-pointer bg-primary text-secondary mr-2 text-primary px-6 py-2 -mt-1 rounded-full">
+                          Pesan
                       </span>
                     </div>
 
                     <div v-if="profile.followed || followTemp" @click="unFollow(profile.id)">
-                      <span class="cursor-pointer bg-theme_primary_dark text-primary px-4 py-1 rounded-full">
-                          diikuti
+                      <span class="cursor-pointer bg-theme_primary_dark text-primary px-6 py-2 rounded-full">
+                          Diikuti
                       </span>
                     </div>
-                    <span v-else @click="followUser(profile.id)" class="cursor-pointer bg-primary px-4 py-1 rounded-full text-secondary">
-                        ikuti
+                    <span v-else @click="followUser(profile.id)" class="cursor-pointer bg-primary px-6 py-2 rounded-full text-secondary">
+                        Ikuti
                     </span>
                 
                 <div class="px-3" v-if="usernameIg">
                   <a class="text-primary" :href="`https://instagram.com/${usernameIg}`">
-                    <img src="/instagram.png" class="h-8 w-8">
+                    <img src="/instagram.png" class="h-6 w-6">
                   </a>
                 </div>
-
-              
           </div>
         
           </div>
-            <div class="flex text-sm w-full text-left mt-3 px-4">
+            <div class="flex text-sm w-full text-center lg:text-left mt-3 px-4">
             {{ profile.bio }}
           </div>
         
@@ -105,31 +106,26 @@
     <div class="p-2 flex flex-row mt-2" style="overflow-x:scroll">
  
      <div
-        :class="(filter == 'Quest') ? filterClassActive : filterClass"
-        @click="filter = 'Quest';getData()"
+        :class="(filter == 'New') ? filterClassActive : filterClass"
+        @click="filter = 'New';getData()"
       >
-          Quest
+          Terbaru
       </div>
 
-      
-     <!-- <div
-        :class="(filter == 'Group') ? filterClassActive : filterClass"
-        @click="filter = 'Group';getData()"
-
+       <div
+        :class="(filter == 'Story') ? filterClassActive : filterClass"
+        @click="filter = 'Story';getData()"
       >
-     
-          Group
-      </div> -->
+          Cerita
+      </div>
 
-  
      <div
-        :class="(filter == 'Acara') ? filterClassActive : filterClass"
-        @click="filter = 'Acara';getData()"
-
+        :class="(filter == 'Voice') ? filterClassActive : filterClass"
+        @click="filter = 'Voice';getData()"
       >
-         Acara
+          Suara
       </div>
-
+  
 
     </div>
 
@@ -161,12 +157,12 @@ export default {
   props:['id','editprofile'],
   data() {
     return {
-      filterClassActive: "cursor-pointer relative mx-1 px-6 bg-primary text-secondary rounded-xl flex text-sm items-center justify-center p-2",
+      filterClassActive: "cursor-pointer relative mx-1 px-6 bg-primary text-secondary rounded-full rounded-tl-none flex text-sm items-center justify-center p-2",
       filterClass: "cursor-pointer relative mx-1 px-6 bg-theme_primary_dark rounded-xl flex text-sm items-center justify-center p-2",
       profile: "",
       quest: "",
       search: "",
-      filter: "Quest",
+      filter: "New",
       balas_quest: '',
       page: 1,
       loadMore: false,
@@ -196,6 +192,12 @@ export default {
     });
   },
   methods:{
+     chatTo(){
+       this.$axios.get('/chat_to/'+this.profile.id)
+        .then(res => {
+          this.$router.push("/messages/"+res.data)
+        })
+     },
      followUser(id){
       this.$axios.get("/user/follow/"+id)
         .then(res => {

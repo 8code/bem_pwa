@@ -97,9 +97,19 @@
 
       <div class="w-full">
             
-              <div class="w-full bg-theme_primary p-4 rounded-xl text-xs" style="height:100%">
-                    <b class="w-full text-lg text-center font-bold">Coming Soon Fitur</b>
-                Video / Audio 
+              <div class="w-full flex flex-wrap bg-theme_primary p-4 rounded-xl text-xs" style="height:100%">
+                    <b class="w-full text-lg text-center font-bold">Ome Tv</b>
+                      
+                <div class="w-full lg:w-1/2 p-1">
+                  <div class="w-full bg-theme_primary_dark rounded-xl flex justify-center items-center" style="height:300px">
+                    Video / Audio
+                  </div>
+                </div>
+                <div class="w-full lg:w-1/2 p-1">
+                   <div class="w-full bg-theme_primary_dark rounded-xl flex justify-center items-center" style="height:300px">
+                    Video / Audio
+                  </div>
+                </div>
               </div>
         </div>
        
@@ -137,7 +147,7 @@ export default {
     InfiniteLoading
   },
   scrollToTop: true,
-  layout: "no-menu",
+  layout: "channel",
   middleware: "auth",
   data() {
     return {

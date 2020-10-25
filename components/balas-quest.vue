@@ -7,7 +7,7 @@
 
       <div @click="$emit('batal')"  class="w-full  flex flex-wrap justify-center content-end bg-theme_primary_dark opacity-50 z-50 fixed top-0 right-0 h-screen ">
       </div>
-      <div class="w-full p-4 lg:w-1/2 flex flex-wrap justify-center items-end content-end bg-theme_primary rounded-xl" style="z-index:10000">
+      <div class="w-full p-4 lg:w-1/2 flex flex-wrap justify-center items-end content-end bg-theme_primary_light rounded-xl" style="z-index:10000">
 
           <div class="flex my-3 mr-auto" @click="$store.commit('setAnonim',!$store.state.anonim)">
             <img :src="($store.state.anonim) ? '/anonim.png' : $store.state.user.avatar" alt="Anonim" class="rounded-full w-8 h-8">
@@ -78,6 +78,7 @@ export default {
                 quest_id: this.quest.id,
                 text: this.text,
                 audio: this.audio,
+                anonim: this.$store.state.anonim,
               }).then(res => {
 
             

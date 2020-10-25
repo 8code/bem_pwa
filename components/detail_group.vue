@@ -4,7 +4,6 @@
 
     <button
           @click="$router.back()"
-          v-if="!editprofile"
           class="flex p-3 bg-theme_primary_dark mx-2 rounded-full mr-auto mt-2" style="top:10px"
         >
           <svg
@@ -46,27 +45,21 @@
              
 
 
-            <div class="ml-auto text-sm flex">
+            <div class="ml-auto text-sm flex items-start">
               
-                            <div v-if="group.followed" @click="unFollow(group.id)">
-                                <span  class="float-right cursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
-                                  Diikuti
-                              </span>
-                            </div>
-                            <div v-else >
-                                      <span v-if="!followTemp" @click="followGroup(group.id)" class="cursor-pointer bg-primary px-4 py-1 rounded-full text-secondary">
-                                          Ikuti
-                                      </span>
-                                      <span v-if="followTemp" class="fursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
-                                        Diikuti
-                                    </span>
-                            </div>
-
-                             <div class="px-3 " v-if="usernameIg">
-                                <a class="text-primary" :href="`https://instagram.com/${usernameIg}`">
-                                  <img src="/instagram.png" class="h-10 w-10 p-2">
-                                </a>
-                            </div>
+            <div v-if="group.followed || followTemp" @click="unFollow(group.id)">
+                <span  class="float-right cursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
+                  Diikuti
+              </span>
+            </div>
+            <span v-else @click="followGroup(group.id)" class="float-right cursor-pointer bg-primary text-secondary px-4 py-1 rounded-full">
+                Ikuti
+            </span>
+              <div class="px-3" v-if="usernameIg">
+                <a class="text-primary" :href="`https://instagram.com/${usernameIg}`">
+                  <img src="/instagram.png" class="h-8 w-8">
+                </a>
+            </div>
                         
                           
                      
@@ -74,17 +67,15 @@
             
                   
             </div>
-<div class="w-full pr-4">
-    <span class="text-sm">
-      <nuxt-link class="text-primary cursor-pointer" :to="localePath('/@'+group.owner.username)" >@{{group.owner.username}}</nuxt-link>
-    </span>
-
-
-  <nuxt-link :to="localePath('/followed/group/'+group.id)"  class="font-bold mb-2 float-right mr-2">
-  <span class="text-primary"> {{ $t('Follower') }}
-    10K</span>
-</nuxt-link>
-</div>
+      <div class="w-full pr-4 -mt-2">
+          <span class="text-sm">
+            <nuxt-link class="text-primary cursor-pointer" :to="localePath('/@'+group.owner.username)" >@{{group.owner.username}}</nuxt-link>
+          </span>
+        <nuxt-link :to="localePath('/followed/group/'+group.id)"  class="font-bold mb-2 float-right mr-2">
+        <span class="text-primary"> {{ $t('Follower') }}
+          {{ group.follower }}</span>
+      </nuxt-link>
+      </div>
        
           
 
@@ -127,39 +118,31 @@
 
 
      <div
-        :class="(filter == 'Quest Only') ? filterClassActive : filterClass"
-        @click="filter = 'Quest Only';getData()"
+        :class="(filter == 'New') ? filterClassActive : filterClass"
+        @click="filter = 'New';getData()"
       >
-        <div
-          class="-mt-1 -ml-1 h-6 w-6 absolute top-0 left-0 rounded-full shadow-lg bg-primary mr-3"
-        ></div>
-          Quest
+          Terbaru
       </div>
 
+   
+
+
       <div
-        :class="(filter == 'Acara') ? filterClassActive : filterClass"
-        @click="filter = 'Acara';getData()"
+        :class="(filter == 'Event') ? filterClassActive : filterClass"
+        @click="filter = 'Event';getData()"
 
       >
-      
-      <div
-          class="-mt-1 -ml-1 h-6 w-6 absolute top-0 left-0 rounded-full shadow-lg bg-primary mr-3"
-        ></div>
           Acara
       </div>
 
-
-      
-     <!-- <div
-        :class="(filter == 'Produk') ? filterClassActive : filterClass"
-        @click="filter = 'Produk';getData()"
+        <div
+        :class="(filter == 'Voice') ? filterClassActive : filterClass"
+        @click="filter = 'Voice';getData()"
 
       >
-        <div
-          class="-mt-1 -ml-1 h-6 w-6 absolute top-0 left-0 rounded-full shadow-lg bg-primary mr-3"
-        ></div>
-          Produk
-      </div> -->
+         Suara
+      </div>
+
 
     </div>
 
@@ -189,13 +172,12 @@ export default {
   middleware: "auth",
   data() {
     return {
-      
-      filterClassActive: "cursor-pointer relative mx-1 px-6 bg-primary text-secondary rounded-xl flex text-sm items-center justify-center p-2",
+      filterClassActive: "cursor-pointer relative mx-1 px-6 bg-primary text-secondary rounded-full rounded-tl-none flex text-sm items-center justify-center p-2",
       filterClass: "cursor-pointer relative mx-1 px-6 bg-theme_primary_dark rounded-xl flex text-sm items-center justify-center p-2",
       group: "",
       quest: "",
       search: "",
-      filter: "Quest Only",
+      filter: "New",
       balas_quest: '',
       page: 1,
       usernameIg: '',

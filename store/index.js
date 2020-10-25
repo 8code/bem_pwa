@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 const createStore = () => {
     return new  Vuex.Store({
         state: {
-                anonim: false,
+                anonim: localStorage.getItem("anonim") || false,
                 notif: [],
                 playing_path: '',
                 playing: '',
@@ -32,6 +32,7 @@ const createStore = () => {
 
         mutations:{
             setAnonim(state,to){
+                localStorage.setItem("anonim", to)
                 state.anonim = to
             },
             set_scroll_home(state,data){
@@ -48,12 +49,11 @@ const createStore = () => {
             },
         
             setNotif (state, data) {
-                console.log(data)
-                this.$fireDb.ref('notifikasi/'+data.to).update({
-                   text: data.text,
-                }).then(function(snapshot) {
-                    console.log(snapshot)
-                });
+                    this.$fireDb.ref('notifikasi/'+data.to).update({
+                    text: data.text,
+                    }).then(function(snapshot) {
+                        console.log(snapshot)
+                    });
               },
             loading(state,to){
                 state.loading = to
@@ -218,7 +218,6 @@ const createStore = () => {
                 this.$axios.$get("/mygroup")
                     .then(res => {
                         state.data.mygroup = res
-                        // console.log(res)
                     })
             }
         },

@@ -128,7 +128,11 @@
               Ikuti Sebuah Grup
         </nuxt-link>
 
-
+        
+        <nuxt-link :to="localePath('/groups-explore')" class="bg-theme_primary_dark mb-3 rounded-full flex justify-center text-center font-bold text-md p-2 px-4 w-full">
+            Ome Tv (Coming Soon)
+        </nuxt-link>
+        
        
       </ul>
 

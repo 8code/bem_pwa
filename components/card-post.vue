@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="data.id"
+    v-if="data.id && !hideQuest"
     class="w-full p-2 relative cursor-pointer border-b border-theme_primary_light overflow-hidden"
     
   >
@@ -22,7 +22,7 @@
           </span>
         </nuxt-link>
 
-        <span class="text-xs ml-auto flex">
+        <span class="text-xs ml-auto flex" @click="showModal = !showModal">
           <span class="px-2" >
             <svg
               width="1.2em"
@@ -295,7 +295,7 @@
 
       
 
-          <div class="flex w-full px-4">
+          <div class="flex w-full px-4 pb-2">
            
             
             <div class="flex w-full" >
@@ -325,38 +325,38 @@
                 <span class="px-2 text-xs mt-1">Balas</span>
               </div>
 
-             <div
-                @click="followQuest(data.id)"
-                :class="data.followed || followTemp ? btnFollowed : btnFollow"
-              >
-                <svg
-                  width="18px"
-                  height="18px"
-                  viewBox="0 0 16 16"
-                  class="bi bi-heart-fill mr-1 mt-1"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                  />
-                  
-                </svg>
-                <span class="mt-1" v-if="data.followed">
-                  {{ data.total_follower }}
-                </span>
-                <span class="mt-1" v-else>
-                  {{
-                    followTemp
-                      ? parseInt(data.total_follower) + 1
-                      : data.total_follower
-                  }}
-                </span>
+                <div
+                    @click="followQuest(data.id)"
+                    :class="data.followed || followTemp ? btnFollowed : btnFollow"
+                  >
+                    <svg
+                      width="18px"
+                      height="18px"
+                      viewBox="0 0 16 16"
+                      class="bi bi-heart-fill mr-1 mt-1"
+                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      />
+                      
+                    </svg>
+                    <span class="mt-1" v-if="data.followed">
+                      {{ data.total_follower }}
+                    </span>
+                    <span class="mt-1" v-else>
+                      {{
+                        followTemp
+                          ? parseInt(data.total_follower) + 1
+                          : data.total_follower
+                      }}
+                    </span>
 
-              </div>
+                  </div>
 
- </div>
+    </div>
 
 
  
@@ -366,7 +366,7 @@
       </div>
            
 
-        <div class="flex  w-full px-3 flex-wrap mt-3"  v-if="!data.quest_id">
+        <div class="flex  w-full px-3 flex-wrap mt-1"  v-if="!data.quest_id">
             <nuxt-link
               v-if="data.group"
               class="text-primary font-bold mr-3"
@@ -383,6 +383,10 @@
 
 
     </div>
+
+
+    <modal-quest @delete="deleteQuest" @hide="showModal = false" v-if="showModal" :quest="data" />
+
   </div>
 </template>
 
@@ -393,6 +397,8 @@ export default {
   props: ["data", "bigtext", "active", "hideBalasan", "link","sumber"],
   data() {
     return {
+      hideQuest: false,
+      showModal: false,
       btnFollow:
         "flex relative ml-auto p-1 rounded-tl-xl rounded-br-xl text-xs text-theme_secondary",
       btnFollowed:
@@ -401,6 +407,18 @@ export default {
     };
   },
   methods: {
+    deleteQuest(){
+        this.showModal = false
+     this.$axios.get('/delete-quest/'+this.$props.data.id)
+      .then(res => {
+          if(res.data == 'success'){
+             this.hideQuest = true
+            //  console.log("delete")
+           
+          }
+      })
+      
+    },
     joinEvent(id){
       this.$axios.get("/join-event/"+id)
         .then(res => {

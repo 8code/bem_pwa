@@ -22,7 +22,7 @@
                         :
                 </span>
 
-                <span v-if="n.tipe == 2" class="w-full text-sm flex flex-wrap p-1 mb-1 rounded-sm">
+                <span v-if="n.tipe == 2" class="w-full text-sm flex flex-wrap p-1 mb-1 rounded-sm pl-8">
                    {{ n.balasan }}
                         <br>
                         

@@ -73,6 +73,15 @@ const util = {
       return tampilTanggal + tampilWaktu;
       // console.log(tampilWaktu);
     },
+    timeIndo(data){
+      var date = new Date(data);
+      var jam = date.getHours();
+      var menit = date.getMinutes();
+      var detik = date.getSeconds();
+      
+      var tampilWaktu = jam + ":" + menit + ":" + detik;
+      return  tampilWaktu;
+    },
     parseQuestDate(datetime) {
 
         var tTime=new Date(datetime);

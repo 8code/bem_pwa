@@ -90,10 +90,9 @@
             </svg>
           </h2>
           
-  <button v-if="data.type == 2" @click="joinEvent(data.event_id)" class="w-1/2  flex bg-primary justify-center text-white text-center hover:bg-primary_dark rounded-xl px-5 py-3 mt-1">
+          <button v-if="data.type == 2" @click="joinEvent(data.event_id)" class="w-1/2  flex bg-primary justify-center text-white text-center hover:bg-primary_dark rounded-xl px-5 py-3 mt-1">
                   {{ $t("join_event") }}
-              </button>
-
+          </button>
 
         </div>
  <div class="flex flex-wrap px-2 cursor-pointer " v-if="data">

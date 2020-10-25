@@ -4,3 +4,10 @@ STORAGE_URL=http://localhost:8000/storage/
 SOCKET_URL=http://localhost:3001
 APP_NAME=Maba
 GOOGLE_ANALYTICS_ID=G-GYYMXVBWK9
+
+BASE_URL_NOT_API=https://api.maba.my.id
+BASE_URL=https://api.maba.my.id/api/
+STORAGE_URL=https://api.maba.my.id/storage/
+SOCKET_URL=https://socket.maba.my.id
+APP_NAME=Maba
+GOOGLE_ANALYTICS_ID=G-GYYMXVBWK9

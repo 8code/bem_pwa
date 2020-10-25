@@ -166,19 +166,18 @@
                 class="w-full shadow-sm bg-theme_primary_dark py-2 px-4 rounded-lg mb-3"
               />
             </div>
-            </div>
-            <!-- <div class="flex w-full lg:w-1/2 flex-wrap p-2">
+             <div class="flex w-full lg:w-1/2 flex-wrap p-2">
               <label class="py-2">Tanggal Selesai</label>
               <input
-                type="date"
+                type="datetime-local"
                 v-model="d.end"
                 
                 placeholder="Tanggal Selesai "
                 class="w-full  shadow-sm bg-theme_primary_dark py-2 px-4 rounded-lg mb-3"
               />
             </div>
-
-          </div>
+            </div>
+            <!--
 
           <div class="flex p-2 items-start flex-wrap">
             <label class="w-full lg:w-1/2 py-2">Harga :  
@@ -225,9 +224,12 @@
 
       <button
         @click="kirim"
-        class=" py-2 w-full rounded-full mt-2 bg-primary hover:bg-primary_dark text-white shadow-sm"
+        class=" py-2 w-full rounded-full mt-2 bg-primary hover:bg-primary_dark text-white shadow-sm flex justify-center"
       >
-        Kirim
+         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cursor mt-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103zM2.25 8.184l3.897 1.67a.5.5 0 0 1 .262.263l1.67 3.897L12.743 3.52 2.25 8.184z"/>
+          </svg>
+        <span class="px-2">Kirim</span>
       </button>
 
       <button
@@ -278,7 +280,6 @@
             />
           </div>
           <div class="w-full flex flex-wrap" v-if="showModal == 'img'">
-            <h1 class="font-bold p-2">Coming Soon</h1>
             <span @click="showModal = ''" class="text-danger ml-auto"
               >Tutup</span
             >
@@ -485,10 +486,12 @@ export default {
         this.d.group_id = this.group.id;
       }
       this.d.embed = this.getUrl(this.d.embed);
+      this.d.anonim = this.$store.state.anonim
 
       if (this.d.text) {
 
         this.$store.commit("loading", true);
+        
         
         this.$axios.$post("/quest", this.d).then(res => {
           this.$store.commit("loading", false);
