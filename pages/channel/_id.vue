@@ -41,7 +41,7 @@
         </svg>
         </button> -->
 
-        <div class="flex p-3 bg-theme_primary_light mx-2 rounded-full cursor-pointer" @click="showSettings = !showSettings">
+        <!-- <div class="flex p-3 bg-theme_primary_light mx-2 rounded-full cursor-pointer" @click="showSettings = !showSettings">
           <svg
             width="1em"
             height="1em"
@@ -59,7 +59,7 @@
               d="M8 5.754a2.246 2.246 0 1 0 0 4.492 2.246 2.246 0 0 0 0-4.492zM4.754 8a3.246 3.246 0 1 1 6.492 0 3.246 3.246 0 0 1-6.492 0z"
             />
           </svg>
-        </div>
+        </div> -->
       </div>
     </div>
 

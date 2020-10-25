@@ -23,7 +23,7 @@
         <li
           v-for="(i, index) in users"
           :key="'user-' + index"
-          class="flex text-xs p-1 mt-2 font-semibold border-b pb-2 hover:bg-theme_primary_dark rounded-full px-2 cursor-pointer"
+          class="flex text-xs p-1 mt-2 font-semibold pb-2 hover:bg-theme_primary_dark rounded-full px-2 cursor-pointer"
         >
             <nuxt-link :to="localePath('/messages/'+i.room_id)" class="flex w-full flex-wrap ccursor-pointer" >
               <div class="flex w-full">
