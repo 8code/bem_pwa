@@ -81,7 +81,7 @@
                           Diikuti
                       </span>
                     </div>
-                    <span v-else @click="followUser(profile.id)" class="cursor-pointer bg-primary px-6 py-2 rounded-full text-secondary">
+                    <span v-else @click="followUser(profile.id)" class="cursor-pointer bg-danger px-6 py-2 rounded-full text-secondary">
                         Ikuti
                     </span>
                 

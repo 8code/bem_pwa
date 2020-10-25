@@ -50,7 +50,7 @@
                     <span class="pl-4 p-1 text-lg "> {{ i.user.name }}</span>
 
                   </div>
-                  <span class="px-2 text-xs w-full ml-10 text-theme_secondary" v-if="i.messages"> {{ i.messages.text }}</span>
+                  <span class="px-2 text-xs w-full ml-12 text-theme_secondary font-normal -mt-2" v-if="i.message"> {{ i.message.text }}</span>
                </nuxt-link>
             </li>
           </ul>
@@ -201,7 +201,7 @@ export default {
          
           if(res.data.message.total > 0){
 
-            let msg = res.data.message.data;
+            let msg = res.data.message.data.reverse();
 
             for (let index = 0; index < msg.length; index++) {
 

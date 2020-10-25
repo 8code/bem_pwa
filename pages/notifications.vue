@@ -17,13 +17,22 @@
                         <nuxt-link class="text-primary" :to="localePath('/@'+n.username)">{{n.name}}</nuxt-link>
                         <span v-if="n.tipe == 1" > <span v-if="n.total > 1">dan {{ n.total}} lainnya</span> menyukai quest anda</span>
                         <span v-if="n.tipe == 2" > membalas</span>
-                        <span v-if="n.tipe == 3" > menandai anda di sebuah quest</span>
+                        <span v-if="n.tipe == 3" > menandai anda </span>
                         <span v-if="n.tipe == 6" > mengikuti Anda</span>
                         :
                 </span>
+                <nuxt-link :to="`@${n.username}`" v-if="n.tipe == 6"  
+                class="bg-success px-5 py-1 text-white rounded-lg ml-auto cursor-pointer">
+                       Lihat Profil
+                </nuxt-link>
 
-                <span v-if="n.tipe == 2" class="w-full text-sm flex flex-wrap p-1 mb-1 rounded-sm pl-8">
+                <span v-if="n.tipe == 2" class="w-full text-sm flex flex-wrap p-1 mb-1 rounded-full pl-8">
                    {{ n.balasan }}
+
+                      <div 
+                        class="mr-3 bg-primary px-5 py-1 text-white rounded-full ml-auto cursor-pointer">
+                         Balas
+                        </div>
                         <br>
                         
 
@@ -34,12 +43,12 @@
                         <audio :src="n.audio" controls />
                         
                         </div>
-                   <blockquote class="text-xs opacity-50 w-full">
+                   <blockquote v-if="n.text" class="text-xs opacity-50 w-full">
                          " {{ n.text.substring(0, 50) }} ... "
                    </blockquote>
                 </span>
-                 <nuxt-link :to="localePath('/quest/'+n.quest_id)" v-else class=" text-sm  p-1 mb-1 rounded-sm">
-                   {{ n.text.substring(0, 50) }} ...
+                 <nuxt-link :to="localePath('/quest/'+n.quest_id)" v-else class=" text-sm  p-1 mb-1 rounded-sm" >
+                  <span v-if="n.text"> {{ n.text.substring(0, 50) }} ... </span>
                 </nuxt-link>
                
             </div>
@@ -93,6 +102,17 @@ export default {
 
 
   methods:{
+        followUser(id){
+        this.$axios.get("/user/follow/"+id)
+                .then(res => {
+
+                this.$store.commit("setNotif",{
+                to: id,
+                text: "@"+this.$store.state.user.username+" Mengikuti anda"
+                })
+                        
+                })
+        },
             textToArray(text){
             
             let str =  text.toString()
