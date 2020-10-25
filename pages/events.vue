@@ -2,7 +2,7 @@
   <div class="w-full min-h-screen" v-touch:swipe="swipeHandler" >
 
       <div class="mx-auto text-sm flex mt-2">
-            <nuxt-link :to="localePath('/messages')" class="px-5 mx-1 py-2 font-bold"> 
+            <nuxt-link :to="localePath('/msg')" class="px-5 mx-1 py-2 font-bold"> 
              {{ $t("messages")}} 
              </nuxt-link>
             <div class="px-5 mx-1  text-primary py-2 font-bold">
@@ -69,7 +69,7 @@ export default {
 
      swipeHandler(direction){
        if(direction =='right'){
-          this.$router.push('/messages')
+          this.$router.push('/msg')
         }
     },
   

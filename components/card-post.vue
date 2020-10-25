@@ -71,60 +71,8 @@
             class="w-full  flex flex-wrap px-2  text-theme_secondary "
             
           >
-            <div
-              v-if="data.embed"
-              class="pb-2 w-full media-preview"
+           
 
-                
-               @click="
-                    $store.commit('setMediaPlayer', {
-                      data: data,
-                      path: $route.path
-                    })
-                  "
-                  
-            >
-              <div v-if="cekSumber(data.embed) == 'youtube'" 
-            
-                  
-                  >
-                <img
-                  src="/youtube.png"
-                  alt="logo"
-                  class="absolute play-button-youtube"
-                />
-                <img
-                
-                  class="w-full rounded-xl"
-                  :src="imgPreview(data.embed)"
-                  alt="Preview"
-                />
-              </div>
-
-              <div
-                v-if="cekSumber(data.embed) == 'spotify'"
-
-                
-                class="bg-primary justify-beetween text-secondary w-full flex rounded-xl p-2 px-4 h-auto"
-              >
-                <svg
-                  width="2em"
-                  height="2em"
-                  viewBox="0 0 16 16"
-                  class="bi bi-play"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10.804 8L5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"
-                  />
-                </svg>
-                <span class="p-1 px-2 font-bold">Play </span>
-              </div>
-            </div>
-
-            <img v-if="data.video" class="w-full rounded-xl" :src="data.thumb" />
             <img v-if="data.img" class="w-full rounded-xl" :src="data.img" />
 
             <span @click="showDetail" class="w-full p-1 text-xs lg:text-base" :class="(data.text.length <= 150) ? 'text-base lg:text-lg': ''">
@@ -169,49 +117,7 @@
       
 
           <div v-else class="w-full p-1  text-theme_secondary">
-            <div
-              v-if="data.embed"
-              class="py-2 w-full media-preview"
-              @click="
-                $store.commit('setMediaPlayer', {
-                  data: data,
-                  path: $route.path
-                })
-              "
-            >
-              <div v-if="cekSumber(data.embed) == 'youtube'">
-                <img
-                  src="/youtube.png"
-                  alt="logo"
-                  class="absolute play-button-youtube"
-                />
-                <img
-                  class="w-full rounded-xl"
-                  :src="imgPreview(data.embed)"
-                  alt="Preview"
-                />
-              </div>
-
-              <div
-                v-if="cekSumber(data.embed) == 'spotify'"
-                class="bg-primary justify-beetween text-secondary w-full flex rounded-xl p-2 px-4 h-auto"
-              >
-                <svg
-                  width="2em"
-                  height="2em"
-                  viewBox="0 0 16 16"
-                  class="bi bi-play"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10.804 8L5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"
-                  />
-                </svg>
-                <span class="p-1 px-2 font-bold">Play</span>
-              </div>
-            </div>
+           
 
             <div
               v-if="data.video || data.img"
@@ -457,55 +363,7 @@ export default {
       let forReplace = [];
 
       return str.split(" ");
-    },
-    cekSumber(str) {
-      if (str.search("spotify") > 0) {
-        return "spotify";
-      } else if (str.search("youtube") > 0) {
-        return "youtube";
-      }
-    },
-    imgPreview(url) {
-      if (url) {
-        if (this.cekSumber(url) == "spotify") {
-          let split = url.split("/");
-          var res =
-            "https://open.spotify.com/embed-podcast/" +
-            split[3] +
-            "/" +
-            split[4].split("?")[0];
-        } else if (this.cekSumber(url) == "youtube") {
-          let split = url.split("/");
-          var res = `https://img.youtube.com/vi/${split[4]}/mqdefault.jpg`;
-        } else {
-          var res = "";
-        }
-
-        return res;
-      } else {
-        return "";
-      }
     }
   }
-};
+}
 </script>
-<style>
-.videoWrapper iframe {
-  width: 100%;
-  min-height: 100px;
-  border-radius: 10px;
-}
-.play-button-youtube {
-  width: 14%;
-  top: 40%;
-  left: 43%;
-  opacity: 0.8;
-}
-.media-preview {
-  position: relative;
-  width: 100%;
-}
-.media-preview:hover .play-button-youtube {
-  opacity: 1;
-}
-</style>

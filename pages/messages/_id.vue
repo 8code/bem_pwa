@@ -101,7 +101,7 @@
         <div class="w-full">
           <div
             class="w-full bg-theme_primary_light p-4 rounded-xl text-xs pb-20 pt-24"
-            style="height:88vh;overflow-y:scroll" id="list-chat"
+            style="height:87vh;overflow-y:scroll" id="list-chat"
           >
                 <chat-message
                   v-for="(m, index) in messages"
