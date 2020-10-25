@@ -1,0 +1,6 @@
+BASE_URL_NOT_API=http://localhost:8000
+BASE_URL=http://localhost:8000/api/
+STORAGE_URL=http://localhost:8000/storage/
+SOCKET_URL=http://localhost:3001
+APP_NAME=Maba
+GOOGLE_ANALYTICS_ID=G-GYYMXVBWK9

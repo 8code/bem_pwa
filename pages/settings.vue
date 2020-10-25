@@ -209,7 +209,8 @@
       <div class="w-full flex flex-wrap justify-left">
         <div class="px-2 w-1/2">
           <nuxt-link
-            class="bg-theme_primary_light neu-in cursor-pointer justify-center   hover:text-primary rounded-lg flex p-2 px-4 w-full mb-2"
+            class="bg-theme_primary_light neu-in cursor-pointer justify-center  hover:text-primary rounded-lg flex p-2 px-4 w-full mb-2"
+            :class="($i18n.locale == 'id') ? 'bg-primary text-secondary' : ''"
             :to="switchLocalePath('id')"
             >Indonesia</nuxt-link
           >
@@ -218,6 +219,8 @@
           <nuxt-link
             :to="switchLocalePath('en')"
             class="bg-theme_primary_light neu-in cursor-pointer justify-center rounded-lg  hover:text-primary flex p-2 px-4 w-full mb-2"
+            :class="($i18n.locale == 'en') ? 'bg-primary text-secondary' : ''"
+
           >
             Inggris
           </nuxt-link>

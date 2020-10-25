@@ -133,6 +133,8 @@ export default {
               Follower: 'Follower',
               messages: 'Messages',
               story: 'Story',
+              join_event: 'Join Event',
+              as: 'As'
             },
             id: {
               welcome: 'Selamat Datang Mabs!',
@@ -158,6 +160,8 @@ export default {
               Follower: 'Pengikut',
               messages: 'Pesan',
               story: 'Cerita',
+              join_event: 'Ikuti Acara',
+              as: 'Sebagai'
             }
           }
         }
@@ -190,10 +194,6 @@ export default {
       ],
   
   },
-  /*
-  ** Build configuration
-  ** See https://nuxtjs.org/api/configuration-build/
-  */
   build: {
   },
   env: {

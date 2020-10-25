@@ -1,9 +1,7 @@
 <template>
   <div :class="settings"  class="bg-theme_primary h-screen">
         <loading />
-        <transition name="slide-fade">
-          <Nuxt class="w-full" />
-        </transition>
+          <Nuxt class="w-full bg-theme_primary" />
 
   </div>
 </template>

@@ -2,6 +2,31 @@
   <div class="w-full" v-if="group">
 
 
+    <button
+          @click="$router.back()"
+          v-if="!editprofile"
+          class="flex p-3 bg-theme_primary_dark mx-2 rounded-full mr-auto mt-2" style="top:10px"
+        >
+          <svg
+            width="1.2em"
+            height="1.2em"
+            viewBox="0 0 16 16"
+            class="bi bi-arrow-left-circle"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+            />
+            <path
+              fill-rule="evenodd"
+              d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"
+            />
+          </svg>
+        </button>
+
+
     <section>
       <div class="w-full flex flex-wrap bg-theme_primary p-2 pt-6 rounded-xl ">
         <div class="w-full font-bold flex ">
@@ -13,14 +38,15 @@
           />
 
           <div class="w-full pl-5 mt-1 flex flex-wrap items-start ">
-            <div class="w-full lg:text-md mb-2">
-              {{ group.name }}  
+            <div class="w-full lg:text-md mb-2 flex">
+              <div>
+                {{ group.name }}  
               <br> <small class="text-primary">#{{ group.username }}</small>
-              <br />
+              </div>
              
 
 
-            <div class="float-right text-sm -mt-12">
+            <div class="ml-auto text-sm flex">
               
                             <div v-if="group.followed" @click="unFollow(group.id)">
                                 <span  class="float-right cursor-pointer bg-secondary text-primary px-4 py-1 rounded-full">
@@ -36,22 +62,11 @@
                                     </span>
                             </div>
 
-                                
-                      
-
-                             <div class="px-3 w-full" v-if="usernameIg">
-                              <a class="text-primary" :href="`https://instagram.com/${usernameIg}`">
-                                <img src="/instagram.png" class="h-10 w-10 p-2">
-                              </a>
-                          </div>
-
-
-                            <div class="flex text-sm  float-right cursor-pointer">
-                            
-                            
-
-
-                        </div>
+                             <div class="px-3 " v-if="usernameIg">
+                                <a class="text-primary" :href="`https://instagram.com/${usernameIg}`">
+                                  <img src="/instagram.png" class="h-10 w-10 p-2">
+                                </a>
+                            </div>
                         
                           
                      
@@ -59,23 +74,22 @@
             
                   
             </div>
-<div class="w-full pr-2">
+<div class="w-full pr-4">
     <span class="text-sm">
-                Admin : 
-                <nuxt-link class="text-primary cursor-pointer" :to="localePath('/@'+group.owner.username)" >@{{group.owner.username}}</nuxt-link>
-              </span>
+      <nuxt-link class="text-primary cursor-pointer" :to="localePath('/@'+group.owner.username)" >@{{group.owner.username}}</nuxt-link>
+    </span>
 
 
-               <nuxt-link :to="localePath('/followed/group/'+group.id)"  class="font-bold mb-2 float-right">
-               <span class="text-primary"> {{ $t('Follower') }}
-                  10K</span>
-              </nuxt-link>
+  <nuxt-link :to="localePath('/followed/group/'+group.id)"  class="font-bold mb-2 float-right mr-2">
+  <span class="text-primary"> {{ $t('Follower') }}
+    10K</span>
+</nuxt-link>
 </div>
        
           
 
 
-            <div class=" font-normal">
+            <div class=" font-normal text-sm pr-4">
                 {{ group.desc }}
             </div>
 
@@ -136,7 +150,7 @@
 
 
       
-     <div
+     <!-- <div
         :class="(filter == 'Produk') ? filterClassActive : filterClass"
         @click="filter = 'Produk';getData()"
 
@@ -145,7 +159,7 @@
           class="-mt-1 -ml-1 h-6 w-6 absolute top-0 left-0 rounded-full shadow-lg bg-primary mr-3"
         ></div>
           Produk
-      </div>
+      </div> -->
 
     </div>
 

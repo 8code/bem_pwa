@@ -54,11 +54,21 @@
 
       </textarea>
 
-    <div class="w-full p-2 flex flex-wrap justify-center lg:hidden">
+    <div class="w-full p-2 flex flex-wrap justify-center">
 
       
    
-     <vue-record-audio v-if="!recordings" mode="press" @result="onResult" class="lg:mx-3" />
+      <div class="flex my-3 mr-auto cursor-pointer" @click="$store.commit('setAnonim',!$store.state.anonim)">
+            <img :src="($store.state.anonim) ? '/anonim.png' : $store.state.user.avatar" alt="Anonim" class="rounded-full w-8 h-8">
+
+            <span class="px-2 font-bold mt-1 font-lg" v-if="$store.state.anonim"> {{ $t('as' )}} Anonim </span>
+            <span class="px-2 font-bold mt-1 font-lg" v-else> {{ $t('as' )}} {{ $store.state.user.username}} </span>
+          </div>
+<div class=" lg:hidden">
+
+       <vue-record-audio v-if="!recordings" mode="press" @result="onResult" class="lg:mx-3" />
+       
+</div>
       
      <audio v-if="recordings" :src="recordings" controls class="mt-2" />
      
@@ -85,7 +95,7 @@
             />
           </svg>
         </div>
-        <img
+        <!-- <img
           @click="showModalQuest('yt')"
           src="/youtube.png"
           class="ml-8 cursor-pointer w-8 h-8"
@@ -94,7 +104,7 @@
           @click="showModalQuest('sp')"
           src="/spotify.png"
           class="ml-8 cursor-pointer w-8 h-8"
-        />
+        /> -->
       </div>
 
 
@@ -111,15 +121,6 @@
         </button>
 
 
-        <button
-          @click="d.type = 3"
-          class=" text-xs p-2 w-full flex justify-center"
-          :class="d.type == 3 ? 'bg-primary text-secondary rounded-full' : ''"
-        >
-        
-          Produk
-        </button>
-
         
         <button
           @click="d.type = 2"
@@ -131,6 +132,15 @@
         </button>
 
   
+        <!-- <button
+          @click="d.type = 3"
+          class=" text-xs p-2 w-full flex justify-center"
+          :class="d.type == 3 ? 'bg-primary text-secondary rounded-full' : ''"
+        >
+        
+          Produk
+        </button> -->
+
 
         <button
           v-if="d.type"
@@ -150,13 +160,14 @@
             <div class="flex w-full lg:w-1/2 flex-wrap p-2">
               <label class="py-2">Tanggal Mulai</label>
               <input
-                type="date"
+                type="datetime-local"
                 v-model="d.start"
                 placeholder="Tanggal Mulai "
                 class="w-full shadow-sm bg-theme_primary_dark py-2 px-4 rounded-lg mb-3"
               />
             </div>
-            <div class="flex w-full lg:w-1/2 flex-wrap p-2">
+            </div>
+            <!-- <div class="flex w-full lg:w-1/2 flex-wrap p-2">
               <label class="py-2">Tanggal Selesai</label>
               <input
                 type="date"
@@ -181,11 +192,11 @@
               class="w-full lg:w-1/2 shadow-sm bg-theme_primary_dark py-2 px-4 rounded-lg mb-3"
             />
              <br> <small class="text-xs">"Untuk Verifikasi pembayaran anggota dilakukan oleh admin channel / acara"</small>
-          </div>
+          </div> -->
 
-          <div class="flex w-full text-center flex-wrap p-2">
+          <!-- <div class="flex w-full text-center flex-wrap p-2">
               "Untuk Membuat Channel / Acara anda harus memebayar Rp.50rb kepada Kami untuk supporting system :)"
-          </div>
+          </div> -->
         
         </div>
 
@@ -203,12 +214,12 @@
           :onChange="onChange"
         >
         </medium-editor>
-        <div class="w-full text-primary text-center my-2" v-if="d.type == 3">
+        <!-- <div class="w-full text-primary text-center my-2" v-if="d.type == 3">
             "Untuk Produk akan langsung di arahkan ke No Whatsapp, jadi isi dulu no Whatsapp di Profil"
-        </div>
-         <h1 class="text-xs text-center w-full p-2 mb-2 lg:hidden">
+        </div> -->
+         <!-- <h1 class="text-xs text-center w-full p-2 mb-2 lg:hidden">
           Rekomendasi Menggunakan Laptop / PC *
-        </h1>
+        </h1> -->
       </div>
 
 

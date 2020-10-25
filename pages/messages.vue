@@ -1,7 +1,7 @@
 <template>
-  <div class="w-full" >
+  <div class="w-full min-h-screen" v-touch:swipe="swipeHandler">
 
-         <div class="mx-auto text-sm flex">
+         <div class="mx-auto text-sm flex mt-2">
             <div class="px-5 mx-1 py-2 text-primary font-bold"> 
              {{ $t("messages")}} 
              </div>
@@ -20,7 +20,7 @@
 
 
       <section class="w-full rounded-xl pb-20 flex flex-wrap">
-        <card-event  v-for="qu in $store.state.data_my_events.data" :key="qu.id" :id="'event'+qu.id" :data="qu" />
+        <!-- <card-event  v-for="qu in $store.state.data_my_events.data" :key="qu.id" :id="'event'+qu.id" :data="qu" /> -->
       </section>
   </div>
 </template>
@@ -57,6 +57,11 @@ export default {
       }
   },
   methods:{
+      swipeHandler(direction){
+       if(direction =='left'){
+          this.$router.push('/events')
+        }
+    },
   
   loadMoregetData($state){
         this.page = this.page+1

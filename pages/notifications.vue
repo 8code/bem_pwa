@@ -1,6 +1,6 @@
 <template>
-<section class="w-full pb-10 px-4 mb-20">
-        <h1 class=" font-semibold p-2 mb-3 flex">{{ $t('Notif')}} </h1>
+<section class="w-full pb-10 px-4 mb-20  mt-4">
+        <h1 class=" font-bold mb-3 flex">{{ $t('Notif')}} </h1>
 
       
 
@@ -14,14 +14,15 @@
 
                 <img class=" float-left rounded-xl h-8 w-8 -mt-1" :src="n.avatar" alt="Avatar">
                 <span class=" float-left  pl-1"> 
-                        <nuxt-link class="text-primary" :to="localePath('/@'+n.username)">@{{n.username}}</nuxt-link>
+                        <nuxt-link class="text-primary" :to="localePath('/@'+n.username)">{{n.name}}</nuxt-link>
                         <span v-if="n.tipe == 1" > <span v-if="n.total > 1">dan {{ n.total}} lainnya</span> menyukai quest anda</span>
                         <span v-if="n.tipe == 2" > membalas</span>
                         <span v-if="n.tipe == 3" > menandai anda di sebuah quest</span>
                         <span v-if="n.tipe == 6" > mengikuti Anda</span>
                         :
                 </span>
-                <span v-if="n.tipe == 2" class="text-sm flex flex-wrap p-1 mb-1 rounded-sm">
+
+                <span v-if="n.tipe == 2" class="w-full text-sm flex flex-wrap p-1 mb-1 rounded-sm">
                    {{ n.balasan }}
                         <br>
                         

@@ -56,8 +56,8 @@
       </div>
 
       <small class="w-full font-semibold px-4 text-xs py-3 flex">
-        <div class="h-4 w-4 rounded-full shadow-lg bg-primary mr-3 mt-1"></div>
-        {{ group.type }}
+       <span class="text-primary"> {{ group.type }}</span>
+       <span class="text-primary px-2"> ( {{ group.university }} ) </span>
 
         <nuxt-link :to="localePath(`/${group.username}`)"  class="ml-auto text-primary text-xs mt-1 px-3 rounded-full">
           Lihat {{ group.total_qna}} Quest

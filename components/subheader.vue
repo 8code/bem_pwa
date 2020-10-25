@@ -1,13 +1,13 @@
 <template>
 <div class="mb-10 w-full">
-    <div class="text-sm flex fixed top-0 z-10 bg-theme_primary w-full mx-auto pt-2"
+    <div class="text-sm flex fixed top-0 z-10 bg-theme_primary w-full mx-auto pt-2 "
     
        style="max-width:600px;"
        >
-            <nuxt-link  :to="localePath('/'+name)"  :class="($route.path.includes(name)) ? activeClass : nonActiveClass">
+            <nuxt-link  :to="localePath('/'+name)"  :class="($route.path.includes(name) && !$route.path.includes(name+'-explore')) ? activeClass : nonActiveClass">
             {{ $t("Followed")}}
             </nuxt-link>
-            <nuxt-link :to="localePath('/'+name+'-explore')" :class="($route.path.includes(+name+'-explore')) ? activeClass : nonActiveClass">
+            <nuxt-link :to="localePath('/'+name+'-explore')" :class="($route.path.includes(name+'-explore')) ? activeClass : nonActiveClass">
             {{ $t("Explore") }}
             </nuxt-link>
              <nuxt-link :to="localePath('/search')" class="px-5 mx-1 ml-auto py-2 font-bold mt-1">

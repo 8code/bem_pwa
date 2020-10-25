@@ -25,8 +25,8 @@
       </svg>
     </button>
 
-    <div class="flex flex-wrap w-full " v-if="quest">
-      <div class="w-full lg:w-1/2">
+    <div class="flex flex-wrap w-full mt-2 " v-if="quest">
+      <div class="w-full lg:w-1/2 ">
         <card-post
           style="position:sticky;top:10px"
           v-on:balas="balasQuest"
@@ -42,7 +42,7 @@
             v-if="data.event.start"
             class="w-full  flex bg-theme_primary_dark rounded-xl px-5 py-3"
           >
-            <span class="px-2 font-bold">
+            <span class="px-2 font-bold text-sm">
               {{ dateIndo(data.event.start) }}
             </span>
 
@@ -91,7 +91,7 @@
           </h2>
           
   <button v-if="data.type == 2" @click="joinEvent(data.event_id)" class="w-1/2  flex bg-primary justify-center text-white text-center hover:bg-primary_dark rounded-xl px-5 py-3 mt-1">
-                  Daftar Acara
+                  {{ $t("join_event") }}
               </button>
 
 
@@ -100,7 +100,7 @@
         <h2
           v-if="data.event || data.desc"
           class="w-full flex mt-1 bg-theme_primary_dark rounded-xl flex-wrap px-5  py-3 " 
-          :class="(showDesc) ? 'fixed lg:relative left-0 right-0 mx-auto z-50 top-0 overflow-y-scroll lg:overflow-y-auto h-screen ' : ''"
+          :class="(showDesc) ? 'fixed lg:relative left-0 right-0 mx-auto z-50 top-0 overflow-y-scroll lg:overflow-y-auto h-screen lg:h-auto ' : ''"
           @click="showDesc = !showDesc"
         >
           <span  class="flex w-full "  >
@@ -247,7 +247,7 @@ export default {
       this.balas_quest = data;
     },
     dateIndo(data) {
-      return util.dateIndo(data);
+      return util.dateTimeIndo(data);
     },
     getData() {
       this.last_page = false;

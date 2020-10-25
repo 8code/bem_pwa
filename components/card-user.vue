@@ -44,7 +44,7 @@
         </div>
       </div>
 
-      <small class="w-full font-semibold px-2 lg:px-4 text-xs pb-2 flex">
+      <!-- <small class="w-full font-semibold px-2 lg:px-4 text-xs pb-2 flex">
         <div class="h-2 w-2 rounded-full shadow-lg bg-primary mr-1 mt-1"></div>
         {{ data.study_program }} 
         {{ data.angkatan }}
@@ -52,7 +52,7 @@
         <span class="ml-auto text-primary text-xs mt-1 text-right rounded-full">
          {{ data.university}}
         </span>
-      </small>
+      </small> -->
     </div>
   </div>
 </template>

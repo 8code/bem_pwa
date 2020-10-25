@@ -7,13 +7,10 @@
     >
     
       <main
-        class="w-full mx-auto flex flex-wrap pt-2 content-start  "
+        class="w-full mx-auto flex flex-wrap content-start  "
         :style="$route.path.includes('quest/') || $route.path.includes('channel/') || $route.path.includes('find/') ? 'max-width:1100px' : `max-width:600px`"
       >
-        <media-player />
-        <transition name="slide-fade">
           <Nuxt class="w-full" />
-        </transition>
       </main>
 
       <nav class="fixed bottom-0 flex lg:hidden w-full bg-theme_primary  ">

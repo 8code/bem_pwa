@@ -1,17 +1,19 @@
 <template>
-  <div class="w-full" >
+  <div class="w-full" v-touch:swipe="swipeHandler" >
 
          <subheader name="feed" />
 
 
-      <balas-quest v-if="balas_quest"  v-on:batal="balas_quest = false" :quest="balas_quest" />
-
-      <new-quest  />
 
         <section class="w-full rounded-xl pb-20 flex flex-wrap">
 
           <card-post v-on:balas="balasQuest" v-for="quest in questdata" :key="quest.id" :data="quest" :id="'feed'+quest.id"  />
 
+
+
+      <balas-quest v-if="balas_quest"  v-on:batal="balas_quest = false" :quest="balas_quest" />
+
+      <new-quest  />
           <infinite-loading @infinite="loadMoregetData">
 
               <div slot="no-more"></div>
@@ -62,6 +64,13 @@ export default {
       }
   },
   methods:{
+      swipeHandler(direction){
+        if(direction =='right'){
+          this.$router.push('/feed')
+        }else if(direction =='left'){
+          this.$router.push('/search')
+        }
+    },
     scrollToLast(){
             let lastQuest = this.questdata[this.questdata.length - 5]
               if(lastQuest){

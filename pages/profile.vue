@@ -1,9 +1,7 @@
 <template>
     <div>
  
-     <new-quest  />
-
-    <div  class="text-sm flex p-2">
+    <div  class="text-sm flex px-2 mt-2">
         <nuxt-link :to="localePath('/settings')" class="mb-2 text-center cursor-pointer bg-theme_primary_dark  px-4 py-1 rounded-full text-primary">
                 Pengaturan
         </nuxt-link>
@@ -13,8 +11,9 @@
         </div>
      
         <detail-user :id="'@'+$store.state.user.username" editprofile="true" />
-       
-       
+    
+     <new-quest  />
+
         
     </div>
 </template>

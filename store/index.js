@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 const createStore = () => {
     return new  Vuex.Store({
         state: {
-                leanguage: 'id',
+                anonim: false,
                 notif: [],
                 playing_path: '',
                 playing: '',
@@ -20,7 +20,7 @@ const createStore = () => {
                 errorMessages: '',
                 settings: false,
                 theme: localStorage.getItem("theme") || 'theme-light',
-                primaryColor: localStorage.getItem("primary-color") || 'primary-yellow',
+                primaryColor: localStorage.getItem("primary-color") || 'primary-teal',
                 topMenu: true,
                 loading:false,
                 data_my_events: '',
@@ -31,6 +31,9 @@ const createStore = () => {
 
 
         mutations:{
+            setAnonim(state,to){
+                state.anonim = to
+            },
             set_scroll_home(state,data){
                 state.scroll_home_state = data
             },

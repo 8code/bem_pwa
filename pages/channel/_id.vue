@@ -1,9 +1,8 @@
 <template>
   <div
-    class="w-full  bg-theme_primary z-10 rounded-xl "
-    style="height:100%;padding-top:5vh;"
+    class="w-full  bg-theme_primary pt-10"
   >
-    <div class="flex fixed top-0 mt-3 w-full rounded-xl">
+    <div class="flex fixed top-0 mt-3 w-full">
       <button
         @click="leaveChannel()"
         class="flex p-3 bg-theme_primary_light mx-2 rounded-full "
@@ -25,41 +24,20 @@
             d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
           />
         </svg>
+
       </button>
 
       <span class="p-2 hidden lg:block font-bold"> Nama Channel </span>
 
       <div class="ml-auto flex">
         <button class="flex p-3 bg-theme_primary_light mx-2 rounded-full  ">
-          <svg
-            width="1em"
-            height="1em"
-            viewBox="0 0 16 16"
-            class="bi bi-camera-video-off"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M10.961 12.365a1.99 1.99 0 0 0 .522-1.103l3.11 1.382A1 1 0 0 0 16 11.731V4.269a1 1 0 0 0-1.406-.913l-3.111 1.382A2 2 0 0 0 9.5 3H4.272l.714 1H9.5a1 1 0 0 1 1 1v6a1 1 0 0 1-.144.518l.605.847zM1.428 4.18A.999.999 0 0 0 1 5v6a1 1 0 0 0 1 1h5.014l.714 1H2a2 2 0 0 1-2-2V5c0-.675.334-1.272.847-1.634l.58.814zM15 11.73l-3.5-1.555v-4.35L15 4.269v7.462zm-4.407 3.56l-10-14 .814-.58 10 14-.814.58z"
-            />
-          </svg>
-        </button>
-
-        <button class="flex p-3 bg-theme_primary_light mx-2 rounded-full  ">
-          <svg
-            width="1em"
-            height="1em"
-            viewBox="0 0 16 16"
-            class="bi bi-mic-mute"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M12.734 9.613A4.995 4.995 0 0 0 13 8V7a.5.5 0 0 0-1 0v1c0 .274-.027.54-.08.799l.814.814zm-2.522 1.72A4 4 0 0 1 4 8V7a.5.5 0 0 0-1 0v1a5 5 0 0 0 4.5 4.975V15h-3a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-3v-2.025a4.973 4.973 0 0 0 2.43-.923l-.718-.719zM11 7.88V3a3 3 0 0 0-5.842-.963l.845.845A2 2 0 0 1 10 3v3.879l1 1zM8.738 9.86l.748.748A3 3 0 0 1 5 8V6.121l1 1V8a2 2 0 0 0 2.738 1.86zm4.908 3.494l-12-12 .708-.708 12 12-.708.707z"
-            />
-          </svg>
+         <!-- <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-mic-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0V3z"/>
+          <path fill-rule="evenodd" d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/>
+        </svg> -->
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-mic-mute" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M12.734 9.613A4.995 4.995 0 0 0 13 8V7a.5.5 0 0 0-1 0v1c0 .274-.027.54-.08.799l.814.814zm-2.522 1.72A4 4 0 0 1 4 8V7a.5.5 0 0 0-1 0v1a5 5 0 0 0 4.5 4.975V15h-3a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-3v-2.025a4.973 4.973 0 0 0 2.43-.923l-.718-.719zM11 7.88V3a3 3 0 0 0-5.842-.963l.845.845A2 2 0 0 1 10 3v3.879l1 1zM8.738 9.86l.748.748A3 3 0 0 1 5 8V6.121l1 1V8a2 2 0 0 0 2.738 1.86zm4.908 3.494l-12-12 .708-.708 12 12-.708.707z"/>
+        </svg>
         </button>
 
         <div class="flex p-3 bg-theme_primary_light mx-2 rounded-full  ">
@@ -108,10 +86,10 @@
       >
         <div class="w-full">
           <div
-            class="w-full bg-theme_primary_light p-4 rounded-xl text-xs pb-20"
+            class="w-full bg-theme_primary_light p-4 rounded-xl text-xs pb-20 pt-10"
             style="height:82vh;overflow-y:scroll" id="list-chat"
           >
-            <b class="w-full text-lg font-bold absolute top-0 left-0 p-4">Live Chat</b>
+            <b class="w-full absolute top-0 left-0 p-4 opacity-25">Live Chat</b>
 
 
                 <chat-message
@@ -122,11 +100,10 @@
                 />
 
           </div>
-          <div class="w-full flex justify-left mt-2  lg:mt-1">
+          <div class="w-full flex justify-left mt-2  lg:mt-1 items-center">
 
             
-
-      
+       
             <textarea
               maxlength="255"
               v-model="text"
@@ -136,9 +113,8 @@
                @keyup.enter="sendMessage"
             ></textarea>
 
-
             
-                 <button class="bg-theme_primary_light rounded-full  px-4" @click="sendMessage">
+                 <button class="bg-theme_primary_light rounded-full  p-2" @click="sendMessage">
                     <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-arrow-right-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                       <path fill-rule="evenodd" d="M4 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5A.5.5 0 0 0 4 8z"/>
@@ -195,6 +171,7 @@ export default {
   middleware: "auth",
   data() {
     return {
+      event: "",
       text: "",
       anonim: true,
       messages: [],
@@ -215,16 +192,12 @@ export default {
   },
   mounted() {
     this.getDataChannel();
-
-    this.getUserregistered();
-
    
     let MyProfil = {
         username: this.$store.state.user.username,
         name: this.$store.state.user.name,
         avatar: this.$store.state.user.avatar
       }
-
 
     this.$socket.emit("joinRoom", {
       user: MyProfil,
@@ -238,7 +211,10 @@ export default {
       container.scrollTop = container.scrollHeight;
     },
     getDataChannel() {
-
+      this.$axios.get("/event_by_room_id/"+this.$route.params.id)
+        .then(res => {
+          this.event = res.data
+        })
     },
     leaveChannel() {
       alert("Percakapan akan hilang setelah kamu keluar");
