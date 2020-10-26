@@ -25,7 +25,7 @@
         </button>
 
 
-      <div class="w-full flex flex-wrap bg-theme_primary p-2 rounded-xl justify-center -mt-10 lg:mt-0">
+      <div class="w-full flex flex-wrap bg-theme_primary p-2 rounded-xl justify-center lg:mt-0">
 
         <div class="w-full lg:w-1/2 flex justify-center lg:justify-start lg:pt-3">
         
@@ -34,8 +34,8 @@
             :src="profile.avatar"
             :alt="profile.name"
           />
-          <div class="lg:text-left mt-3 lg:pl-3">
-                <div class="w-full text-left font-bold ">
+          <div class="text-center lg:text-left mt-3 lg:pl-3">
+                <div class="w-full lg:text-left font-bold ">
                   {{ profile.name }} 
                 </div>
                 
@@ -44,7 +44,7 @@
                   :src="profile.avatar"
                   :alt="profile.name"
                 />
-                <router-link :to="`@${profile.username}`" class="text-sm text-primary">@{{ profile.username }}</router-link>
+                <router-link :to="localePath(`/@${profile.username}`)" class="text-sm text-primary">@{{ profile.username }}</router-link>
           </div>
 
         </div>
@@ -71,17 +71,17 @@
           <div class="flex w-full justify-center lg:justify-end mt-5">
                     
                     <div v-if="profile.followed || followTemp">
-                      <span @click="chatTo" class="cursor-pointer bg-primary text-secondary mr-2 text-primary px-6 py-2 -mt-1 rounded-full">
+                      <span @click="chatTo" class="cursor-pointer bg-primary text-secondary mr-2 text-primary px-6 py-1 -mt-1 rounded-full">
                           Pesan
                       </span>
                     </div>
 
                     <div v-if="profile.followed || followTemp" @click="unFollow(profile.id)">
-                      <span class="cursor-pointer bg-theme_primary_dark text-primary px-6 py-2 rounded-full">
+                      <span class="cursor-pointer bg-theme_primary_dark text-primary px-6 py-1 rounded-full">
                           Diikuti
                       </span>
                     </div>
-                    <span v-else @click="followUser(profile.id)" class="cursor-pointer bg-danger px-6 py-2 rounded-full text-secondary">
+                    <span v-else @click="followUser(profile.id)" class="cursor-pointer -mt-1 bg-danger px-6 py-1 rounded-full text-secondary">
                         Ikuti
                     </span>
                 
