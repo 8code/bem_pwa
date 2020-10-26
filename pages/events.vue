@@ -17,6 +17,7 @@
           </nuxt-link>
           
       </div>
+          <new-quest  />
 
      
       <balas-quest v-if="balas_quest"  v-on:batal="balas_quest = false" :quest="balas_quest" />
@@ -28,7 +29,6 @@
         <div slot="no-more"></div>
         <div slot="no-results"></div>
        </infinite-loading>
-          <new-quest  />
 
     </section>
   </div>

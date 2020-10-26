@@ -4,6 +4,9 @@
          <subheader name="feed" />
 
 
+      <balas-quest v-if="balas_quest"  v-on:batal="balas_quest = false" :quest="balas_quest" />
+
+      <new-quest  />
 
         <section class="w-full rounded-xl pb-20 flex flex-wrap">
 
@@ -11,9 +14,6 @@
 
 
 
-      <balas-quest v-if="balas_quest"  v-on:batal="balas_quest = false" :quest="balas_quest" />
-
-      <new-quest  />
           <infinite-loading @infinite="loadMoregetData">
 
               <div slot="no-more"></div>

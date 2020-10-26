@@ -6,13 +6,13 @@
      
     
 
-      <section class="w-full rounded-xl pb-20 flex flex-wrap" >
-      <card-post  v-on:balas="balasQuest" v-for="quest in $store.state.data_quest_following.data" :key="quest.id" :id="'feed'+quest.id" :data="quest" />
-
-         <new-quest  />
+      <new-quest  />
 
       <balas-quest v-if="balas_quest"  v-on:batal="balas_quest = false" :quest="balas_quest" />
 
+      <section class="w-full rounded-xl pb-20 flex flex-wrap" >
+      <card-post  v-on:balas="balasQuest" v-for="quest in $store.state.data_quest_following.data" :key="quest.id" :id="'feed'+quest.id" :data="quest" />
+       
        <infinite-loading @infinite="loadMoregetData">
         <div slot="no-more"></div>
         <div slot="no-results"></div>
