@@ -5,7 +5,7 @@
             <div class="px-5 mx-1 py-2 font-bold  text-primary"> 
              {{ $t("messages")}} 
              </div>
-            <nuxt-link :to="localePath('/event')" class="px-5 mx-1  py-2 font-bold">
+            <nuxt-link :to="localePath('/events')" class="px-5 mx-1  py-2 font-bold">
               {{ $t("events")}} 
             </nuxt-link>
 

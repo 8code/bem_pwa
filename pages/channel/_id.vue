@@ -31,7 +31,10 @@
       </button>
 
 
-      <span class="p-2 font-bold" v-if="event"> {{ event.name.substring(0, 25) }} ... </span>
+      <span class="p-2 font-bold" v-if="event"> {{ event.name.substring(0, 25) }} ... 
+
+        <span> {{ userList.length }}  Online </span>
+      </span>
 
       <div class="ml-auto flex">
         <!-- <button class="flex p-3 bg-theme_primary_light mx-2 rounded-full  ">
@@ -64,35 +67,40 @@
     </div>
 
     <section class="w-full rounded-xl flex flex-wrap p-2 pt-5">
-      <div class="hidden lg:block w-full lg:w-2/12 pr-2">
-        <div class="flex bg-theme_primary_light rounded-xl p-4" style="height:90vh">
-          <ul class="text-xs w-full  overflow-y-auto" >
-            <li class="flex text-xs py-2 font-bold cursor-pointer">
-              Online ({{ userList.length }})
-            </li>
-            <li
-              v-for="(i, index) in userList"
-              :key="'online-user-' + index"
-              class="flex text-xs p-1 text-success font-semibold hover:bg-theme_primary_dark rounded-full px-2 cursor-pointer"
-            >
-              <img :src="i.user.avatar" class="w-6 h-6 rounded-full">
-               <span class="p-1">{{ i.user.name }}</span>
-            </li>
-          </ul>
-        </div>
-      </div>
+  
 
       <div
         class="w-full lg:w-8/12 z-50 bg-theme_primary  rounded-xl flex relative flex-wrap"
         style="height:90vh"
       >
-        <div class="w-full">
-          <div
+              <div class="flex flex-wrap justify-center bg-theme_primary_light rounded-xl p-4 min-h-full">
+
+         
+
+        <section class="select">
+              <label for="audioSource">Audio source: </label>
+              <select ref="audioSource"></select>
+            </section>
+
+            <section class="select">
+              <label for="videoSource">Video source: </label>
+              <select ref="videoSource"></select>
+            </section>
+
+            <video  ref="video" playsinline  autoplay muted></video>
+            
+
+
+        </div>
+      </div>
+
+      <div class="w-full lg:w-4/12 lg:pl-2">
+        <div class="flex bg-theme_primary_light rounded-xl p-4 min-h-full">
+
+           <div
             class="w-full bg-theme_primary_light p-4 rounded-xl text-xs pb-20 pt-10"
             style="height:82vh;overflow-y:scroll" id="list-chat"
           >
-
-
                 <chat-message
                   v-for="(m, index) in messages"
                   :key="'c-' + index"
@@ -100,11 +108,7 @@
                   :c="m"
                 />
 
-          </div>
           <div class="w-full flex justify-left mt-2  lg:mt-1 items-center">
-
-            
-       
             <textarea
               maxlength="255"
               v-model="text"
@@ -114,47 +118,23 @@
                @keyup.enter="sendMessage"
             ></textarea>
 
-            
-                 <button class="bg-theme_primary_light rounded-full  p-2" @click="sendMessage">
-                        <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-cursor" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                          <path fill-rule="evenodd" d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103zM2.25 8.184l3.897 1.67a.5.5 0 0 1 .262.263l1.67 3.897L12.743 3.52 2.25 8.184z"/>
-                        </svg>
+            <button class="bg-theme_primary_light rounded-full  p-2" @click="sendMessage">
+                      <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-cursor" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103zM2.25 8.184l3.897 1.67a.5.5 0 0 1 .262.263l1.67 3.897L12.743 3.52 2.25 8.184z"/>
+                      </svg>
 
-            </button>
+          </button>
 
+           </div>
 
           </div>
-        </div>
-      </div>
 
-      <div class="hidden lg:block w-full lg:w-2/12 lg:pl-2">
-        <div class="flex bg-theme_primary_light rounded-xl p-4 min-h-full">
-          <ul class="text-xs w-full">
-            <li class="flex text-xs py-2 font-bold cursor-pointer">
-              Activity
-            </li>
-            <li
-              v-for="(i, index) in activity"
-              :key="'act-' + index"
-              class="flex text-xs p-1 font-semibold cursor-pointer"
-              :class="i.type == 0 ? 'text-danger' : 'text-success'"
-            >
-              {{ i.text }}
-            </li>
-          </ul>
         </div>
       </div>
     </section>
   </div>
 </template>
 <style scoped>
-.video-list{
-  width: 100%;
-}
-
-.video-item{
-  width: 50%;
-}
 </style>
 <script>
 
@@ -177,11 +157,67 @@ export default {
       messages: [],
       activity: [],
       userList: [],
-      loginAs: ''
+      loginAs: '',
+      peerConnections: {},
+      config :{
+        iceServers: [
+          { 
+            "urls": "stun:stun.l.google.com:19302",
+          },
+          // { 
+          //   "urls": "turn:TURN_IP?transport=tcp",
+          //   "username": "TURN_USERNAME",
+          //   "credential": "TURN_CREDENTIALS"
+          // }
+        ]
+      }
     };
   },
   sockets: {
   
+answer: function (data) {
+  let id = data[0];
+  let description = data[1]
+  this.peerConnections[id].setRemoteDescription(description);
+},
+
+watcher: function (id) {
+  
+  const peerConnection = new RTCPeerConnection(this.config);
+  this.peerConnections[id] = peerConnection;
+
+  let stream = this.$refs.video.srcObject;
+  
+
+  stream.getTracks().forEach(track => peerConnection.addTrack(track, stream));
+
+  peerConnection.onicecandidate = event => {
+    if (event.candidate) {
+      this.$socket.emit("candidate", id, event.candidate);
+    }
+  };
+
+  peerConnection
+    .createOffer()
+    .then(sdp => peerConnection.setLocalDescription(sdp))
+    .then(() => {
+      this.$socket.emit("offer", id, peerConnection.localDescription);
+    });
+},
+
+candidate : function (data) {
+  let id = data[0];
+  let candidate = data[1]
+
+  // console.log(this.peerConnections)
+
+  this.peerConnections[id].addIceCandidate(new RTCIceCandidate(candidate));
+},
+
+disconnectPeer : function (id) {
+  this.peerConnections[id].close();
+  delete this.peerConnections[id];
+},
     roomUsers: function({ room, users }) {
       this.userList = users;
     },
@@ -193,6 +229,8 @@ export default {
     }
   },
   mounted() {
+
+
     this.getDataChannel();
 
     if(this.$store.state.anonim == true){
@@ -217,41 +255,81 @@ export default {
       user: this.loginAs,
       room: this.$route.params.id
     });
+    
 
+window.onunload = window.onbeforeunload = () => {
+  this.$socket.close();
+};
+
+
+this.$refs.audioSource.onchange = this.getStream;
+this.$refs.videoSource.onchange = this.getStream;
+
+this.getStream()
+  .then(this.getDevices)
+  .then(this.gotDevices);
 
   },
 
   methods: {
-    //   rejoin(rejoin){
+    getDevices() {
+    return navigator.mediaDevices.enumerateDevices();
+  },
+    gotDevices(deviceInfos) {
+    window.deviceInfos = deviceInfos;
+    for (const deviceInfo of deviceInfos) {
+      const option = document.createElement("option");
+      option.value = deviceInfo.deviceId;
+      if (deviceInfo.kind === "audioinput") {
+        option.text = deviceInfo.label || `Microphone ${this.$refs.audioSource.length + 1}`;
+        this.$refs.audioSource.appendChild(option);
+      } else if (deviceInfo.kind === "videoinput") {
+        option.text = deviceInfo.label || `Camera ${this.$refs.videoSource.length + 1}`;
+        this.$refs.videoSource.appendChild(option);
+      }
+    }
+  }
+  ,
+    getStream() {
 
-    //     this.loginAs.name = rejoin
+        if (window.stream) {
+          window.stream.getTracks().forEach(track => {
+            track.stop();
+          });
+        }
+        const constraints = {
+          audio: { deviceId: this.$refs.audioSource.value ? { exact: this.$refs.audioSource.value } : undefined },
+          video: { deviceId: this.$refs.videoSource.value ? { exact: this.$refs.videoSource.value } : undefined }
+        };
 
-    //      if(this.$store.state.anonim == true){
-              
-    //           this.loginAs = {
-    //               username: this.$store.state.user.username,
-    //               name: "Anonim",
-    //               avatar: "/anonim.png",
-    //             };
+        // const constraints = {
+        //   audio: true,
+        //   video: { width: 320, height: 720 }
+        // };
 
-    //         }else{
+        console.log(constraints)
+        return navigator.mediaDevices
+          .getUserMedia(constraints)
+          .then(this.gotStream)
+          .catch(this.handleError);
+      }
+      ,
+    gotStream(stream) {
+      window.stream = stream;
+      this.$refs.audioSource.selectedIndex = [...this.$refs.audioSource.options].findIndex(
+        option => option.text === stream.getAudioTracks()[0].label
+      );
+      this.$refs.videoSource.selectedIndex = [...this.$refs.videoSource.options].findIndex(
+        option => option.text === stream.getVideoTracks()[0].label
+      );
 
-    //           this.loginAs = {
-    //               username: this.$store.state.user.username,
-    //               name: this.$store.state.user.name,
-    //               avatar: this.$store.state.user.avatar,
-    //             };
-
-    //         }
-
-            
-    //    this.$socket.emit("joinRoom", {
-    //       user: this.loginAs,
-    //       room: this.$route.params.id
-    //     });
-
-    //   this.showSettings = false
-    // },
+      this.$refs.video.srcObject = stream;
+      this.$socket.emit("broadcaster");
+    },
+    handleError(error) {
+      console.error("Error: ", error);
+    },
+  
     scrollToLast(){
       var container = this.$el.querySelector("#list-chat");
       container.scrollTop = container.scrollHeight;

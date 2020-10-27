@@ -34,13 +34,13 @@
             :src="profile.avatar"
             :alt="profile.name"
           />
-          <div class="text-center lg:text-left mt-3 lg:pl-3">
+          <div class="text-center lg:text-left  mt-3 lg:pl-3">
                 <div class="w-full lg:text-left font-bold ">
                   {{ profile.name }} 
                 </div>
                 
                 <img
-                  class="w-20 h-20  rounded-full lg:hidden my-2"
+                  class="w-20 h-20 mx-auto rounded-full lg:hidden my-2"
                   :src="profile.avatar"
                   :alt="profile.name"
                 />

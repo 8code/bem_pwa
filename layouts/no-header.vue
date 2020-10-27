@@ -7,7 +7,7 @@
     >
       <main
         class="w-full mx-auto flex flex-wrap content-start  "
-        :style="$route.path.includes('quest/') || $route.path.includes('messages') || $route.path.includes('find/') ? 'max-width:1100px' : `max-width:600px`"
+        :style="$route.path.includes('quest/') || $route.path.includes('messages') || $route.path.includes('finder') || $route.path.includes('find/') ? 'max-width:1200px' : `max-width:600px`"
       >
           <Nuxt class="w-full" />
       </main>
