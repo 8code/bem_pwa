@@ -3,9 +3,35 @@
     class="w-full  bg-theme_primary pt-10"
   >
 
-     <!-- <event-settings  @rejoin="rejoin(rejoin)"  v-on:hide="showSettings = false" v-if="showSettings" :loginAs="loginAs" /> -->
+  
+    <div  class="w-full bg-transparent flex flex-wrap justify-end fixed top-0 right-0 h-screen" style="z-index:1000" :class="(showSettings) ? '' : 'hidden'">
+          <div @click="showSettings = !showSettings"  class="w-full  flex flex-wrap justify-end  bg-theme_primary_dark opacity-50 z-50 fixed top-0 right-0 h-screen ">
+          </div>
+          
+          <div class="w-full p-4 lg:w-1/3 flex flex-wrap justify-center items-center content-center bg-theme_primary_light rounded-xl" 
+          
+          style="z-index:1001">
+                
+         
+            <label class="mb-2 w-full text-center">Live Settings </label>
+        
 
-    <div class="flex fixed top-0 mt-3 w-full">
+            <label class="mb-2 w-full px-2" for="audioSource">Audio source: </label>
+            <select @change="getStream" ref="audioSource" class="w-full py-2 px-2 rounded-lg bg-theme_primary text-center"></select>
+        
+            <label class="mb-2 w-full px-2" for="videoSource">Video source: </label>
+            <select @change="getStream" ref="videoSource" class="w-full py-2 px-2 rounded-lg bg-theme_primary text-center"></select>
+            
+            <button @click="showSettings = !showSettings" class="bg-theme_primary py-2 px-10 rounded-full mt-3"> 
+                    {{ $t("Done")}}
+            </button>
+                
+
+          </div>
+      </div>
+
+
+    <div class="flex fixed top-0 mt-3 w-full"  style="z-index:1003">
       <button
         @click="leaveChannel()"
         class="flex p-3 bg-theme_primary_light mx-2 rounded-full "
@@ -31,20 +57,17 @@
       </button>
 
 
-      <span class="p-2 font-bold" v-if="event"> {{ event.name.substring(0, 25) }} ... 
-
-        <span> {{ userList.length }}  Online </span>
+      <span class="p-2 font-bold flex" v-if="event">
+        <span class="hidden lg:block">{{ event.name }}</span> 
+        <span class="text-success text-xs p-1 px-2"> ( {{ userList.length }}  Online )</span>
       </span>
 
-      <div class="ml-auto flex">
-        <!-- <button class="flex p-3 bg-theme_primary_light mx-2 rounded-full  ">
-
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-mic-mute" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M12.734 9.613A4.995 4.995 0 0 0 13 8V7a.5.5 0 0 0-1 0v1c0 .274-.027.54-.08.799l.814.814zm-2.522 1.72A4 4 0 0 1 4 8V7a.5.5 0 0 0-1 0v1a5 5 0 0 0 4.5 4.975V15h-3a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-3v-2.025a4.973 4.973 0 0 0 2.43-.923l-.718-.719zM11 7.88V3a3 3 0 0 0-5.842-.963l.845.845A2 2 0 0 1 10 3v3.879l1 1zM8.738 9.86l.748.748A3 3 0 0 1 5 8V6.121l1 1V8a2 2 0 0 0 2.738 1.86zm4.908 3.494l-12-12 .708-.708 12 12-.708.707z"/>
-        </svg>
-        </button> -->
-
-        <!-- <div class="flex p-3 bg-theme_primary_light mx-2 rounded-full cursor-pointer" @click="showSettings = !showSettings">
+      <div class="ml-auto flex items-start">
+      
+        <div @click="goLive" class="p-2 text-xs bg-theme_primary_light px-4 rounded-full cursor-pointer">
+          Mulai Live
+        </div>
+        <div class="flex p-2 bg-theme_primary_light mx-2 rounded-full cursor-pointer" @click="showSettings = !showSettings">
           <svg
             width="1em"
             height="1em"
@@ -62,7 +85,7 @@
               d="M8 5.754a2.246 2.246 0 1 0 0 4.492 2.246 2.246 0 0 0 0-4.492zM4.754 8a3.246 3.246 0 1 1 6.492 0 3.246 3.246 0 0 1-6.492 0z"
             />
           </svg>
-        </div> -->
+        </div>
       </div>
     </div>
 
@@ -73,34 +96,36 @@
         class="w-full lg:w-8/12 z-50 bg-theme_primary  rounded-xl flex relative flex-wrap"
         style="height:90vh"
       >
-              <div class="flex flex-wrap justify-center bg-theme_primary_light rounded-xl p-4 min-h-full">
+              <div class="flex w-full flex-wrap justify-center bg-theme_primary_light rounded-xl p-4 min-h-full">
 
          
 
-        <section class="select">
-              <label for="audioSource">Audio source: </label>
-              <select ref="audioSource"></select>
-            </section>
+        
 
-            <section class="select">
-              <label for="videoSource">Video source: </label>
-              <select ref="videoSource"></select>
-            </section>
-
-            <video  ref="video" playsinline  autoplay muted></video>
+            <video class="videoLive"  ref="video" playsinline  autoplay muted></video>
             
+
 
 
         </div>
       </div>
 
-      <div class="w-full lg:w-4/12 lg:pl-2">
-        <div class="flex bg-theme_primary_light rounded-xl p-4 min-h-full">
+      <div class="w-full z-0 lg:w-4/12 lg:pl-2 mt-16 lg:mt-0  lg:block fixed lg:relative top-0 right-0  lg:h-auto"
+       
+       
+       :style="(showChat) ? 'z-index:1006': ''"
+       
+       >
+        <div class="flex w-full flex-wrap bg-theme_primary_light rounded-xl p-4 min-h-full">
 
            <div
             class="w-full bg-theme_primary_light p-4 rounded-xl text-xs pb-20 pt-10"
-            style="height:82vh;overflow-y:scroll" id="list-chat"
+            style="height:75vh;overflow-y:scroll" id="list-chat"
           >
+
+          
+        
+
                 <chat-message
                   v-for="(m, index) in messages"
                   :key="'c-' + index"
@@ -108,6 +133,10 @@
                   :c="m"
                 />
 
+
+          </div>
+
+          
           <div class="w-full flex justify-left mt-2  lg:mt-1 items-center">
             <textarea
               maxlength="255"
@@ -127,14 +156,24 @@
 
            </div>
 
-          </div>
-
         </div>
       </div>
     </section>
+
+
+     <nav @click="showChat = !showChat" class="fixed bottom-0 flex lg:hidden w-full bg-theme_primary  " style="z-index:1006">
+        <div class="flex w-full text-primary font-bold p-2 text-center justify-center ">
+            <span class="p-1 "> Pesan </span>
+        </div>
+     </nav>
   </div>
 </template>
 <style scoped>
+
+.videoLive{
+  height:100%;
+  border-radius: 30px;
+}
 </style>
 <script>
 
@@ -151,6 +190,12 @@ export default {
   middleware: "auth",
   data() {
     return {
+      showChat: false,
+       tactiveClass:
+        "text-lg font-bold rounded-full flex w-1/5 px-1 py-2 mx-1 flex-wrap content-center justify-center items-center pt-2",
+      tnonActiveClass:
+        "text-lg font-bold rounded-full flex w-1/5 px-1 py-2 mx-1 flex-wrap content-center justify-center items-center text-default pt-2",
+      
       showSettings: false,
       event: "",
       text: "",
@@ -164,11 +209,11 @@ export default {
           { 
             "urls": "stun:stun.l.google.com:19302",
           },
-          // { 
-          //   "urls": "turn:TURN_IP?transport=tcp",
-          //   "username": "TURN_USERNAME",
-          //   "credential": "TURN_CREDENTIALS"
-          // }
+          { 
+            "urls": "turn:TURN_IP?transport=tcp",
+            "username": "TURN_USERNAME",
+            "credential": "TURN_CREDENTIALS"
+          }
         ]
       }
     };
@@ -255,23 +300,28 @@ disconnectPeer : function (id) {
       user: this.loginAs,
       room: this.$route.params.id
     });
-    
+        
 
-window.onunload = window.onbeforeunload = () => {
-  this.$socket.close();
-};
+    window.onunload = window.onbeforeunload = () => {
+      this.$socket.close();
+    };
 
 
-this.$refs.audioSource.onchange = this.getStream;
-this.$refs.videoSource.onchange = this.getStream;
-
-this.getStream()
-  .then(this.getDevices)
-  .then(this.gotDevices);
 
   },
 
   methods: {
+    goLive(){
+       if(this.event.user_id == this.$store.state.user.id){
+
+            this.getStream()
+              .then(this.getDevices)
+              .then(this.gotDevices);
+
+          }else{
+            this.$router.back()
+          }
+    },
     getDevices() {
     return navigator.mediaDevices.enumerateDevices();
   },
@@ -302,12 +352,7 @@ this.getStream()
           video: { deviceId: this.$refs.videoSource.value ? { exact: this.$refs.videoSource.value } : undefined }
         };
 
-        // const constraints = {
-        //   audio: true,
-        //   video: { width: 320, height: 720 }
-        // };
-
-        console.log(constraints)
+        
         return navigator.mediaDevices
           .getUserMedia(constraints)
           .then(this.gotStream)

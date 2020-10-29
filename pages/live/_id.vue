@@ -1,7 +1,27 @@
 <template>
-  <div
+ <div
     class="w-full  bg-theme_primary pt-10"
   >
+
+  
+    <div  class="w-full bg-transparent flex flex-wrap justify-end fixed top-0 right-0 h-screen" style="z-index:1000" :class="(showSettings) ? '' : 'hidden'">
+          <div @click="showSettings = !showSettings"  class="w-full  flex flex-wrap justify-end  bg-theme_primary_dark opacity-50 z-50 fixed top-0 right-0 h-screen ">
+          </div>
+          
+          <div class="w-full p-4 lg:w-1/3 flex flex-wrap justify-center items-center content-center bg-theme_primary_light rounded-xl" 
+          
+          style="z-index:1001">
+                
+         
+            <label class="mb-2 w-full text-center">Live Settings </label>
+        
+
+          
+                
+
+          </div>
+      </div>
+
 
     <div class="flex fixed top-0 mt-3 w-full">
       <button
@@ -29,17 +49,14 @@
       </button>
 
 
-      <span class="p-2 font-bold" v-if="event"> {{ event.name.substring(0, 25) }} ... </span>
+      <span class="p-2 font-bold flex" v-if="event">
+        <span class="hidden lg:block">{{ event.name }}</span> 
+        <span class="text-success text-xs p-1 px-2"> ( {{ userList.length }}  Online )</span>
+      </span>
 
-      <div class="ml-auto flex">
-        <!-- <button class="flex p-3 bg-theme_primary_light mx-2 rounded-full  ">
-
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-mic-mute" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M12.734 9.613A4.995 4.995 0 0 0 13 8V7a.5.5 0 0 0-1 0v1c0 .274-.027.54-.08.799l.814.814zm-2.522 1.72A4 4 0 0 1 4 8V7a.5.5 0 0 0-1 0v1a5 5 0 0 0 4.5 4.975V15h-3a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-3v-2.025a4.973 4.973 0 0 0 2.43-.923l-.718-.719zM11 7.88V3a3 3 0 0 0-5.842-.963l.845.845A2 2 0 0 1 10 3v3.879l1 1zM8.738 9.86l.748.748A3 3 0 0 1 5 8V6.121l1 1V8a2 2 0 0 0 2.738 1.86zm4.908 3.494l-12-12 .708-.708 12 12-.708.707z"/>
-        </svg>
-        </button> -->
-
-        <!-- <div class="flex p-3 bg-theme_primary_light mx-2 rounded-full cursor-pointer" @click="showSettings = !showSettings">
+      <div class="ml-auto flex items-start">
+     
+        <div class="flex p-2 bg-theme_primary_light mx-2 rounded-full cursor-pointer" @click="showSettings = !showSettings">
           <svg
             width="1em"
             height="1em"
@@ -57,43 +74,47 @@
               d="M8 5.754a2.246 2.246 0 1 0 0 4.492 2.246 2.246 0 0 0 0-4.492zM4.754 8a3.246 3.246 0 1 1 6.492 0 3.246 3.246 0 0 1-6.492 0z"
             />
           </svg>
-        </div> -->
+        </div>
       </div>
     </div>
 
     <section class="w-full rounded-xl flex flex-wrap p-2 pt-5">
-      <div class="hidden lg:block w-full lg:w-2/12 pr-2">
-        <div class="flex bg-theme_primary_light rounded-xl p-4" style="height:90vh">
-          <ul class="text-xs w-full  overflow-y-auto" >
-            <li class="flex text-xs py-2 font-bold cursor-pointer">
-              Online ({{ userList.length }})
-            </li>
-            <li
-              v-for="(i, index) in userList"
-              :key="'online-user-' + index"
-              class="flex text-xs p-1 text-success font-semibold hover:bg-theme_primary_dark rounded-full px-2 cursor-pointer"
-            >
-              <img :src="i.user.avatar" class="w-6 h-6 rounded-full">
-               <span class="p-1">{{ i.user.name }}</span>
-            </li>
-          </ul>
-        </div>
-      </div>
+  
 
       <div
         class="w-full lg:w-8/12 z-50 bg-theme_primary  rounded-xl flex relative flex-wrap"
         style="height:90vh"
       >
-        <div class="w-full">
-          <div
+              <div class="flex w-full flex-wrap justify-center bg-theme_primary_light rounded-xl p-4 min-h-full">
+
+         
+
+        
+
+            <video class="videoLive"  ref="video" playsinline  autoplay controls muted></video>
+            
+
+
+
+        </div>
+      </div>
+
+ 
+      <div class="w-full z-0 lg:w-4/12 lg:pl-2 mt-16 lg:mt-0  lg:block fixed lg:relative top-0 right-0  lg:h-auto"
+       
+       
+       :style="(showChat) ? 'z-index:1006': ''"
+       
+       >
+        <div class="flex w-full flex-wrap bg-theme_primary_light rounded-xl p-4 min-h-full">
+
+           <div
             class="w-full bg-theme_primary_light p-4 rounded-xl text-xs pb-20 pt-10"
-            style="height:82vh;overflow-y:scroll" id="list-chat"
+            style="height:75vh;overflow-y:scroll" id="list-chat"
           >
 
-    <video ref="video" playsinline  muted autoplay ></video>
-
-    <button @click="enableAudio">Enable audio</button>
-
+          
+        
 
                 <chat-message
                   v-for="(m, index) in messages"
@@ -102,11 +123,11 @@
                   :c="m"
                 />
 
-          </div>
-          <div class="w-full flex justify-left mt-2  lg:mt-1 items-center">
 
-            
-       
+          </div>
+
+          
+          <div class="w-full flex justify-left mt-2  lg:mt-1 items-center">
             <textarea
               maxlength="255"
               v-model="text"
@@ -116,40 +137,34 @@
                @keyup.enter="sendMessage"
             ></textarea>
 
-            
-                 <button class="bg-theme_primary_light rounded-full  p-2" @click="sendMessage">
-                        <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-cursor" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                          <path fill-rule="evenodd" d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103zM2.25 8.184l3.897 1.67a.5.5 0 0 1 .262.263l1.67 3.897L12.743 3.52 2.25 8.184z"/>
-                        </svg>
+            <button class="bg-theme_primary_light rounded-full  p-2" @click="sendMessage">
+                      <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-cursor" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103zM2.25 8.184l3.897 1.67a.5.5 0 0 1 .262.263l1.67 3.897L12.743 3.52 2.25 8.184z"/>
+                      </svg>
 
-            </button>
+          </button>
 
+           </div>
 
-          </div>
-        </div>
-      </div>
-
-      <div class=" w-full lg:w-2/12 lg:pl-2">
-        <div class="flex bg-theme_primary_light rounded-xl p-4 min-h-full">
-          <ul class="text-xs w-full">
-            <li class="flex text-xs py-2 font-bold cursor-pointer">
-              Activity
-            </li>
-            <li
-              v-for="(i, index) in activity"
-              :key="'act-' + index"
-              class="flex text-xs p-1 font-semibold cursor-pointer"
-              :class="i.type == 0 ? 'text-danger' : 'text-success'"
-            >
-              {{ i.text }}
-            </li>
-          </ul>
         </div>
       </div>
     </section>
+
+
+     <nav @click="showChat = !showChat" class="fixed bottom-0 flex lg:hidden w-full bg-theme_primary  " style="z-index:1006">
+        <div class="flex w-full text-primary font-bold p-2 text-center justify-center ">
+            <span class="p-1 "> Pesan </span>
+        </div>
+     </nav>
   </div>
 </template>
+<style scoped>
 
+.videoLive{
+  height:100%;
+  border-radius: 30px;
+}
+</style>
 <script>
 
 
@@ -165,6 +180,12 @@ export default {
   middleware: "auth",
   data() {
     return {
+        tactiveClass:
+        "text-lg font-bold rounded-full flex w-1/5 px-1 py-2 mx-1 flex-wrap content-center justify-center items-center pt-2",
+      tnonActiveClass:
+        "text-lg font-bold rounded-full flex w-1/5 px-1 py-2 mx-1 flex-wrap content-center justify-center items-center text-default pt-2",
+      
+      showChat:false,
       showSettings: false,
       event: "",
       text: "",

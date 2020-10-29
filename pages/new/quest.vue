@@ -128,6 +128,16 @@
                 class="w-full  shadow-sm bg-theme_primary_dark py-2 px-4 rounded-lg mb-3"
               />
             </div>
+            <div class="flex w-full lg:w-1/2 flex-wrap p-2">
+              <label class="py-2">Harga</label>
+              <input
+                type="number"
+                v-model="d.price"
+                
+                placeholder="Harga "
+                class="w-full  shadow-sm bg-theme_primary_dark py-2 px-4 rounded-lg mb-3"
+              />
+            </div>
             </div>
         
         </div>

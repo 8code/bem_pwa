@@ -3,7 +3,7 @@ BASE_URL=http://localhost:8000/api/
 STORAGE_URL=http://localhost:8000/storage/
 SOCKET_URL=http://localhost:3001
 APP_NAME=Maba
-GOOGLE_ANALYTICS_ID=G-GYYMXVBWK9
+GOOGLE_ANALYTICS_ID=
 
 BASE_URL_NOT_API=https://api.maba.my.id
 BASE_URL=https://api.maba.my.id/api/
