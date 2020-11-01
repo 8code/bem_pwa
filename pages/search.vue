@@ -1,25 +1,8 @@
 <template>
     <div class="pb-20">
     
-    <new-quest :text="`${filter.search}`"  />
+    <new-quest v-if="filter.search" :text="`${filter.search}`"  />
   
-    
-    <div class="mx-auto text-sm flex">
-          <nuxt-link :to="localePath('/feed')" class="px-5 mx-1 py-2   font-bold"> {{ $t("Followed")}} </nuxt-link>
-          <nuxt-link :to="localePath('/feed-explore')" class="px-5 mx-1 py-2 font-bold">
-            {{ $t("Explore")}} 
-          </nuxt-link>
-          <div class="px-5 mx-1 ml-auto py-2  text-primary font-bold mt-1">
-          <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
-            <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
-          </svg>
-        </div>
-        
-    </div>
-
-
-    
 
 
 
@@ -118,12 +101,12 @@
             ({{tagar.total}})
           </div>
         </li>
-<!-- 
+
+<!--         
+      <nuxt-link :to="localePath('/kencan-buta')" class="bg-theme_primary_dark mb-3 rounded-full flex justify-center text-center font-bold text-md p-2 px-4 w-full">
+          Kencan Buta
+      </nuxt-link> -->
         
-        <nuxt-link :to="localePath('/finder')" class="bg-theme_primary_dark mb-3 rounded-full flex justify-center text-center font-bold text-md p-2 px-4 w-full">
-            Cari Kenalan
-        </nuxt-link>
-         -->
       <router-link :to="localePath('/users/explore')" class="bg-theme_primary_dark mb-3 rounded-full flex justify-center text-center font-bold text-md p-2 px-4 w-full">
               Ikuti Seseorang
         </router-link>

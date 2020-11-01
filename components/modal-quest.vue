@@ -28,9 +28,9 @@
                                 Kirim
                         </button>
                     </li>
-                    <!-- <li @click="notifme" class="p-4 border-b border-theme_primary w-full text-center hover:rounded-full hover:bg-theme_primary">
-                        Beri saya notifikasi quest ini
-                    </li> -->
+                    <li v-if="quest.user_id != $store.state.user.id" @click="chatTo" class="p-4 border-b border-theme_primary w-full text-center hover:rounded-full hover:bg-theme_primary">
+                        Kirim Pesan
+                    </li>
                     <!-- <li @click="save" class="p-4 border-b border-theme_primary w-full text-center hover:rounded-full hover:bg-theme_primary">
                         Simpan Quest
                     </li> -->
@@ -62,6 +62,20 @@ export default {
        }
    },
    methods:{
+        chatTo(){
+            if(this.$props.quest.anonim){
+                  this.$axios.get('/chat_to/'+this.$props.quest.user_id+"?anonim=1")
+                    .then(res => {
+                        this.$router.push("/msg/"+res.data)
+                    })
+            }else{
+                  this.$axios.get('/chat_to/'+this.$props.quest.user_id)
+                    .then(res => {
+                        this.$router.push("/msg/"+res.data)
+                    })
+            }
+          
+        },
        sendReport(){
            if(this.data_report){
             this.$axios.get("/report/"+this.$props.quest.id+"/"+this.data_report)

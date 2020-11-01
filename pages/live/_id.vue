@@ -87,10 +87,6 @@
       >
               <div class="flex w-full flex-wrap justify-center bg-theme_primary_light rounded-xl p-4 min-h-full">
 
-         
-
-        
-
             <video class="videoLive"  ref="video" playsinline  autoplay controls muted></video>
             
 

@@ -134,7 +134,8 @@ export default {
               messages: 'Messages',
               story: 'Story',
               join_event: 'Join Event',
-              as: 'As'
+              as: 'As',
+              reply: 'reply'
             },
             id: {
               welcome: 'Selamat Datang Mabs!',
@@ -161,7 +162,8 @@ export default {
               messages: 'Pesan',
               story: 'Cerita',
               join_event: 'Ikuti Acara',
-              as: 'Sebagai'
+              as: 'Sebagai',
+              reply: 'balasan'
             }
           }
         }

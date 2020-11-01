@@ -40,7 +40,7 @@
                 </div>
                 
                 <img
-                  class="w-20 h-20 mx-auto rounded-full lg:hidden my-2"
+                  class="w-24 h-24 mx-auto rounded-full lg:hidden my-2"
                   :src="profile.avatar"
                   :alt="profile.name"
                 />
@@ -195,7 +195,7 @@ export default {
      chatTo(){
        this.$axios.get('/chat_to/'+this.profile.id)
         .then(res => {
-          this.$router.push("/messages/"+res.data)
+          this.$router.push("/msg/"+res.data)
         })
      },
      followUser(id){

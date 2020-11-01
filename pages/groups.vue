@@ -1,5 +1,5 @@
 <template>
-<div class="w-full">
+<div class="w-full min-h-screen" v-touch:swipe="swipeHandler">
         <subheader name="groups" />
         <section class="w-full rounded-xl pb-20">
                 <card-group v-for="group in listGroup" :key="group.id" :group="group" 
@@ -32,6 +32,13 @@ export default {
             })
     },
     methods:{
+         swipeHandler(direction){
+                if(direction =='right'){
+                this.$router.push('/feed')
+                }else if(direction =='left'){
+                this.$router.push('/groups-explore')
+                }
+            },
        sortByKey(array, key) {
                 return array.sort(function(a, b) {
                     var x = a[key]; var y = b[key];

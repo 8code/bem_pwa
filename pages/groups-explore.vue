@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full" >
+  <div class="w-full min-h-screen" v-touch:swipe="swipeHandler">
     <subheader name="groups" />
 
     <section class="w-full rounded-xl pb-20">
@@ -84,6 +84,13 @@ export default {
     this.getData()
   },
   methods: {
+     swipeHandler(direction){
+                if(direction =='right'){
+                this.$router.push('/groups')
+                }else if(direction =='left'){
+                this.$router.push('/search')
+                }
+            },
     getData(){
         this.$axios.$get("/group?type="+this.filter.type+"&search="+this.filter.search+"&page="+this.filter.page).then(res => {
           this.data = res

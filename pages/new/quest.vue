@@ -178,7 +178,9 @@
 
       <section
         v-if="showModal"
-        class="w-full bg-transparent flex flex-wrap justify-center content-end lg:content-conter z-30 right-0 "
+        class="w-full  bg-transparent flex flex-wrap justify-center content-end lg:content-conter 
+        
+        z-30 right-0 "
       >
         <div
           @click="showModal = ''"
@@ -186,11 +188,13 @@
         ></div>
 
         <div
-          class="w-full  justify-center flex flex-wrap z-50 content-end lg:content-conter bg-theme_primary_dark rounded-xl p-5 mx-auto absolute bottom-0 mb-32 "
-          style="z-index:1000000;max-width:600px;"
+          class="overflow-y-scroll  w-full mb-10  justify-center flex flex-wrap z-50 content-end lg:content-conter bg-theme_primary_dark rounded-xl p-5 mx-auto absolute bottom-0
+          
+          "
+          style="z-index:1000000;max-width:600px;height:80vh"
         >
         
-          <div class="w-full flex flex-wrap" v-if="showModal == 'img'">
+          <div class="w-full flex flex-wrap h-full" v-if="showModal == 'img'">
             <span @click="showModal = ''" class="text-danger ml-auto"
               >Tutup</span
             >
@@ -206,6 +210,29 @@
                 :placeholder="'Upload Foto'"
               ></croppa>
               <br />
+              <button
+                @click="img.width = 300;img.height = 200"
+                class="px-4 py-2 rounded-lg text-primary"
+                :class="(img.width == 300 && img.height == 200) ? 'bg-primary text-secondary ':''"
+              >
+                2x3
+              </button>
+              <button
+                @click="img.width = 300;img.height = 300"
+                class="px-4 py-2 rounded-lg text-primary"
+                :class="(img.width == 300 && img.height == 300) ? 'bg-primary text-secondary ':''"
+
+              >
+                4x4
+              </button>
+               <button
+                @click="img.width = 300;img.height = 600"
+                 class="px-4 py-2 rounded-lg text-primary"
+                :class="(img.width == 300 && img.height == 600) ? 'bg-primary text-secondary ':''"
+
+              >
+                18x9
+              </button>
               <button
                 v-if="imgTemp"
                 @click="cropImg"

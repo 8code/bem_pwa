@@ -1,18 +1,18 @@
 <template>
 <section class="w-full pb-10 px-4 mb-20  mt-4">
-        <h1 class=" font-bold mb-5 flex">{{ $t('Notif')}} 
 
-
-        <nuxt-link to="/messages" class="ml-auto flex w-auto text-primary">
-        
-        <svg width="1.5em" height="1.5em"  viewBox="0 0 16 16" class="bi bi-chat-text-fill text-primary" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM4.5 5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zm0 2.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zm0 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4z"/>
+            
+    <div class="mx-auto text-sm flex mb-5">
+            
+        <h1 class=" font-bold flex">{{ $t('Notif')}} </h1>
+          <nuxt-link :to="localePath('/search')" class="ml-auto  text-primary font-bold">
+          <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+            <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
           </svg>
-
-         <span class="px-2"> {{ $t("messages")}}</span>
-          
-          </nuxt-link>
-        </h1>
+        </nuxt-link>
+        
+    </div>
 
 
         <div v-for="(n,index) in notif" :key="index" class="w-full flex flex-wrap border-b border-theme_primary_light rounded-lg
@@ -22,16 +22,20 @@
             
             <div @click="balas_quest = n.for_balasan" class="w-full mb-1  rounded-lg flex flex-wrap">
               
-
-                <img class=" float-left rounded-xl h-8 w-8 -mt-1" :src="n.avatar" alt="Avatar">
-                <span class=" float-left  pl-1"> 
-                        <nuxt-link class="text-primary" :to="localePath('/@'+n.username)">{{n.name}}</nuxt-link>
-                        <span v-if="n.tipe == 1" > <span v-if="n.total > 1">dan {{ n.total}} lainnya</span> menyukai quest anda</span>
-                        <span v-if="n.tipe == 2" > membalas</span>
-                        <span v-if="n.tipe == 3" > menandai anda </span>
-                        <span v-if="n.tipe == 6" > mengikuti Anda</span>
-                        :
-                </span>
+                <div class="w-full">
+                        
+                        <span class=" float-left  pl-1 text-xs"> 
+                                <nuxt-link class="text-primary" :to="localePath('/@'+n.username)">
+                                <img class=" float-left rounded-xl h-8 w-8 -mt-1 mx-1" :src="n.avatar" alt="Avatar">
+                                {{n.name}}</nuxt-link>
+                                
+                                <span v-if="n.tipe == 1" > <span v-if="n.total > 1">dan {{ n.total}} lainnya</span> menyukai quest anda</span>
+                                <span v-if="n.tipe == 2" > membalas</span>
+                                <span v-if="n.tipe == 3" > menandai anda </span>
+                                <span v-if="n.tipe == 6" > mengikuti Anda</span>
+                                : 
+                        </span>
+                </div>
                 <nuxt-link :to="`@${n.username}`" v-if="n.tipe == 6"  
                 class="bg-success px-5 py-1 text-white rounded-lg ml-auto cursor-pointer">
                        Lihat Profil
@@ -49,16 +53,16 @@
 
                         <div
                         v-if="n.audio"
-                        class="w-full  flex flex-wrap p-2  text-theme_secondary "
+                        class="w-full  flex flex-wrap py-2  text-theme_secondary "
                         >
                         <audio :src="n.audio" controls />
                         
                         </div>
-                   <blockquote v-if="n.text" class="text-xs opacity-50 w-full">
+                   <blockquote v-if="n.text" class=" text-xs opacity-50 w-full">
                          " {{ n.text.substring(0, 50) }} ... "
                    </blockquote>
                 </span>
-                 <nuxt-link :to="localePath('/quest/'+n.quest_id)" v-else class=" text-sm  p-1 mb-1 rounded-sm" >
+                 <nuxt-link :to="localePath('/quest/'+n.quest_id)" v-else class="pl-8  text-sm  p-1 mb-1 rounded-sm" >
                   <span v-if="n.text"> {{ n.text.substring(0, 50) }} ... </span>
                 </nuxt-link>
                

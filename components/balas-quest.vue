@@ -26,7 +26,7 @@
           </div>
           
           <div class="w-full shadow-sm rounded-lg">
-                 Membalas @{{ quest.user.username }}
+                {{ $t('reply') }} <span v-if="!quest.anonim">@{{ quest.user.username }}</span>
                 <input @keyup.enter="kirim" ref="inputText" maxlength="255" v-model="text" placeholder="Katakan sesuatu ..." class="mt-2 p-3 bg-theme_primary_dark w-full rounded-lg" />           
               
            </div>

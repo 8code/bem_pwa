@@ -38,10 +38,10 @@
 		<!--Left Col-->
 		<div class="flex flex-col w-full xl:w-1/2 justify-center lg:items-start overflow-y-hidden">
 			<h1 class="text-primary my-4 text-3xl md:text-5xl font-bold leading-tight text-center md:text-left slide-in-bottom-h1">
-               Sosial Medianya Mahasiswa
+               Sosial Media Mahasiswa
             </h1>
 			<p class="leading-normal md:text-2xl mb-8 text-center md:text-left slide-in-bottom-subtitle text-theme_secondary">
-              Diskusi Organisasi, Live Event dan Cari Teman. dan jadilah Mahasiswa yang berguna.
+              Cari Teman, Curhat , Diskusi dan Atur Semua Kegiatan Kampus hanya di Aplikasi Maba. 
             </p>
 		
 			<p class="font-bold pb-8 lg:pb-6 text-center md:text-left fade-in">Masuk / Download:</p>

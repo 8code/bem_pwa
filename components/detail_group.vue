@@ -135,13 +135,6 @@
           Acara
       </div>
 
-        <div
-        :class="(filter == 'Voice') ? filterClassActive : filterClass"
-        @click="filter = 'Voice';getData()"
-
-      >
-         Suara
-      </div>
 
 
     </div>
