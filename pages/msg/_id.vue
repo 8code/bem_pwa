@@ -188,7 +188,7 @@
                 <span  @click="d.img = '';" class="text-danger text-xs">Hapus Image</span>
 
               </div>
-                 <div class="lg:hidden absolute mb-32 w-full text-left bg-theme_primary" v-if="!text">
+                 <div class="lg:hidden absolute mb-32 w-full text-left" v-if="!text" :class="(recordings) ? 'bg-theme_primary' : ''">
 
                     <vue-record-audio v-if="!recordings" mode="press" @result="onResult" class="lg:mx-2" />
                          
