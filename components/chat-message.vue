@@ -25,7 +25,7 @@
                                 {{ c.time }}
                             </span>
                     <br>
-                    <div class="w-full flex" :class="(anonim) ? 'pl-2' : 'pl-4'">
+                    <div class="w-full flex " :class="(anonim) ? 'pl-2' : 'pl-4'">
                        
 
                        <img width="300px" class="rounded-xl mx-auto" v-if="c.message.image" :src="c.message.image" />

@@ -44,7 +44,7 @@
                 <li
                 v-for="(i, index) in users"
                 :key="'user-' + index"
-                class="relative flex text-xs p-1 mt-2 font-semibold pb-2 hover:bg-theme_primary_dark rounded-full px-2 cursor-pointer"
+                class="relative border-b border-theme_primary flex text-xs p-1 mt-2 font-semibold pb-2 hover:bg-theme_primary_dark rounded-full px-2 cursor-pointer"
                 >
 
             <span v-if="roomUsers[i.room_id] > 1" class="text-success flex absolute bottom-0 w-10 mx-2 text-center justify-center left-0 " style="font-size:7px">
@@ -61,8 +61,13 @@
                       />
                       <span class="pl-4 p-1 text-lg "> {{ i.event.name }}</span>
                       <span class="ml-auto bg-success p-1 px-2 font-bold text-white rounded-full mt-2" 
-                      v-if="i.notread > 0"> {{ i.notread }}</span>
-              <span class="px-2 text-xs w-full ml-12 text-theme_secondary font-normal -mt-2" v-if="i.message"> {{ i.message.text }}</span>
+                      v-if="i.notread > 0"> 
+                       
+                      {{ i.notread }}</span>
+              <span class="px-2 text-xs w-full ml-12 text-theme_secondary font-normal -mt-2" v-if="i.message">
+                 {{ i.message.text }}
+                 <span v-if="i.message" style="font-size:9px" class="px-1 text-primary"> {{ timeIndo(i.message.created_at) }}</span>
+                 </span>
 
             </nuxt-link>
         </div>
@@ -76,10 +81,15 @@
              />
             <span class="pl-4 p-1 text-lg" v-if="!i.anonim"> {{ i.user.name }}</span>
             <span class="pl-4 p-1 text-lg" v-else> Anonim </span>
-            <span class="ml-auto bg-success p-1 px-2 font-bold text-white rounded-full mt-2" v-if="i.notread > 0"> {{ i.notread }}</span>
+            <span class="ml-auto bg-success p-1 px-2 font-bold text-white rounded-full mt-2" v-if="i.notread > 0">
+              
+               {{ i.notread }}</span>
 
         </div>
-        <span class="px-2 text-xs w-full ml-12 text-theme_secondary font-normal -mt-2" v-if="i.message"> {{ i.message.text }}</span>
+        <span class="px-2 text-xs w-full ml-12 text-theme_secondary font-normal -mt-2" v-if="i.message"> 
+          {{ i.message.text }}
+           <span v-if="i.message" style="font-size:9px" class="px-1 text-primary"> {{ timeIndo(i.message.created_at) }}</span>
+          </span>
         </nuxt-link>
 
             </li>
@@ -156,14 +166,15 @@
             class="w-full bg-theme_primary_light p-4 rounded-xl text-xs pb-20 pt-24"
             style="height:87vh;overflow-y:scroll" id="list-chat" 
           >
-                <span class="text-center py-3" @click="getMoreMessage">Lihat Chat Sebelumnya</span>
+                <span class="text-center w-full flex justify-center" @click="getMoreMessage">Lihat Chat Sebelumnya</span>
+                <br>
+                <br>
                 <chat-message
                   
                   v-for="(m, index) in messages"
                   :key="'c-' + index"
-                  :id="'c-' + index"
+                  :id="'c-' +m.message.id"
                   :c="m"
-
                   :anonim="anonim"
                 />
 
@@ -177,7 +188,7 @@
                 <span  @click="d.img = '';" class="text-danger text-xs">Hapus Image</span>
 
               </div>
-                 <div class="lg:hidden absolute mb-32 w-full text-left" v-if="!text">
+                 <div class="lg:hidden absolute mb-32 w-full text-left bg-theme_primary" v-if="!text">
 
                     <vue-record-audio v-if="!recordings" mode="press" @result="onResult" class="lg:mx-2" />
                          
@@ -440,7 +451,6 @@ export default {
           var container = this.$el.querySelector("#list-chat");
           container.scrollTop = container.scrollHeight;
       }
-    
     },
     getMoreMessage(){
       if(!this.loading){
@@ -463,6 +473,7 @@ export default {
                                 avatar: msg[index].user.avatar,
                               },
                               message: {
+                                  id: msg[index].id,
                                   text: msg[index].text,
                                   audio: msg[index].audio,
                                   stiker: msg[index].stiker,
@@ -472,13 +483,16 @@ export default {
                           }
 
                           this.messages.unshift(formatTo);
-                      
+                
                     }
-                  
+
                   }
             });
       }
        
+    },
+    timeIndo(date){
+      return util.timeIndo(date)
     },
     getDataChannel() {
       this.$axios.get("/chat_by_room_id/"+this.$route.params.id+"?page="+this.page)
@@ -560,6 +574,7 @@ export default {
                 this.text = ""
                 this.d.audio = ""
                 this.d.img = ""
+                this.recordings = ""
                 
                 this.scrollToLast()
               })
