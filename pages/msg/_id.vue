@@ -156,6 +156,7 @@
             class="w-full bg-theme_primary_light p-4 rounded-xl text-xs pb-20 pt-24"
             style="height:87vh;overflow-y:scroll" id="list-chat" 
           >
+                <span class="text-center py-3" @click="getMoreMessage">Lihat Chat Sebelumnya</span>
                 <chat-message
                   
                   v-for="(m, index) in messages"
@@ -346,6 +347,8 @@ export default {
       imgTemp: null,
       modal_quest: false,
       showModal: "",
+      page: 1,
+      loading: false
     };
   },
   sockets: {
@@ -361,12 +364,6 @@ export default {
     
      
     },
-    //  activity: function(msg) {
-        
-    //    console.log(msg)
-    
-     
-    // },
     message: function(message) {
         if(message.room === this.$route.params.id){
           this.messages.push(message);
@@ -445,17 +442,55 @@ export default {
       }
     
     },
+    getMoreMessage(){
+      if(!this.loading){
+         this.page = this.page+1;
+            this.loading = true;
+            this.$axios.get("/chat_by_room_id/"+this.$route.params.id+"?page="+this.page)
+            .then(res => {  
+              this.loading = false;
+
+                if(res.data.message.total > 0){
+
+                    let msg = res.data.message.data;
+
+                    for (let index = 0; index < msg.length; index++) {
+
+                        let formatTo = {
+                              user: {
+                                username: msg[index].user.username,
+                                name: msg[index].user.name,
+                                avatar: msg[index].user.avatar,
+                              },
+                              message: {
+                                  text: msg[index].text,
+                                  audio: msg[index].audio,
+                                  stiker: msg[index].stiker,
+                                  image: msg[index].image,
+                              },
+                              time: util.timeIndo(msg[index].created_at)
+                          }
+
+                          this.messages.unshift(formatTo);
+                      
+                    }
+                  
+                  }
+            });
+      }
+       
+    },
     getDataChannel() {
-      this.$axios.get("/chat_by_room_id/"+this.$route.params.id)
+      this.$axios.get("/chat_by_room_id/"+this.$route.params.id+"?page="+this.page)
         .then(res => {
 
           if(!res.data.channel_id){
-              // this.$router.push('/msg/start')
+
           }else{
             
           this.channel_id = res.data.channel_id
           this.anonim = res.data.anonim
-          console.log(res.data)
+          // console.log(res.data)
           this.user = res.data.user
           this.event = res.data.event
 
