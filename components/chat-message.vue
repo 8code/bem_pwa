@@ -3,7 +3,7 @@
         
           <div class="rounded-xl rounded-tl-none p-1 flex flex-wrap " 
           
-          :class="(c.user.username == $store.state.user.username) ? 'ml-auto bg-primary hover:bg-primary_dark text-white' : 'mr-auto bg-theme_primary hover:bg-theme_primary_dark'">
+          :class="(c.user.username == $store.state.user.username) ? 'ml-auto bg-primary hover:bg-primary_dark text-white' : 'mr-auto bg-theme_primary_light hover:bg-theme_primary_dark'">
             <div class="flex flex-wrap">
 
                
