@@ -500,11 +500,13 @@ export default {
         
     },
     sendMessage() {
-      if(this.text){
+      if(this.text || this.d.img || this.d.audio){
 
       
           this.$axios.post("/send-message/"+this.channel_id, {
-            text: this.text
+            text: this.text,
+            img: this.d.img,
+            audio: this.d.audio,
           } )
               .then(res => {
 
@@ -521,6 +523,8 @@ export default {
                 }
 
                 this.text = ""
+                this.d.audio = ""
+                this.d.img = ""
                 
                 this.scrollToLast()
               })
