@@ -167,9 +167,48 @@
                 />
 
           </div>
+
+          
           <div class="w-full flex  justify-left mt-2  lg:mt-1 items-center">
-       
+            
+              <div v-if="d.img" class="w-full absolute mb-40 bg-theme_primary p-4 z-50">
+                <img class="h-20" :src="d.img" />
+                <span  @click="d.img = '';" class="text-danger text-xs">Hapus Image</span>
+
+              </div>
+                 <div class="lg:hidden absolute mb-32 w-full text-left" v-if="!text">
+
+                    <vue-record-audio v-if="!recordings" mode="press" @result="onResult" class="lg:mx-2" />
+                         
+                      <audio v-if="recordings" :src="recordings" controls class="mt-2" />
+                      
+
+                      <span v-if="recordings" @click="d.audio = ''; recordings = ''" class="text-danger text-xs">Hapus Audio</span>
+
+                  </div>
+             
+          
+
+              <div
+                  class="cursor-pointer text-primary mx-2"
+                  @click="showModalQuest('img')"
+                >
+                  <svg
+                    class="w-7 h-8 bi bi-card-image"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M14.5 3h-13a.5.5 0 0 0-.5.5v9c0 .013 0 .027.002.04V12l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094L15 9.499V3.5a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm4.502 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"
+                    />
+                  </svg>
+                </div>
+
+
                 <textarea
+                  ref="inputText"
                   maxlength="255"
                   v-model="text"
                   placeholder="Katakan sesuatu ..."
@@ -188,9 +227,89 @@
         </div>
       </div>
     </section>
+
+
+        <section
+        v-if="showModal"
+        class="w-full  bg-transparent flex flex-wrap justify-center content-end lg:content-conter 
+        
+        z-30 right-0 "
+      >
+        <div
+          @click="showModal = ''"
+          class="w-full  flex flex-wrap justify-center content-end lg:content-conter bg-theme_primary_dark opacity-50 z-40 right-0  "
+        ></div>
+
+        <div
+          class="overflow-y-scroll  w-full mb-10  justify-center flex flex-wrap z-50 content-end lg:content-conter bg-theme_primary_dark rounded-xl p-5 mx-auto absolute bottom-0
+          
+          "
+          style="z-index:1000000;max-width:600px;height:80vh"
+        >
+        
+          <div class="w-full flex flex-wrap h-full" v-if="showModal == 'img'">
+            <span @click="showModal = ''" class="text-danger ml-auto"
+              >Tutup</span
+            >
+
+            <div class="w-full text-center">
+              <croppa
+                class="shadow-sm rounded-lg bg-primary"
+                v-model="imgTemp"
+                prevent-white-space
+                :width="img.width"
+                :height="img.height"
+                :quality="2"
+                :placeholder="'Upload Foto'"
+              ></croppa>
+              <br />
+              <button
+                @click="img.width = 300;img.height = 200"
+                class="px-4 py-2 rounded-lg text-primary"
+                :class="(img.width == 300 && img.height == 200) ? 'bg-primary text-secondary ':''"
+              >
+                2x3
+              </button>
+              <button
+                @click="img.width = 300;img.height = 300"
+                class="px-4 py-2 rounded-lg text-primary"
+                :class="(img.width == 300 && img.height == 300) ? 'bg-primary text-secondary ':''"
+
+              >
+                4x4
+              </button>
+               <button
+                @click="img.width = 300;img.height = 600"
+                 class="px-4 py-2 rounded-lg text-primary"
+                :class="(img.width == 300 && img.height == 600) ? 'bg-primary text-secondary ':''"
+
+              >
+                18x9
+              </button>
+              <button
+                v-if="imgTemp"
+                @click="cropImg"
+                class="bg-primary px-4 py-2 rounded-lg text-secondary"
+              >
+                Crop & Simpan
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
   </div>
 </template>
 <script>
+import Vue from "vue";
+
+import VueRecord from '@codekraft-studio/vue-record'
+Vue.use(VueRecord)
+
+import Croppa from "vue-croppa";
+import "vue-croppa/dist/vue-croppa.css";
+
+Vue.use(Croppa);
 
 
 import InfiniteLoading from "vue-infinite-loading";
@@ -205,6 +324,7 @@ export default {
   middleware: "auth",
   data() {
     return {
+      recordings: '',
       event: '',
       user: '',
       text: "",
@@ -213,7 +333,19 @@ export default {
       channel_id: '',
       users: [],
       roomUsers: [],
-      anonim: ''
+      anonim: '',
+      img: {
+        audio: '',
+        width: 300,
+        height: 300
+      },
+      d: {
+        audio: '',
+        img: ''
+      },  
+      imgTemp: null,
+      modal_quest: false,
+      showModal: "",
     };
   },
   sockets: {
@@ -257,6 +389,29 @@ export default {
   },
 
   methods: {
+     onResult (data) {
+      var audioURL = window.URL.createObjectURL(data);
+        this.recordings  = audioURL;
+        var that = this
+        var reader = new window.FileReader();
+        reader.readAsDataURL(data);
+        reader.onloadend = function () {
+              that.d.audio = reader.result;
+        }
+    },
+    cropImg() {
+      if (this.imgTemp) {
+        this.d.img = this.imgTemp.generateDataUrl("image/jpeg", 0.8);
+
+        this.showModal = "";
+        this.$nextTick(() => this.$refs.inputText.focus());
+      }
+    },
+   showModalQuest(source) {
+      if (source == "img") {
+        this.showModal = "img";
+      }
+    },
     swipeHandler(direction){
         if(direction =='right'){
           this.$router.push('/msg')

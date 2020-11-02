@@ -3,8 +3,6 @@
     <div class="pb-20 min-h-screen  w-screen  " >
         <!--Nav-->
 
-
-        
         <div class="w-full container mx-auto p-6">
                 
             <div class="w-full flex flex-wrap items-center justify-center lg:justify-between">
@@ -18,14 +16,11 @@
                 </nuxt-link>
                 
                 </div>
-
-                    
                 
                 <div class="hidden lg:flex  justify-end content-center font-bold">	
-                        <nuxt-link :to="localePath('/login')" class="text-center cursor-pointer bg-theme_primary_dark  px-4 my-2 py-1 rounded-full text-primary" > 
-                            Masuk
-                        </nuxt-link>	
-
+                    <nuxt-link :to="localePath('/login')" class="text-center cursor-pointer bg-theme_primary_dark  px-4 my-2 py-1 rounded-full text-primary" > 
+                        Masuk
+                    </nuxt-link>
                 </div>
                 
             </div>
@@ -37,14 +32,17 @@
 		
 		<!--Left Col-->
 		<div class="flex flex-col w-full xl:w-1/2 justify-center lg:items-start overflow-y-hidden">
-			<h1 class="text-primary my-4 text-3xl md:text-5xl font-bold leading-tight text-center md:text-left slide-in-bottom-h1">
-               Sosial Media Mahasiswa
+			<h1 class="text-primary mb-6 text-3xl md:text-5xl font-bold leading-tight text-center md:text-left slide-in-bottom-h1">
+               Sosial Medianya Mahasiswa
             </h1>
-			<p class="leading-normal md:text-2xl mb-8 text-center md:text-left slide-in-bottom-subtitle text-theme_secondary">
-              Cari Teman, Curhat , Diskusi dan Atur Semua Kegiatan Kampus hanya di Aplikasi Maba. 
+			      <p class="leading-normal md:text-2xl mb-6 text-center md:text-left slide-in-bottom-subtitle text-theme_secondary">
+               Diskusi, Curhat, Cari Teman dan Atur Semua Kegiatan Kampus hanya di Aplikasi Maba. 
+            </p>
+            <p class="leading-normal  mb-5 text-center md:text-left slide-in-bottom-subtitle text-theme_secondary">
+              Created By : BEM UNSIL & Maba Team
             </p>
 		
-			<p class="font-bold pb-8 lg:pb-6 text-center md:text-left fade-in">Masuk / Download:</p>
+			<p class="font-bold pb-8 lg:pb-5 text-center md:text-left fade-in">Masuk / Download:</p>
 			<div class="flex w-full justify-center md:justify-start pb-24 lg:pb-0 fade-in">
 				<nuxt-link :to="localePath('/login')" class="py-2 px-12 mr-2 bg-primary hover:bg-primary_dark rounded-lg text-white font-bold text-xl">Masuk</nuxt-link>
 				<a href="https://play.google.com/store/apps/details?id=xyz.appmaker.gyqacr">
