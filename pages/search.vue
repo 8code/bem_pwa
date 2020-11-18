@@ -170,13 +170,12 @@ export default {
               if(this.$route.query.keyword){
                 this.filter.search = this.$route.query.keyword
                 this.getData()
+              }else{
+                this.filter.search = ''
               }
         }
      },
      mounted(){
-
-
-
       if(this.$route.query.keyword){
          this.filter.search = this.$route.query.keyword
          this.getData()
