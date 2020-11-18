@@ -5,6 +5,7 @@
 
      
     
+     <new-quest  />
 
 
       <balas-quest v-if="balas_quest"  v-on:batal="balas_quest = false" :quest="balas_quest" />
