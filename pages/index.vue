@@ -54,7 +54,7 @@
 		
 		<!--Right Col-->
 		<div class="w-full xl:w-1/2 pb-6 hover:p-0 overflow-y-hidden relative cursor-pointer">
-            <a href="https://www.youtube.com/watch?v=GSdKaaH0D04&t=107s" target="_BLANK" class="absolute bg-primary p-2 rounded-full text-secondary" style="top:50%;right:0">
+            <a href="https://youtu.be/aIKKegNkMlg" target="_BLANK" class="absolute bg-primary p-2 rounded-full text-secondary" style="top:50%;right:0">
                 <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-play-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
                 </svg>

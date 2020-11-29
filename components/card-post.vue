@@ -5,7 +5,7 @@
     
   >
     <div
-      class="shadow-sm rounded-xl bg-theme_primary hover:bg-theme_primary_dark p-2 "
+      class="shadow-sm rounded-xl bg-theme_primary hover:bg-theme_primary_dark p-2"
       :class="active ? 'bg-theme_primary_dark' : ''"
     >
       <div class="flex content-start">
@@ -60,7 +60,7 @@
           </span>
         </span>
       </div>
-      <div class="w-auto flex mt-1">
+      <div class="w-auto flex mt-1 py-2 pb-4">
         <div class="flex flex-wrap items-start">
 
           <span v-if="!hideBalasan" class="w-full">
@@ -133,42 +133,33 @@
               <span class="text-primary" v-if="data.type != 2">  </span>
             </span>
 
+              <span class="w-full" v-for="(tx1, iaa) in textToArray(data.text)" :key="iaa" >
+
+                  <div  class="w-full  my-2" v-if="isLink(tx1)">
+                    
+                    <iframe class="w-full rounded-xl" v-if="cekSumber(tx1) == 'youtube'" width="560" height="315" :src="getUrl(tx1)" frameborder="0" 
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen></iframe>
+                    
+                </div>
+            </span>
+
+
           </div>
       
 
           <div v-else class="w-full p-1  text-theme_secondary">
            
 
+              
+
             <div
-              v-if="data.video || data.img"
+              v-if="data.video"
               class="w-full media-preview py-2"
             >
-              <img
-                @click="
-                  $store.commit('setMediaPlayer', {
-                    data: data,
-                    path: $route.path
-                  })
-                "
-                v-if="data.video"
-                src="/play.svg"
-                alt="logo"
-                class="absolute play-button-youtube text-primary bg-primary rounded-full p-1"
-              />
-              <img
-                @click="
-                  $store.commit('setMediaPlayer', {
-                    data: data,
-                    path: $route.path
-                  })
-                "
-                v-if="data.video"
-                class="w-full rounded-xl"
-                :src="data.thumb"
-              />
+              
               <img
                 @dblclick="followQuest(data.id)"
-                v-else
                 class="w-full rounded-xl"
                 :src="data.img"
               />
@@ -213,12 +204,27 @@
               
               </span>
             </span>
+
+            <span class="w-full" v-for="(tx1, iaa) in textToArray(data.text)" :key="iaa" >
+
+                  <div  class="w-full my-2" v-if="isLink(tx1)">
+                    
+                    <iframe class="w-full rounded-xl" v-if="cekSumber(tx1) == 'youtube'" width="560" height="315" :src="getUrl(tx1)" frameborder="0" 
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen></iframe>
+                    
+                </div>
+            </span>
+
             
             </div>
 
            
           </div>
 
+              
+              
+ 
       
 
           <div class="flex w-full px-4 pb-2">
@@ -314,6 +320,13 @@
   </div>
 </template>
 
+<style scoped>
+.videoWrapper{
+  width: 100%;
+  border-radius: 10%;
+}
+</style>
+
 <script>
 import util from "~/assets/js/util";
 
@@ -331,6 +344,37 @@ export default {
     };
   },
   methods: {
+    cekSumber(str) {
+      if (str) {
+        if (str.search("spotify") > 0) {
+          return "spotify";
+        } else if (str.search("youtu.be") > 0) {
+          return "youtube";
+        }
+      }
+    },
+    getUrl(url) {
+      if (url) {
+        if (this.cekSumber(url) == "spotify") {
+          let split = url.split("/");
+          var res =
+            "https://open.spotify.com/embed-podcast/" +
+            split[3] +
+            "/" +
+            split[4].split("?")[0];
+         
+        } else if (this.cekSumber(url) == "youtube") {
+          let split = url.split("/");
+          var res = "https://www.youtube.com/embed/" + split[3];
+        } else {
+          var res = "";
+        }
+
+        return res;
+      } else {
+        return "";
+      }
+    },
     deleteQuest(){
         this.showModal = false
      this.$axios.get('/delete-quest/'+this.$props.data.id)
@@ -350,11 +394,8 @@ export default {
         })
     },
     showDetail(){
-        if(this.$props.data.quest == null){
           this.$router.push(this.localePath("/quest/"+this.$props.data.id))
-        }else{
-          this.$emit('balas',this.$props.data)
-        }
+       
     },
     isLink(link) {
       if (link) {

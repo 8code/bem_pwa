@@ -145,7 +145,7 @@ export default {
               primaryColor: 'Warna Primer',
               BackgroundTheme: 'Tema Latar Belakang',
               Done: 'Selesai',
-              Settings: 'Pengaturan',
+              SettingsX: 'Pengaturan',
               light: 'Terang',
               blue: 'Biru',
               dark: 'Gelap',

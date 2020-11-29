@@ -31,8 +31,8 @@
         <input
           v-model="login.username"
           type="text"
-          placeholder="Username / Email"
-          class=" 
+          placeholder=" Username / Email"
+          class=" Username
                         bg-theme_primary_dark
                         py-2 px-8 
                         rounded-full mb-3
@@ -137,6 +137,14 @@
   </div>
 </template>
 
+<style scoped>
+input {
+    -webkit-user-select: text; /* Chrome, Opera, Safari */
+    -moz-user-select: text; /* Firefox 2+ */
+    -ms-user-select: text; /* IE 10+ */
+    user-select: text; /* Standard syntax */
+}
+</style>
 <script>
 export default {
   middleware: 'noauth',
