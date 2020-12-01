@@ -122,6 +122,7 @@
                     <a
                     class="text-primary"
                     :href="tx"
+                    v-if="cekSumber(tx) !== 'spotify' && cekSumber(tx) !== 'youtube'" 
                     target="_BLANK"
                     
                     >{{ tx }}</a>
@@ -140,6 +141,8 @@
                     <iframe class="w-full rounded-xl" v-if="cekSumber(tx1) == 'youtube'" width="560" height="315" :src="getUrl(tx1)" frameborder="0" 
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
                     allowfullscreen></iframe>
+
+                    <iframe v-if="cekSumber(tx1) == 'spotify'" :src="getUrl(tx1)" width="100%" height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
                     
                 </span>
             </span>
@@ -152,18 +155,12 @@
            
 
               
-
-            <div
-              v-if="data.video"
-              class="w-full media-preview py-2"
-            >
-              
+            
               <img
                 @dblclick="followQuest(data.id)"
                 class="w-full rounded-xl"
                 :src="data.img"
               />
-            </div>
 
             <div class="px-2" >
 
@@ -193,7 +190,7 @@
                     class="text-primary"
                     :href="tx"
                     target="_BLANK"
-                    
+                    v-if="cekSumber(tx) !== 'spotify' && cekSumber(tx) !== 'youtube'" 
                     >{{ tx }}</a>
                 </span>
 
@@ -212,6 +209,9 @@
                     <iframe class="w-full rounded-xl" v-if="cekSumber(tx1) == 'youtube'" width="560" height="315" :src="getUrl(tx1)" frameborder="0" 
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
                     allowfullscreen></iframe>
+
+                    <iframe v-if="cekSumber(tx1) == 'spotify'" :src="getUrl(tx1)" width="100%" height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+
                     
                 </span>
             </span>
@@ -345,7 +345,7 @@ export default {
       if (str) {
         if (str.search("spotify") > 0) {
           return "spotify";
-        } else if (str.search("youtu.be") > 0) {
+        } else if (str.search("youtu.be") > 0 || str.search("youtube") > 0) {
           return "youtube";
         }
       }

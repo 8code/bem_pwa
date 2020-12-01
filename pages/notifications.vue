@@ -20,7 +20,7 @@
          my-2">
             
             
-            <div @click="balas_quest = n.for_balasan" class="w-full mb-1  rounded-lg flex flex-wrap">
+            <div  class="w-full mb-1  rounded-lg flex flex-wrap">
               
                 <div class="w-full">
                         
@@ -42,9 +42,14 @@
                 </nuxt-link>
 
                 <span v-if="n.tipe == 2" class="w-full text-sm flex flex-wrap p-1 mb-1 rounded-full pl-8">
-                   {{ n.balasan }}
+                   
+                   
+                   <nuxt-link :to="localePath('/quest/'+n.quest_balas_id)" >
+                     {{ n.balasan }}
+                   </nuxt-link>
 
                       <div 
+                         @click="balas_quest = n.for_balasan"
                         class="mr-3 bg-primary px-5 py-1 text-white rounded-full ml-auto cursor-pointer">
                          Balas
                         </div>
@@ -59,7 +64,10 @@
                         
                         </div>
                    <blockquote v-if="n.text" class=" text-xs opacity-50 w-full">
-                         " {{ n.text.substring(0, 50) }} ... "
+                        <nuxt-link :to="localePath('/quest/'+n.quest_id)" >
+                                
+                                " {{ n.text.substring(0, 50) }} ... "
+                        </nuxt-link>
                    </blockquote>
                 </span>
                  <nuxt-link :to="localePath('/quest/'+n.quest_id)" v-else class="pl-8  text-sm  p-1 mb-1 rounded-sm" >

@@ -102,10 +102,6 @@
           </div>
         </li>
 
-<!--         
-      <nuxt-link :to="localePath('/kencan-buta')" class="bg-theme_primary_dark mb-3 rounded-full flex justify-center text-center font-bold text-md p-2 px-4 w-full">
-          Kencan Buta
-      </nuxt-link> -->
         
       <router-link :to="localePath('/users/explore')" class="bg-theme_primary_dark mb-3 rounded-full flex justify-center text-center font-bold text-md p-2 px-4 w-full">
               Ikuti Seseorang
@@ -119,6 +115,9 @@
         
        
       </ul>
+
+
+      <card-post  v-on:balas="balasQuest" v-for="quest in eventPopuler" :key="quest.id" :id="'feed'+quest.id" :data="quest" />
 
 
 
@@ -162,6 +161,7 @@ export default {
             last_page: false,
             tagarPopuler: '',
             balas_quest: '',
+            eventPopuler: [],
 
          }
      },
@@ -182,6 +182,12 @@ export default {
        }else{
            this.getTagarPopuler()
        }
+
+       this.$axios.get("/event/explore")
+        .then(res => {
+          console.log("aa ",res.data)
+          this.eventPopuler = res.data.data
+        })
 
      },
      methods:{
