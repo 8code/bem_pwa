@@ -288,10 +288,7 @@ disconnectPeer : function (id) {
   },
   mounted() {
 
-    if(this.event.user_id !== this.$store.state.user.id){
-        this.$router.back()
-    }
-
+    
 
     this.getDataChannel();
 
