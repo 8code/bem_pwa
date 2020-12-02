@@ -4,7 +4,7 @@
   >
 
   
-    <div  class="w-full bg-transparent flex flex-wrap justify-end fixed top-0 right-0 h-screen" style="z-index:1000" :class="(showSettings) ? '' : 'hidden'">
+    <div  class="w-full bg-transparent flex flex-wrap justify-end fixed top-0 right-0 h-screen" style="z-index:1008" :class="(showSettings) ? '' : 'hidden'">
           <div @click="showSettings = !showSettings"  class="w-full  flex flex-wrap justify-end  bg-theme_primary_dark opacity-50 z-50 fixed top-0 right-0 h-screen ">
           </div>
           
@@ -64,7 +64,7 @@
 
       <div class="ml-auto flex items-start">
       
-        <div @click="goLive" class="p-2 text-xs bg-theme_primary_light px-4 rounded-full cursor-pointer">
+        <div  @click="goLive" class="p-2 text-xs bg-theme_primary_light px-4 rounded-full cursor-pointer">
           Mulai Live
         </div>
         <div class="flex p-2 bg-theme_primary_light mx-2 rounded-full cursor-pointer" @click="showSettings = !showSettings">
@@ -96,15 +96,19 @@
         class="w-full lg:w-8/12 z-50 bg-theme_primary  rounded-xl flex relative flex-wrap"
         style="height:90vh"
       >
-              <div class="flex w-full flex-wrap justify-center bg-theme_primary_light rounded-xl p-4 min-h-full">
+              <div class="flex w-full flex-wrap justify-start items-start bg-theme_primary_light rounded-xl p-4 min-h-full">
 
          
 
         
 
-            <video class="videoLive"  ref="video" playsinline  autoplay muted></video>
+            <video class="videoLive"  ref="video" playsinline  autoplay ></video>
             
 
+
+            <div v-if="!showChat" class="p-2 block lg:hidden">
+              <div v-html="event.desc"></div>
+            </div>
 
 
         </div>
@@ -113,18 +117,25 @@
       <div class="w-full z-0 lg:w-4/12 lg:pl-2 mt-16 lg:mt-0  lg:block fixed lg:relative top-0 right-0  lg:h-auto"
        
        
-       :style="(showChat) ? 'z-index:1006': ''"
+       :style="(showChat) ? 'z-index:1006;': ''"
        
        >
-        <div class="flex w-full flex-wrap bg-theme_primary_light rounded-xl p-4 min-h-full">
+        <div class="flex w-full flex-wrap rounded-xl p-4"
+        
+        >
 
+           
            <div
-            class="w-full bg-theme_primary_light p-4 rounded-xl text-xs pb-20 pt-10"
-            style="height:75vh;overflow-y:scroll" id="list-chat"
+            class="w-full  p-4 rounded-xl text-xs pb-20"
+            style="height:40vh;overflow-y:scroll;margin-top:35vh" id="list-chat"
+            
           >
 
+           <div class="absolute top-0 p-4 hidden lg:block">
+              <div v-html="event.desc"></div>
+            </div>
+
           
-        
 
                 <chat-message
                   v-for="(m, index) in messages"
@@ -171,13 +182,14 @@
 <style scoped>
 
 .videoLive{
-  height:100%;
+  width: 98%;
   border-radius: 30px;
 }
 </style>
 <script>
 
 
+import util from "~/assets/js/util";
 
 import InfiniteLoading from "vue-infinite-loading";
 
@@ -267,7 +279,9 @@ disconnectPeer : function (id) {
       this.userList = users;
     },
     message: function(message) {
+      console.log(message)
       this.messages.push(message);
+
     },
     activity: function(act) {
       this.activity = act;
@@ -380,10 +394,59 @@ disconnectPeer : function (id) {
       container.scrollTop = container.scrollHeight;
     },
     getDataChannel() {
-      this.$axios.get("/event_by_room_id/"+this.$route.params.id)
+     
+
+      this.$axios.get("/chat_by_room_id/"+this.$route.params.id+"?page="+this.page)
         .then(res => {
-          this.event = res.data
+
+          if(!res.data.channel_id){
+
+          }else{
+            
+          this.channel_id = res.data.channel_id
+          this.anonim = res.data.anonim
+          this.user = res.data.user
+          this.event = res.data.event
+
+          
+          this.$axios.get("/read-message/"+this.$store.state.user.id+"/"+this.channel_id)
+         
+          if(res.data.message.total > 0){
+
+            let msg = res.data.message.data.reverse();
+
+            for (let index = 0; index < msg.length; index++) {
+
+                let formatTo = {
+                      user: {
+                        username: msg[index].user.username,
+                        name: msg[index].user.name,
+                        avatar: msg[index].user.avatar,
+                      },
+                      message: {
+                          text: msg[index].text,
+                          audio: msg[index].audio,
+                          stiker: msg[index].stiker,
+                          image: msg[index].image,
+                      },
+                      time: util.timeIndo(msg[index].created_at)
+                  }
+
+                  this.messages.push(formatTo);
+              
+            }
+
+            this.scrollToLast()
+
+           
+           
+          }
+          
+          }
+              
         })
+
+     
     },
     leaveChannel() {
       this.$router.back();
@@ -391,13 +454,18 @@ disconnectPeer : function (id) {
     sendMessage() {
 
       if(this.text){
-          let dt = {
+
+          this.$socket.emit("sendMessage", {
+            room: this.$route.params.id,
+            data: {
               text: this.text
-          };
-          this.$socket.emit("sendMessage", dt);
+            }
+          });
+
           this.text = ""
           
           this.scrollToLast()
+
       }
     },
     getUserregistered() {

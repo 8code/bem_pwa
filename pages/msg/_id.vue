@@ -139,11 +139,21 @@
 
       <div class="ml-auto flex">
 
-        <div class="flex p-2 bg-theme_primary_light mx-2 rounded-full cursor-pointer">
-             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
-            </svg>
+        <nuxt-link v-if="event && $store.state.user.id == event.user_id" :to="`/channel/${$route.params.id}`" class="flex p-2 bg-theme_primary_light mx-2 rounded-full cursor-pointer">
+             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-camera-reels" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M0 8a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 7.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 16H2a2 2 0 0 1-2-2V8zm11.5 5.175l3.5 1.556V7.269l-3.5 1.556v4.35zM2 7a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H2z"/>
+            <path fill-rule="evenodd" d="M3 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+            <path fill-rule="evenodd" d="M9 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+          </svg>
+        </nuxt-link>
+        
+
+        <div @click="joinLive" class="flex p-2 bg-theme_primary_light mx-2 rounded-full cursor-pointer">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-camera-video-off" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M10.961 12.365a1.99 1.99 0 0 0 .522-1.103l3.11 1.382A1 1 0 0 0 16 11.731V4.269a1 1 0 0 0-1.406-.913l-3.111 1.382A2 2 0 0 0 9.5 3H4.272l.714 1H9.5a1 1 0 0 1 1 1v6a1 1 0 0 1-.144.518l.605.847zM1.428 4.18A.999.999 0 0 0 1 5v6a1 1 0 0 0 1 1h5.014l.714 1H2a2 2 0 0 1-2-2V5c0-.675.334-1.272.847-1.634l.58.814zM15 11.73l-3.5-1.555v-4.35L15 4.269v7.462zm-4.407 3.56l-10-14 .814-.58 10 14-.814.58z"/>
+              </svg>
         </div>
+
       </div>
     </div>
 
@@ -155,6 +165,9 @@
           >
                 <span class="text-center w-full flex justify-center" @click="getMoreMessage">Lihat Chat Sebelumnya</span>
                 <br>
+
+                <video v-if="!hideLive" class="videoLive"  ref="video" playsinline  autoplay controls muted></video>
+
                 <br>
                 <chat-message
                   
@@ -298,7 +311,23 @@
       </section>
 
   </div>
+
+
 </template>
+<style scoped>
+
+.videoLive{
+  width:100%;
+  left:0;
+  margin:0;
+  top:60px;
+  max-height: 100%;
+  border-radius: 30px;
+  position: absolute;
+  z-index: 1010;
+}
+</style>
+
 <script>
 import Vue from "vue";
 
@@ -323,6 +352,7 @@ export default {
   middleware: "auth",
   data() {
     return {
+      hideLive: true,
       recordings: '',
       event: '',
       user: '',
@@ -346,10 +376,60 @@ export default {
       modal_quest: false,
       showModal: "",
       page: 1,
-      loading: false
+      loading: false,
+      peerConnection: '',
+      config: {
+        iceServers: [
+            { 
+              "urls": "stun:stun.l.google.com:19302",
+            },
+            { 
+              "urls": "turn:TURN_IP?transport=tcp",
+              "username": "TURN_USERNAME",
+              "credential": "TURN_CREDENTIALS"
+            }
+        ]
+      }
     };
   },
   sockets: {
+    offer: function (data) {
+      let id = data[0]
+      let description = data[1]
+      this.peerConnection = new RTCPeerConnection(this.config);
+      this.peerConnection
+        .setRemoteDescription(description)
+        .then(() => this.peerConnection.createAnswer())
+        .then(sdp => this.peerConnection.setLocalDescription(sdp))
+        .then(() => {
+          this.$socket.emit("answer", id, this.peerConnection.localDescription);
+        });
+        this.peerConnection.ontrack = event => {
+        this.$refs.video.srcObject = event.streams[0];
+      };
+      this.peerConnection.onicecandidate = event => {
+        if (event.candidate) {
+          this.$socket.emit("candidate", id, event.candidate);
+        }
+        
+      }
+    },
+    candidate: function ( data) {
+       let id = data[0]
+       let candidate = data[1]
+          this.peerConnection
+            .addIceCandidate(new RTCIceCandidate(candidate))
+            .catch(e => console.error(e));
+        },
+        connect: function () {
+          this.$socket.emit("watcher");
+        },
+        broadcaster: function() {
+          this.$socket.emit("watcher");
+        },
+        disconnectPeer : function () {
+          this.peerConnection.close();
+        },
      roomUsers: function({ room, users }) {
         
           this.roomUsers[room] = users.length
@@ -377,13 +457,23 @@ export default {
   },
   created() {
 
+    
+
     this.joinMessage()
     
     this.getDataChannel();
 
+    
+
   },
 
   methods: {
+    joinLive(){
+       this.hideLive = !this.hideLive
+       if(!this.hideLive){
+         this.$socket.emit("watcher");
+       }
+    },
      onResult (data) {
       var audioURL = window.URL.createObjectURL(data);
         this.recordings  = audioURL;
