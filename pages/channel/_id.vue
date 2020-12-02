@@ -230,6 +230,19 @@ export default {
       }
     };
   },
+
+watch:{
+    $route (to, from){
+      
+        if (window.stream) {
+          window.stream.getTracks().forEach(track => {
+            track.stop();
+          });
+        }
+      
+    }
+},
+  
   sockets: {
   
 answer: function (data) {
@@ -271,6 +284,7 @@ candidate : function (data) {
 },
 
 disconnectPeer : function (id) {
+  console.log("chann")
   this.peerConnections[id].close();
   delete this.peerConnections[id];
 },
@@ -448,6 +462,12 @@ disconnectPeer : function (id) {
      
     },
     leaveChannel() {
+      if (window.stream) {
+          window.stream.getTracks().forEach(track => {
+            track.stop();
+          });
+        }
+
       this.$router.back();
     },
     sendMessage() {

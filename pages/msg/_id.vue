@@ -148,7 +148,7 @@
         </nuxt-link>
         
 
-        <div @click="joinLive" class="flex p-2 bg-theme_primary_light mx-2 rounded-full cursor-pointer">
+        <div v-if="event && $store.state.user.id !== event.user_id" @click="joinLive" class="flex p-2 bg-theme_primary_light mx-2 rounded-full cursor-pointer">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-camera-video-off" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M10.961 12.365a1.99 1.99 0 0 0 .522-1.103l3.11 1.382A1 1 0 0 0 16 11.731V4.269a1 1 0 0 0-1.406-.913l-3.111 1.382A2 2 0 0 0 9.5 3H4.272l.714 1H9.5a1 1 0 0 1 1 1v6a1 1 0 0 1-.144.518l.605.847zM1.428 4.18A.999.999 0 0 0 1 5v6a1 1 0 0 0 1 1h5.014l.714 1H2a2 2 0 0 1-2-2V5c0-.675.334-1.272.847-1.634l.58.814zM15 11.73l-3.5-1.555v-4.35L15 4.269v7.462zm-4.407 3.56l-10-14 .814-.58 10 14-.814.58z"/>
               </svg>
@@ -432,6 +432,8 @@ export default {
         });
         },
         disconnectPeer : function () {
+            // console.log("msg")
+
           this.peerConnection.close();
         },
      roomUsers: function({ room, users }) {
@@ -468,17 +470,15 @@ export default {
     this.getDataChannel();
 
     
-
+    this.$socket.emit("watcher", {
+        room: this.$route.params.id
+    });
+    
   },
 
   methods: {
     joinLive(){
        this.hideLive = !this.hideLive
-       if(!this.hideLive){
-         this.$socket.emit("watcher", {
-              room: this.$route.params.id
-        });
-       }
     },
      onResult (data) {
       var audioURL = window.URL.createObjectURL(data);
