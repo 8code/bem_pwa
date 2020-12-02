@@ -322,7 +322,7 @@
   margin:0;
   top:60px;
   max-height: 100%;
-  border-radius: 30px;
+  border-radius: 10px;
   position: absolute;
   z-index: 1010;
 }
@@ -422,10 +422,14 @@ export default {
             .catch(e => console.error(e));
         },
         connect: function () {
-          this.$socket.emit("watcher");
+          this.$socket.emit("watcher",{
+              room: this.$route.params.id
+        });
         },
         broadcaster: function() {
-          this.$socket.emit("watcher");
+          this.$socket.emit("watcher",{
+              room: this.$route.params.id
+        });
         },
         disconnectPeer : function () {
           this.peerConnection.close();
@@ -471,7 +475,9 @@ export default {
     joinLive(){
        this.hideLive = !this.hideLive
        if(!this.hideLive){
-         this.$socket.emit("watcher");
+         this.$socket.emit("watcher", {
+              room: this.$route.params.id
+        });
        }
     },
      onResult (data) {

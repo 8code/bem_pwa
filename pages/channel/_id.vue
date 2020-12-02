@@ -183,7 +183,7 @@
 
 .videoLive{
   width: 98%;
-  border-radius: 30px;
+  border-radius: 10px;
 }
 </style>
 <script>
@@ -266,7 +266,6 @@ candidate : function (data) {
   let id = data[0];
   let candidate = data[1]
 
-  // console.log(this.peerConnections)
 
   this.peerConnections[id].addIceCandidate(new RTCIceCandidate(candidate));
 },
@@ -288,6 +287,10 @@ disconnectPeer : function (id) {
     }
   },
   mounted() {
+
+    if(this.event.user_id !== this.$store.state.user.id){
+        this.$router.back()
+    }
 
 
     this.getDataChannel();
@@ -320,14 +323,11 @@ disconnectPeer : function (id) {
       this.$socket.close();
     };
 
-
-
   },
 
   methods: {
     goLive(){
        if(this.event.user_id == this.$store.state.user.id){
-
             this.getStream()
               .then(this.getDevices)
               .then(this.gotDevices);
@@ -383,7 +383,9 @@ disconnectPeer : function (id) {
       );
 
       this.$refs.video.srcObject = stream;
-      this.$socket.emit("broadcaster");
+      this.$socket.emit("broadcaster",{
+            room: this.$route.params.id
+      });
     },
     handleError(error) {
       console.error("Error: ", error);
