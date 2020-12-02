@@ -102,7 +102,7 @@
 
         
 
-            <video class="videoLive"  ref="video" playsinline  autoplay ></video>
+            <video class="videoLive"  ref="video" playsinline  autoplay muted ></video>
             
 
 

@@ -166,7 +166,7 @@
                 <span class="text-center w-full flex justify-center" @click="getMoreMessage">Lihat Chat Sebelumnya</span>
                 <br>
 
-                <video v-if="!hideLive" class="videoLive"  ref="video" playsinline  autoplay controls muted></video>
+                <video :style="(hideLive) ? 'display:none' : 'display:block'" class="videoLive bg-theme_primary"  ref="video" playsinline  autoplay controls></video>
 
                 <br>
                 <chat-message
@@ -320,8 +320,8 @@
   width:100%;
   left:0;
   margin:0;
-  top:60px;
-  max-height: 100%;
+  top:10%;
+  max-height: 90%;
   border-radius: 10px;
   position: absolute;
   z-index: 1010;
