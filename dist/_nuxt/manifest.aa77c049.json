@@ -1,7 +1,7 @@
 {
-  "name": "Aplikasi Maba",
+  "name": "MabApp",
   "short_name": "MABA",
-  "description": "Aplikasi Sosial Media Mahasiswa , tempat Untuk Curhat, Cari Teman atau Diskusi dan tentunya bisa atasin permasalahan mahasiswa (GABUT)",
+  "description": "Aplikasi Sosial Media Mahasiswa , tempat Untuk Curhat, Cari Teman atau Diskusi dan tentunya bisa atasin permasalahan mahasiswa",
   "icons": [
     {
       "src": "/_nuxt/icons/icon_64x64.4312a9.png",

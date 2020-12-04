@@ -12,7 +12,7 @@
                    <span class="bg-primary  border-primary border-2 rounded-full">
                         <img class="w-8 h-8" src="/logo.png" alt="Logo Aplikasi Maba">
                    </span>
-                    <span class="px-2"> Aplikasi Maba</span>
+                    <span class="px-2"> MabApp</span>
                 </nuxt-link>
                 
                 </div>
@@ -36,10 +36,7 @@
                Sosial Medianya Mahasiswa
             </h1>
 			      <p class="leading-normal md:text-2xl mb-6 text-center md:text-left slide-in-bottom-subtitle text-theme_secondary">
-               Diskusi, Curhat, Cari Teman dan Atur Semua Kegiatan Kampus hanya di Aplikasi Maba. 
-            </p>
-            <p class="leading-normal  mb-5 text-center md:text-left slide-in-bottom-subtitle text-theme_secondary">
-              Created By : BEM UNSIL & Maba Team
+              Berbagi pengalaman melalui cerita atau podcast dan berdiskusi temukan relasi.
             </p>
 		
 			<p class="font-bold pb-8 lg:pb-5 text-center md:text-left fade-in">Masuk / Download:</p>

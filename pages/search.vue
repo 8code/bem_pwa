@@ -1,5 +1,11 @@
 <template>
     <div class="pb-20">
+
+       <div style="z-index:10000" class="fixed h-screen bg-primary w-full flex justify-center text-white items-center">
+
+        Initial Display Ad
+
+        </div>
     
     <new-quest v-if="filter.search" :text="`${filter.search}`"  />
   
@@ -20,8 +26,8 @@
 
         />
       </div>
-        
-        
+
+      
 <div v-if="filter.search">
   <div class="py-3 flex flex-row" style="overflow-x:scroll">
     
@@ -91,6 +97,14 @@
 
 
       <ul class="p-2">
+        <!-- <li>
+
+       <div class="bg-primary w-full rounded-xl flex justify-center text-white items-center" style="height:150px">
+
+         Discovery Ad
+
+        </div>
+        </li> -->
         <li class="bg-theme_primary_dark my-2 rounded-xl p-3">
           <span class="p-2 text-theme_secondary">Populer</span>
           <div class="p-2 text-primary font-bold" v-for="(tagar,index) in tagarPopuler" :key="tagar.tagar">

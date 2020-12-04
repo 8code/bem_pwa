@@ -7,15 +7,15 @@ export default {
  mode: "spa",
   pwa: {
     meta: {
-      title: 'Aplikasi Maba - Sosial Media Mahasiswa',
+      title: 'MabApp - Sosial Media Mahasiswa',
       author: 'Ari Bahtiar',
     },
     manifest: {
-      name: 'Aplikasi Maba',
+      name: 'MabApp',
       lang: 'id',
       theme_color: '#f1f1f1',
       start_url: "/",
-      description: "Aplikasi Sosial Media Mahasiswa , tempat Untuk Curhat, Cari Teman atau Diskusi dan tentunya bisa atasin permasalahan mahasiswa (GABUT)"
+      description: "Aplikasi Sosial Media Mahasiswa , tempat Untuk Curhat, Cari Teman atau Diskusi dan tentunya bisa atasin permasalahan mahasiswa"
     },
     // workbox: {
     //   dev: true // or use a global variable to track the current NODE_ENV, etc to determine dev mode
@@ -31,11 +31,11 @@ export default {
   ** See https://nuxtjs.org/api/configuration-head
   */
   head: {
-    title: 'Aplikasi Maba - Sosial Media Mahasiswa',
+    title: 'MabApp - Sosial Media Mahasiswa',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: "Aplikasi Sosial Media Mahasiswa , tempat Untuk Curhat, Cari Teman atau Diskusi dan tentunya bisa atasin permasalahan mahasiswa (GABUT)" }
+      { hid: 'description', name: 'description', content: "MabApp Media Mahasiswa , tempat Untuk Curhat, Cari Teman atau Diskusi dan tentunya bisa atasin permasalahan mahasiswa (GABUT)" }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
