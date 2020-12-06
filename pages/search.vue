@@ -1,11 +1,11 @@
 <template>
     <div class="pb-20">
 
-       <div style="z-index:10000" class="fixed h-screen bg-primary w-full flex justify-center text-white items-center">
+       <!-- <div style="z-index:10000" class="fixed h-screen bg-primary w-full flex justify-center text-white items-center">
 
         Initial Display Ad
 
-        </div>
+        </div> -->
     
     <new-quest v-if="filter.search" :text="`${filter.search}`"  />
   
