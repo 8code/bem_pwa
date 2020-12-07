@@ -312,7 +312,7 @@
     </div>
 
 
-    <modal-quest @delete="deleteQuest" @hide="showModal = false" v-if="showModal" :quest="data" />
+    <modal-quest style="z-index:10003" @delete="deleteQuest" @hide="showModal = false" v-if="showModal" :quest="data" />
 
   </div>
 </template>
