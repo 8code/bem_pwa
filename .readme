@@ -1,0 +1,6 @@
+Note :
+
+Nuxt folder : maba.my.id / npm run start / port : 3000
+Laravel folder : api.maba.my.id / php artisan serve / port : 8000
+Secket folder : socket.maba.my.id / npm run start / port : 3001
+
