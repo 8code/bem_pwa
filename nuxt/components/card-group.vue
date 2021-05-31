@@ -9,7 +9,7 @@
 
         <img
           class="w-12 h-12  rounded-full"
-          :src="group.avatar"
+          :src="$getImage(group.avatar)"
           :alt="group.name"
         />
    

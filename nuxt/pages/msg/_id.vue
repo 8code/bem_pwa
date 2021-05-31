@@ -110,7 +110,7 @@
 
           <span class="font-bold  pl-2 flex" v-if="user"> 
 
-              <img v-if="!anonim" :src="user.avatar" alt="avatar" class="rounded-full w-12 h-12" :class="(userActive.length > 1) ? 'border-2 border-success' : ''">
+              <img v-if="!anonim" :src="$getImage(user.avatar)" alt="avatar" class="rounded-full w-12 h-12" :class="(userActive.length > 1) ? 'border-2 border-success' : ''">
               <img v-else src="/anonim.png" alt="avatar" 
               class="rounded-full w-12 h-12"
                :class="(userActive.length > 1) ? 'border-2 border-success' : ''">

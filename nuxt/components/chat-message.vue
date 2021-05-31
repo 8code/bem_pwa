@@ -10,7 +10,7 @@
                     <img
                     v-if="!anonim"
                     class="w-5 h-5  rounded-full"
-                    :src="c.user.avatar"
+                    :src="$getImage(c.user.avatar)"
                     alt="Avatar"
                     />
                    

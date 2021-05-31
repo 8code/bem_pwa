@@ -111,7 +111,7 @@
             :class="$route.path.includes('profile') ? tactiveClass : tnonActiveClass"
           >
 
-             <img :src="$store.state.user.avatar" alt="Avatar" class="w-5 h-5 rounded-full">
+             <img :src="$getImage($store.state.user.avatar)" alt="Avatar" class="w-5 h-5 rounded-full">
 
             <span
               :class="$route.path.includes('/profile') ? activeClass : nonActiveClass"
@@ -197,7 +197,7 @@
             class="w-full rounded-full flex px-1 py-2 mx-1 my-1 to-hover hover:text-primary"
           >
        
-           <img :src="$store.state.user.avatar" alt="Avatar" class="w-6 h-6 rounded-full">
+           <img :src="$getImage($store.state.user.avatar)" alt="Avatar" class="w-6 h-6 rounded-full">
 
           </nuxt-link>
         </div>

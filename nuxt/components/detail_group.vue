@@ -32,7 +32,7 @@
           <img
            
             class="w-16 h-16  rounded-full"
-            :src="group.avatar"
+            :src="$getImage(group.avatar)"
             :alt="group.name"
           />
 

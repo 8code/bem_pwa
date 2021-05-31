@@ -16,7 +16,7 @@
                 :height="100"
                 :placeholder="'100x100px'"
                 @init="onInit"
-                :initial-image="$store.state.user.avatar"
+                :initial-image="$getImage($store.state.user.avatar)"
                 :quality="1"
 
               ></croppa>

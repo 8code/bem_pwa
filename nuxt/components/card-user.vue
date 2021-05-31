@@ -8,7 +8,7 @@
      
         <img
           class="w-10 h-10  rounded-full"
-          :src="data.avatar"
+          :src="$getImage(data.avatar)"
           :alt="data.name"
         />
 

@@ -1,0 +1,6 @@
+{
+	"appId": "xyz.mabapp.app",
+	"appName": "mabapp",
+	"webDir": "dist",
+	"bundledWebRuntime": false
+}

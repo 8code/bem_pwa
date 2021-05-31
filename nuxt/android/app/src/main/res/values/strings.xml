@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">mabapp</string>
+    <string name="title_activity_main">mabapp</string>
+    <string name="package_name">xyz.mabapp.app</string>
+    <string name="custom_url_scheme">xyz.mabapp.app</string>
+</resources>

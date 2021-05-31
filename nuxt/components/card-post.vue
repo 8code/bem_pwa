@@ -12,7 +12,7 @@
         <img
           v-if="!data.anonim" 
           class="w-6 h-6  rounded-full"
-          :src="data.user.avatar"
+          :src="$getImage(data.user.avatar)"
           alt="Avatar"
         />
 

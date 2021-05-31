@@ -31,7 +31,7 @@
         
           <img
             class="w-16 h-16  rounded-full hidden lg:block"
-            :src="profile.avatar"
+            :src="$getImage(profile.avatar)"
             :alt="profile.name"
           />
           <div class="text-center lg:text-left  mt-3 lg:pl-3">
@@ -41,7 +41,7 @@
                 
                 <img
                   class="w-24 h-24 mx-auto rounded-full lg:hidden my-2"
-                  :src="profile.avatar"
+                  :src="$getImage(profile.avatar)"
                   :alt="profile.name"
                 />
                 <router-link :to="localePath(`/@${profile.username}`)" class="text-sm text-primary">@{{ profile.username }}</router-link>
@@ -135,8 +135,8 @@
 
       <infinite-loading @infinite="loadMoregetData">
 
-          <div slot="no-more" class="text-center flex w-full p-4"></div>
-          <div slot="no-results"></div>
+          <!-- <div slot="no-more" class="text-center flex w-full p-4"></div>
+          <div slot="no-results"></div> -->
 
       </infinite-loading>
       

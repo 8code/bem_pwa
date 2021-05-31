@@ -29,8 +29,8 @@ const createStore = () => {
                 scroll_home_state: ''
             },
 
-
         mutations:{
+          
             setAnonim(state,to){
                 localStorage.setItem("anonim", to)
                 state.anonim = to
@@ -224,7 +224,7 @@ const createStore = () => {
         getters:{
             getNotif (state) {
                 return state.notif
-              }
+            }
         }
     })
 }

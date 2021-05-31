@@ -54,8 +54,9 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    '~/plugins/getImage',
     '~/plugins/v-touch',
-    '~/plugins/socket.js'
+    '~/plugins/socket.js',
   ],
   /*
   ** Auto import components

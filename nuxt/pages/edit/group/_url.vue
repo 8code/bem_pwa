@@ -15,7 +15,7 @@
                           :height="100"
                           :placeholder="'100x100px'"
                           @init="onInit"
-                          :initial-image="d.avatar"
+                          :initial-image="$getImage(d.avatar)"
                           :quality="1"
                           ></croppa>
                 

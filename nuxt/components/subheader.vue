@@ -6,7 +6,7 @@
        >
 
             <nuxt-link  :to="localePath('/profile')"  :class="($route.path.includes(name) && !$route.path.includes(name+'-explore')) ? activeClass : nonActiveClass">
-              <img :src="$store.state.user.avatar" alt="Avatar" class="w-6 h-6 rounded-full">
+              <img :src="$getImage($store.state.user.avatar)" alt="Avatar" class="w-6 h-6 rounded-full">
             </nuxt-link>
 
             <nuxt-link  :to="localePath('/'+name)"  :class="($route.path.includes(name) && !$route.path.includes(name+'-explore')) ? activeClass : nonActiveClass">
@@ -56,6 +56,6 @@ export default {
             activeClass: 'mx-1 pr-3 py-2  text-primary rounded-full font-bold',
             nonActiveClass: 'pr-3 mx-1 py-2  border-primary  font-bold'
         }
-    },
+    }
 }
 </script>

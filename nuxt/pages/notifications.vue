@@ -26,7 +26,7 @@
                         
                         <span class=" float-left  pl-1 text-xs"> 
                                 <nuxt-link class="text-primary" :to="localePath('/@'+n.username)">
-                                <img class=" float-left rounded-xl h-8 w-8 -mt-1 mx-1" :src="n.avatar" alt="Avatar">
+                                <img class=" float-left rounded-xl h-8 w-8 -mt-1 mx-1" :src="$getImage(n.avatar)" alt="Avatar">
                                 {{n.name}}</nuxt-link>
                                 
                                 <span v-if="n.tipe == 1" > <span v-if="n.total > 1">dan {{ n.total}} lainnya</span> menyukai quest anda</span>

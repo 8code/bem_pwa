@@ -30,7 +30,7 @@
       
    
       <div class="flex my-3 mr-auto cursor-pointer" @click="$store.commit('setAnonim',!$store.state.anonim)">
-            <img :src="($store.state.anonim) ? '/anonim.png' : $store.state.user.avatar" alt="Anonim" class="rounded-full w-8 h-8">
+            <img :src="($store.state.anonim) ? '/anonim.png' : $getImage($store.state.user.avatar)" alt="Anonim" class="rounded-full w-8 h-8">
 
             <span class="px-2 font-bold mt-1 font-lg" v-if="$store.state.anonim"> {{ $t('as' )}} Anonim </span>
             <span class="px-2 font-bold mt-1 font-lg" v-else> {{ $t('as' )}} {{ $store.state.user.username}} </span>
